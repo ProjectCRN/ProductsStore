@@ -1,0 +1,1 @@
+select fn_error_message_get(-20001) from dual; 
