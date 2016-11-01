@@ -1,0 +1,27 @@
+ДЕЛАЙТЕ ВСЁ ПО ПУНКТАМ!!!
+1) Качаем сервер: http://www.oracle.com/technetwork/database/database-technologies/express-edition/downloads/index.html
+2) Качаем SQL Developer: http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index-098778.html
+3) Инсталяем 1) и 2)
+4) Открываем SQL Developer, добавляем connection:
+    Connection Name - как хотите
+    Username - sys
+    Password - вы ввели при инсталяции
+    Role - SYSDBA
+  потом ничего не трогаем и жмём Test - если всё ок жмём Connect
+5) идёте в Database\Scripts\Shemas\ переносим файлик 00_create_tablespace.sql в SQL Developer и компилируем его
+   переносим файлик 01_create_user_role.sql в SQL Developer и компилируем его.
+6) Добавляем connection:  
+    Connection Name - как хотите (например NetShopAdmin)
+    Username - ns_admin
+    Password - qwerty
+   потом ничего не трогаем и жмём Test - если всё ок жмём Connect
+7) ВСЕ ОСТАЛЬНЫЕ ДЕЙСТВИЯ ВЫ БУДЕТЕ ДЕЛАТЬ КАК  NetShopAdmin!!! 
+    и сочетание "переносим в SQL Developer и компилируем" - будет заменено на просто "компилируем"
+    
+8) идёте в Database\Scripts\Shemas\  файлы 02_... - компилируете, 03_... - компилируете
+9) идёте в c:\Work\Information\NetShop\Database\Scripts\tr\ -  tr_delete_user.sql - компилируете  
+10) идёте в c:\Work\Information\NetShop\Database\Scripts\Init_data\ - компилируете все файлики (00_... - 04_...)
+11) идёте в c:\Work\Information\NetShop\Database\Scripts\Functions\ - компилируете fn_error_message_get.sql
+12) идёте в c:\Work\Information\NetShop\Database\Scripts\Procedures\ - компилируете всё файлы, начинающиеся на sp_user_...
+
+ПОСЛЕ ЭТОГО ВЫ СМОЖЕТЕ ВЫЗВАТЬ ЭТИ ПРОЦЕДУРЫ В JAVA ЧЕРЕЗ JDBC.
