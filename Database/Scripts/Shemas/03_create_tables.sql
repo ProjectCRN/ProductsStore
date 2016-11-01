@@ -3,7 +3,7 @@ CREATE TABLE TBL_Atribute
 (
 	AtributeID           INTEGER NOT NULL ,
 	AtributeName         NVARCHAR2(128) NOT NULL ,
-	AtributeTypeID       CHAR(1) NOT NULL ,
+	AtributeTypeID       INTEGER NOT NULL ,
 	isActive             SMALLINT NOT NULL  CONSTRAINT  VR_AtrbuteBool CHECK (isActive IN (0, 1)),
 	EntityTypeID         INTEGER NOT NULL ,
 	isRequired           SMALLINT NOT NULL  CONSTRAINT  VR_isRequiredBool CHECK (isRequired IN (0, 1)),
@@ -24,7 +24,7 @@ ALTER TABLE TBL_Atribute
 
 CREATE TABLE TBL_AtributeType
 (
-	AtributeTypeID       CHAR(1) NOT NULL ,
+	AtributeTypeID       INTEGER NOT NULL ,
 	AtributeTypeName     NVARCHAR2(64) NOT NULL 
 );
 
@@ -195,7 +195,7 @@ ALTER TABLE TBL_User
 
 
 ALTER TABLE TBL_Value
-	ADD (CONSTRAINT R_10 FOREIGN KEY (EntityID) REFERENCES TBL_Entity (EntityID));
+	ADD (CONSTRAINT R_10 FOREIGN KEY (EntityID) REFERENCES TBL_Entity (EntityID) ON DELETE CASCADE);
 
 
 
