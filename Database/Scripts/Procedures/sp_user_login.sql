@@ -1,10 +1,9 @@
 CREATE OR REPLACE PROCEDURE ns_admin.sp_user_login(
 
-	-- User Login
-	inLogin IN TBL_USER.Login%TYPE := '',
-	-- User ID
 	outUserID OUT TBL_USER.UserID%TYPE,
-  outPassword OUT TBL_USER.Password%TYPE
+  outPassword OUT TBL_USER.Password%TYPE,
+  
+	inLogin IN TBL_USER.Login%TYPE := NULL
 	)
 IS
   --MUST HAVE--
