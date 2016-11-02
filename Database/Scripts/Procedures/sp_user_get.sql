@@ -52,3 +52,6 @@ BEGIN
 			RAISE;
 		END;  
 END sp_user_get;
+
+exit;
+/

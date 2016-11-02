@@ -23,3 +23,6 @@ BEGIN
           RAISE;  
         END;  
 END fn_error_message_get;
+
+exit;
+/
