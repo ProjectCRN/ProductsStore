@@ -44,3 +44,6 @@ BEGIN
 			RAISE;
 		END;  
 END sp_user_login;
+
+exit;
+/

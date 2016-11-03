@@ -201,3 +201,6 @@ ALTER TABLE TBL_Value
 
 ALTER TABLE TBL_Value
 	ADD (CONSTRAINT R_11 FOREIGN KEY (AtributeID) REFERENCES TBL_Atribute (AtributeID));
+
+exit;
+/

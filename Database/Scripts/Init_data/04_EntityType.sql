@@ -41,3 +41,6 @@ INSERT INTO ns_admin.TBL_ENTITYTYPE (
   1);
   
   commit;
+
+exit;
+/

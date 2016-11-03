@@ -49,3 +49,6 @@ BEGIN
 			RAISE;
 		END;  
 END sp_user_insert;
+
+exit;
+/
