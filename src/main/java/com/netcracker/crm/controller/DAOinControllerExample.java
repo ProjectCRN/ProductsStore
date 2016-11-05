@@ -6,8 +6,6 @@ import com.netcracker.crm.dao.exception.DaoException;
 import com.netcracker.crm.dao.impl.TransactionManagerImpl;
 import com.netcracker.crm.dao.impl.UserDaoImpl;
 import com.netcracker.crm.entity.User;
-import com.sun.org.apache.xpath.internal.SourceTree;
-import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
