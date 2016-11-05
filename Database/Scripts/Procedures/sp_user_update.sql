@@ -1,12 +1,12 @@
-CREATE OR REPLACE PROCEDURE ns_admin.sp_user_update(
+create or replace PROCEDURE sp_user_update(
 
 	-- User id
-	inUserID IN TBL_USER.USERID%TYPE := NULL,
-  newLogin IN TBL_USER.LOGIN%TYPE:= NULL,
-  newPassword IN TBL_USER.PASSWORD%TYPE:= NULL,
-  newUserName IN TBL_USER.USERNAME%TYPE:= NULL,
-  newContactPhone IN TBL_USER.CONTACTPHONE%TYPE:= NULL,
-  newContactAdress IN TBL_USER.CONTACTADRESS%TYPE:= NULL
+	inUserID IN TBL_USER.USERID%TYPE := '',
+  newLogin IN TBL_USER.LOGIN%TYPE,
+  newPassword IN TBL_USER.PASSWORD%TYPE,
+  newUserName IN TBL_USER.USERNAME%TYPE,
+  newContactPhone IN TBL_USER.CONTACTPHONE%TYPE,
+  newContactAdress IN TBL_USER.CONTACTADRESS%TYPE
 	)
 IS
   --MUST HAVE--
@@ -64,6 +64,3 @@ IS
 			RAISE;
 		END; 
 END sp_user_update;
-
-exit;
-/
