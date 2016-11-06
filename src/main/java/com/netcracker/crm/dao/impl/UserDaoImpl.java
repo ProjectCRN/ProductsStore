@@ -1,12 +1,15 @@
 package com.netcracker.crm.dao.impl;
 
+import com.netcracker.crm.constants.ColumnName;
 import com.netcracker.crm.dao.AbstractDao;
 import com.netcracker.crm.dao.IDao;
 import com.netcracker.crm.dao.exception.DaoException;
+import com.netcracker.crm.entity.EntityBuilder;
 import com.netcracker.crm.entity.User;
 import com.netcracker.crm.util.JdbcUtils;
 
 import javax.sql.DataSource;
+import java.awt.peer.CanvasPeer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,9 +21,9 @@ import java.util.List;
  */
 public class UserDaoImpl extends AbstractDao<User>{
 
-//наапример
+//например
     public static final String GET_BY_ID_SQL =
-            "SELECT UserId, Login, Password, Username FROM TBL_USER WHERE UserId=?";
+            "SELECT * FROM TBL_USER WHERE UserId=?";
 
 
     @Override
@@ -46,13 +49,15 @@ public class UserDaoImpl extends AbstractDao<User>{
             resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()){
                 throw new DaoException("No account for id  = " + id);
-        }
-            result = new User(resultSet.getInt("UserId"),
-                resultSet.getString("Login"),
-                resultSet.getString("Password"),
-                resultSet.getString("Username"),
-                resultSet.getString("Username"),
-                resultSet.getString("Username"));
+            }
+            int userId = resultSet.getInt(ColumnName.USER_ID);
+            String login = resultSet.getString(ColumnName.USER_LOGIN);
+            String password = resultSet.getString(ColumnName.USER_PASSWORD);
+            String userName = resultSet.getString(ColumnName.USER_USERNAME);
+            String contactPhone = resultSet.getString(ColumnName.USER_PHONE);
+            String contactAddress = resultSet.getString(ColumnName.USER_ADDRESS);
+            String roleId = resultSet.getString(ColumnName.USER_ROLEID);
+            result = EntityBuilder.buildUser(userId,login,password,userName,contactPhone,contactAddress,roleId);
             connection.commit();
         } catch (SQLException e){
             throw new DaoException("some exception", e);
