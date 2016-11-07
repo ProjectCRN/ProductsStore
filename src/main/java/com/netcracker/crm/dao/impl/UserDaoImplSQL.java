@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by egor on 24.10.2016.
  */
-public class UserDaoImpl extends AbstractDao<User>{
+public class UserDaoImplSQL extends AbstractDao<User>{
 
 //например
     public static final String GET_BY_ID_SQL =
@@ -27,8 +27,8 @@ public class UserDaoImpl extends AbstractDao<User>{
 
 
     @Override
-    public void add(User entity) throws DaoException {
-
+    public int add(User entity) throws DaoException {
+            return 0;
     }
 
     @Override
@@ -50,6 +50,7 @@ public class UserDaoImpl extends AbstractDao<User>{
             if (!resultSet.next()){
                 throw new DaoException("No account for id  = " + id);
             }
+
             int userId = resultSet.getInt(ColumnName.USER_ID);
             String login = resultSet.getString(ColumnName.USER_LOGIN);
             String password = resultSet.getString(ColumnName.USER_PASSWORD);

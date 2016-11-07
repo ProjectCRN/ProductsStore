@@ -5,7 +5,7 @@
 
     <bean id="txManager" class="com.netcracker.crm.dao.impl.TransactionManagerImpl" scope="singleton"/>
 
-    <bean id="userDao" class="com.netcracker.crm.dao.impl.UserDaoImplCalls" scope="singleton">
+    <bean id="userDao" class="com.netcracker.crm.dao.impl.UserDaoImpl" scope="singleton">
         <property name="dataSource" ref="txManager"/>
     </bean>
 
