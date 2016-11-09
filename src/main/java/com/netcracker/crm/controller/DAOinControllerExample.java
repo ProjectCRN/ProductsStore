@@ -22,7 +22,7 @@ public class DAOinControllerExample {
     public void doGet() throws Exception {
 
         ApplicationContext context =
-                new ClassPathXmlApplicationContext(new String[] {"appContext-dao.xml"});
+                new ClassPathXmlApplicationContext(new String[]{"appContext-dao.xml"});
 
         TransactionManager txManager = (TransactionManagerImpl) context.getBean("txManager");
         final IDao<User> userDao = (UserDaoImplCalls) context.getBean("userDao");
@@ -35,8 +35,8 @@ public class DAOinControllerExample {
         User user = txManager.doTransaction(new Callable<User>() {
 
             @Override
-            public User call() throws DaoException{
-               return userDao.getById(id);
+            public User call() throws DaoException {
+                return userDao.getById(id);
             }
         });
         //---------------
@@ -48,8 +48,8 @@ public class DAOinControllerExample {
         Integer newId = txManager.doTransaction(new Callable<Integer>() {
             @Override
             public Integer call() throws Exception {
-                return userDao.add(EntityBuilder.buildUser(0,"User"+userDao.getMaxId(),"password","username","address","phone",User.ROLE_USER));
-             }
+                return userDao.add(EntityBuilder.buildUser(0, "User" + userDao.getMaxId(), "password", "username", "address", "phone", User.ROLE_USER));
+            }
         });
 
 
@@ -62,14 +62,13 @@ public class DAOinControllerExample {
         });
 
         Iterator iterator = all.iterator();
-        while (iterator.hasNext()){
-            user = (User)iterator.next();
+        while (iterator.hasNext()) {
+            user = (User) iterator.next();
             System.out.println(user.toString());
         }
 
 
     }
-
 
 
 }
