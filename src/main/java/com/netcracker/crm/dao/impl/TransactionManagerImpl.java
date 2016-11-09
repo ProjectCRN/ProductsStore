@@ -3,7 +3,6 @@ package com.netcracker.crm.dao.impl;
 import com.netcracker.crm.dao.BaseDataSource;
 import com.netcracker.crm.dao.TransactionManager;
 import com.netcracker.crm.util.JdbcUtils;
-import com.sun.deploy.util.JVMParameters;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

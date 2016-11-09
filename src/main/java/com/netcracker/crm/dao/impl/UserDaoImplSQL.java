@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by egor on 24.10.2016.
@@ -80,5 +81,10 @@ public class UserDaoImplSQL extends AbstractDao<User>{
 
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
+    }
+
+    @Override
+    public User update(int id, Map<String, String> newParams) throws DaoException {
+        return null;
     }
 }
