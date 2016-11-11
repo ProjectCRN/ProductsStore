@@ -88,6 +88,13 @@
         <version>4.2.5.RELEASE</version>
     </dependency>
 
+    <!-- Spring JDBC -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>4.3.3.RELEASE</version>
+    </dependency>
+
     <!-- Spring Security Artifacts - START -->
     <dependency>
         <groupId>org.springframework.security</groupId>

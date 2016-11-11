@@ -11,11 +11,10 @@ import java.util.Map;
  * Created by egor on 03.11.2016.
  */
 public interface IDao<T extends Entity> {
-    int add(T entity) throws DaoException;
-    List<T> getAll() throws DaoException;
-    T getById(int id) throws DaoException;
-    void delete(int id) throws DaoException;
-    int getMaxId() throws DaoException;
+    int add(T entity);
+    List<T> getAll();
+    T getById(int id);
+    void delete(int id);
     void setDataSource(DataSource dataSource);
-    T update(int id, Map<String, String> newParams) throws DaoException;
+    void update(int id, Map<String, String> newParams);
 }
