@@ -102,11 +102,6 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
         jdbcTemplate.update(sql, new Object[]{id});
     }
 
-     @Override
-    public void update(int id, Map<String, String> newParams) {
-
-    }
-
     private int getKey(){
         final String sql = "SELECT SQ_MAIN.NEXTVAL from dual";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -125,5 +120,23 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
     @Override
     public Map<Integer, String> login(String login) {
         return null;
+    }
+
+    @Override
+    public void update(int id,String uLogin, String uPassword, String uName,
+                       String uPhone, String uAddress) {
+        final String sql = "UPDATE TBL_USER SET "+COLUMN_USER_LOGIN + "  = ?, " + COLUMN_USER_PASSWORD +" = ?, "+
+                COLUMN_USER_USERNAME + " = ?, " + COLUMN_USER_PHONE +" = ?, " + COLUMN_USER_ADDRESS + " = ? " +
+                "WHERE " + COLUMN_USER_ID + " = ?";
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        Object[] args = new Object[] {
+                uLogin,
+                uPassword,
+                uName,
+                uPhone,
+                uAddress,
+                id
+        };
+        jdbcTemplate.update(sql, args);
     }
 }

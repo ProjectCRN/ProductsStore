@@ -6,15 +6,15 @@ package com.netcracker.crm.entity;
 
 import java.io.Serializable;
 
-public abstract class Entity implements Serializable {
+public abstract class Entity extends AbstractEntity {
+
     private static final long serialVersionUID = 1L;
-    protected int id;
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
+        result = prime * result + getId();
         return result;
     }
 
@@ -30,7 +30,7 @@ public abstract class Entity implements Serializable {
             return false;
         }
         Entity other = (Entity) obj;
-        if (id != other.id) {
+        if (getId() != other.getId()) {
             return false;
         }
         return true;
@@ -38,20 +38,13 @@ public abstract class Entity implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity [id=" + id + "]";
+        return "Entity [id=" + getId() + "]";
     }
 
     public Entity() {}
 
     public Entity(int id) {
-        this.id = id;
+        super(id);
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }

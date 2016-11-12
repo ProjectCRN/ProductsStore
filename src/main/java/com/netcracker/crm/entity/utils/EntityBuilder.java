@@ -11,7 +11,7 @@ public class EntityBuilder {
 
     public static User buildUser(int userId, String login, String password, String userName, String contactPhone, String contactAddress, String roleId) {
         User user = new User();
-        user.setUserId(userId);
+        user.setId(userId);
         user.setLogin(login);
         user.setPassword(password);
         user.setUserName(userName);
