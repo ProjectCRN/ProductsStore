@@ -6,7 +6,6 @@ package com.netcracker.crm.entity;
 public class Value extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
-    private int valueId;
     private String valueName;
     private int entityId;
     private int atributeId;
@@ -15,14 +14,10 @@ public class Value extends AbstractEntity {
     }
 
     public Value(int valueId, String valueName, int entityId, int atributeId) {
-        this.valueId = valueId;
+        super(valueId);
         this.valueName = valueName;
         this.entityId = entityId;
         this.atributeId = atributeId;
-    }
-
-    public int getValueId() {
-        return valueId;
     }
 
     public String getValueName() {
@@ -35,10 +30,6 @@ public class Value extends AbstractEntity {
 
     public int getAtributeId() {
         return atributeId;
-    }
-
-    public void setValueId(int valueId) {
-        this.valueId = valueId;
     }
 
     public void setValueName(String valueName) {
