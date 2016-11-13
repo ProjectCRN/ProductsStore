@@ -52,11 +52,11 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         Object[] args = new Object[valuesArr.size() * 2 + 2];
         for (int i = 0; i < valuesArr.size(); i++) {
             int j = i * 2;
-            args[j] = valuesArr.get(i).getValueId();
+            args[j] = valuesArr.get(i).getId();
             args[j + 1] = valuesArr.get(i).getValueName();
         }
-        args[valuesArr.size() * 2] = valuesArr.get(0).getValueId();
-        args[valuesArr.size() * 2 + 1] = valuesArr.get(valuesArr.size() - 1).getValueId();
+        args[valuesArr.size() * 2] = valuesArr.get(0).getId();
+        args[valuesArr.size() * 2 + 1] = valuesArr.get(valuesArr.size() - 1).getId();
         jdbcTemplate.update(sqlUpdateValue, args);
     }
 
