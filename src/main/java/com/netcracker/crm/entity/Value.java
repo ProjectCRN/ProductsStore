@@ -43,4 +43,32 @@ public class Value extends AbstractEntity {
     public void setAtributeId(int atributeId) {
         this.atributeId = atributeId;
     }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        final int prime = 31;
+        result = prime * result + valueName.hashCode();
+        result = prime * result + entityId;
+        result = prime * result + atributeId;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        if (!super.equals(obj)) return false;
+
+        Value other = (Value) obj;
+        if (!valueName.equals(other.valueName)) return false;
+        if(entityId != other.entityId) return false;
+        if(atributeId != other.atributeId) return false;
+        return true;
+    }
+
 }

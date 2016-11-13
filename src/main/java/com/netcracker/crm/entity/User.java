@@ -38,7 +38,6 @@ public class User extends AbstractEntity{
 
         User user = (User) o;
 
-        if (getId() != user.getId()) return false;
         if (!login.equals(user.login)) return false;
         if (!password.equals(user.password)) return false;
         if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
@@ -52,13 +51,14 @@ public class User extends AbstractEntity{
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + getId();
-        result = 31 * result + login.hashCode();
-        result = 31 * result + password.hashCode();
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
-        result = 31 * result + (contactPhone != null ? contactPhone.hashCode() : 0);
-        result = 31 * result + (contactAddress != null ? contactAddress.hashCode() : 0);
-        result = 31 * result + roleId.hashCode();
+        final int prime = 31;
+        result = prime * result + getId();
+        result = prime * result + login.hashCode();
+        result = prime * result + password.hashCode();
+        result = prime * result + (userName != null ? userName.hashCode() : 0);
+        result = prime * result + (contactPhone != null ? contactPhone.hashCode() : 0);
+        result = prime * result + (contactAddress != null ? contactAddress.hashCode() : 0);
+        result = prime * result + roleId.hashCode();
         return result;
     }
 
