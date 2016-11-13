@@ -25,6 +25,18 @@ public class Atribute extends AbstractEntity {
         this.isRequired = isRequired;
     }
 
+    public Atribute(int id, String atributeName, int atributeTypeId, String atributeTypeName,
+                    boolean isActive, int entityTypeId, int entityTypeName, boolean isRequired) {
+        super(id);
+        this.atributeName = atributeName;
+        this.atributeTypeId = atributeTypeId;
+        this.atributeTypeName = atributeTypeName;
+        this.isActive = isActive;
+        this.entityTypeId = entityTypeId;
+        this.entityTypeName = entityTypeName;
+        this.isRequired = isRequired;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,5 +67,61 @@ public class Atribute extends AbstractEntity {
         result = prime * result + entityTypeName;
         result = prime * result + (isRequired ? 1 : 0);
         return result;
+    }
+
+    public String getAtributeName() {
+        return atributeName;
+    }
+
+    public int getAtributeTypeId() {
+        return atributeTypeId;
+    }
+
+    public String getAtributeTypeName() {
+        return atributeTypeName;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public int getEntityTypeId() {
+        return entityTypeId;
+    }
+
+    public int getEntityTypeName() {
+        return entityTypeName;
+    }
+
+    public boolean isRequired() {
+        return isRequired;
+    }
+
+    public void setAtributeName(String atributeName) {
+        this.atributeName = atributeName;
+    }
+
+    public void setAtributeTypeId(int atributeTypeId) {
+        this.atributeTypeId = atributeTypeId;
+    }
+
+    public void setAtributeTypeName(String atributeTypeName) {
+        this.atributeTypeName = atributeTypeName;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public void setEntityTypeId(int entityTypeId) {
+        this.entityTypeId = entityTypeId;
+    }
+
+    public void setEntityTypeName(int entityTypeName) {
+        this.entityTypeName = entityTypeName;
+    }
+
+    public void setIsRequired(boolean isRequired) {
+        this.isRequired = isRequired;
     }
 }
