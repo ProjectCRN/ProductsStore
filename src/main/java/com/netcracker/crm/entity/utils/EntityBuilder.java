@@ -1,5 +1,6 @@
 package com.netcracker.crm.entity.utils;
 
+import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.User;
 
 /**
@@ -19,6 +20,18 @@ public class EntityBuilder {
         user.setContactAddress(contactAddress);
         user.setRoleId(roleId);
         return user;
+    }
+
+    public static Entity buildEntity(int id, String entityName, String isActive, String entityTypeId, String entityTypeName, String  userId) {
+        Entity entity = new Entity();
+        entity.setId(id);
+        entity.setEntityName(entityName);
+        entity.setIsActive(((Integer.valueOf(isActive)) == 1));
+        entity.setEntityTypeId(Integer.valueOf(entityTypeId));
+        entity.setEntityTypeName(entityTypeName);
+        entity.setUserId(Integer.valueOf(userId));
+
+        return entity;
     }
 
 }

@@ -6,9 +6,9 @@ import com.netcracker.crm.entity.Value;
 import java.util.List;
 
 /**
- * Created by ïê on 12.11.2016.
+ * Created by ï¿½ï¿½ on 12.11.2016.
  */
 public interface IEntityDao extends IDao<Entity> {
-    public void update(int id,  String entityName, int isActive, int userId,
-                       List<Value> valuesArr);
+    public void update(int id,  String entityName, int isActive, int userId, List<Value> valuesArr);
+
 }

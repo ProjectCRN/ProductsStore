@@ -5,8 +5,10 @@ package com.netcracker.crm.entity;
  */
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
-public abstract class Entity extends AbstractEntity {
+public class Entity extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
     private String entityName;
@@ -14,40 +16,34 @@ public abstract class Entity extends AbstractEntity {
     private int entityTypeId;
     private String entityTypeName;
     private int userId;
+    private List<Value> valueList;
+    private Map<Atribute,Value> atributeValueMap;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Entity entity = (Entity) o;
+
+        if (isActive != entity.isActive) return false;
+        if (entityTypeId != entity.entityTypeId) return false;
+        if (userId != entity.userId) return false;
+        if (!entityName.equals(entity.entityName)) return false;
+        return entityTypeName.equals(entity.entityTypeName);
+
+    }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        final int prime = 31;
-        result = prime * result + entityName.hashCode();
-        result = prime * result + (isActive ? 1 : 0);
-        result = prime * result + entityTypeId;
-        result = prime * result + entityTypeName.hashCode();
-        result = prime * result + userId;
+        result = 31 * result + entityName.hashCode();
+        result = 31 * result + (isActive ? 1 : 0);
+        result = 31 * result + entityTypeId;
+        result = 31 * result + entityTypeName.hashCode();
+        result = 31 * result + userId;
         return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        if (!super.equals(obj)) return false;
-
-        Entity other = (Entity) obj;
-        if (!entityName.equals(other.entityName)) return false;
-        if (isActive != other.isActive) return false;
-        if(entityTypeId != other.entityTypeId) return false;
-        if(userId != other.userId) return false;
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Entity [id=" + getId() + "]";
     }
 
     public Entity() {
@@ -55,6 +51,19 @@ public abstract class Entity extends AbstractEntity {
 
     public Entity(int id) {
         super(id);
+    }
+
+
+    @Override
+    public String toString() {
+        return "Entity{" +
+                "entityId="+getId()+
+                "\nentityName='" + entityName + '\'' +
+                ", isActive=" + isActive +
+                ", entityTypeId=" + entityTypeId +
+                ", entityTypeName='" + entityTypeName + '\'' +
+                ", userId=" + userId +
+                '}';
     }
 
     public Entity(int id, String entityName, boolean isActive, int entityTypeId, String entityTypeName, int userId) {
@@ -66,12 +75,21 @@ public abstract class Entity extends AbstractEntity {
         this.userId = userId;
     }
 
+    public Entity(String entityName, boolean isActive, int entityTypeId, int userId, List<Value> valueList) {
+        this.entityName = entityName;
+        this.isActive = isActive;
+        this.entityTypeId = entityTypeId;
+        this.entityTypeName = entityTypeName;
+        this.userId = userId;
+        this.valueList = valueList;
+    }
+
     public String getEntityName() {
         return entityName;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public int getisActive() {
+        return ((isActive==true) ? 1 : 0);
     }
 
     public int getEntityTypeId() {
@@ -82,9 +100,14 @@ public abstract class Entity extends AbstractEntity {
         return entityTypeName;
     }
 
-    public int getUserId() {
+    public int getEntityUserId() {
         return userId;
     }
+
+    public List<Value> getValueList() {
+        return valueList;
+    }
+
 
     public void setEntityName(String entityName) {
         this.entityName = entityName;
