@@ -21,13 +21,13 @@ public class TestDao {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext(new String[]{"SpringModule.xml"});
 
-        List<Value> values =new ArrayList<>();
-        values.add(new Value(0,"16Gb",0,14));
-        values.add(new Value(0,"5.1-inch (diagonal)",0,15));
-        Entity entity=new Entity("Samsung Galaxy S3",true,8,-2,values);
-
+//        List<Value> values =new ArrayList<>();
+//        values.add(new Value(0,"16Gb",0,14));
+//        values.add(new Value(0,"5.1-inch (diagonal)",0,15));
+//        Entity entity=new Entity("Samsung Galaxy S3",true,8,-2,values);
+//
         IEntityDao entityDao = (EntityDaoImpl) context.getBean("entityDao");
-        System.out.println(entityDao.getById(entityDao.add(entity)));
+        System.out.println(entityDao.getById(55));
 
 //        List<User> userList = userDao.getAllByRole(User.ROLE_ADMIN);
 //        for (User user:userList) {

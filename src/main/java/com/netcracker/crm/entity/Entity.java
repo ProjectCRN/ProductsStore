@@ -4,6 +4,8 @@ package com.netcracker.crm.entity;
  * Created by egor on 23.10.2016.
  */
 
+import javafx.util.Pair;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +19,7 @@ public class Entity extends AbstractEntity {
     private String entityTypeName;
     private int userId;
     private List<Value> valueList;
-    private Map<Atribute,Value> atributeValueMap;
+    private List<Pair<Atribute,Value>> atributeValueMap;
 
     @Override
     public boolean equals(Object o) {
@@ -56,7 +58,7 @@ public class Entity extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Entity{" +
+        String str= "Entity{" +
                 "entityId="+getId()+
                 "\nentityName='" + entityName + '\'' +
                 ", isActive=" + isActive +
@@ -64,6 +66,11 @@ public class Entity extends AbstractEntity {
                 ", entityTypeName='" + entityTypeName + '\'' +
                 ", userId=" + userId +
                 '}';
+        for(Pair<Atribute,Value> item : atributeValueMap){
+            str+="\n"+item.getKey().toString();
+            str+="\n"+item.getValue().toString();
+        }
+        return str;
     }
 
     public Entity(int id, String entityName, boolean isActive, int entityTypeId, String entityTypeName, int userId) {
@@ -108,6 +115,13 @@ public class Entity extends AbstractEntity {
         return valueList;
     }
 
+    public List<Pair<Atribute,Value>> getAtributeValueMap() {
+        return atributeValueMap;
+    }
+
+    public void setAtributeValueMap(List<Pair<Atribute,Value>> atributeValueMap) {
+        this.atributeValueMap = atributeValueMap;
+    }
 
     public void setEntityName(String entityName) {
         this.entityName = entityName;

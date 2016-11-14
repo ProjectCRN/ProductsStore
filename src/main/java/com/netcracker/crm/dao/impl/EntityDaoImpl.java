@@ -2,6 +2,7 @@ package com.netcracker.crm.dao.impl;
 
 import com.netcracker.crm.dao.AbstractDao;
 import com.netcracker.crm.dao.IEntityDao;
+import com.netcracker.crm.dao.rowmapper.AtributeValueRowMapper;
 import com.netcracker.crm.dao.rowmapper.EntityRowMapper;
 import com.netcracker.crm.dao.rowmapper.UserRowMapper;
 import com.netcracker.crm.entity.Atribute;
@@ -77,6 +78,15 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
         Entity entity = jdbcTemplate.queryForObject(sql, new Object[]{id}, new EntityRowMapper());
+        sql="SELECT A.ATRIBUTEID ,A.ATRIBUTENAME ,A.ATRIBUTETYPEID ,T.ATRIBUTETYPENAME,A.ISACTIVE ,A.ENTITYTYPEID ,A.ISREQUIRED , V.VALUEID ,V.VALUE ,V.ENTITYID " +
+                " FROM TBL_ATRIBUTE A " +
+                " INNER JOIN TBL_ATRIBUTETYPE T " +
+                " ON A.ATRIBUTETYPEID=T.ATRIBUTETYPEID" +
+                " INNER JOIN TBL_VALUE V" +
+                " ON A.ATRIBUTEID=V.ATRIBUTEID" +
+                " WHERE (V.ENTITYID = ?)" +
+                " ORDER BY A.SORTORDER";
+        entity.setAtributeValueMap(jdbcTemplate.query(sql, new Object[]{id}, new AtributeValueRowMapper()));
         return entity;
     }
 

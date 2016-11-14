@@ -1,7 +1,9 @@
 package com.netcracker.crm.entity.utils;
 
+import com.netcracker.crm.entity.Atribute;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.User;
+import com.netcracker.crm.entity.Value;
 
 /**
  * Created by egor on 06.11.2016.
@@ -32,6 +34,27 @@ public class EntityBuilder {
         entity.setUserId(Integer.valueOf(userId));
 
         return entity;
+    }
+    public static Atribute buildAtribute(int id, String atributeName, String atributeTypeId,String atributeTypeName, String isActive, String entityTypeId, String isRequired){
+        Atribute atribute = new Atribute();
+        atribute.setId(id);
+        atribute.setAtributeName(atributeName);
+        atribute.setAtributeTypeId(Integer.valueOf(atributeTypeId));
+        atribute.setAtributeTypeName(atributeTypeName);
+        atribute.setIsActive(((Integer.valueOf(isActive)) == 1));
+        atribute.setEntityTypeId(Integer.valueOf(entityTypeId));
+        atribute.setIsRequired(((Integer.valueOf(isRequired)) == 1));
+
+        return atribute;
+    }
+    public static Value buildValue(int valueId, String strvalue, String entityId, int atributeId){
+        Value value=new Value();
+        value.setId(valueId);
+        value.setValue(strvalue);
+        value.setEntityId(Integer.valueOf(entityId));
+        value.setAtributeId(atributeId);
+
+        return value;
     }
 
 }

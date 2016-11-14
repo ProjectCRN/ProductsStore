@@ -27,6 +27,14 @@ public class DaoConstants {
     public static final String COLUMN_VALUE_ENTITY_ID="ENTITYID";
     public static final String COLUMN_VALUE_ATRIBUTE_ID="ATRIBUTEID";
 
+    public static final String COLUMN_ATRIBUTE_ID="ATRIBUTEID";
+    public static final String COLUMN_ATRIBUTE_NAME="ATRIBUTENAME";
+    public static final String COLUMN_ATRIBUTE_TYPEID="ATRIBUTETYPEID";
+    public static final String COLUMN_ATRIBUTE_TYPENAME="ATRIBUTETYPENAME";
+    public static final String COLUMN_ATRIBUTE_ISACTIVE="ISACTIVE";
+    public static final String COLUMN_ATRIBUTE_ENTITY_TYPE_ID="ENTITYTYPEID";
+    public static final String COLUMN_ATRIBUTE_ISREQUIRED="ISREQUIRED";
+
     public static final String PARAM_IN_USER_ID = "INUSERID";
     public static final String PARAM_IN_USER_LOGIN = "INUSERLOGIN";
     public static final String PARAM_IN_LOGIN = "INLOGIN";

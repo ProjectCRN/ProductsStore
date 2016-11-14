@@ -71,4 +71,12 @@ public class Value extends AbstractEntity {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Value{" +
+                "value='" + value + '\'' +
+                ", entityId=" + entityId +
+                ", atributeId=" + atributeId +
+                '}';
+    }
 }
