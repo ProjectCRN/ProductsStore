@@ -88,6 +88,14 @@
         <version>4.2.5.RELEASE</version>
     </dependency>
 
+    <!-- Spring validation -->
+    <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+    <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>1.0.0.GA</version>
+    </dependency>
+
     <!-- Spring JDBC -->
     <dependency>
         <groupId>org.springframework</groupId>

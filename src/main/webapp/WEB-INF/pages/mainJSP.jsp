@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="jquery-3.1.1.min.js"></script>
 </head>
 <body>
 
@@ -22,6 +23,7 @@
     </li>
     <li><a href="/products">Products</a></li>
     <li><a href="/cart">Cart</a></li>
+    <li><a href="/createOrder">Create Order</a></li>
 </ul>
 <h1>${message}</h1>
 </html>
