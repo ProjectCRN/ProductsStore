@@ -9,11 +9,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-<a href="/products">products</a>
-<table border="1" width="80%">
+
+<ul class="nav nav-tabs">
+    <li><a href="/">Main</a></li>
+    <li><a href="/products">Products</a></li>
+    <li class="active">
+        <a href="/cart">Cart</a>
+    </li>
+</ul>
+
+<table class="table table-striped">
     <tr>
         <th>id</th>
         <th>name</th>
@@ -28,8 +39,8 @@
             <td>${item.getProduct().getName()} </td>
             <td>${item.getProduct().getPrice()} </td>
             <td>${item.getNumber()}</td>
-            <td><a href="/addCartProduct/${item.getProduct().getId()}">+</a></td>
-            <td><a href="/deleteCartProduct/${item.getProduct().getId()}">-</a></td>
+            <td><a  class="btn btn-default" role="button" href="/addCartProduct/${item.getProduct().getId()}">add</a></td>
+            <td><a  class="btn btn-default" role="button" href="/deleteCartProduct/${item.getProduct().getId()}">delete</a></td>
         </tr>
     </c:forEach>
 </table>
