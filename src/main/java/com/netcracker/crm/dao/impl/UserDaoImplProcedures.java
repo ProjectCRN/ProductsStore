@@ -92,12 +92,6 @@ public class UserDaoImplProcedures extends AbstractDao<User> implements IUserDao
     }
 
 
-
-    @Override
-    public void update(int id, Map<String, String> newParams) {
-
-    }
-
     private RowMapper<User> rowMapper = new RowMapper<User>() {
         @Override
         public User mapRow(ResultSet resultSet, int rowNum) throws SQLException {
@@ -142,6 +136,11 @@ public class UserDaoImplProcedures extends AbstractDao<User> implements IUserDao
         Map <Integer,String> idAndPassword = new HashMap(){{put(outID,outPassword);}};
         System.out.println(outID  + outPassword);
         return idAndPassword;
+    }
+
+    @Override
+    public void update(int id, String uLogin, String uPassword, String uName, String uPhone, String uAddress) {
+
     }
 
 

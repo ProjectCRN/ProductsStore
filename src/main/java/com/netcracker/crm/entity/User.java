@@ -5,13 +5,12 @@ import java.io.Serializable;
 /**
  * Created by egor on 24.10.2016.
  */
-public class User extends Entity{
+public class User extends AbstractEntity{
 
     private static final long serialVersionUID = 1L;
     public static final String ROLE_ADMIN = "A";
     public static final String ROLE_USER = "U";
 
-    private int userId;
     private String login;
     private String password;
     private String userName;
@@ -19,6 +18,17 @@ public class User extends Entity{
     private String contactAddress;
     private String roleId;
 
+    public User(){}
+
+    public User(int id, String login, String password, String userName, String contactPhone, String contactAddress, String roleId) {
+        super(id);
+        this.login = login;
+        this.password = password;
+        this.userName = userName;
+        this.contactPhone = contactPhone;
+        this.contactAddress = contactAddress;
+        this.roleId = roleId;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -28,7 +38,6 @@ public class User extends Entity{
 
         User user = (User) o;
 
-        if (userId != user.userId) return false;
         if (!login.equals(user.login)) return false;
         if (!password.equals(user.password)) return false;
         if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
@@ -42,20 +51,21 @@ public class User extends Entity{
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + userId;
-        result = 31 * result + login.hashCode();
-        result = 31 * result + password.hashCode();
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
-        result = 31 * result + (contactPhone != null ? contactPhone.hashCode() : 0);
-        result = 31 * result + (contactAddress != null ? contactAddress.hashCode() : 0);
-        result = 31 * result + roleId.hashCode();
+        final int prime = 31;
+        result = prime * result + getId();
+        result = prime * result + login.hashCode();
+        result = prime * result + password.hashCode();
+        result = prime * result + (userName != null ? userName.hashCode() : 0);
+        result = prime * result + (contactPhone != null ? contactPhone.hashCode() : 0);
+        result = prime * result + (contactAddress != null ? contactAddress.hashCode() : 0);
+        result = prime * result + roleId.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "userId=" + getId() +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
@@ -66,14 +76,6 @@ public class User extends Entity{
     }
 
 
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public String getLogin() {
         return login;
