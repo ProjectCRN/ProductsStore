@@ -1,7 +1,7 @@
 package com.netcracker.crm.entity;
 
 /**
- * Created by ïê on 13.11.2016.
+ * Created by ï¿½ï¿½ on 13.11.2016.
  */
 public class Atribute extends AbstractEntity {
 
@@ -11,7 +11,7 @@ public class Atribute extends AbstractEntity {
     private String atributeTypeName;
     private boolean isActive;
     private int entityTypeId;
-    private int entityTypeName;
+    private String entityTypeName;
     private boolean isRequired;
 
     public Atribute() {}
@@ -26,7 +26,7 @@ public class Atribute extends AbstractEntity {
     }
 
     public Atribute(int id, String atributeName, int atributeTypeId, String atributeTypeName,
-                    boolean isActive, int entityTypeId, int entityTypeName, boolean isRequired) {
+                    boolean isActive, int entityTypeId, String entityTypeName, boolean isRequired) {
         super(id);
         this.atributeName = atributeName;
         this.atributeTypeId = atributeTypeId;
@@ -64,7 +64,7 @@ public class Atribute extends AbstractEntity {
         result = prime * result + atributeTypeName.hashCode();
         result = prime * result + (isActive ? 1 : 0);
         result = prime * result + entityTypeId;
-        result = prime * result + entityTypeName;
+        result = prime * result + entityTypeName.hashCode();
         result = prime * result + (isRequired ? 1 : 0);
         return result;
     }
@@ -89,7 +89,7 @@ public class Atribute extends AbstractEntity {
         return entityTypeId;
     }
 
-    public int getEntityTypeName() {
+    public String getEntityTypeName() {
         return entityTypeName;
     }
 
@@ -117,11 +117,24 @@ public class Atribute extends AbstractEntity {
         this.entityTypeId = entityTypeId;
     }
 
-    public void setEntityTypeName(int entityTypeName) {
+    public void setEntityTypeName(String entityTypeName) {
         this.entityTypeName = entityTypeName;
     }
 
     public void setIsRequired(boolean isRequired) {
         this.isRequired = isRequired;
+    }
+
+    @Override
+    public String toString() {
+        return "Atribute{" +
+                "atributeName='" + atributeName + '\'' +
+                ", atributeTypeId=" + atributeTypeId +
+                ", atributeTypeName='" + atributeTypeName + '\'' +
+                ", isActive=" + isActive +
+                ", entityTypeId=" + entityTypeId +
+                ", entityTypeName='" + entityTypeName + '\'' +
+                ", isRequired=" + isRequired +
+                '}';
     }
 }

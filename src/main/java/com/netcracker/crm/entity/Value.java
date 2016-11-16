@@ -1,27 +1,27 @@
 package com.netcracker.crm.entity;
 
 /**
- * Created by ïê on 12.11.2016.
+ * Created by ï¿½ï¿½ on 12.11.2016.
  */
 public class Value extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
-    private String valueName;
+    private String value;
     private int entityId;
     private int atributeId;
 
     public Value() {
     }
 
-    public Value(int valueId, String valueName, int entityId, int atributeId) {
+    public Value(int valueId, String value, int entityId, int atributeId) {
         super(valueId);
-        this.valueName = valueName;
+        this.value = value;
         this.entityId = entityId;
         this.atributeId = atributeId;
     }
 
-    public String getValueName() {
-        return valueName;
+    public String getValue() {
+        return value;
     }
 
     public int getEntityId() {
@@ -32,8 +32,8 @@ public class Value extends AbstractEntity {
         return atributeId;
     }
 
-    public void setValueName(String valueName) {
-        this.valueName = valueName;
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public void setEntityId(int entityId) {
@@ -48,7 +48,7 @@ public class Value extends AbstractEntity {
     public int hashCode() {
         int result = super.hashCode();
         final int prime = 31;
-        result = prime * result + valueName.hashCode();
+        result = prime * result + value.hashCode();
         result = prime * result + entityId;
         result = prime * result + atributeId;
         return result;
@@ -65,10 +65,18 @@ public class Value extends AbstractEntity {
         if (!super.equals(obj)) return false;
 
         Value other = (Value) obj;
-        if (!valueName.equals(other.valueName)) return false;
+        if (!value.equals(other.value)) return false;
         if(entityId != other.entityId) return false;
         if(atributeId != other.atributeId) return false;
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Value{" +
+                "value='" + value + '\'' +
+                ", entityId=" + entityId +
+                ", atributeId=" + atributeId +
+                '}';
+    }
 }
