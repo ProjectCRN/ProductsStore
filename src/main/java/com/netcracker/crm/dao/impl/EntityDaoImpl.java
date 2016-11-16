@@ -9,9 +9,14 @@ import com.netcracker.crm.entity.Atribute;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.Value;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -128,6 +133,24 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         updateEntity(id, entityName, isActive, userId);
         //update value table
         updateValue(valuesArr);
+    }
+
+    @Override
+    public List<Entity> getList(String atributesId, String values, String operators) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate.setResultsMapCaseInsensitive(true);
+        SqlParameterSource in = new MapSqlParameterSource()
+                .addValue(PARAM_IN_ENTITY_ATRIBUTES, atributesId)
+                .addValue(PARAM_IN_ENTITY_VALUES, values)
+                .addValue(PARAM_IN_ENTITY_OPERATORS, operators);
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate)
+                .withProcedureName(PROCEDURE_ENTITY_GET_LIST)
+                .returningResultSet(PARAM_OUT_ENTITY_LIST,new EntityRowMapper());
+
+        Map result = jdbcCall.execute(in);
+        List<Entity> entiyList= new ArrayList<>((ArrayList)result.get(PARAM_OUT_ENTITY_LIST));
+
+        return entiyList;
     }
 
     @Override
