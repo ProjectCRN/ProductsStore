@@ -28,7 +28,7 @@ BEGIN
   DELETE FROM SearchTable;
   inAttribute:= NVL(inAttribute,'');
 
-IF (LENGTH(inAttribute)=0) THEN 
+IF (LENGTH(inAttribute) IS NULL) THEN 
       OPEN outEntity FOR
       SELECT E.ENTITYID ,E.ENTITYNAME ,E.ISACTIVE ,E.ENTITYTYPEID,T.ENTITYTYPENAME ,E.USERID  
       FROM TBL_ENTITY E
@@ -37,7 +37,7 @@ IF (LENGTH(inAttribute)=0) THEN
       
 END IF;
 
-  IF LENGTH(inAttribute)!=0 THEN
+  IF (LENGTH(inAttribute)IS NOT NULL) THEN
 
     inAttribute := inAttribute || ',';
     inValue := NVL(inValue,'') || ',';
