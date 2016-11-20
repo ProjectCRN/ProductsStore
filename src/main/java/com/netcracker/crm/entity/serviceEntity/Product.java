@@ -1,16 +1,16 @@
 package com.netcracker.crm.entity.serviceEntity;
 
 
+import com.netcracker.crm.entity.AbstractEntity;
 import com.netcracker.crm.entity.Atribute;
 import com.netcracker.crm.entity.Value;
 import javafx.util.Pair;
 
 import java.util.List;
 
-public class Product {
-    private Integer id;
+public class Product extends AbstractEntity{
     private String name;
-    private Integer price;
+    private int price;
     private String productType;
     private List<Pair<Atribute,Value>> atributeValueMap;
 
@@ -18,28 +18,21 @@ public class Product {
     public Product() {
     }
 
-    public Product(Integer id, String name, Integer price, String productType) {
-        this.id = id;
+    public Product(int id, String name, int price, String productType) {
+        super(id);
         this.name = name;
         this.price = price;
         this.productType = productType;
     }
 
-    public Product(Integer id, String name, Integer price, String productType, List<Pair<Atribute, Value>> atributeValueMap) {
-        this.id = id;
+    public Product(int id, String name, int price, String productType, List<Pair<Atribute, Value>> atributeValueMap) {
+        super(id);
         this.name = name;
         this.price = price;
         this.productType = productType;
         this.atributeValueMap = atributeValueMap;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -49,11 +42,11 @@ public class Product {
         return name;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public Integer getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -80,9 +73,9 @@ public class Product {
 
         Product product = (Product) o;
 
-        if (!getId().equals(product.getId())) return false;
+        if (getId()!=product.getId()) return false;
         if (!getName().equals(product.getName())) return false;
-        if (!getPrice().equals(product.getPrice())) return false;
+        if (getPrice()!=product.getPrice()) return false;
         if (!getProductType().equals(product.getProductType())) return false;
         return !(getAtributeValueMap() != null ? !getAtributeValueMap().equals(product.getAtributeValueMap()) :
                 product.getAtributeValueMap() != null);
@@ -91,9 +84,9 @@ public class Product {
 
     @Override
     public int hashCode() {
-        int result = getId().hashCode();
+        int result = getId();
         result = 31 * result + getName().hashCode();
-        result = 31 * result + getPrice().hashCode();
+        result = 31 * result + getPrice();
         result = 31 * result + getProductType().hashCode();
         result = 31 * result + (getAtributeValueMap() != null ? getAtributeValueMap().hashCode() : 0);
         return result;
@@ -102,7 +95,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", productType='" + productType + '\'' +
