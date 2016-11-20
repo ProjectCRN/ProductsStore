@@ -25,6 +25,11 @@ public class Product extends AbstractEntity {
         this(entity.getId(), entity.getEntityName(), entity.getisActive() == 1 ? true : false,
                 entity.getEntityTypeName(), entity.getEntityUserId());
         atributeValueMap = entity.getAtributeValueMap();
+        for(int i = 0; i<atributeValueMap.size(); i++){
+            if(atributeValueMap.get(i).getKey().getAtributeTypeName().equals("Price")){
+                price=Integer.parseInt(atributeValueMap.get(i).getValue().getValue());
+            }
+        }
     }
 
     public Product(int id, String name, boolean isActive, String productType, int userId) {
