@@ -1,7 +1,6 @@
 package com.netcracker.crm.dao;
 
 import com.netcracker.crm.entity.AbstractEntity;
-import com.netcracker.crm.entity.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.sql.DataSource;

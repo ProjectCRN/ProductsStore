@@ -4,12 +4,8 @@ import com.netcracker.crm.dao.AbstractDao;
 import com.netcracker.crm.dao.IEntityDao;
 import com.netcracker.crm.dao.rowmapper.AtributeValueRowMapper;
 import com.netcracker.crm.dao.rowmapper.EntityRowMapper;
-import com.netcracker.crm.dao.rowmapper.UserRowMapper;
-import com.netcracker.crm.entity.Atribute;
 import com.netcracker.crm.entity.Entity;
-import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.Value;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -26,6 +22,7 @@ import static com.netcracker.crm.dao.constants.DaoConstants.*;
  * Created by �� on 12.11.2016.
  */
 public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
+
 
     public void addValue(List<Value> valuesArr,int idEntity){
         final String sql = "INSERT INTO TBL_VALUE (" +
@@ -175,4 +172,5 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
+
 }
