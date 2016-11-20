@@ -1,7 +1,7 @@
 package com.netcracker.crm.services.listworker;
 
-import com.netcracker.crm.entity.AbstractEntity;
 import com.netcracker.crm.entity.User;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -48,17 +48,18 @@ public class UserListWorker{
         return list;
     }
 
+    @NotNull
     public static List<User> getFromTo(List<User> list, int from, int to){
-        List<User> newList;
-        if (list.size() < to){
+        if (from < 0){
+            from = 0;
+        }
+         if (to > list.size()){
             to = list.size();
         }
-        newList = list.subList(from, to);
-        return newList;
+        list.subList(from, to);
+        return list.subList(from, to);
+
     }
-
-
-
 
 
 
