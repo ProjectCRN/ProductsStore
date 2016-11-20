@@ -3,7 +3,7 @@ package com.netcracker.crm.services;
 import com.netcracker.crm.entity.serviceEntity.Product;
 
 /**
- * Created by οκ on 20.11.2016.
+ * Created by ΠΏΠΊ on 20.11.2016.
  */
 public interface IProductService extends IEntityService<Product> {
 }
