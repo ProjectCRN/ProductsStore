@@ -3,36 +3,36 @@ package com.netcracker.crm.entity.serviceEntity;
 
 import com.netcracker.crm.entity.AbstractEntity;
 import com.netcracker.crm.entity.Atribute;
+import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
 import javafx.util.Pair;
 
 import java.util.List;
 
-public class Product extends AbstractEntity{
+public class Product extends AbstractEntity {
     private String name;
-    private int price;
-    private String productType;
     private boolean isActive;
+    private String productType;
     private int userId;
-    private List<Pair<Atribute,Value>> atributeValueMap;
+    private int price;
+    private List<Pair<Atribute, Value>> atributeValueMap;
 
 
     public Product() {
     }
 
-    public Product(int id, String name, int price, String productType) {
-        super(id);
-        this.name = name;
-        this.price = price;
-        this.productType = productType;
+    Product(Entity entity) {
+        this(entity.getId(), entity.getEntityName(), entity.getisActive() == 1 ? true : false,
+                entity.getEntityTypeName(), entity.getEntityUserId());
+        atributeValueMap = entity.getAtributeValueMap();
     }
 
-    public Product(int id, String name, int price, String productType, List<Pair<Atribute, Value>> atributeValueMap) {
+    public Product(int id, String name, boolean isActive, String productType, int userId) {
         super(id);
         this.name = name;
-        this.price = price;
+        this.isActive = isActive;
         this.productType = productType;
-        this.atributeValueMap = atributeValueMap;
+        this.userId = userId;
     }
 
     public Product(int id, String name, int price, String productType, boolean isActive,
