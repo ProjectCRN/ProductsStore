@@ -25,6 +25,14 @@ public class Product {
         this.productType = productType;
     }
 
+    public Product(Integer id, String name, Integer price, String productType, List<Pair<Atribute, Value>> atributeValueMap) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.productType = productType;
+        this.atributeValueMap = atributeValueMap;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
