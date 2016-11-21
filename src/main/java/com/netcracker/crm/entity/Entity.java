@@ -121,6 +121,10 @@ public class Entity extends AbstractEntity {
         //return valueList;
     }
 
+    public void setValueList(List<Value> valueList) {
+        this.valueList = valueList;
+    }
+
     public List<Pair<Atribute,Value>> getAtributeValueMap() {
         return atributeValueMap;
     }

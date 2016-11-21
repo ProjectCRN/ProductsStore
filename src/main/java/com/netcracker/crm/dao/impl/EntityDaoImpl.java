@@ -129,7 +129,9 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         //update entity table
         updateEntity(id, entityName, isActive, userId);
         //update value table
-        updateValue(valuesArr);
+        if(valuesArr!=null) {
+            updateValue(valuesArr);
+        }
     }
 
     @Override

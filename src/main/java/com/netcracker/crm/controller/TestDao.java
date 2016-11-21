@@ -9,6 +9,7 @@ import com.netcracker.crm.entity.Atribute;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.Value;
+import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.IProductService;
 import com.netcracker.crm.services.IUserService;
 import com.netcracker.crm.services.impl.ProductServiceImpl;
@@ -34,11 +35,11 @@ public class TestDao {
 //        values.add(new Value(0,"5.1-inch (diagonal)",0,15));
 //        Entity entity=new Entity("Samsung Galaxy S3",true,8,-2,values);
 //
-  //      IEntityDao entityDao = (EntityDaoImpl) context.getBean("entityDao");
+        //      IEntityDao entityDao = (EntityDaoImpl) context.getBean("entityDao");
 //        System.out.println(entityDao.getById(55));
-    //    for(Entity item : entityDao.getList("14","32Gb","=")){
+        //    for(Entity item : entityDao.getList("14","32Gb","=")){
         //    System.out.println(item.getId());
-      //  }
+        //  }
 
 
 //        List<User> userList = userDao.getAllByRole(User.ROLE_ADMIN);
@@ -51,9 +52,16 @@ public class TestDao {
         IUserService userService = (UserServiceImpl) context.getBean("userService");
         List<User> userList = userService.getAll();
         UserListWorker.sortById(userList);
-        userList = UserListWorker.getFromTo(userList,0,52313);
+        userList = UserListWorker.getFromTo(userList, 0, 52313);
 
- //       IProductService productService = (ProductServiceImpl) context.getBean("productService");
-
-     }
+        //примеры использования сервиса для продуктов
+        IProductService productService = (ProductServiceImpl) context.getBean("productService");
+        //id должны быть из бд
+        //Product product = productService.getById(39);
+        //productService.delete(43);
+        //productService.update(40, "iphone6s", 1, -2, null);
+        //List<Value> values = new ArrayList<>();
+        //values.add(new Value(41, "16Gb", 40, 14));
+        //productService.update(40, "iphone6s", 1, -2, values);
+    }
 }
