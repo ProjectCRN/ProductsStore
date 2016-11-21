@@ -9,7 +9,9 @@ import com.netcracker.crm.entity.Atribute;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.Value;
+import com.netcracker.crm.services.IProductService;
 import com.netcracker.crm.services.IUserService;
+import com.netcracker.crm.services.impl.ProductServiceImpl;
 import com.netcracker.crm.services.impl.UserServiceImpl;
 import com.netcracker.crm.services.listworker.UserListWorker;
 import javafx.util.Pair;
@@ -50,5 +52,8 @@ public class TestDao {
         List<User> userList = userService.getAll();
         UserListWorker.sortById(userList);
         userList = UserListWorker.getFromTo(userList,0,52313);
+
+ //       IProductService productService = (ProductServiceImpl) context.getBean("productService");
+
      }
 }

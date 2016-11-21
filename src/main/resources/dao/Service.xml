@@ -8,4 +8,5 @@
         <property name="userDao" ref="userDao"/>
     </bean>
 
+    <bean id="productService" class="com.netcracker.crm.services.impl.ProductServiceImpl"/>
 </beans>
