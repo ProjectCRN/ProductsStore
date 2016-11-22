@@ -28,6 +28,7 @@
     <li class="active">
         <a href="/createOrder">Create Order</a>
     </li>
+    <li align="left" ><a href="/createUser">Registration</a></li>
 </ul>
 
 <sf:form method="post"  modelAttribute="order" action="createOrder">

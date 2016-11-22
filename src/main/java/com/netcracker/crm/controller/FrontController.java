@@ -36,37 +36,7 @@ public class FrontController {
 
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public String products(ModelMap model) {
-        model.addAttribute("productList", productList.getListProduct());
-        return PRODUCTS;
-    }
 
-    @RequestMapping(value = "/addProduct/{id}", method = RequestMethod.GET)
-    public String addProduct(@PathVariable String id, ModelMap model) {
-        cart.add(Integer.parseInt(id));
-        return "redirect:/"+PRODUCTS;
-
-    }
-
-    @RequestMapping(value = "/cart", method = RequestMethod.GET)
-    public String cart(ModelMap model) {
-        model.addAttribute("cartList", cart.getListCartItem());
-        model.addAttribute("total", cart.getTotal());
-        return CART;
-    }
-
-    @RequestMapping(value = "/addCartProduct/{id}", method = RequestMethod.GET)
-    public String addCartProduct(@PathVariable String id, ModelMap model) {
-        cart.add(Integer.parseInt(id));
-        return "redirect:/"+CART;
-    }
-
-    @RequestMapping(value = "/deleteCartProduct/{id}", method = RequestMethod.GET)
-    public String deleteCartProduct(@PathVariable String id, ModelMap model) {
-        cart.delete(Integer.parseInt(id));
-        return "redirect:/"+CART;
-    }
 
     @RequestMapping(value = "/item/{id}", method = RequestMethod.GET)
     public String item(@PathVariable String id, ModelMap model) {

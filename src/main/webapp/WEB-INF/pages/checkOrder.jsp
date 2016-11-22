@@ -21,6 +21,7 @@
     <li><a href="/products">Products</a></li>
     <li><a href="/cart">Cart</a></li>
     <li><a href="/createOrder">Create Order</a></li>
+    <li align="left" ><a href="/createUser">Registration</a></li>
 </ul>
 <table class="table table-striped">
     <tr><td>Order:</td><td>№${order.getId()}</td></tr>

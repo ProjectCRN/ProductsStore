@@ -24,6 +24,7 @@
     <li><a href="/products">Products</a></li>
     <li><a href="/cart">Cart</a></li>
     <li><a href="/createOrder">Create Order</a></li>
+    <li align="left" ><a href="/createUser">Registration</a></li>
 </ul>
 <h1>${message}</h1>
 </html>

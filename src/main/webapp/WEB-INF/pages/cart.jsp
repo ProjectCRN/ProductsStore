@@ -24,6 +24,7 @@
         <a href="/cart">Cart</a>
     </li>
     <li><a href="/createOrder">Create Order</a></li>
+    <li align="left" ><a href="/createUser">Registration</a></li>
 </ul>
 
 <table class="table table-striped">

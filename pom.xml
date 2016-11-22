@@ -87,7 +87,11 @@
         <artifactId>spring-orm</artifactId>
         <version>4.2.5.RELEASE</version>
     </dependency>
-
+    <dependency>
+        <groupId>commons-validator</groupId>
+        <artifactId>commons-validator</artifactId>
+        <version>1.4.0</version>
+    </dependency>
     <!-- Spring validation -->
     <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
     <dependency>
