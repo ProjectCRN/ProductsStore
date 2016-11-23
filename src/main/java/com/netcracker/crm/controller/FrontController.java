@@ -18,12 +18,8 @@ import java.util.Random;
 public class FrontController {
 
     private static final String VIEW_INDEX = "mainJSP";
-    private static final String PRODUCTS = "products";
-    private static final String CART = "cart";
-    private static final String ITEM = "item";
     private static final String ORDER = "order";
     private static final String CHECK = "checkOrder";
-    private static ProductList productList = new ProductList();
     private static Cart cart = new Cart();
 
     private static Random rand = new Random();
@@ -31,17 +27,9 @@ public class FrontController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome(ModelMap model) {
 
-        model.addAttribute("message", "Very very interesting text");
+        model.addAttribute("message", "Our dream team ^_^");
         return VIEW_INDEX;
 
-    }
-
-
-
-    @RequestMapping(value = "/item/{id}", method = RequestMethod.GET)
-    public String item(@PathVariable String id, ModelMap model) {
-        model.addAttribute("item",productList.find(Integer.parseInt(id)));
-        return ITEM;
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.GET)

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ProductListController {
 
     private static final String PRODUCTS = "products";
+    private static final String ITEM = "item";
     private static CartService cart;
     private static ProductService product;
 
@@ -37,4 +38,11 @@ public class ProductListController {
         return "redirect:/"+PRODUCTS;
 
     }
+
+    @RequestMapping(value = "/item/{id}", method = RequestMethod.GET)
+    public String item(@PathVariable String id, ModelMap model) {
+        model.addAttribute("item",product.find(Integer.parseInt(id)));
+        return ITEM;
+    }
+
 }

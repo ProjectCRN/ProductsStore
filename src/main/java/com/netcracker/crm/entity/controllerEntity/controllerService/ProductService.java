@@ -2,12 +2,14 @@ package com.netcracker.crm.entity.controllerEntity.controllerService;
 
 import com.netcracker.crm.entity.controllerEntity.Product;
 import com.netcracker.crm.entity.controllerEntity.ProductList;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Created by Ксения on 22.11.2016.
  */
+@Component
 public class ProductService {
 
     private static ProductList product;
@@ -28,4 +30,6 @@ public class ProductService {
     public List<Product> getListProduct(){
         return product.getListProduct();
     }
+
+    public Product find(int id){ return product.find(id);}
 }

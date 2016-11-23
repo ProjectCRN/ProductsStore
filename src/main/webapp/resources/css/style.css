@@ -1,0 +1,25 @@
+body{
+
+}
+
+.row{
+	padding: 0;
+	margin: 0;
+}
+.block1 {
+	margin-top: 30px;
+	text-align: center;
+}
+.block1 img{
+	margin-top: 100px;
+}
+
+.block1 ul{
+	padding: 0;
+	margin: 0 auto;
+}
+.block1 li{
+	display: inline-block;
+	margin: 0 50px;
+	font-size: 24px;
+}

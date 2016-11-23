@@ -60,7 +60,7 @@
 
             <tr>
                 <th><sf:label path="email">Email:</sf:label></th>
-                <td><sf:input path="email" size="30" /><br/>
+                <td><sf:input path="email" size="30" pattern="\S+@[a-z]+.[a-z]+" placeholder="E-mail"  /><br/>
                     <sf:errors path="email" cssClass="error" />
                 </td>
             </tr>

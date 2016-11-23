@@ -1,8 +1,6 @@
 package com.netcracker.crm.controller;
 import com.netcracker.crm.entity.controllerEntity.SignupForm;
 import com.netcracker.crm.entity.controllerEntity.SignupValidator;
-import com.netcracker.crm.entity.controllerEntity.UserRegisterForm;
-import com.netcracker.crm.entity.controllerEntity.UserRegisterValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
