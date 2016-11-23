@@ -112,21 +112,12 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     public void updateValue(List<Value> valuesArr){
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        StringBuilder sqlUpdateValueB = new StringBuilder("UPDATE TBL_VALUE SET VALUE = CASE ");
-        for (int i = 0; i < valuesArr.size(); i++) {
-            sqlUpdateValueB.append("WHEN VALUEID = ? THEN ? ");
+        String sql = "UPDATE TBL_VALUE SET VALUE = ? WHERE VALUEID = ?";
+        List<Object[]> args = new ArrayList<>(valuesArr.size());
+        for(Value v:valuesArr){
+            args.add(new Object[]{v.getValue(), v.getId()});
         }
-        sqlUpdateValueB.append("END WHERE VALUEID BETWEEN ? AND ?");
-        final String sqlUpdateValue = sqlUpdateValueB.toString();
-        Object[] args = new Object[valuesArr.size() * 2 + 2];
-        for (int i = 0; i < valuesArr.size(); i++) {
-            int j = i * 2;
-            args[j] = valuesArr.get(i).getId();
-            args[j + 1] = valuesArr.get(i).getValue();
-        }
-        args[valuesArr.size() * 2] = valuesArr.get(0).getId();
-        args[valuesArr.size() * 2 + 1] = valuesArr.get(valuesArr.size() - 1).getId();
-        jdbcTemplate.update(sqlUpdateValue, args);
+        jdbcTemplate.batchUpdate(sql, args);
     }
 
     @Override
@@ -138,6 +129,12 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         if(valuesArr!=null) {
             updateValue(valuesArr);
         }
+    }
+
+    @Override
+    public void updateByEntity(Entity entity) {
+        update(entity.getId(), entity.getEntityName(), entity.getisActive(),
+                entity.getEntityUserId(), entity.getValueList());
     }
 
     @Override

@@ -98,11 +98,10 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
         }
     }
 
-    //нужно ли?
+    @Override
     public void updateByProduct(Product product){
         try {
-            entityDao.update(product.getId(), product.getName(),
-                    product.isActive()?1:0, product.getUserId(), product.getValueList());
+            entityDao.updateByEntity(product.toEntity());
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " update product #" + product.getId());
 
         } catch(DaoException exc){
