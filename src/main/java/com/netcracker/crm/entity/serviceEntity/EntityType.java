@@ -5,7 +5,7 @@ package com.netcracker.crm.entity.serviceEntity;
  */
 public enum EntityType {
     //id должны быть фиксированы у всех
-    Order(6), Phone(8), Tablet(9);
+    Order(7), Phone(8), Tablet(9), SmartWatch(10);
 
     private int typeId;
 

@@ -135,10 +135,11 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     @Override
-    public List<Entity> getList(String atributesId, String values, String operators) {
+    public List<Entity> getList(int typeId,String atributesId, String values, String operators) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.setResultsMapCaseInsensitive(true);
         SqlParameterSource in = new MapSqlParameterSource()
+                .addValue(PARAM_IN_ENTITY_ENTITYTYPEID, typeId)
                 .addValue(PARAM_IN_ENTITY_ATRIBUTES, atributesId)
                 .addValue(PARAM_IN_ENTITY_VALUES, values)
                 .addValue(PARAM_IN_ENTITY_OPERATORS, operators);

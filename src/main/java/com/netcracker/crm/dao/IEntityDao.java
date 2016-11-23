@@ -10,6 +10,6 @@ import java.util.List;
  */
 public interface IEntityDao extends IDao<Entity> {
     public void update(int id,  String entityName, int isActive, int userId, List<Value> valuesArr);
-    public List<Entity> getList(String atributesId,String values,String operators);
+    public List<Entity> getList(int typeId,String atributesId,String values,String operators);
 
 }

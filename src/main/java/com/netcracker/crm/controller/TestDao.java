@@ -9,9 +9,12 @@ import com.netcracker.crm.entity.Atribute;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.Value;
+import com.netcracker.crm.entity.serviceEntity.Cart;
 import com.netcracker.crm.entity.serviceEntity.Product;
+import com.netcracker.crm.services.ICartService;
 import com.netcracker.crm.services.IProductService;
 import com.netcracker.crm.services.IUserService;
+import com.netcracker.crm.services.impl.CartServiceImpl;
 import com.netcracker.crm.services.impl.ProductServiceImpl;
 import com.netcracker.crm.services.impl.UserServiceImpl;
 import com.netcracker.crm.services.listworker.UserListWorker;
@@ -35,11 +38,11 @@ public class TestDao {
 //        values.add(new Value(0,"5.1-inch (diagonal)",0,15));
 //        Entity entity=new Entity("Samsung Galaxy S3",true,8,-2,values);
 //
-        //      IEntityDao entityDao = (EntityDaoImpl) context.getBean("entityDao");
-//        System.out.println(entityDao.getById(55));
-        //    for(Entity item : entityDao.getList("14","32Gb","=")){
-        //    System.out.println(item.getId());
-        //  }
+//              IEntityDao entityDao = (EntityDaoImpl) context.getBean("entityDao");
+//        System.out.println(entityDao.getById(47));
+//            for(Entity item : entityDao.getList(8,"","","")){
+//            System.out.println(item.getId());
+//          }
 
 
 //        List<User> userList = userDao.getAllByRole(User.ROLE_ADMIN);
@@ -49,13 +52,13 @@ public class TestDao {
 //        }
         // userDao.add(EntityBuilder.buildUser(1452,"4121","13","31","31","31",User.ROLE_USER));
 
-        IUserService userService = (UserServiceImpl) context.getBean("userService");
-        List<User> userList = userService.getAll();
-        UserListWorker.sortById(userList);
-        userList = UserListWorker.getFromTo(userList, 0, 52313);
+//        IUserService userService = (UserServiceImpl) context.getBean("userService");
+//        List<User> userList = userService.getAll();
+//        UserListWorker.sortById(userList);
+//        userList = UserListWorker.getFromTo(userList, 0, 52313);
 
         //примеры использования сервиса для продуктов
-        IProductService productService = (ProductServiceImpl) context.getBean("productService");
+//        IProductService productService = (ProductServiceImpl) context.getBean("productService");
         //id должны быть из бд
         //Product product = productService.getById(39);
         //productService.delete(43);
@@ -63,5 +66,15 @@ public class TestDao {
         //List<Value> values = new ArrayList<>();
         //values.add(new Value(41, "16Gb", 40, 14));
         //productService.update(40, "iphone6s", 1, -2, values);
+
+        //Cart example
+        ICartService cartService= (CartServiceImpl) context.getBean("cartService");
+        Cart cart=new Cart(-1);
+        cartService.add(cart);
+        cartService.addProduct(47);
+        cartService.addProduct(48);
+        cartService.changeQuantity(47,2);
+        System.out.println(cartService.getCart());
+
     }
 }

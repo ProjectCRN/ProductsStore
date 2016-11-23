@@ -10,4 +10,11 @@
     <bean id="productService" class="com.netcracker.crm.services.impl.ProductServiceImpl">
         <property name="entityDao" ref="entityDao"/>
     </bean>
+    <bean id="orderService" class="com.netcracker.crm.services.impl.OrderServiceImpl">
+        <property name="entityDao" ref="entityDao"/>
+    </bean>
+    <bean id="cartService" class="com.netcracker.crm.services.impl.CartServiceImpl">
+        <property name="entityDao" ref="entityDao"/>
+    </bean>
+
 </beans>

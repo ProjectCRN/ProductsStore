@@ -65,10 +65,10 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
     }
 
     @Override
-    public List<Product> getList(String atributesId, String values, String operators) {
+    public List<Product> getList(int typeId,String atributesId, String values, String operators) {
         List<Product> productList;
         try{
-            List<Entity> list = entityDao.getList(atributesId, values, operators);
+            List<Entity> list = entityDao.getList(typeId,atributesId, values, operators);
             productList = new ArrayList<>(list.size());
             for (Entity e : list) {
                 productList.add(new Product(e));
@@ -82,7 +82,7 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
         return productList;
     }
 
-    //getAllByType ?
+    //getAllByType - сделано.
 
 
     //тестовый вариант
