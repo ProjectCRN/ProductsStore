@@ -21,7 +21,7 @@ import java.util.Map;
  * Created by egor on 11.11.2016.
  */
 
-@Service("userService")
+@Service
 public class UserServiceImpl extends AbstractService<User> implements IUserService{
 
     @Autowired
@@ -121,6 +121,10 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
            throw new ServiceException(e.getMessage(), e);
         }
         return is;
+    }
+
+    public void setUserDao(UserDaoImpl userDao) {
+        this.userDao = userDao;
     }
 
 }

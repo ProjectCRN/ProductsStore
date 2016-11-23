@@ -11,6 +11,5 @@ import java.util.List;
  */
 public interface IEntityService<T extends AbstractEntity> extends IService<T> {
     public void update(int id,  String entityName, int isActive, int userId, List<Value> valuesArr);
-    public void updateByEntity(Entity entity);
     public List<T> getList(String atributesId,String values,String operators);
 }
