@@ -56,12 +56,14 @@ public class TestDao {
 
         //примеры использования сервиса для продуктов
         IProductService productService = (ProductServiceImpl) context.getBean("productService");
-        //id должны быть из бд
-        //Product product = productService.getById(39);
-        //productService.delete(43);
-        //productService.update(40, "iphone6s", 1, -2, null);
-        //List<Value> values = new ArrayList<>();
-        //values.add(new Value(41, "16Gb", 40, 14));
-        //productService.update(40, "iphone6s", 1, -2, values);
+//        List<Value> values =new ArrayList<>();
+//        values.add(new Value(69,"260.0",48, 20));
+//        values.add(new Value(71,"iOS 77", 48, 71));
+//        Product prod = new Product(48, "iphone578", true, "Telephone", -2, values);
+//        productService.updateByEntity(prod);
+//        Product product = productService.getById(47);
+//        productService.delete(52);
+//        productService.update(47, "iphone66", 1, -2, null);
+//        productService.add(prod);
     }
 }

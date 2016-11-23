@@ -10,8 +10,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,8 +21,9 @@ import java.util.Map;
 import static com.netcracker.crm.dao.constants.DaoConstants.*;
 
 /**
- * Created by �� on 12.11.2016.
+ * Created by .. on 12.11.2016.
  */
+@Repository("entityDao")
 public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
 
@@ -45,6 +48,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     @Override
+    @Transactional
     public int add(Entity entity) {
         final String sql = "INSERT INTO TBL_ENTITY (" +
                 COLUMN_ENTITY_ID + ", " +
@@ -63,7 +67,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 entity.getEntityUserId()
         };
         jdbcTemplate.update(sql, args);
-        addValue(entity.getValueList(),id);
+        addValue(entity.getValueList(), id);
 
         return id;
     }
@@ -92,6 +96,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         return entity;
     }
 
+
     public void updateEntity(int id, String entityName, int isActive, int userId) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         final String sqlUpdateEntity = "UPDATE TBL_ENTITY SET ENTITYNAME = ?, ISACTIVE = ?, " +
@@ -107,31 +112,29 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     public void updateValue(List<Value> valuesArr){
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        StringBuilder sqlUpdateValueB = new StringBuilder("UPDATE TBL_VALUE SET VALUE = CASE ");
-        for (int i = 0; i < valuesArr.size(); i++) {
-            sqlUpdateValueB.append("WHEN VALUEID = ? THEN ? ");
+        String sql = "UPDATE TBL_VALUE SET VALUE = ? WHERE VALUEID = ?";
+        List<Object[]> args = new ArrayList<>(valuesArr.size());
+        for(Value v:valuesArr){
+            args.add(new Object[]{v.getValue(), v.getId()});
         }
-        sqlUpdateValueB.append("END WHERE VALUEID BETWEEN ? AND ?");
-        final String sqlUpdateValue = sqlUpdateValueB.toString();
-        Object[] args = new Object[valuesArr.size() * 2 + 2];
-        for (int i = 0; i < valuesArr.size(); i++) {
-            int j = i * 2;
-            args[j] = valuesArr.get(i).getId();
-            args[j + 1] = valuesArr.get(i).getValue();
-        }
-        args[valuesArr.size() * 2] = valuesArr.get(0).getId();
-        args[valuesArr.size() * 2 + 1] = valuesArr.get(valuesArr.size() - 1).getId();
-        jdbcTemplate.update(sqlUpdateValue, args);
+        jdbcTemplate.batchUpdate(sql, args);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public void update(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
         //update entity table
         updateEntity(id, entityName, isActive, userId);
         //update value table
-        if(valuesArr!=null) {
+        if(valuesArr!=null && valuesArr.size()!=0) {
             updateValue(valuesArr);
         }
+    }
+
+    @Override
+    public void updateByEntity(Entity entity) {
+        update(entity.getId(), entity.getEntityName(), entity.getisActive(), entity.getEntityUserId(),
+                entity.getValueList());
     }
 
     @Override
@@ -148,7 +151,6 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
         Map result = jdbcCall.execute(in);
         List<Entity> entiyList= new ArrayList<>((ArrayList)result.get(PARAM_OUT_ENTITY_LIST));
-
         return entiyList;
     }
 
@@ -168,11 +170,6 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         int out = jdbcTemplate.queryForObject(sql, Integer.class);
         return out;
-    }
-
-    @Override
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
     }
 
 }

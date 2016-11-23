@@ -2,17 +2,11 @@ package com.netcracker.crm.services.impl;
 
 import com.netcracker.crm.dao.IEntityDao;
 import com.netcracker.crm.dao.exception.DaoException;
-import com.netcracker.crm.entity.AbstractEntity;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
 import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.AbstractService;
-import com.netcracker.crm.services.IEntityService;
 import com.netcracker.crm.services.IProductService;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.netcracker.crm.services.constants.ServiceConstants;
 import com.netcracker.crm.services.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
@@ -20,12 +14,15 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by .. on 20.11.2016.
  */
 
 //еще будет совершенствоваться
-@Service
+@Service("productService")
 public class ProductServiceImpl  extends AbstractService<Product> implements IProductService {
 
     //update и delete одинаковые для всех энтити сервисов ?
@@ -38,7 +35,7 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
     public int add(Product product) {
         int id;
         try {
-            id = entityDao.add(product.toEntity());
+            id = entityDao.add(product);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + product.toString());
         }
         catch(DaoException exc){
@@ -64,6 +61,8 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
         //return null;
     }
 
+
+    //пока без атрибутов
     @Override
     public List<Product> getList(String atributesId, String values, String operators) {
         List<Product> productList;
@@ -82,10 +81,10 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
         return productList;
     }
 
+
     //getAllByType ?
 
 
-    //тестовый вариант
     @Override
     public void update(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
         try {
@@ -99,11 +98,12 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
     }
 
     //нужно ли?
-    public void updateByProduct(Product product){
+    @Override
+    public void updateByEntity(Entity entity){
         try {
-            entityDao.update(product.getId(), product.getName(),
-                    product.isActive()?1:0, product.getUserId(), product.getValueList());
-            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " update product #" + product.getId());
+            entityDao.update(entity.getId(), entity.getEntityName(),
+                    entity.getisActive(), entity.getEntityUserId(), entity.getValueList());
+            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " update product #" + entity.getId());
 
         } catch(DaoException exc){
             logger.error(exc.getMessage());
@@ -121,9 +121,5 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
-    }
-
-    public void setEntityDao(IEntityDao entityDao) {
-        this.entityDao = entityDao;
     }
 }
