@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
  */
 
 //еще будет совершенствоваться
-@Service
+@Service("productService")
 public class ProductServiceImpl  extends AbstractService<Product> implements IProductService {
 
     //update и delete одинаковые для всех энтити сервисов ?
@@ -121,9 +121,5 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
-    }
-
-    public void setEntityDao(IEntityDao entityDao) {
-        this.entityDao = entityDao;
     }
 }

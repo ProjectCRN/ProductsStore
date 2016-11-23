@@ -58,23 +58,22 @@ public class TestDao {
 //        userList = UserListWorker.getFromTo(userList, 0, 52313);
 
         //примеры использования сервиса для продуктов
-//        IProductService productService = (ProductServiceImpl) context.getBean("productService");
-        //id должны быть из бд
-        //Product product = productService.getById(39);
-        //productService.delete(43);
-        //productService.update(40, "iphone6s", 1, -2, null);
-        //List<Value> values = new ArrayList<>();
-        //values.add(new Value(41, "16Gb", 40, 14));
-        //productService.update(40, "iphone6s", 1, -2, values);
+        IProductService productService = (ProductServiceImpl) context.getBean("productService");
+        Product product = productService.getById(47);
+//        productService.delete(43);
+//        productService.update(40, "iphone6s", 1, -2, null);
+//        List<Value> values = new ArrayList<>();
+//        values.add(new Value(41, "16Gb", 40, 14));
+//        productService.update(40, "iphone6s", 1, -2, values);
 
         //Cart example
-        ICartService cartService= (CartServiceImpl) context.getBean("cartService");
-        Cart cart=new Cart(-1);
-        cartService.add(cart);
-        cartService.addProduct(47);
-        cartService.addProduct(48);
-        cartService.changeQuantity(47,2);
-        System.out.println(cartService.getCart());
+//        ICartService cartService= (CartServiceImpl) context.getBean("cartService");
+//        Cart cart=new Cart(-1);
+//        cartService.add(cart);
+//        cartService.addProduct(47);
+//        cartService.addProduct(48);
+//        cartService.changeQuantity(47,2);
+//        System.out.println(cartService.getCart());
 
     }
 }

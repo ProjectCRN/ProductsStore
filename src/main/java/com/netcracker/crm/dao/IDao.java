@@ -11,5 +11,5 @@ public interface IDao<T extends AbstractEntity> {
     int add(T abstractEntity);
     T getById(int id);
     void delete(int id);
-    void setDataSource(DataSource dataSource);
+    //void setDataSource(DataSource dataSource);
 }

@@ -10,6 +10,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ import static com.netcracker.crm.dao.constants.DaoConstants.*;
 /**
  * Created by �� on 12.11.2016.
  */
+@Repository("entityDao")
 public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
 
@@ -45,6 +49,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public int add(Entity entity) {
         final String sql = "INSERT INTO TBL_ENTITY (" +
                 COLUMN_ENTITY_ID + ", " +
@@ -63,7 +68,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 entity.getEntityUserId()
         };
         jdbcTemplate.update(sql, args);
-        addValue(entity.getValueList(),id);
+        addValue(entity.getValueList(), id);
 
         return id;
     }
@@ -125,6 +130,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void update(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
         //update entity table
         updateEntity(id, entityName, isActive, userId);
@@ -169,11 +175,6 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         int out = jdbcTemplate.queryForObject(sql, Integer.class);
         return out;
-    }
-
-    @Override
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
     }
 
 }
