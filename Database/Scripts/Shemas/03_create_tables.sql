@@ -63,17 +63,6 @@ ALTER TABLE TBL_Entity
 
 
 
-CREATE UNIQUE INDEX XAK1TBL_Entity ON TBL_Entity
-(EntityName   ASC)
-	TABLESPACE NetShop_INDEX;
-
-
-
-ALTER TABLE TBL_Entity
-ADD CONSTRAINT  XAK1TBL_Entity UNIQUE (EntityName);
-
-
-
 CREATE TABLE TBL_EntityType
 (
 	EntityTypeID         INTEGER NOT NULL ,
@@ -201,6 +190,3 @@ ALTER TABLE TBL_Value
 
 ALTER TABLE TBL_Value
 	ADD (CONSTRAINT R_11 FOREIGN KEY (AtributeID) REFERENCES TBL_Atribute (AtributeID));
-
-exit;
-/

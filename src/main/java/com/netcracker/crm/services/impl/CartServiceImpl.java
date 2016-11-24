@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by Nastya on 11/22/2016.
  */
-@Service
+@Service("cartService")
 public class CartServiceImpl extends AbstractService<Cart> implements ICartService {
 
     private Cart cart;
@@ -61,6 +61,11 @@ public class CartServiceImpl extends AbstractService<Cart> implements ICartServi
         cart.updateCartItem(indexOfCartItem,cartItem);
     }
 
+    @Override
+    public int countTotal() {
+        return cart.countTotal();
+    }
+
 
     public CartItem findById(int id){
         CartItem cartItem = null;
@@ -73,7 +78,4 @@ public class CartServiceImpl extends AbstractService<Cart> implements ICartServi
         return cartItem;
     }
 
-
-    public void setEntityDao(EntityDaoImpl entityDao) {
-    }
 }

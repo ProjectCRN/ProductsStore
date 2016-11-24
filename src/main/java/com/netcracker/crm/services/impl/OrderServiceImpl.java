@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by Nastya on 11/22/2016.
  */
-@Service
+@Service("orderService")
 public class OrderServiceImpl extends AbstractService<Order> implements IOrderService {
 
     @Autowired
@@ -48,6 +48,4 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
 
     }
 
-    public void setEntityDao(EntityDaoImpl entityDao) {
-    }
 }
