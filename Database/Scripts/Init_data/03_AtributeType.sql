@@ -40,6 +40,14 @@ INSERT INTO ns_admin.TBL_ATRIBUTETYPE (
 	SQ_MAIN.nextval,
 	'Boolean');
   
+    INSERT INTO ns_admin.TBL_ATRIBUTETYPE (
+  ATRIBUTETYPEID,
+	ATRIBUTETYPENAME) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Link');
+  
   commit;
 
 exit;
