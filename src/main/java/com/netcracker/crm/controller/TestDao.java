@@ -59,7 +59,7 @@ public class TestDao {
 
         //примеры использования сервиса для продуктов
 //        IProductService productService = (ProductServiceImpl) context.getBean("productService");
-//        Product product = productService.getById(47);
+//        Product product = productService.getById(49);
 //        productService.delete(43);
 //        productService.update(40, "iphone6s", 1, -2, null);
 //        List<Value> values = new ArrayList<>();

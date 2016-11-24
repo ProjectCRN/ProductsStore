@@ -18,16 +18,17 @@ public class Product extends AbstractEntity {
     private int userId;
     private double price;
     private String summary;
-    private int orderNumber; //0 - не в заказе
+    private int orderId; //0 - не в заказе
+    private String imageUrl;
+    private int quantity;
     private List<Pair<Atribute, Value>> atributeValueMap;  //атрибуты телефона (камера и т.п.)
 
 
     public Product() {
     }
 
-    public Entity toEntity(){
-
-        Entity entity =  new Entity(getId(), name, isActive,
+    public Entity toEntity() {
+        Entity entity = new Entity(getId(), name, isActive,
                 EntityType.valueOf(productType).getTypeId(), productType, userId);
         entity.setAtributeValueMap(atributeValueMap);
         return entity;
@@ -38,14 +39,26 @@ public class Product extends AbstractEntity {
                 entity.getEntityTypeName(), entity.getEntityUserId(), entity.getAtributeValueMap());
         if (atributeValueMap != null) {
             for (int i = 0; i < atributeValueMap.size(); i++) {
-                if (atributeValueMap.get(i).getKey().getAtributeName().equals("Price")) {
-                    price = Double.parseDouble(atributeValueMap.get(i).getValue().getValue());
-                }
-                if (atributeValueMap.get(i).getKey().getAtributeName().equals("Summary")) {
-                    summary = atributeValueMap.get(i).getValue().getValue();
-                }
-                if (atributeValueMap.get(i).getKey().getAtributeName().equals("OrderNumber")) {
-                    summary = atributeValueMap.get(i).getValue().getValue();
+                String atributeName = atributeValueMap.get(i).getKey().getAtributeName();
+                String atributeValue = atributeValueMap.get(i).getValue().getValue();
+                switch (atributeName) {
+                    case "Price":
+                        price = Double.parseDouble(atributeValue);
+                        break;
+                    case "Summary":
+                        summary = atributeValue;
+                        break;
+                    case "OrderID":
+                        orderId = Integer.parseInt(atributeValue);
+                        break;
+                    case "ImageURL":
+                        imageUrl = atributeValue;
+                        break;
+                    case "Quantity":
+                        quantity = Integer.parseInt(atributeValue);
+                        break;
+                    default:
+                        break;
                 }
             }
         }
@@ -127,12 +140,20 @@ public class Product extends AbstractEntity {
         this.summary = summary;
     }
 
-    public int getOrderNumber() {
-        return orderNumber;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
@@ -146,7 +167,7 @@ public class Product extends AbstractEntity {
         if (isActive() != product.isActive()) return false;
         if (getUserId() != product.getUserId()) return false;
         if (getPrice() != product.getPrice()) return false;
-        if (getOrderNumber() != product.getOrderNumber()) return false;
+        if (getOrderId() != product.getOrderId()) return false;
         if (!getName().equals(product.getName())) return false;
         if (!getProductType().equals(product.getProductType())) return false;
         if (getSummary() != null ? !getSummary().equals(product.getSummary()) : product.getSummary() != null)
@@ -166,7 +187,7 @@ public class Product extends AbstractEntity {
         temp = Double.doubleToLongBits(getPrice());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (getSummary() != null ? getSummary().hashCode() : 0);
-        result = 31 * result + getOrderNumber();
+        result = 31 * result + getOrderId();
         result = 31 * result + (getAtributeValueMap() != null ? getAtributeValueMap().hashCode() : 0);
         return result;
     }
@@ -177,12 +198,12 @@ public class Product extends AbstractEntity {
                 "id='" + getId() + '\'' +
                 "name='" + name + '\'' +
                 ", price='" + price + '\'' +
-                ", productType='" + productType + "}";
+                ", productType='" + productType + '\'' + "}";
     }
 
     public List<Value> getValueList() {
         List<Value> values = new ArrayList<>();
-        for(Pair<Atribute, Value> p:atributeValueMap){
+        for (Pair<Atribute, Value> p : atributeValueMap) {
             values.add(p.getValue());
         }
         return values;
