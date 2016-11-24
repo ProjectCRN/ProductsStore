@@ -14,11 +14,13 @@ import java.util.List;
 public class Cart extends AbstractEntity {
     private List<CartItem> cartItems;
     private int userId;
+    private int total;
 
 
     public Cart(int id) {
         cartItems=new ArrayList<>();
         userId=id;
+        total=0;
     }
 
 
@@ -38,11 +40,20 @@ public class Cart extends AbstractEntity {
         this.userId = userId;
     }
 
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
     @Override
     public String toString() {
-        String str="UserID="+userId+"\n";
+        String str="UserID="+userId+"\n"+"Total="+total+"\n";
         for(CartItem item : cartItems){
-            str+="\n"+item.toString();}
+            str+="\n"+item.toString();
+        }
         return str;
     }
     public void addCartItem(CartItem cartItem){
@@ -53,5 +64,12 @@ public class Cart extends AbstractEntity {
     }
     public void deleteCartItem(CartItem cartItem){
         cartItems.remove(cartItem);
+    }
+    public int countTotal(){
+        total=0;
+        for(CartItem item : cartItems){
+            total+=(item.getProduct().getPrice());
+        }
+        return total;
     }
 }
