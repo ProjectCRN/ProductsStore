@@ -751,7 +751,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	SQ_MAIN.nextval,
 	'',
 	54,
-	33); 
+	34); 
      INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -762,7 +762,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	SQ_MAIN.nextval,
 	'Apple',
 	54,
-	34); 
+	35); 
   
   
   INSERT INTO ns_admin.TBL_VALUE (
