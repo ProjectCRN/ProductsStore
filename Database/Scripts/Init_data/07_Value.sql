@@ -397,7 +397,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'0',
-	49,
+	53,
 	19);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -408,7 +408,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'549.0',
-	49,
+	53,
 	20);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -418,8 +418,8 @@ INSERT INTO ns_admin.TBL_VALUE (
 	values
 	(
 	SQ_MAIN.nextval,
-	'IPhone 6s embody Apple’s continuing environmental progress',
-	49,
+	'IPhone 6s embody Apples continuing environmental progress',
+	53,
 	21);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -430,7 +430,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'iOS 10',
-	49,
+	53,
 	22);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -441,7 +441,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'1.8',
-	49,
+	53,
 	23);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -452,7 +452,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'32',
-	49,
+	53,
 	24);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -463,7 +463,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'4.7',
-	49,
+	53,
 	25);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -474,7 +474,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'138.3',
-	49,
+	53,
 	26);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -485,7 +485,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'67.1',
-	49,
+	53,
 	27);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -496,7 +496,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'7.1',
-	49,
+	53,
 	28);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -507,7 +507,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'143',
-	49,
+	53,
 	29);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -518,7 +518,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'12',
-	49,
+	53,
 	30);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -529,7 +529,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'14',
-	49,
+	53,
 	31);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -540,7 +540,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'Nano-SIM',
-	49,
+	53,
 	32);
     INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -551,9 +551,30 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'0',
-	49,
+	53,
 	33);
-  
+    INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'',
+	53,
+	34);  
+      INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Apple',
+	53,
+	35); 
   
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -564,7 +585,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'0',
-	50,
+	54,
 	19);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -575,7 +596,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'258.0',
-	50,
+	54,
 	20);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -586,7 +607,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'Apple iPhone 5s smartphone was launched in September 2013',
-	50,
+	54,
 	21);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -597,7 +618,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'iOS 7',
-	50,
+	54,
 	22);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -608,7 +629,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'1.3',
-	50,
+	54,
 	23);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -619,7 +640,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'16',
-	50,
+	54,
 	24);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -630,7 +651,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'4.0',
-	50,
+	54,
 	25);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -641,7 +662,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'123.8',
-	50,
+	54,
 	26);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -652,7 +673,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'58.6',
-	50,
+	54,
 	27);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -663,7 +684,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'7.6',
-	50,
+	54,
 	28);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -674,7 +695,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'112',
-	50,
+	54,
 	29);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -685,7 +706,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'8',
-	50,
+	54,
 	30);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -696,7 +717,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'10',
-	50,
+	54,
 	31);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -707,7 +728,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'Nano-SIM',
-	50,
+	54,
 	32);
    INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -718,8 +739,30 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'0',
-	50,
+	54,
 	33); 
+     INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'',
+	54,
+	33); 
+     INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Apple',
+	54,
+	34); 
   
   
   INSERT INTO ns_admin.TBL_VALUE (
@@ -731,7 +774,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'0',
-	51,
+	55,
 	19);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -742,7 +785,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'769.99',
-	51,
+	55,
 	20);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -753,7 +796,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'Samsung has created a beautiful phone with water resistance and fast loading',
-	51,
+	55,
 	21);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -764,7 +807,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'Android 6.0',
-	51,
+	55,
 	22);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -775,7 +818,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'2.15',
-	51,
+	55,
 	23);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -786,7 +829,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'32',
-	51,
+	55,
 	24);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -797,7 +840,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'5.5',
-	51,
+	55,
 	25);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -808,7 +851,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'150.9',
-	51,
+	55,
 	26);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -819,7 +862,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'72.6',
-	51,
+	55,
 	27);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -830,7 +873,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'7.7',
-	51,
+	55,
 	28);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -841,7 +884,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'157',
-	51,
+	55,
 	29);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -852,7 +895,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'12',
-	51,
+	55,
 	30);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -863,7 +906,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'13',
-	51,
+	55,
 	31);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -874,7 +917,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'Nano-SIM',
-	51,
+	55,
 	32);
     INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -885,8 +928,30 @@ INSERT INTO ns_admin.TBL_VALUE (
 	(
 	SQ_MAIN.nextval,
 	'0',
-	51,
+	55,
 	33);
+      INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'',
+	55,
+	34);
+      INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Samsung',
+	55,
+	35);
       commit;
 
 exit;
