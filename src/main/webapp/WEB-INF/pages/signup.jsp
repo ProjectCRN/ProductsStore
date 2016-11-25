@@ -26,7 +26,18 @@
         <div class="row">
             <div class="container">
 
-<form:form method="post" commandName="signupForm">
+                <ul>
+                    <li><a href="/">Main</a></li>
+                    <li class="active">
+                        <a href="/products">Products</a>
+                    </li>
+                    <li><a href="/cart">Cart</a></li>
+                    <li><a href="/createOrder">Create Order</a></li>
+                    <li align="left" ><a href="/createUser">Registration</a></li>
+                </ul>
+
+
+                <form:form method="post" commandName="signupForm">
 
     <table class="table table-striped">
         <tr>

@@ -2,8 +2,10 @@ package com.netcracker.crm.entity.controllerEntity.controllerService;
 
 import com.netcracker.crm.entity.controllerEntity.Product;
 import com.netcracker.crm.entity.controllerEntity.ProductList;
+import com.netcracker.crm.entity.controllerEntity.SearchAttributes;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,4 +34,5 @@ public class ProductService {
     }
 
     public Product find(int id){ return product.find(id);}
+
 }

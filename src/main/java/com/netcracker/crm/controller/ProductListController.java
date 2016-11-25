@@ -1,13 +1,17 @@
 package com.netcracker.crm.controller;
 
+import com.netcracker.crm.entity.controllerEntity.SearchAttributes;
 import com.netcracker.crm.entity.controllerEntity.controllerService.CartService;
 import com.netcracker.crm.entity.controllerEntity.controllerService.ProductService;
+import com.netcracker.crm.entity.controllerEntity.controllerService.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.ArrayList;
 
 /**
  * Created by Ксения on 22.11.2016.
@@ -20,15 +24,31 @@ public class ProductListController {
     private static final String ITEM = "item";
     private static CartService cart;
     private static ProductService product;
+    private static SearchService search;
 
     @Autowired
     public void start(){
         cart = new CartService();
         product = new ProductService();
+        search = new SearchService();
     }
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public String products(ModelMap model) {
         model.addAttribute("productList", product.getListProduct());
+        model.addAttribute("types",search.getTypes());
+        model.addAttribute("currType",search.getSearchAttributes().getType());
+        model.addAttribute("searchAttr", search.getSearchAttributes());
+        return PRODUCTS;
+    }
+
+    @RequestMapping(value = "/products", method = RequestMethod.POST)
+    public String searchProducts(SearchAttributes searchAttr, ModelMap model) {
+        search.validate(searchAttr);
+        model.addAttribute("productList", product.getListProduct());
+        model.addAttribute("types",search.getTypes());
+        model.addAttribute("currType",search.getSearchAttributes().getType());
+        model.addAttribute("searchAttr", search.getSearchAttributes());
+        model.addAttribute("SearchRes", search.getSearchRes());
         return PRODUCTS;
     }
 
