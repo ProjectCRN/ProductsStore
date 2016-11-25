@@ -115,3 +115,6 @@ END IF;
 		END;  
 
 END sp_entity_list;
+
+exit;
+/

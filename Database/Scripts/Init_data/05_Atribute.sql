@@ -407,7 +407,40 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	8,
 	1,
 	1000);
-  
+    INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'ImageURL',
+	1,
+	1,
+	8,
+	1,
+	900);
+   INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Fabricator',
+	1,
+	1,
+	8,
+	1,
+	100);
   --Tablet--
    INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -670,6 +703,40 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	9,
 	1,
 	1000);
+   INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'ImageURL',
+	1,
+	1,
+	9,
+	1,
+	900);
+   INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Fabricator',
+	1,
+	1,
+	9,
+	1,
+	100);
   
     commit;
 

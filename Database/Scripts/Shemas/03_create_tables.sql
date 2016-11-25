@@ -110,7 +110,8 @@ CREATE TABLE TBL_User
 	UserName             NVARCHAR2(256) NOT NULL ,
 	ContactPhone         VARCHAR2(64) NULL ,
 	ContactAdress        NVARCHAR2(256) NULL ,
-	RoleID               char(1) NOT NULL 
+	RoleID               char(1) NOT NULL ,
+	Email                NVARCHAR2(128) NULL 
 )
 	TABLESPACE NetShop_DATA;
 
@@ -190,3 +191,6 @@ ALTER TABLE TBL_Value
 
 ALTER TABLE TBL_Value
 	ADD (CONSTRAINT R_11 FOREIGN KEY (AtributeID) REFERENCES TBL_Atribute (AtributeID));
+
+exit;
+/
