@@ -17,10 +17,11 @@ public class User extends AbstractEntity{
     private String contactPhone;
     private String contactAddress;
     private String roleId;
+    private String email;
 
     public User(){}
 
-    public User(int id, String login, String password, String userName, String contactPhone, String contactAddress, String roleId) {
+    public User(int id, String login, String password, String userName, String contactPhone, String contactAddress, String roleId, String email) {
         super(id);
         this.login = login;
         this.password = password;
@@ -28,6 +29,7 @@ public class User extends AbstractEntity{
         this.contactPhone = contactPhone;
         this.contactAddress = contactAddress;
         this.roleId = roleId;
+        this.email = email;
     }
 
     @Override
@@ -42,7 +44,8 @@ public class User extends AbstractEntity{
         if (!password.equals(user.password)) return false;
         if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
         if (contactPhone != null ? !contactPhone.equals(user.contactPhone) : user.contactPhone != null) return false;
-        if (contactAddress != null ? !contactAddress.equals(user.contactAddress) : user.contactAddress != null)
+        if (contactAddress != null ? !contactAddress.equals(user.contactAddress) : user.contactAddress != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null)
             return false;
         return roleId.equals(user.roleId);
 
@@ -58,6 +61,7 @@ public class User extends AbstractEntity{
         result = prime * result + (userName != null ? userName.hashCode() : 0);
         result = prime * result + (contactPhone != null ? contactPhone.hashCode() : 0);
         result = prime * result + (contactAddress != null ? contactAddress.hashCode() : 0);
+        result = prime * result + (email != null ? email.hashCode() : 0);
         result = prime * result + roleId.hashCode();
         return result;
     }
@@ -72,6 +76,7 @@ public class User extends AbstractEntity{
                 ", contactPhone='" + contactPhone + '\'' +
                 ", contactAddress='" + contactAddress + '\'' +
                 ", roleId='" + roleId + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 
@@ -127,4 +132,11 @@ public class User extends AbstractEntity{
         this.roleId = roleId;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

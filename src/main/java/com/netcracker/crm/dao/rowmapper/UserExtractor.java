@@ -23,6 +23,7 @@ public class UserExtractor implements ResultSetExtractor<User> {
                 resultSet.getString(COLUMN_USER_USERNAME),
                 resultSet.getString(COLUMN_USER_PHONE),
                 resultSet.getString(COLUMN_USER_ADDRESS),
-                resultSet.getString(COLUMN_USER_ROLEID));
+                resultSet.getString(COLUMN_USER_ROLEID),
+                resultSet.getString(COLUMN_USER_EMAIL));
     }
 }

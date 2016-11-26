@@ -13,6 +13,7 @@ public class DaoConstants {
     public static final String COLUMN_USER_PHONE = "CONTACTPHONE";
     public static final String COLUMN_USER_ADDRESS = "CONTACTADRESS";
     public static final String COLUMN_USER_ROLEID = "ROLEID";
+    public static final String COLUMN_USER_EMAIL = "EMAIL";
 
     public static final String COLUMN_ENTITY_ID="ENTITYID";
     public static final String COLUMN_ENTITY_NAME="ENTITYNAME";

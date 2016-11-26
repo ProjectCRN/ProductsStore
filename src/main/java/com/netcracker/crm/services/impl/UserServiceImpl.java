@@ -2,7 +2,6 @@ package com.netcracker.crm.services.impl;
 
 import com.netcracker.crm.dao.IUserDao;
 import com.netcracker.crm.dao.exception.DaoException;
-import com.netcracker.crm.dao.impl.UserDaoImpl;
 import com.netcracker.crm.entity.User;
 import com.netcracker.crm.services.AbstractService;
 import com.netcracker.crm.services.IUserService;
@@ -13,7 +12,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +29,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
 
 
     @Override
-    public int add(User user) {
+    public int add(User user)  throws ServiceException{
         int id;
         try {
             id = userDao.add(user);
@@ -44,7 +42,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     }
 
     @Override
-    public User getById(int id) {
+    public User getById(int id) throws ServiceException {
         User user;
         try {
             user = userDao.getById(id);
@@ -57,7 +55,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws ServiceException {
         try {
             userDao.delete(id);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " delete User #" + id);
@@ -69,7 +67,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     }
 
     @Override
-    public List<User> getAll() {
+    public List<User> getAll() throws ServiceException {
         List<User> list;
         try {
             list = userDao.getAll();
@@ -82,7 +80,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     }
 
     @Override
-    public List<User> getAllByRole(String roleId) {
+    public List<User> getAllByRole(String roleId) throws ServiceException {
         List<User> list;
         try {
             list = userDao.getAllByRole(roleId);
@@ -95,14 +93,14 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     }
 
     @Override
-    public Map<Integer, String> login(String login) {
+    public Map<Integer, String> login(String login) throws ServiceException {
         return null;
     }
 
     @Override
-    public void update(int id, String uLogin, String uPassword, String uName, String uPhone, String uAddress){
+    public void update(int id, String uLogin, String uPassword, String uName, String uPhone, String uAddress, String uEmail) throws ServiceException{
         try {
-            userDao.update(id, uLogin, uPassword, uName, uPhone, uAddress);
+            userDao.update(id, uLogin, uPassword, uName, uPhone, uAddress, uEmail);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " update user #" + id);
         } catch (DaoException e){
             logger.error(e.getMessage());
@@ -111,14 +109,27 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     }
 
     @Override
-    public boolean isLoginFree(String login) {
+    public boolean isLoginFree(String login) throws ServiceException {
         boolean is;
-       try {
+        try {
             is = userDao.isLoginFree(login);
-            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " loginIsFree " + is);
-       } catch (DaoException e){
+            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " login " + login + " isFree: " + is);
+        } catch (DaoException e){
            logger.error(e.getMessage());
            throw new ServiceException(e.getMessage(), e);
+        }
+        return is;
+    }
+
+    @Override
+    public boolean isEmailFree(String email) throws ServiceException {
+        boolean is;
+        try {
+            is = userDao.isEmailFree(email);
+            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " email " + email + " isFree: " + is);
+        } catch (DaoException e){
+            logger.error(e.getMessage());
+            throw new ServiceException(e.getMessage(), e);
         }
         return is;
     }

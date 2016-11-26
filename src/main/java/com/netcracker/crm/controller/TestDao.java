@@ -11,6 +11,7 @@ import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.Value;
 import com.netcracker.crm.entity.serviceEntity.Cart;
 import com.netcracker.crm.entity.serviceEntity.Product;
+import com.netcracker.crm.entity.utils.EntityBuilder;
 import com.netcracker.crm.services.ICartService;
 import com.netcracker.crm.services.IProductService;
 import com.netcracker.crm.services.IUserService;
@@ -44,18 +45,18 @@ public class TestDao {
 //            System.out.println(item.getId());
 //          }
 
-
-//        List<User> userList = userDao.getAllByRole(User.ROLE_ADMIN);
-//        for (User user:userList) {
+// -----USER SERVICES-----
+//      IUserService userService = (UserServiceImpl) context.getBean("userService");
+//       List<User> userList = userService.getAll();
+//       UserListWorker.sortById(userList);
+//      userList = UserListWorker.getFromTo(userList, 0, 52313);
+//        for (User user : userList             ) {
 //            System.out.println(user.toString());
-//
 //        }
-        // userDao.add(EntityBuilder.buildUser(1452,"4121","13","31","31","31",User.ROLE_USER));
-
-//        IUserService userService = (UserServiceImpl) context.getBean("userService");
-//        List<User> userList = userService.getAll();
-//        UserListWorker.sortById(userList);
-//        userList = UserListWorker.getFromTo(userList, 0, 52313);
+//        userService.isLoginFree("admin");
+//        userService.isLoginFree("adm21in");
+//
+//        userService.isEmailFree("gav@panin.ru");
 
         //примеры использования сервиса для продуктов
 //        IProductService productService = (IProductService) context.getBean("productService");
