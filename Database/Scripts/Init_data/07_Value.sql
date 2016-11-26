@@ -179,7 +179,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	values
 	(
 	SQ_MAIN.nextval,
-	'',
+	'URL',
 	56,
 	51);
         INSERT INTO ns_admin.TBL_VALUE (
@@ -373,7 +373,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	values
 	(
 	SQ_MAIN.nextval,
-	'',
+	'URL',
 	57,
 	51);
       INSERT INTO ns_admin.TBL_VALUE (
@@ -561,7 +561,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	values
 	(
 	SQ_MAIN.nextval,
-	'',
+	'URL',
 	53,
 	34);  
       INSERT INTO ns_admin.TBL_VALUE (
@@ -749,7 +749,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	values
 	(
 	SQ_MAIN.nextval,
-	'',
+	'URL',
 	54,
 	34); 
      INSERT INTO ns_admin.TBL_VALUE (
@@ -938,7 +938,7 @@ INSERT INTO ns_admin.TBL_VALUE (
 	values
 	(
 	SQ_MAIN.nextval,
-	'',
+	'URL',
 	55,
 	34);
       INSERT INTO ns_admin.TBL_VALUE (
