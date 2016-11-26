@@ -24,11 +24,9 @@ import org.springframework.stereotype.Service;
  * Created by .. on 20.11.2016.
  */
 
-//еще будет совершенствоваться
 @Service("productService")
 public class ProductServiceImpl  extends AbstractService<Product> implements IProductService {
 
-    //update и delete одинаковые для всех энтити сервисов ?
 
     @Autowired
     private IEntityDao entityDao;
@@ -36,6 +34,8 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
 
     @Override
     public int add(Product product) {
+
+        entityDao.getByUserAndType(null, null);
         int id;
         try {
             id = entityDao.add(product.toEntity());
@@ -82,10 +82,27 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
         return productList;
     }
 
+    @Override
+    public List<Product> getByUserAndType(Integer userID, Integer entityTypeID) {
+        List<Product> productList;
+        try{
+            List<Entity> list = entityDao.getByUserAndType(userID, entityTypeID);
+            productList = new ArrayList<>(list.size());
+            for (Entity e : list) {
+                productList.add(new Product(e));
+            }
+            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getByUserAndType for Product");
+        }
+        catch (DaoException exc){
+            logger.error(exc.getMessage());
+            throw new ServiceException(exc.getMessage(), exc);
+        }
+        return productList;
+    }
+
     //getAllByType - сделано.
 
 
-    //тестовый вариант
     @Override
     public void update(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
         try {

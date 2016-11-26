@@ -67,9 +67,11 @@ public class Entity extends AbstractEntity {
                 ", entityTypeName='" + entityTypeName + '\'' +
                 ", userId=" + userId +
                 '}';
-        for(Pair<Atribute,Value> item : atributeValueMap){
-            str+="\n"+item.getKey().toString();
-            str+="\n"+item.getValue().toString();
+        if(atributeValueMap!=null) {
+            for (Pair<Atribute, Value> item : atributeValueMap) {
+                str += "\n" + item.getKey().toString();
+                str += "\n" + item.getValue().toString();
+            }
         }
         return str;
     }

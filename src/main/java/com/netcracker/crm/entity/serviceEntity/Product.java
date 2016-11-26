@@ -196,7 +196,7 @@ public class Product extends AbstractEntity {
     public String toString() {
         return "Product{" +
                 "id='" + getId() + '\'' +
-                "name='" + name + '\'' +
+                ", name='" + name + '\'' +
                 ", price='" + price + '\'' +
                 ", productType='" + productType + '\'' + "}";
     }
