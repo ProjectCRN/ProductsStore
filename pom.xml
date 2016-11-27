@@ -167,6 +167,29 @@
         <artifactId>annotations-java5</artifactId>
         <version>15.0</version>
     </dependency>
+
+
+    <!--DOM4J-->
+    <dependency>
+        <groupId>dom4j</groupId>
+        <artifactId>dom4j</artifactId>
+        <version>1.6.1</version>
+    </dependency>
+
+    <!--GUAVA COLLECTIONS-->
+    <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava-collections</artifactId>
+        <version>r03</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/jaxen/jaxen -->
+    <dependency>
+        <groupId>jaxen</groupId>
+        <artifactId>jaxen</artifactId>
+        <version>1.1.6</version>
+    </dependency>
+
 </dependencies>
 
 

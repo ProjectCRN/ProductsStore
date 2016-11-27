@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="catalogSchema.xsd">
+    <product type="telephone">
+        <name>iPhone6S</name>
+        <attributes>
+            <price>549.0</price>
+            <summary>IPhone 6s embody Apples continuing environmental progress</summary>
+            <operatingSystem>iOS 10</operatingSystem>
+            <processorSpeedGHz>1.8</processorSpeedGHz>
+            <capacityGB>32</capacityGB>
+            <displayInch>4.7</displayInch>
+            <heightMM>138.3</heightMM>
+            <widthMM>67.1</widthMM>
+            <depthMM>7.1</depthMM>
+            <weightGrams>143</weightGrams>
+            <cameraMP>12</cameraMP>
+            <batteryHours>14</batteryHours>
+            <simCard>Nano-SIM</simCard>
+            <fabricator>Apple</fabricator>
+            <imageURL>URL</imageURL>
+            <quantity>0</quantity>
+        </attributes>
+    </product>
+    <product type="telephone">
+        <name>NEw iPhone5S</name>
+        <attributes>
+            <price>258.0</price>
+            <summary>NEW 5s smartphone was launched in September 2013</summary>
+            <operatingSystem>iOS 7</operatingSystem>
+            <processorSpeedGHz>1.3</processorSpeedGHz>
+            <capacityGB>16</capacityGB>
+            <displayInch>4.0</displayInch>
+            <heightMM>123.8</heightMM>
+            <widthMM>58.6</widthMM>
+            <depthMM>7.6</depthMM>
+            <weightGrams>112</weightGrams>
+            <cameraMP>8</cameraMP>
+            <batteryHours>10</batteryHours>
+            <simCard>Nano-SIM</simCard>
+            <fabricator>Apple</fabricator>
+            <imageURL>URL</imageURL>
+            <quantity>0</quantity>
+        </attributes>
+    </product>
+    <product type="telephone">
+        <name> new Galaxy S9 Edge</name>
+        <attributes>
+            <price>769.99</price>
+            <summary>Samsung has created a beautiful phone with water resistance and fast loading</summary>
+            <operatingSystem>Android 6.0</operatingSystem>
+            <processorSpeedGHz>2.15</processorSpeedGHz>
+            <capacityGB>32</capacityGB>
+            <displayInch>5.5</displayInch>
+            <heightMM>150.9</heightMM>
+            <widthMM>72.6</widthMM>
+            <depthMM>7.7</depthMM>
+            <weightGrams>157</weightGrams>
+            <cameraMP>12</cameraMP>
+            <batteryHours>13</batteryHours>
+            <simCard>Nano-SIM</simCard>
+            <fabricator>Samsung</fabricator>
+            <imageURL>URL</imageURL>
+            <quantity>0</quantity>
+        </attributes>
+    </product>
+
+    <product type="tablet">
+        <name>NEW iPad mini 13</name>
+        <attributes>
+            <price>399</price>
+            <summary>iPad mini 4</summary>
+            <operatingSystem>iOS</operatingSystem>
+            <processorSpeedGHz>1.5</processorSpeedGHz>
+            <capacityGB>32</capacityGB>
+            <displayInch>7.9</displayInch>
+            <heightMM>203.2</heightMM>
+            <widthMM>134.8</widthMM>
+            <depthMM>6.1</depthMM>
+            <weightGrams>298.8</weightGrams>
+            <cameraMP>8</cameraMP>
+            <batteryHours>10</batteryHours>
+            <simCard>Nano-SIM</simCard>
+            <fabricator>Apple</fabricator>
+            <imageURL>URL</imageURL>
+            <quantity>0</quantity>
+        </attributes>
+    </product>
+
+</catalog>

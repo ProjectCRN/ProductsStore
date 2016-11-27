@@ -1,30 +1,10 @@
 package com.netcracker.crm.controller;
 
-import com.netcracker.crm.dao.IDao;
-import com.netcracker.crm.dao.IEntityDao;
-import com.netcracker.crm.dao.IUserDao;
-import com.netcracker.crm.dao.impl.EntityDaoImpl;
-import com.netcracker.crm.dao.impl.UserDaoImpl;
-import com.netcracker.crm.entity.Atribute;
-import com.netcracker.crm.entity.Entity;
-import com.netcracker.crm.entity.User;
-import com.netcracker.crm.entity.Value;
-import com.netcracker.crm.entity.serviceEntity.Cart;
 import com.netcracker.crm.entity.serviceEntity.Product;
-import com.netcracker.crm.entity.utils.EntityBuilder;
-import com.netcracker.crm.services.ICartService;
 import com.netcracker.crm.services.IProductService;
-import com.netcracker.crm.services.IUserService;
-import com.netcracker.crm.services.impl.CartServiceImpl;
-import com.netcracker.crm.services.impl.ProductServiceImpl;
-import com.netcracker.crm.services.impl.UserServiceImpl;
-import com.netcracker.crm.services.listworker.UserListWorker;
-import javafx.util.Pair;
+import com.netcracker.crm.services.parser.CatalogParser;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by egor on 03.11.2016.
@@ -58,16 +38,25 @@ public class TestDao {
 //
 //        userService.isEmailFree("gav@panin.ru");
 
-        //примеры использования сервиса для продуктов
-//        IProductService productService = (IProductService) context.getBean("productService");
+        IProductService productService = (IProductService) context.getBean("productService");
+//
 //        productService.getByUserAndType(-2, null);
-//        Product product = productService.getById(53);
+//       Product product = productService.getById(53);
+//        List <Product> productList = productService.getByUserAndType(-2,8);
+//        for (Product op : productList) {
+//            System.out.println(op.toString());
+//        }
+//        int a = product.getOrderId();
+        CatalogParser catalogParser = (CatalogParser) context.getBean("catalogParser");
+        catalogParser.importCatalog("default");
+        System.out.println("check db");
+        catalogParser.exportCatalog("default");
+
 //        productService.delete(43);
 //        productService.update(40, "iphone6s", 1, -2, null);
 //        List<Value> values = new ArrayList<>();
 //        values.add(new Value(41, "16Gb", 40, 14));
 //        productService.update(40, "iphone6s", 1, -2, values);
-
         //Cart example
 //        ICartService cartService= (CartServiceImpl) context.getBean("cartService");
 //        Cart cart=new Cart(-1);

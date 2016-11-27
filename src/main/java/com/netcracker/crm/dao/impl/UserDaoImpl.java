@@ -204,8 +204,7 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
         List <String> emailList;
         try {
             emailList = getJdbcTemplate().queryForList(sql, String.class);
-            System.out.println("SD");
-        } catch (EmptyResultDataAccessException e) {
+       } catch (EmptyResultDataAccessException e) {
             return true;
         } catch (DataAccessException e){
             logger.error(e.getMessage());

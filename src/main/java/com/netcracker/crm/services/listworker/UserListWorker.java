@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Created by egor on 20.11.2016.
  */
-@Component
 public class UserListWorker{
 
     private UserListWorker (){
