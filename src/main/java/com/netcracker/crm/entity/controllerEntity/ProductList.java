@@ -20,6 +20,16 @@ public class ProductList {
         listProduct.add(new Product(8, "nokia 8", 205, urlImg));
         listProduct.add(new Product(9, "nokia 9", 205, urlImg));
         listProduct.add(new Product(10, "nokia 10", 205, urlImg));
+        listProduct.add(new Product(11, "nokia 11", 205, urlImg));
+        listProduct.add(new Product(12, "nokia 12", 205, urlImg));
+        listProduct.add(new Product(13, "nokia 13", 205, urlImg));
+        listProduct.add(new Product(14, "nokia 14", 205, urlImg));
+        listProduct.add(new Product(15, "nokia 15", 205, urlImg));
+        listProduct.add(new Product(16, "nokia 16", 205, urlImg));
+        listProduct.add(new Product(17, "nokia 17", 205, urlImg));
+        listProduct.add(new Product(18, "nokia 18", 205, urlImg));
+        listProduct.add(new Product(19, "nokia 19", 205, urlImg));
+        listProduct.add(new Product(20, "nokia 20", 205, urlImg));
     }
 
     public Product find(int id) {

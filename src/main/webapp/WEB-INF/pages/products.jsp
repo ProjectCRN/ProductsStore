@@ -7,12 +7,22 @@
     <title>Products</title>
     <spring:url value="/resources/css/style.css" var="mainCss"/>
     <spring:url value="/resources/lib/bootstrap/bootstrap-grid-3.3.1.min.css" var="btsCss"/>
+    <spring:url value="/resources/lib/jquery/jquery-1.8.3.js" var="jquery"/>
     <spring:url value="/resources/img/spinner.gif" var="spinner"/>
     <link href="${btsCss}" rel="stylesheet"/>
     <link href="${mainCss}" rel="stylesheet"/>
+    <script src="${jquery}"></script>
+    <script>
+        $(window).on('load', function () {
+            var $preloader = $('#page-preloader'),
+                    $spinner   = $preloader.find('.spinner');
+            $spinner.fadeOut();
+            $preloader.delay(350).fadeOut('slow');
+        });
+    </script>
 </head>
 <body>
-
+<div id="page-preloader"><span class="spinner"></span></div>
 <div class="content">
 
 

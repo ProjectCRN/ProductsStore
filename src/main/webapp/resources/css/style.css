@@ -108,3 +108,24 @@ body {
 .block1 .col-md-8{
     text-align: left;
 }
+
+
+#page-preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #FFF;
+    z-index: 100500;
+}
+
+#page-preloader .spinner {
+    width: 341px;
+    height: 248px;
+    position: absolute;
+    left: 40%;
+    top: 40%;
+    background: url('../img/spinner2.gif') no-repeat 50% 50%;
+    margin: -16px 0 0 -16px;
+}
