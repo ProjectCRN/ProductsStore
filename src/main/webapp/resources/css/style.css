@@ -1,37 +1,110 @@
-body{
-
+body {
 }
 
-.row{
-	padding: 0;
-	margin: 0;
+.row {
+    padding: 0;
+    margin: 0;
 }
+
 .block1 {
-	margin-top: 30px;
-	text-align: center;
+    margin-top: 30px;
+    text-align: center;
 }
-.block1 img{
-	margin-top: 100px;
-}
-.block1 a{
-	text-decoration: none;
+.block1 img {
+    margin-top: 100px;
 }
 
-.block1 ul{
-	padding: 0;
-	margin: 0 auto;
+.block1 a {
+    text-decoration: none;
 }
-.block1 li {
-	display: inline-block;
-	margin: 0 50px;
-	font-size: 24px;
+
+.block1 nav {
+    padding: 0;
+    background: #e8ebef;
+    margin: 0 auto 30px;
 }
-.block1 table{
-	margin: 10px auto;
+
+.block1 nav li {
+    display: inline-block;
+    margin: 0 0px;
+    font-size: 24px;
 }
-.block1 td{
-	margin: 10px 10px;
+
+.block1 nav li a {
+    display: inline-block;
+    width: 200px;
+    color: #575859;
+    font-weight: 600;
 }
-.block1 tr{
-	margin: 10px 10px;
+
+.block1 nav li :hover {
+    background: #dee3ea;
+}
+
+.block1 .active {
+    background: #dee3ea;
+}
+
+.block1 input{
+    background: none;
+    border: none;
+    border-bottom: 1px solid #575859;
+    border-radius: 0;
+    outline: none;
+}
+
+.block1 .btn{
+    border: 1px solid #575859;
+    background: #e8ebef;
+    margin: 20px auto;
+}
+
+.block1 .btn:hover{
+    border: 1px solid #575859;
+    background: #dee3ea;
+}
+.block1 .search{
+    line-height: 1.8;
+    text-align: left;
+    border-right: 1px solid #e8ebef;
+}
+.block1 .listOfProducts li{
+    display: block;
+    float: left;
+    width: 100%;
+    margin: 10px 0 10px 10px ;
+    font-size: 18px;
+    color: #575859;
+    border-bottom: 1px solid #e8ebef;
+}
+
+.block1 .listOfProducts li span{
+    font-weight: 600;
+    font-size: 24px;
+    color: #575859;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+.block1 .listOfProducts li img{
+    margin: 0 30px 20px 0;
+    height: 200px;
+    float: left;
+
+}
+.block1 .listOfProducts .btn_right{
+    float: right;
+    text-align: center;
+}
+
+.block1 .btnLink{
+    display: block;
+    padding: 0 6px;
+    width: 100px;
+    text-align: center;
+    color: #575859;
+    margin: 0px 0;
+    font-weight: 500;
+}
+.block1 .col-md-8{
+    text-align: left;
 }

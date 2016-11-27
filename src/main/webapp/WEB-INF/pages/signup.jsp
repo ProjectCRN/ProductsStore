@@ -24,17 +24,15 @@
 
     <div class="block1">
         <div class="row">
+            <nav>
+                <li><a href="/">Main</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/cart" >Cart</a></li>
+                <li><a href="/createOrder" class="active">Create Order</a></li>
+                <li><a href="/createUser">Registration</a></li>
+            </nav>
             <div class="container">
 
-                <ul>
-                    <li><a href="/">Main</a></li>
-                    <li class="active">
-                        <a href="/products">Products</a>
-                    </li>
-                    <li><a href="/cart">Cart</a></li>
-                    <li><a href="/createOrder">Create Order</a></li>
-                    <li align="left" ><a href="/createUser">Registration</a></li>
-                </ul>
 
 
                 <form:form method="post" commandName="signupForm">

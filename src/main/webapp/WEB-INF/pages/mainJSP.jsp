@@ -13,18 +13,18 @@
 <body>
 <div class="content">
 
-
     <div class="block1">
         <div class="row">
-            <div class="container">
 
-                <ul>
-                    <li><a href="/">Main</a></li>
-                    <li><a href="/products">Products</a></li>
-                    <li><a href="/cart">Cart</a></li>
-                    <li><a href="/createOrder">Create Order</a></li>
-                    <li align="left" ><a href="/createUser">Registration</a></li>
-                </ul>
+            <nav>
+                <li><a href="/">Main</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/cart">Cart</a></li>
+                <li><a href="/createOrder">Create Order</a></li>
+                <li><a href="/createUser">Registration</a></li>
+            </nav>
+
+            <div class="container">
                 <img src="${spinner}"/>
                 <h1>${message}</h1>
             </div>

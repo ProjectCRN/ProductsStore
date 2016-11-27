@@ -5,11 +5,21 @@ public class Product {
     private Integer id;
     private String name;
     private Integer price;
+    private String urlImg;
 
-    public Product(int id, String name, int price) {
-        setId(id);
-        setName(name);
-        setPrice(price);
+    public Product(Integer id, String name, Integer price, String urlImg) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.urlImg = urlImg;
+    }
+
+    public String getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
     }
 
     public void setId(Integer id) {
