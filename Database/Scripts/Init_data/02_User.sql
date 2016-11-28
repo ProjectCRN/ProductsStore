@@ -5,36 +5,40 @@ INSERT INTO ns_admin.TBL_USER (
 	Login,
 	Password,
 	UserName,
-	RoleID,
 	ContactPhone,
-	ContactAdress) 
+	ContactAdress,
+  RoleID,
+  EMAIL) 
 	values
 	(
 	-1,
 	'Ananymous',
 	'Ananymous',
 	'Ananymous',
-	'U',
 	NULL,
-	NULL);
+	NULL,
+  'U',
+  NULL);
 
 INSERT INTO ns_admin.TBL_USER (
     UserID,
 	Login,
 	Password,
 	UserName,
-	RoleID,
 	ContactPhone,
-	ContactAdress) 
+	ContactAdress,
+  RoleID,  
+  EMAIL) 
 	values
 	(
 	-2,
 	'Admin',
 	'Admin',
 	'Admin',
-	'A',
 	NULL,
-	NULL);
+	NULL,
+  'A',
+  NULL);
 	
 commit;
 

@@ -78,11 +78,13 @@
                         <c:forEach items="${productList}" var="item">
                             <li>
                                 <a href="/item/${item.getId()}">
-                                    <img src="${item.getUrlImg()}"/>
+                                    <img src="${item.getImageUrl()}"/>
 
-                                    <span>${item.getName()}</span><br>
+                                    <span>${item.getEntityName()}</span><br>
                                     id: ${item.getId()}
+
                                 </a>
+                                ${item.getSummary()}
                                 <br>
 
                                 <div class="btn_right">

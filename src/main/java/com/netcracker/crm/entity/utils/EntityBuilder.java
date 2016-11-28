@@ -12,7 +12,7 @@ public class EntityBuilder {
     private EntityBuilder() {
     }
 
-    public static User buildUser(int userId, String login, String password, String userName, String contactPhone, String contactAddress, String roleId) {
+    public static User buildUser(int userId, String login, String password, String userName, String contactPhone, String contactAddress, String roleId, String email) {
         User user = new User();
         user.setId(userId);
         user.setLogin(login);
@@ -21,6 +21,7 @@ public class EntityBuilder {
         user.setContactPhone(contactPhone);
         user.setContactAddress(contactAddress);
         user.setRoleId(roleId);
+        user.setEmail(email);
         return user;
     }
 

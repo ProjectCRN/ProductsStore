@@ -6,9 +6,8 @@ package com.netcracker.crm.entity;
 
 import javafx.util.Pair;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Entity extends AbstractEntity {
 
@@ -66,9 +65,11 @@ public class Entity extends AbstractEntity {
                 ", entityTypeName='" + entityTypeName + '\'' +
                 ", userId=" + userId +
                 '}';
-        for(Pair<Atribute,Value> item : atributeValueMap){
-            str+="\n"+item.getKey().toString();
-            str+="\n"+item.getValue().toString();
+        if(atributeValueMap!=null) {
+            for (Pair<Atribute, Value> item : atributeValueMap) {
+                str += "\n" + item.getKey().toString();
+                str += "\n" + item.getValue().toString();
+            }
         }
         return str;
     }
@@ -112,7 +113,16 @@ public class Entity extends AbstractEntity {
     }
 
     public List<Value> getValueList() {
-        return valueList;
+        List<Value> values = new ArrayList<>();
+        for(Pair<Atribute, Value> p:atributeValueMap){
+            values.add(p.getValue());
+        }
+        return values;
+        //return valueList;
+    }
+
+    public void setValueList(List<Value> valueList) {
+        this.valueList = valueList;
     }
 
     public List<Pair<Atribute,Value>> getAtributeValueMap() {

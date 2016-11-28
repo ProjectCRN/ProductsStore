@@ -63,17 +63,6 @@ ALTER TABLE TBL_Entity
 
 
 
-CREATE UNIQUE INDEX XAK1TBL_Entity ON TBL_Entity
-(EntityName   ASC)
-	TABLESPACE NetShop_INDEX;
-
-
-
-ALTER TABLE TBL_Entity
-ADD CONSTRAINT  XAK1TBL_Entity UNIQUE (EntityName);
-
-
-
 CREATE TABLE TBL_EntityType
 (
 	EntityTypeID         INTEGER NOT NULL ,
@@ -121,7 +110,8 @@ CREATE TABLE TBL_User
 	UserName             NVARCHAR2(256) NOT NULL ,
 	ContactPhone         VARCHAR2(64) NULL ,
 	ContactAdress        NVARCHAR2(256) NULL ,
-	RoleID               char(1) NOT NULL 
+	RoleID               char(1) NOT NULL ,
+	Email                NVARCHAR2(128) NULL 
 )
 	TABLESPACE NetShop_DATA;
 

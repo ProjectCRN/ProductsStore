@@ -8,7 +8,7 @@
     </Appenders>
 
     <Loggers>
-        <Logger name= "ru.javastudy.examples.User" level="debug" additivity="true">
+        <Logger name= "com.netcracker.crm.logger" level="INFO" additivity="true">
             <AppenderRef ref="Console"/>
         </Logger>
 

@@ -11,8 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static com.netcracker.crm.dao.constants.DaoConstants.*;
-import static com.netcracker.crm.dao.constants.DaoConstants.COLUMN_ENTITY_TYPE_NAME;
-import static com.netcracker.crm.dao.constants.DaoConstants.COLUMN_ENTITY_USER_ID;
 
 /**
  * Created by Nastya on 11/14/2016.

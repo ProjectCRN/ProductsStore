@@ -1,27 +1,37 @@
-ДЕЛАЙТЕ ВСЁ ПО ПУНКТАМ!!!
-1) Качаем сервер: http://www.oracle.com/technetwork/database/database-technologies/express-edition/downloads/index.html
-2) Качаем SQL Developer: http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index-098778.html
-3) Инсталяем 1) и 2)
-4) Открываем SQL Developer, добавляем connection:
-    Connection Name - как хотите
-    Username - sys
-    Password - вы ввели при инсталяции
-    Role - SYSDBA
-  потом ничего не трогаем и жмём Test - если всё ок жмём Connect
-5) идёте в Database\Scripts\Shemas\ переносим файлик 00_create_tablespace.sql в SQL Developer и компилируем его
-   переносим файлик 01_create_user_role.sql в SQL Developer и компилируем его.
-6) Добавляем connection:  
-    Connection Name - как хотите (например NetShopAdmin)
-    Username - ns_admin
-    Password - qwerty
-   потом ничего не трогаем и жмём Test - если всё ок жмём Connect
-7) ВСЕ ОСТАЛЬНЫЕ ДЕЙСТВИЯ ВЫ БУДЕТЕ ДЕЛАТЬ КАК  NetShopAdmin!!! 
-    и сочетание "переносим в SQL Developer и компилируем" - будет заменено на просто "компилируем"
+1) ЕСЛИ ВЫ НИ РАЗУ НЕ ЗАПУСКАЛИ СКРИПТЫ БД:
+    1.1) Если вы молодец и сделали пункты 1)-3) - то можете запустить Run.bat (измените в первых 2-ух строках qwer1234 на ваш пароль, который вы ввели при инсталяции) - он вам всё запустит и сделает. 
+    1.2) Если вы НЕ молодец -  делаете 1)-3) и смотрите пункт 1.1)
+2) ВЫ ЗАПУСКАЛИ КАКИЕ-НИБУДЬ СКРИПТЫ (может быть старые):
+    2.1) Удаляете всё: в Database\Scripts\Shemas\00_dropAll.sql  (настроете что удалять, если у вас там что-то старое)
+    2.2) Запускаете RunNotAll.bat и всё само ставится
     
-8) идёте в Database\Scripts\Shemas\  файлы 02_... - компилируете, 03_... - компилируете
-9) идёте в c:\Work\Information\NetShop\Database\Scripts\tr\ -  tr_delete_user.sql - компилируете  
-10) идёте в c:\Work\Information\NetShop\Database\Scripts\Init_data\ - компилируете все файлики (00_... - 04_...)
-11) идёте в c:\Work\Information\NetShop\Database\Scripts\Functions\ - компилируете fn_error_message_get.sql
-12) идёте в c:\Work\Information\NetShop\Database\Scripts\Procedures\ - компилируете всё файлы, начинающиеся на sp_user_...
+3) ДЕЛАЙТЕ ВСЁ ПО ПУНКТАМ!!!
+    1) Качаем сервер: http://www.oracle.com/technetwork/database/database-technologies/express-edition/downloads/index.html
+    2) Качаем SQL Developer: http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index-098778.html
+    3) Инсталяем 1) и 2)
+    
+ДАЛЬШЕ ДЕТЯМ ДО 21 ИЛИ ТЕМ КТО НЕ ЗАНИМАЕТСЯ БД НЕ СМОТРЕТЬ)
+Дальше надо смотреть, если Вы уже что-то сломали или хотите что-то сломать.
+    
+    4) Открываем SQL Developer, добавляем connection:
+        Connection Name - как хотите
+        Username - sys
+        Password - вы ввели при инсталяции
+        Role - SYSDBA
+      потом ничего не трогаем и жмём Test - если всё ок жмём Connect
+    5) идёте в Database\Scripts\Shemas\ переносим файлик 00_create_tablespace.sql в SQL Developer и компилируем его
+       переносим файлик 01_create_user_role.sql в SQL Developer и компилируем его.
+    6) Добавляем connection:  
+        Connection Name - как хотите (например NetShopAdmin)
+        Username - ns_admin
+        Password - qwerty
+       потом ничего не трогаем и жмём Test - если всё ок жмём Connect
+    7) ВСЕ ОСТАЛЬНЫЕ ДЕЙСТВИЯ ВЫ БУДЕТЕ ДЕЛАТЬ КАК  NetShopAdmin!!! 
+        и сочетание "переносим в SQL Developer и компилируем" - будет заменено на просто "компилируем"
 
-ПОСЛЕ ЭТОГО ВЫ СМОЖЕТЕ ВЫЗВАТЬ ЭТИ ПРОЦЕДУРЫ В JAVA ЧЕРЕЗ JDBC.
+    8) идёте в Database\Scripts\Shemas\  файлы 02_... - компилируете, 03_... - компилируете
+    9) идёте в Database\Scripts\tr\ -  tr_delete_user.sql - компилируете  
+    10) идёте в Database\Scripts\Init_data\ - компилируете все файлики (00_... - 04_...)
+    11) идёте в Database\Scripts\Functions\ - компилируете fn_error_message_get.sql
+    12) идёте в Database\Scripts\Procedures\ - компилируете sp_entity_list.sql
+

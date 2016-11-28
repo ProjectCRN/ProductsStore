@@ -1,7 +1,6 @@
 package com.netcracker.crm.dao.rowmapper;
 
 import com.netcracker.crm.entity.Atribute;
-import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
 import javafx.util.Pair;
 import org.springframework.jdbc.core.RowMapper;
