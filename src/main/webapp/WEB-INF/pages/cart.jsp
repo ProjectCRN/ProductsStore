@@ -39,9 +39,9 @@
                     <c:forEach items="${cartList}" var="item">
                         <tr>
                             <td>${item.getProduct().getId()} </td>
-                            <td>${item.getProduct().getName()} </td>
+                            <td>${item.getProduct().getEntityName()} </td>
                             <td>${item.getProduct().getPrice()} </td>
-                            <td>${item.getNumber()}</td>
+                            <td>${item.getQuantity()}</td>
                             <td><a class="btn btn-default" role="button"
                                    href="/addCartProduct/${item.getProduct().getId()}">add</a></td>
                             <td><a class="btn btn-default" role="button"

@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>${item.getName()}</title>
+    <title>${item.getEntityName()}</title>
     <spring:url value="/resources/css/style.css" var="mainCss"/>
     <spring:url value="/resources/lib/bootstrap/bootstrap-grid-3.3.1.min.css" var="btsCss"/>
     <spring:url value="/resources/img/spinner.gif" var="spinner"/>
@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                         <td>Name</td>
-                        <td>${item.getName()}</td>
+                        <td>${item.getEntityName()}</td>
                     </tr>
                     <tr>
                         <td>Price</td>

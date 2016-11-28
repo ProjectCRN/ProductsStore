@@ -6,7 +6,7 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-        <property name="url" value="jdbc:oracle:thin:@//localhost:1521/XE?serverTimezone=America/New_York" />
+        <property name="url" value="jdbc:oracle:thin:@//localhost:1521/XE" />
         <property name="username" value="ns_admin" />
         <property name="password" value="qwerty" />
     </bean>
