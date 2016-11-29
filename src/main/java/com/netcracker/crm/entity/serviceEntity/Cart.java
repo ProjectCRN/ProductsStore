@@ -8,11 +8,11 @@ import java.util.List;
 /**
  * Created by Nastya on 11/22/2016.
  */
+
 public class Cart extends AbstractEntity {
     private List<CartItem> cartItems;
     private int userId;
     private int total;
-
 
     public Cart(int id) {
         cartItems=new ArrayList<>();
@@ -54,18 +54,36 @@ public class Cart extends AbstractEntity {
         return str;
     }
     public void addCartItem(CartItem cartItem){
+        for(CartItem item : cartItems)
+        {
+            if(item.getProduct().getId()==cartItem.getProduct().getId())
+            {
+                item.incQuantity();
+                return;
+            }
+        }
         cartItems.add(cartItem);
     }
     public void updateCartItem(int index,CartItem cartItem){
         cartItems.set(index, cartItem);
     }
+
     public void deleteCartItem(CartItem cartItem){
-        cartItems.remove(cartItem);
+        if(cartItem.getQuantity()==1)
+            cartItems.remove(cartItem);
+        else for(CartItem item : cartItems)
+        {
+            if(item.getProduct().getId()==cartItem.getProduct().getId())
+            {
+                item.decQuantity();
+                return;
+            }
+        }
     }
     public int countTotal(){
         total=0;
         for(CartItem item : cartItems){
-            total+=(item.getProduct().getPrice());
+            total+=(item.getProduct().getPrice() * item.getQuantity());
         }
         return total;
     }

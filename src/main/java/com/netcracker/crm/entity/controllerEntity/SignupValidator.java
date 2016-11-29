@@ -28,10 +28,18 @@ public class SignupValidator implements Validator {
             errors.rejectValue("login", "login.tooLong", "Login must be between 6 and 20 characters.");
         }
 
+        if (!login.matches("^[a-zA-Z0-9]+$")) {
+            errors.rejectValue("login", "login.loginDontMatch", "Login must contain only letters and numbers.");
+        }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "userName.empty", "Username must not be empty.");
         String username = signupForm.getUserName();
+
         if ((username.length()) > 30) {
             errors.rejectValue("userName", "userName.tooLong", "Username must not more than 30 characters.");
+        }
+
+        if (!username.matches("^[a-zA-Z ]+$")) {
+            errors.rejectValue("userName", "userName.userNameDontMatch", "Username must contain only letters and spaces.");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.empty", "Password must not be empty.");
@@ -41,14 +49,17 @@ public class SignupValidator implements Validator {
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "contactPhone", "contactPhone.empty", "ContactPhone must not be empty.");
-       /* String contactPhone = signupForm.getContactPhone();
-        Pattern p = Pattern.compile("^(\\+375|80)(29|25|44|33)(\\d{3})(\\d{2})(\\d{2})$");
-        Matcher m = p.matcher(contactPhone);
-        if (!m.matches()) {
-            errors.rejectValue("contactPhone", "contactPhone.contactPhoneDontMatch", "Possible patterns +375XX XXX XX XX and 80XX XXX XX XX.");
-        }*/
 
+        String contactPhone = signupForm.getContactPhone();
+
+        if (!contactPhone.matches("^[0-9 +)(-]+$")) {
+            errors.rejectValue("contactPhone", "contactPhone.contactPhoneDontMatch", "Phone must contain only numbers fnd symbols");
+        }
+
+        String contactAddress = signupForm.getContactAddress();
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "contactAddress", "contactAddress.empty", "ContactAddress must not be empty.");
-
+        if (!contactAddress.matches("^[a-zA-Z0-9 .,\'\"-]+$")) {
+            errors.rejectValue("contactAddress", "contactAddress.contactAddressDontMatch", "Incorrect symbols.");
+        }
     }
 }

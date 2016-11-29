@@ -34,6 +34,12 @@ public class CartItem extends AbstractEntity {
         Quantity = quantity;
     }
 
+    public void incQuantity() {
+        Quantity++;
+    }
+    public void decQuantity() {
+        Quantity--;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

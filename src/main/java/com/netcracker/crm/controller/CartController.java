@@ -24,6 +24,7 @@ public class CartController {
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public String cart(ModelMap model) {
+        cartService.createCart(-2);
         model.addAttribute("cartList", cartService.getCart().getCartItems());
         model.addAttribute("total", cartService.countTotal());
         return CART;
@@ -31,12 +32,14 @@ public class CartController {
 
     @RequestMapping(value = "/addCartProduct/{id}", method = RequestMethod.GET)
     public String addCartProduct(@PathVariable String id, ModelMap model) {
+        cartService.createCart(-2);
         cartService.addProduct(Integer.parseInt(id));
         return "redirect:/"+CART;
     }
 
     @RequestMapping(value = "/deleteCartProduct/{id}", method = RequestMethod.GET)
     public String deleteCartProduct(@PathVariable String id, ModelMap model) {
+        cartService.createCart(-2);
         cartService.delete(Integer.parseInt(id));
         return "redirect:/"+CART;
     }

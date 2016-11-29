@@ -7,6 +7,7 @@ import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.AbstractService;
 import com.netcracker.crm.services.ICartService;
 import com.netcracker.crm.services.IProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,14 @@ import org.springframework.stereotype.Service;
 @Service("cartService")
 public class CartServiceImpl extends AbstractService<Cart> implements ICartService {
 
-    private Cart cart = new Cart(-2);
+    private static Cart cart;
+
+    @Override
+    public void createCart(int userId)
+    {
+        if(cart == null)
+            cart = new Cart(userId);
+    }
 
     @Override
     public int add(Cart abstractEntity) {

@@ -11,6 +11,11 @@ import java.util.List;
 public class SearchService {
     private static SearchAttributes searchAttributes;
     private static List<String> types;
+    private static int typeId;
+    private static String list1;
+    private static String list2;
+    private static String list3;
+
 
     public SearchService() {
         if(searchAttributes == null)
@@ -18,10 +23,46 @@ public class SearchService {
         if(types == null)
         {
             types = new ArrayList<String>();
-            types.add("");
             types.add("Telephone");
             types.add("Tablet");
+            types.add("Smart Watch");
+            typeId = 8;
+            list1 = "";
+            list2 = "";
+            list3 = "";
         }
+    }
+
+    public static int getTypeId() {
+        return typeId;
+    }
+
+    public static void setTypeId(int typeId) {
+        SearchService.typeId = typeId;
+    }
+
+    public static String getList1() {
+        return list1;
+    }
+
+    public static void setList1(String list1) {
+        SearchService.list1 = list1;
+    }
+
+    public static String getList2() {
+        return list2;
+    }
+
+    public static void setList2(String list2) {
+        SearchService.list2 = list2;
+    }
+
+    public static String getList3() {
+        return list3;
+    }
+
+    public static void setList3(String list3) {
+        SearchService.list3 = list3;
     }
 
     public static SearchAttributes getSearchAttributes() {
@@ -33,9 +74,7 @@ public class SearchService {
     }
 
     public void validate(SearchAttributes searchAttr){
-
-
-
+        String buf;
         if (!searchAttr.getMinPrice().matches("^[0-9]+$")) searchAttr.setMinPrice("");
         if (!searchAttr.getMaxPrice().matches("^[0-9]+$")) searchAttr.setMaxPrice("");
         if (!searchAttr.getMinSize().matches("^[0-9]+$")) searchAttr.setMinSize("");
@@ -43,6 +82,29 @@ public class SearchService {
         if (!searchAttr.getMinRam().matches("^[0-9]+$")) searchAttr.setMinRam("");
         if (!searchAttr.getMaxRam().matches("^[0-9]+$")) searchAttr.setMaxRam("");
         if (!searchAttr.getName().matches("^[a-zA-Z0-9 ]+$")) searchAttr.setName("");
+
+        if(!searchAttr.getMinPrice().equals("") && !searchAttr.getMaxPrice().equals(""))
+            if(Integer.parseInt(searchAttr.getMinPrice())>Integer.parseInt(searchAttr.getMaxPrice()))
+            {
+                buf = searchAttr.getMinPrice();
+                searchAttr.setMinPrice(searchAttr.getMaxPrice());
+                searchAttr.setMaxPrice(buf);
+            }
+        if(!searchAttr.getMinSize().equals("") && !searchAttr.getMaxSize().equals(""))
+            if(Integer.parseInt(searchAttr.getMinSize())>Integer.parseInt(searchAttr.getMaxSize()))
+            {
+                buf = searchAttr.getMinSize();
+                searchAttr.setMinSize(searchAttr.getMaxSize());
+                searchAttr.setMaxSize(buf);
+            }
+
+        if(!searchAttr.getMinRam().equals("") && !searchAttr.getMaxRam().equals(""))
+            if(Integer.parseInt(searchAttr.getMinRam())>Integer.parseInt(searchAttr.getMaxRam()))
+            {
+                buf = searchAttr.getMinRam();
+                searchAttr.setMinRam(searchAttr.getMaxRam());
+                searchAttr.setMaxRam(buf);
+            }
         this.setSearchAttributes(searchAttr);
 
     }
@@ -55,70 +117,109 @@ public class SearchService {
         SearchService.types = types;
     }
 
-    public String getSearchRes()
+    public void parseSearchAttributes()
     {
         SearchAttributes searchAttr = this.getSearchAttributes();
-        List<String> list1 = new ArrayList<String>();
-        List<String> list2 = new ArrayList<String>();
-        List<String> list3 = new ArrayList<String>();
+        list1 = "";
+        list2 = "";
+        list3 = "";
+        typeId = 8;
 
-        if(!searchAttr.getType().equals(""))
+        switch (searchAttr.getType())
         {
-            list1.add("Type");
-            list2.add("like");
-            list3.add(searchAttr.getType());
+            case "Telephone": typeId = 8; break;
+            case "Tablet": typeId = 9; break;
+            case "Smart Watch": typeId = 10; break;
         }
+
 
         if(!searchAttr.getName().equals(""))
         {
-            list1.add("Name");
-            list2.add("like");
-            list3.add(searchAttr.getName());
+            if(!list1.equals("")) {
+                list1 += ", ";
+                list2 += ", ";
+                list3 += ", ";
+            }
+            list1 += "entityName";
+            list2 += "like";
+            list3 += searchAttr.getName();
         }
 
         if(!searchAttr.getMinPrice().equals(""))
         {
-            list1.add("Price");
-            list2.add(">");
-            list3.add(searchAttr.getMinPrice());
+            if(!list1.equals("")) {
+                list1 += ", ";
+                list2 += ", ";
+                list3 += ", ";
+            }
+            list1 += "price";
+            list2 += ">";
+            list3 += searchAttr.getMinPrice();
         }
 
         if(!searchAttr.getMaxPrice().equals(""))
         {
-            list1.add("Price");
-            list2.add("<");
-            list3.add(searchAttr.getMaxPrice());
+            if(!list1.equals("")) {
+                list1 += ", ";
+                list2 += ", ";
+                list3 += ", ";
+            }
+            list1 += "price";
+            list2 += "<";
+            list3 += searchAttr.getMaxPrice();
         }
 
         if(!searchAttr.getMinSize().equals(""))
         {
-            list1.add("Size");
-            list2.add(">");
-            list3.add(searchAttr.getMinSize());
+            if(!list1.equals("")) {
+                list1 += ", ";
+                list2 += ", ";
+                list3 += ", ";
+            }
+            list1 += "displayInch";
+            list2 += ">";
+            list3 += searchAttr.getMinSize();
         }
 
         if(!searchAttr.getMaxSize().equals(""))
         {
-            list1.add("Size");
-            list2.add("<");
-            list3.add(searchAttr.getMaxSize());
+            if(!list1.equals("")) {
+                list1 += ", ";
+                list2 += ", ";
+                list3 += ", ";
+            }
+            list1 += "displayInch";
+            list2 += "<";
+            list3 += searchAttr.getMaxSize();
         }
 
         if(!searchAttr.getMinRam().equals(""))
         {
-            list1.add("Ram");
-            list2.add(">");
-            list3.add(searchAttr.getMinRam());
+            if(!list1.equals("")) {
+                list1 += ", ";
+                list2 += ", ";
+                list3 += ", ";
+            }
+            list1 += "capaciyGB";
+            list2 += ">";
+            list3 += searchAttr.getMinRam();
         }
 
         if(!searchAttr.getMaxRam().equals(""))
         {
-            list1.add("Ram");
-            list2.add("<");
-            list3.add(searchAttr.getMaxRam());
+            if(!list1.equals("")) {
+                list1 += ", ";
+                list2 += ", ";
+                list3 += ", ";
+            }
+            list1 += "capaciyGB";
+            list2 += "<";
+            list3 += searchAttr.getMaxRam();
         }
-
-        return list1.toString() +'\n'+ list2.toString() +'\n'+ list3.toString();
+    }
+    public String getSearchRes()
+    {
+        return typeId+" | "+list1+" | "+list2+" | "+list3;
     }
 
     public String getSearchAttr()

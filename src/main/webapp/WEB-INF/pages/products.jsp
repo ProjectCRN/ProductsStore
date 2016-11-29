@@ -55,17 +55,17 @@
                         <label>Name: </label>
                         <sf:input path="name" size="21"/><br>
                         <label>Price: </label>
-                        <sf:input path="minPrice" size="8" placeholder="from"/>
-                        <sf:input path="maxPrice" size="8" placeholder="to"/><br>
+                        <sf:input path="minPrice" size="8" placeholder="min"/>
+                        <sf:input path="maxPrice" size="8" placeholder="max"/><br>
 
-                        <label>Size : </label>
-                        <sf:input path="minSize" size="8" placeholder="from"/>
-                        <sf:input path="maxSize" size="8" placeholder="to"/><br>
+                        <label>Capacity (GB): </label>
+                        <sf:input path="minCapacity" size="8" placeholder="min"/>
+                        <sf:input path="maxCapacity" size="8" placeholder="max"/><br>
 
 
-                        <label>Ram : </label>
-                        <sf:input path="minRam" size="8" placeholder="from"/>
-                        <sf:input path="maxRam" size="8" placeholder="to"/><br>
+                        <label>Battery (Hours): </label>
+                        <sf:input path="minBattery" size="8" placeholder="min"/>
+                        <sf:input path="maxBattery" size="8" placeholder="max"/><br>
 
                         <input type="submit" value="Search" class="btn"/>
 
@@ -78,7 +78,7 @@
                         <c:forEach items="${productList}" var="item">
                             <li>
                                 <a href="/item/${item.getId()}">
-                                    <img src="${item.getImageUrl()}"/>
+                                    <img src="/resources/img/img_phone.jpg"/>
 
                                     <span>${item.getEntityName()}</span><br>
                                     id: ${item.getId()}
