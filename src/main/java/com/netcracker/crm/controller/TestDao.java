@@ -69,9 +69,8 @@ public class TestDao {
 //        Cart cart = new Cart(-2);
 //        cart.addCartItem(new CartItem(productService.getById(53), 1));
 //        cart.addCartItem(new CartItem(productService.getById(54), 2));
-//        Order order = new Order("myorder3prod", true, -2, null);
-//        order.setCart(cart);
-//        IOrderService orderService = (IOrderService)context.getBean("orderService");
+//        IOrderService orderService = (IOrderService) context.getBean("orderService");
+//        Order order = orderService.makeOrderByCart(cart);
 //        orderService.add(order);
 
 

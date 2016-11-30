@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class TypeAttribute extends AbstractTag {
     private TypeAttribute() {
         tags = HashBiMap.create(new HashMap(){{
+            put("Order", 7);
             put("telephone", 8);
             put("tablet", 9);
             put("smartWatch", 10);

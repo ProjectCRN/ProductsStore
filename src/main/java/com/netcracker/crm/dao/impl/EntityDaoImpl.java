@@ -5,6 +5,7 @@ import com.netcracker.crm.dao.IEntityDao;
 import com.netcracker.crm.dao.rowmapper.AtributeValueRowMapper;
 import com.netcracker.crm.dao.rowmapper.EAVlistRowMapper;
 import com.netcracker.crm.dao.rowmapper.EntityRowMapper;
+import com.netcracker.crm.entity.Atribute;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
 import org.springframework.jdbc.core.RowMapper;
@@ -218,5 +219,9 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         int out = getJdbcTemplate().queryForObject(sql, Integer.class);
         return out;
     }
+
+//    public List<Atribute> getAtributes(){
+//
+//    }
 
 }

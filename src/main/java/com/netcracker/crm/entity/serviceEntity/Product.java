@@ -7,28 +7,23 @@ import com.netcracker.crm.entity.Value;
 import java.util.List;
 
 public class Product extends Entity {
-    //    private String name;    //название телефона или планшета
+
+//    private String name;    //название телефона или планшета
 //    private boolean isActive;
 //    private String productType; //телефон или планшет
 //    private int userId;
+//    private List<Pair<Atribute, Value>> atributeValueMap;  //атрибуты телефона (камера и т.п.)
+
     private double price;
     private String summary;
     private int orderId; //0 - не в заказе
     private String imageUrl;
     private int quantity;
     private String fabricator;
-//    private List<Pair<Atribute, Value>> atributeValueMap;  //атрибуты телефона (камера и т.п.)
 
 
     public Product() {
     }
-
-//    public Entity toEntity() {
-//        Entity entity = new Entity(getId(), name, isActive,
-//                EntityType.valueOf(productType).getTypeId(), productType, userId);
-//        entity.setAtributeValueMap(atributeValueMap);
-//        return entity;
-//    }
 
     public Product(Entity entity) {
         super(entity.getId(), entity.getEntityName(), entity.getisActive() == 1 ? true : false,
@@ -71,17 +66,6 @@ public class Product extends Entity {
     public Product(String name, boolean isActive, int productTypeId, int userId, List<Value> valueList) {
         super(name, isActive, productTypeId, userId, valueList);
     }
-
-//    public Product(int id, String name, boolean isActive, String productType, int userId, int price, String summary) {
-//        super(id);
-//        this.name = name;
-//        this.price = price;
-//        this.productType = productType;
-//        this.isActive = isActive;
-//        this.userId = userId;
-//        this.summary = summary;
-//    }
-
 
     public double getPrice() {
         return price;
@@ -190,5 +174,25 @@ public class Product extends Entity {
         }
         return false;
     }
+
+//    private void setValueInList(String atribute, String value) {
+//        boolean f = false;
+//        for (int i = 0; i < getValueList().size(); i++) {
+//            if (getValueList().get(i).getAtributeId() == PrAtribute.valueOf(atribute).getAtributeId()) {
+//                getValueList().get(i).setValue(value);
+//                f = true;
+//            }
+//        }
+//        if (!f) {
+//            getValueList().add(new Value(value, getId(), PrAtribute.valueOf(atribute).getAtributeId()));
+//        }
+//    }
+
+    //    public Entity toEntity() {
+//        Entity entity = new Entity(getId(), name, isActive,
+//                EntityType.valueOf(productType).getTypeId(), productType, userId);
+//        entity.setAtributeValueMap(atributeValueMap);
+//        return entity;
+//    }
 
 }

@@ -1,8 +1,11 @@
 package com.netcracker.crm.services.impl;
 
 import com.netcracker.crm.dao.IEntityDao;
+import com.netcracker.crm.dao.IUserDao;
 import com.netcracker.crm.dao.exception.DaoException;
+import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.Value;
+import com.netcracker.crm.entity.serviceEntity.Cart;
 import com.netcracker.crm.entity.serviceEntity.CartItem;
 import com.netcracker.crm.entity.serviceEntity.Order;
 import com.netcracker.crm.entity.serviceEntity.Product;
@@ -17,6 +20,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,25 +33,31 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
 
     @Autowired
     private IEntityDao entityDao;
+    @Autowired
+    private IUserDao userDao;
     private static Logger logger = LogManager.getLogger(OrderServiceImpl.class);
 
     @Override
-    public void update(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
-
+    public Order makeOrderByCart(Cart cart){
+        User user = userDao.getById(cart.getUserId());
+        Order order = new Order("ordername", true, user.getId());
+        order.setCart(cart);
+        order.setByUser(user);
+        order.setTotal(cart.countTotal());
+        Date date = new Date();
+        order.setCreatedDate(date);
+        order.setPaidDate(date);
+        order.setOrderNumber("somenumber");
+        order.setDescription("somedescription");
+        return order;
     }
-
-    @Override
-    public List<Order> getList(int typeId, String atributesId, String values, String operators) {
-        return null;
-    }
-
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public int add(Order order) {
         int id;
         try {
-            id = entityDao.add(order.toEntity());
+            id = entityDao.add(order);
             for (CartItem item : order.getCart().getCartItems()) {
                 Product product = item.getProduct();
                 product.setQuantity(item.getQuantity());
@@ -60,10 +72,18 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
         return id;
     }
 
-
     @Override
     public Order getById(int id) {
         return null;
+    }
+    @Override
+    public List<Order> getList(int typeId, String atributesId, String values, String operators) {
+        return null;
+    }
+
+    @Override
+    public void update(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
+
     }
 
     @Override
