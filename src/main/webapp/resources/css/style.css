@@ -109,6 +109,14 @@ body {
     text-align: left;
 }
 
+.block1 .col-md-9{
+    text-align: left;
+}
+
+.align_center{
+    text-align: center;
+}
+
 
 #page-preloader {
     position: fixed;
