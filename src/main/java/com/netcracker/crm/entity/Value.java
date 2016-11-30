@@ -13,6 +13,12 @@ public class Value extends AbstractEntity {
     public Value() {
     }
 
+    public Value(String value, int entityId, int atributeId) {
+        this.value = value;
+        this.entityId = entityId;
+        this.atributeId = atributeId;
+    }
+
     public Value(int valueId, String value, int entityId, int atributeId) {
         super(valueId);
         this.value = value;

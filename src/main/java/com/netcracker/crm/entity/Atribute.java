@@ -16,6 +16,11 @@ public class Atribute extends AbstractEntity {
 
     public Atribute() {}
 
+    public Atribute(int id, String atributeName) {
+        super(id);
+        this.atributeName = atributeName;
+    }
+
     public Atribute(int id, String atributeName, int atributeTypeId, boolean isActive, int entityTypeId, boolean isRequired) {
         super(id);
         this.atributeName = atributeName;

@@ -4,7 +4,11 @@ package com.netcracker.crm.entity;
  * Created by egor on 23.10.2016.
  */
 
+import com.netcracker.crm.entity.serviceEntity.EntityType;
+import com.netcracker.crm.services.parser.TypeAttribute;
+import com.netcracker.crm.services.parser.exception.NoSuchIdXMLException;
 import javafx.util.Pair;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +23,9 @@ public class Entity extends AbstractEntity {
     private int userId;
     private List<Value> valueList;
     private List<Pair<Atribute,Value>> atributeValueMap;
+
+    @Autowired
+    private TypeAttribute typeAttribute;
 
     @Override
     public boolean equals(Object o) {
@@ -81,15 +88,24 @@ public class Entity extends AbstractEntity {
         this.entityTypeId = entityTypeId;
         this.entityTypeName = entityTypeName;
         this.userId = userId;
+        valueList = new ArrayList<>();
     }
 
     public Entity(String entityName, boolean isActive, int entityTypeId, int userId, List<Value> valueList) {
         this.entityName = entityName;
         this.isActive = isActive;
         this.entityTypeId = entityTypeId;
-        this.entityTypeName = entityTypeName;
         this.userId = userId;
         this.valueList = valueList;
+    }
+
+    public Entity(String entityName, boolean isActive, int entityTypeId, int userId) {
+        this.entityName = entityName;
+        this.isActive = isActive;
+        this.entityTypeId = entityTypeId;
+//        нужно установить typeName
+        this.userId = userId;
+        valueList = new ArrayList<>();
     }
 
     public String getEntityName() {
@@ -113,14 +129,14 @@ public class Entity extends AbstractEntity {
     }
 
     public List<Value> getValueList() {
-        if(atributeValueMap!=null) {
-            List<Value> values = new ArrayList<>();
-            for (Pair<Atribute, Value> p : atributeValueMap) {
-                values.add(p.getValue());
-            }
-            return values;
-        } else return null;
-        //return valueList;
+//        if(atributeValueMap!=null) {
+//            List<Value> values = new ArrayList<>();
+//            for (Pair<Atribute, Value> p : atributeValueMap) {
+//                values.add(p.getValue());
+//            }
+//            return values;
+//        } else return null;
+        return valueList;
     }
 
     public void setValueList(List<Value> valueList) {
