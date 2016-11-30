@@ -3,12 +3,13 @@ package com.netcracker.crm.entity.controllerEntity;
 import com.netcracker.crm.entity.User;
 
 /**
- * Created by Ксения on 21.11.2016.
+ * Created by Ксения on 22.11.2016.
  */
-public class SignupForm extends User {
-
+public class UserRegisterForm extends User {
     private String confirmPassword;
 
+    public UserRegisterForm() {
+    }
     public String getConfirmPassword() {
         return confirmPassword;
     }
@@ -16,5 +17,4 @@ public class SignupForm extends User {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
-
 }

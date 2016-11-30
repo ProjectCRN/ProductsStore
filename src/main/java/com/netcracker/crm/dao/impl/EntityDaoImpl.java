@@ -3,9 +3,11 @@ package com.netcracker.crm.dao.impl;
 import com.netcracker.crm.dao.AbstractDao;
 import com.netcracker.crm.dao.IEntityDao;
 import com.netcracker.crm.dao.rowmapper.AtributeValueRowMapper;
+import com.netcracker.crm.dao.rowmapper.EAVlistRowMapper;
 import com.netcracker.crm.dao.rowmapper.EntityRowMapper;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -131,7 +135,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     @Override
-    public List<Entity> getList(int typeId, String atributesId, String values, String operators) {
+    public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView) {
         getJdbcTemplate().setResultsMapCaseInsensitive(true);
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue(PARAM_IN_ENTITY_ENTITYTYPEID, typeId)
@@ -140,13 +144,46 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 .addValue(PARAM_IN_ENTITY_OPERATORS, operators);
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(getJdbcTemplate())
                 .withProcedureName(PROCEDURE_ENTITY_GET_LIST)
-                .returningResultSet(PARAM_OUT_ENTITY_LIST, new EntityRowMapper());
+                .returningResultSet(PARAM_OUT_ENTITY_LIST, new RowMapper<String>() {
+                    public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        String string;
+                        string=(rs.getString(COLUMN_ENTITY_ID));
+                        return string;
+                    }
+                });
 
         Map result = jdbcCall.execute(in);
-        List<Entity> entiyList = new ArrayList<>((ArrayList) result.get(PARAM_OUT_ENTITY_LIST));
+        List<String> entiyIdList = new ArrayList<>((ArrayList) result.get(PARAM_OUT_ENTITY_LIST));
+        String strEntityIdList="";
+        for(String item : entiyIdList){
+            strEntityIdList+=","+item;
+        }
+        strEntityIdList=strEntityIdList.substring(1);
+        return getListWithAttributes(strEntityIdList,atributesIdView);
+    }
+
+    private List<Entity> getListWithAttributes (String entiyIdList, String atributesId){
+        List<String> attributesList=new ArrayList<>();
+        String[] arr = atributesId.split(",");
+        for ( String ss : arr) {
+            attributesList.add(ss);
+        }
+
+        getJdbcTemplate().setResultsMapCaseInsensitive(true);
+        SqlParameterSource in = new MapSqlParameterSource()
+                .addValue(PARAM_IN_ENTITY_ENTITYID, entiyIdList)
+                .addValue(PARAM_IN_ENTITY_ATRIBUTESID, atributesId);
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(getJdbcTemplate())
+                .withProcedureName(PROCEDURE_ENTITY_GET_LIST_VALUES)
+                .returningResultSet(PARAM_OUT_ENTITY_LIST,new EAVlistRowMapper(attributesList));
+
+        Map result = jdbcCall.execute(in);
+        List<Entity> entiyList= new ArrayList<>((ArrayList)result.get(PARAM_OUT_ENTITY_LIST));
 
         return entiyList;
+
     }
+
 
     @Override
     public List<Entity> getByUserAndType(Integer userID, Integer entityTypeID) {
