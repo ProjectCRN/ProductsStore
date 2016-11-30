@@ -1,15 +1,21 @@
 package com.netcracker.crm.services.impl;
 
 import com.netcracker.crm.dao.IEntityDao;
-import com.netcracker.crm.dao.impl.EntityDaoImpl;
+import com.netcracker.crm.dao.exception.DaoException;
 import com.netcracker.crm.entity.Value;
+import com.netcracker.crm.entity.serviceEntity.CartItem;
 import com.netcracker.crm.entity.serviceEntity.Order;
+import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.AbstractService;
 import com.netcracker.crm.services.IOrderService;
+import com.netcracker.crm.services.constants.ServiceConstants;
+import com.netcracker.crm.services.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -33,10 +39,27 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
         return null;
     }
 
+
     @Override
-    public int add(Order abstractEntity) {
-        return 0;
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public int add(Order order) {
+        int id;
+        try {
+            id = entityDao.add(order.toEntity());
+            for (CartItem item : order.getCart().getCartItems()) {
+                Product product = item.getProduct();
+                product.setQuantity(item.getQuantity());
+                product.setOrderId(id);
+                entityDao.add(product);
+            }
+            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + order.toString());
+        }catch(DaoException exc){
+            logger.error(exc.getMessage());
+            throw new ServiceException(exc.getMessage(), exc);
+        }
+        return id;
     }
+
 
     @Override
     public Order getById(int id) {

@@ -1,7 +1,12 @@
 package com.netcracker.crm.controller;
 
+import com.netcracker.crm.entity.serviceEntity.Cart;
+import com.netcracker.crm.entity.serviceEntity.CartItem;
+import com.netcracker.crm.entity.serviceEntity.Order;
 import com.netcracker.crm.entity.serviceEntity.Product;
+import com.netcracker.crm.services.IOrderService;
 import com.netcracker.crm.services.IProductService;
+import com.netcracker.crm.services.impl.OrderServiceImpl;
 import com.netcracker.crm.services.parser.CatalogParser;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -39,7 +44,6 @@ public class TestDao {
 //        userService.isEmailFree("gav@panin.ru");
 
         IProductService productService = (IProductService) context.getBean("productService");
-//
 //        productService.getByUserAndType(-2, null);
 //       Product product = productService.getById(53);
 //        List <Product> productList = productService.getByUserAndType(-2,8);
@@ -47,16 +51,29 @@ public class TestDao {
 //            System.out.println(op.toString());
 //        }
 //        int a = product.getOrderId();
-        CatalogParser catalogParser = (CatalogParser) context.getBean("catalogParser");
-        catalogParser.importCatalog("default");
-        System.out.println("check db");
-        catalogParser.exportCatalog("default");
-
-//        productService.delete(43);
+        //        productService.delete(43);
 //        productService.update(40, "iphone6s", 1, -2, null);
 //        List<Value> values = new ArrayList<>();
 //        values.add(new Value(41, "16Gb", 40, 14));
 //        productService.update(40, "iphone6s", 1, -2, values);
+
+
+        //  ADD ORDER
+//        Cart cart = new Cart(-2);
+//        cart.addCartItem(new CartItem(productService.getById(53), 1));
+//        cart.addCartItem(new CartItem(productService.getById(54), 2));
+//        Order order = new Order("myorder3prod", true, -2, null);
+//        order.setCart(cart);
+//        IOrderService orderService = (IOrderService)context.getBean("orderService");
+//        orderService.add(order);
+
+
+//        CatalogParser catalogParser = (CatalogParser) context.getBean("catalogParser");
+//        catalogParser.importCatalog("default");
+//        System.out.println("check db");
+//        catalogParser.exportCatalog("default");
+
+
         //Cart example
 //        ICartService cartService= (CartServiceImpl) context.getBean("cartService");
 //        Cart cart=new Cart(-1);

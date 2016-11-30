@@ -15,7 +15,7 @@ import java.util.List;
 public class Order extends AbstractEntity {
     private String name;    //orderNumber
     private boolean isActive;
-    private String entityType="Order";
+    private final String entityType = "Order";
     private int userId;
     private String orderNumber;
     private String contactName;
@@ -29,11 +29,18 @@ public class Order extends AbstractEntity {
     private List<Pair<Atribute, Value>> atributeValueMap;
 
 
-    public Order (Cart cart){
+    public Order(Cart cart) {
 
     }
 
-    public Order(int id, String entityName, boolean b,  int entityUserId, List<Pair<Atribute, Value>> atributeValueMap) {
+    public Order(String entityName, boolean b, int entityUserId, List<Pair<Atribute, Value>> atributeValueMap) {
+        this.name = entityName;
+        this.isActive = b;
+        this.userId = entityUserId;
+        this.atributeValueMap = atributeValueMap;
+    }
+
+    public Order(int id, String entityName, boolean b, int entityUserId, List<Pair<Atribute, Value>> atributeValueMap) {
         super(id);
         this.name = entityName;
         this.isActive = b;
@@ -42,9 +49,9 @@ public class Order extends AbstractEntity {
     }
 
 
-    public Entity toEntity(){
+    public Entity toEntity() {
 
-        Entity entity =  new Entity(getId(), name, isActive, EntityType.valueOf(entityType).getTypeId(), entityType, userId);
+        Entity entity = new Entity(getId(), name, isActive, EntityType.valueOf(entityType).getTypeId(), entityType, userId);
         entity.setAtributeValueMap(atributeValueMap);
         return entity;
     }
@@ -196,17 +203,19 @@ public class Order extends AbstractEntity {
 
     @Override
     public String toString() {
-        String str ="Order{" +
+        String str = "Order{" +
                 "name='" + name + '\'' +
                 ", isActive=" + isActive +
                 ", entityType='" + entityType + '\'' +
                 ", userId=" + userId +
                 '}';
-        for(Pair<Atribute,Value> item : atributeValueMap){
-            str+="\n"+item.getKey().toString();
-            str+="\n"+item.getValue().toString();
+        if (atributeValueMap != null) {
+            for (Pair<Atribute, Value> item : atributeValueMap) {
+                str += "\n" + item.getKey().toString();
+                str += "\n" + item.getValue().toString();
+            }
         }
-        str+=cart.toString();
+        str += cart.toString();
         return str;
     }
 }

@@ -113,11 +113,13 @@ public class Entity extends AbstractEntity {
     }
 
     public List<Value> getValueList() {
-        List<Value> values = new ArrayList<>();
-        for(Pair<Atribute, Value> p:atributeValueMap){
-            values.add(p.getValue());
-        }
-        return values;
+        if(atributeValueMap!=null) {
+            List<Value> values = new ArrayList<>();
+            for (Pair<Atribute, Value> p : atributeValueMap) {
+                values.add(p.getValue());
+            }
+            return values;
+        } else return null;
         //return valueList;
     }
 

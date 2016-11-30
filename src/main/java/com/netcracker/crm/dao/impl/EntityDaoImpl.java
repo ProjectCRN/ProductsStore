@@ -64,8 +64,9 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 entity.getEntityUserId()
         };
         getJdbcTemplate().update(sql, args);
-        addValue(entity.getValueList(), id);
-
+        if(entity.getValueList()!=null) {
+            addValue(entity.getValueList(), id);
+        }
         return id;
     }
 
