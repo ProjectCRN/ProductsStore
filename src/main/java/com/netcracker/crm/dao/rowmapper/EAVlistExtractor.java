@@ -24,37 +24,39 @@ public class EAVlistExtractor implements ResultSetExtractor<Entity> {
     private List<String> entiyIdList;
     @Override
     public Entity extractData(ResultSet resultSet) throws SQLException, DataAccessException {
-        int entityId=0,atributeId=0;
-        String entityTypeId="";
-        List<Pair<Atribute,Value>> atributeValueMap=new ArrayList<>();
-        Entity entity=  EntityBuilder.buildEntity(
+        int entityId = 0, atributeId = 0;
+        String entityTypeId = "";
+        List<Pair<Atribute, Value>> atributeValueMap = new ArrayList<>();
+        Entity entity = EntityBuilder.buildEntity(
                 resultSet.getInt(COLUMN_ENTITY_ID),
                 resultSet.getString(COLUMN_ENTITY_NAME),
                 resultSet.getString(COLUMN_ENTITY_ISACTIVE),
-                entityTypeId=resultSet.getString(COLUMN_ENTITY_TYPE_ID),
+                entityTypeId = resultSet.getString(COLUMN_ENTITY_TYPE_ID),
                 resultSet.getString(COLUMN_ENTITY_TYPE_NAME),
                 resultSet.getString(COLUMN_ENTITY_USER_ID));
-        entityId=resultSet.getInt(COLUMN_ENTITY_ID);
-        for(String item : this.entiyIdList){
-            atributeValueMap.add(
-                    new Pair<>(
-                            EntityBuilder.buildAtribute(
-                                    atributeId=resultSet.getInt(COLUMN_ATRIBUTE_ID+item),
-                                    resultSet.getString(COLUMN_ATRIBUTE_NAME+item),
-                                    "0",
-                                    " ",
-                                    "1",
-                                    entityTypeId,
-                                    "1")
-                            ,
-                            EntityBuilder.buildValue(
-                                    resultSet.getInt(COLUMN_VALUE_ID+item),
-                                    resultSet.getString(COLUMN_VALUE+item),
-                                    String.valueOf(entityId),
-                                    atributeId)
-                    )
-            );
-        }
+        if ((this.entiyIdList.size() != 1) && (this.entiyIdList.get(0).equals(""))){
+            entityId = resultSet.getInt(COLUMN_ENTITY_ID);
+            for (String item : this.entiyIdList) {
+                atributeValueMap.add(
+                        new Pair<>(
+                                EntityBuilder.buildAtribute(
+                                        atributeId = resultSet.getInt(COLUMN_ATRIBUTE_ID + item),
+                                        resultSet.getString(COLUMN_ATRIBUTE_NAME + item),
+                                        "0",
+                                        " ",
+                                        "1",
+                                        entityTypeId,
+                                        "1")
+                                ,
+                                EntityBuilder.buildValue(
+                                        resultSet.getInt(COLUMN_VALUE_ID + item),
+                                        resultSet.getString(COLUMN_VALUE + item),
+                                        String.valueOf(entityId),
+                                        atributeId)
+                        )
+                );
+            }
+    }
         entity.setAtributeValueMap(atributeValueMap);
         return entity;
     }
