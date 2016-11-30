@@ -46,7 +46,8 @@ public class ProductListController {
     public String searchProducts(SearchAttributes searchAttr, ModelMap model) {
         searchService.validate(searchAttr);
         searchService.parseSearchAttributes();
-        model.addAttribute("productList", productService.getList(searchService.getSearchAttributes().getTypeId(),
+        model.addAttribute("productList", productService.getList(
+                searchService.getSearchAttributes().getTypeId(),
                 searchService.getSearchAttributes().getAttribute(),
                 searchService.getSearchAttributes().getValues(),
                 searchService.getSearchAttributes().getOperators()));
@@ -58,10 +59,10 @@ public class ProductListController {
     }
 
     @RequestMapping(value = "/addProduct/{id}", method = RequestMethod.GET)
-    public String addProduct(@PathVariable String id, ModelMap model) {
+    public void addProduct(@PathVariable String id, ModelMap model) {
         cartService.createCart(-2);
         cartService.addProduct(Integer.parseInt(id));
-        return "redirect:/"+PRODUCTS;
+
 
     }
 

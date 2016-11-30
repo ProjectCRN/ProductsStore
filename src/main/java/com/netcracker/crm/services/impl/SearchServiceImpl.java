@@ -10,24 +10,24 @@ import org.springframework.stereotype.Service;
 @Service("searchService")
 public class SearchServiceImpl implements ISearchService {
 
-    private static SearchAttributes searchAttributes;
+    private SearchAttributes searchAttributes;
 
     public SearchServiceImpl() {
-        if(searchAttributes==null)
+        if (searchAttributes == null)
             searchAttributes = new SearchAttributes();
     }
 
-    public static SearchAttributes getSearchAttributes1() {
+    public SearchAttributes getSearchAttributes1() {
         return searchAttributes;
     }
 
-    public static void setSearchAttributes(SearchAttributes searchAttributes) {
-        SearchServiceImpl.searchAttributes = searchAttributes;
+    public void setSearchAttributes(SearchAttributes searchAttributes) {
+        this.searchAttributes = searchAttributes;
     }
 
     @Override
     public String getSearchRes() {
-        return searchAttributes.getTypeId()+" | "+searchAttributes.getAttribute()+" | "+searchAttributes.getOperators()+" | "+searchAttributes.getValues();
+        return searchAttributes.getTypeId() + " | " + searchAttributes.getAttribute() + " | " + searchAttributes.getOperators() + " | " + searchAttributes.getValues();
     }
 
     @Override
@@ -38,16 +38,18 @@ public class SearchServiceImpl implements ISearchService {
         String list3 = "";
         int typeId = 8;
 
-        switch (searchAttr.getType())
-        {
-            case "Telephone": typeId = 8; break;
-            case "Tablet": typeId = 9; break;
+        switch (searchAttr.getType()) {
+            case "Telephone":
+                typeId = 8;
+                break;
+            case "Tablet":
+                typeId = 9;
+                break;
         }
 
 
-        if(!searchAttr.getName().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getName().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
@@ -57,84 +59,78 @@ public class SearchServiceImpl implements ISearchService {
             list3 += searchAttr.getName();
         }
 
-        if(!searchAttr.getMinPrice().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getMinPrice().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
             }
-            if(typeId==8)
+            if (typeId == 8)
                 list1 += "20";
             else list1 += "37";
             list2 += ">";
-            list3 += searchAttr.getMinPrice()+".0";
+            list3 += searchAttr.getMinPrice() + ".0";
         }
 
-        if(!searchAttr.getMaxPrice().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getMaxPrice().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
             }
-            if(typeId==8)
+            if (typeId == 8)
                 list1 += "20";
             else list1 += "37";
             list2 += "<";
-            list3 += searchAttr.getMaxPrice()+".0";
+            list3 += searchAttr.getMaxPrice() + ".0";
         }
 
-        if(!searchAttr.getMinCapacity().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getMinCapacity().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
             }
-            if(typeId==8)
+            if (typeId == 8)
                 list1 += "24";
             else list1 += "41";
             list2 += ">";
             list3 += searchAttr.getMinCapacity();
         }
 
-        if(!searchAttr.getMaxCapacity().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getMaxCapacity().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
             }
-            if(typeId==8)
+            if (typeId == 8)
                 list1 += "24";
             else list1 += "41";
             list2 += "<";
             list3 += searchAttr.getMaxCapacity();
         }
 
-        if(!searchAttr.getMinBattery().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getMinBattery().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
             }
-            if(typeId==8)
+            if (typeId == 8)
                 list1 += "31";
             else list1 += "48";
             list2 += ">";
             list3 += searchAttr.getMinBattery();
         }
 
-        if(!searchAttr.getMaxBattery().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getMaxBattery().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
             }
-            if(typeId==8)
+            if (typeId == 8)
                 list1 += "31";
             else list1 += "48";
             list2 += "<";
@@ -157,24 +153,21 @@ public class SearchServiceImpl implements ISearchService {
         if (!searchAttr.getMaxBattery().matches("^[0-9]+$")) searchAttr.setMaxBattery("");
         if (!searchAttr.getName().matches("^[a-zA-Z0-9 ]+$")) searchAttr.setName("");
 
-        if(!searchAttr.getMinPrice().equals("") && !searchAttr.getMaxPrice().equals(""))
-            if(Integer.parseInt(searchAttr.getMinPrice())>Integer.parseInt(searchAttr.getMaxPrice()))
-            {
+        if (!searchAttr.getMinPrice().equals("") && !searchAttr.getMaxPrice().equals(""))
+            if (Integer.parseInt(searchAttr.getMinPrice()) > Integer.parseInt(searchAttr.getMaxPrice())) {
                 buf = searchAttr.getMinPrice();
                 searchAttr.setMinPrice(searchAttr.getMaxPrice());
                 searchAttr.setMaxPrice(buf);
             }
-        if(!searchAttr.getMinCapacity().equals("") && !searchAttr.getMaxCapacity().equals(""))
-            if(Integer.parseInt(searchAttr.getMinCapacity())>Integer.parseInt(searchAttr.getMaxCapacity()))
-            {
+        if (!searchAttr.getMinCapacity().equals("") && !searchAttr.getMaxCapacity().equals(""))
+            if (Integer.parseInt(searchAttr.getMinCapacity()) > Integer.parseInt(searchAttr.getMaxCapacity())) {
                 buf = searchAttr.getMinCapacity();
                 searchAttr.setMinCapacity(searchAttr.getMaxCapacity());
                 searchAttr.setMaxCapacity(buf);
             }
 
-        if(!searchAttr.getMinBattery().equals("") && !searchAttr.getMaxBattery().equals(""))
-            if(Integer.parseInt(searchAttr.getMinBattery())>Integer.parseInt(searchAttr.getMaxBattery()))
-            {
+        if (!searchAttr.getMinBattery().equals("") && !searchAttr.getMaxBattery().equals(""))
+            if (Integer.parseInt(searchAttr.getMinBattery()) > Integer.parseInt(searchAttr.getMaxBattery())) {
                 buf = searchAttr.getMinBattery();
                 searchAttr.setMinBattery(searchAttr.getMaxBattery());
                 searchAttr.setMaxBattery(buf);

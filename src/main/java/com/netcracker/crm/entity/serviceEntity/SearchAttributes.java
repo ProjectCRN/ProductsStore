@@ -107,6 +107,8 @@ public class SearchAttributes {
     }
 
     public int getTypeId() {
+        if(!(typeId==8 || typeId ==9))
+            return 8;
         return typeId;
     }
 

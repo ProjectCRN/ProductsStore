@@ -88,8 +88,24 @@
                                 <br>
 
                                 <div class="btn_right">
-                                    <a class="btn btn-default btnLink" role="button" href="/addProduct/${item.getId()}">add to
-                                        cart</a><br>
+
+                                    <button name="sample1${item.getId()}" class="sample1${item.getId()} btn btn-default btnLink">add to
+                                        cart</button>
+
+                                    <div  id="added${item.getId()}"  style="display: none;">Added</div>
+                                    <script>
+                                        $('.sample1${item.getId()}').click( function() {
+
+                                            $.ajax({
+                                                url: '/addProduct/${item.getId()}',
+
+                                            });
+                                            document.getElementById('added${item.getId()}').style.display = "block";
+                                        });
+                                    </script>
+
+                                    <!--<a class="btn btn-default btnLink" role="button" href="/addProduct/${item.getId()}">add to
+                                        cart</a><br>-->
                                     <a class="btn btn-default btnLink" role="button" href="/item/${item.getId()}">see more</a>
                                     <br><span>${item.getPrice()}$</span> <br>
                                 </div>
