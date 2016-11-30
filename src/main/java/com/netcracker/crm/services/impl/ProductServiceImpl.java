@@ -63,7 +63,7 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
     @Override
     public List<Product> getList(int typeId, String atributesId, String values, String operators) {
         List<Product> productList = new ArrayList<>();
-        String priceId="20";
+        String priceId="";
         if (typeId==8)
             priceId="20";
         if (typeId==9)
