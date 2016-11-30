@@ -2,7 +2,6 @@ package com.netcracker.crm.services.impl;
 
 import com.netcracker.crm.dao.IEntityDao;
 import com.netcracker.crm.dao.exception.DaoException;
-import com.netcracker.crm.dao.impl.EntityDaoImpl;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
 import com.netcracker.crm.entity.serviceEntity.Product;
@@ -64,8 +63,13 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
     @Override
     public List<Product> getList(int typeId, String atributesId, String values, String operators) {
         List<Product> productList = new ArrayList<>();
+        String priceId="20";
+        if (typeId==8)
+            priceId="20";
+        if (typeId==9)
+            priceId="37";
         try{
-            List<Entity> list = entityDao.getList(typeId,atributesId, values, operators);
+            List<Entity> list = entityDao.getList(typeId,atributesId, values, operators, priceId);
             //productList = new ArrayList<>(list.size());
             for (Entity e : list) {
                 productList.add(new Product(e));

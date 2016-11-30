@@ -1,5 +1,8 @@
 package com.netcracker.crm.controller;
 
+import com.netcracker.crm.dao.IEntityDao;
+import com.netcracker.crm.dao.impl.EntityDaoImpl;
+import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.serviceEntity.Cart;
 import com.netcracker.crm.entity.serviceEntity.CartItem;
 import com.netcracker.crm.entity.serviceEntity.Order;
@@ -10,6 +13,9 @@ import com.netcracker.crm.services.impl.OrderServiceImpl;
 import com.netcracker.crm.services.parser.CatalogParser;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by egor on 03.11.2016.
@@ -24,11 +30,12 @@ public class TestDao {
 //        values.add(new Value(0,"5.1-inch (diagonal)",0,15));
 //        Entity entity=new Entity("Samsung Galaxy S3",true,8,-2,values);
 //
-//              IEntityDao entityDao = (EntityDaoImpl) context.getBean("entityDao");
+              IEntityDao entityDao = (IEntityDao) context.getBean("entityDao");
 //        System.out.println(entityDao.getById(47));
-//            for(Entity item : entityDao.getList(8,"","","")){
-//            System.out.println(item.getId());
-//          }
+
+            for(Entity item : entityDao.getList(8,"","","","20")){
+            System.out.println(item);
+          }
 
 // -----USER SERVICES-----
 //      IUserService userService = (UserServiceImpl) context.getBean("userService");
@@ -43,7 +50,7 @@ public class TestDao {
 //
 //        userService.isEmailFree("gav@panin.ru");
 
-        IProductService productService = (IProductService) context.getBean("productService");
+//        IProductService productService = (IProductService) context.getBean("productService");
 //        productService.getByUserAndType(-2, null);
 //       Product product = productService.getById(53);
 //        List <Product> productList = productService.getByUserAndType(-2,8);
