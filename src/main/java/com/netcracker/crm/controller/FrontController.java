@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.validation.BindingResult;
+
 import javax.validation.Valid;
 import java.util.Random;
 
@@ -48,7 +49,7 @@ public class FrontController {
         order.setId(rand.nextInt());
         order.setCartItemList(cart.getListCartItem());
         order.setTotal(cart.getTotal());
-        model.addAttribute("order",order);
+        model.addAttribute("order", order);
         return CHECK;
     }
 }

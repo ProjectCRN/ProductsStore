@@ -1,7 +1,7 @@
 package com.netcracker.crm.entity.serviceEntity;
 
 /**
- * Created by οκ on 30.11.2016.
+ * Created by on 30.11.2016.
  */
 
 public enum OrderAtribute {
