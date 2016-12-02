@@ -3,11 +3,6 @@ package com.netcracker.crm.entity.serviceEntity;
 
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
-import com.netcracker.crm.entity.enums.EntityType;
-import com.netcracker.crm.entity.enums.PhoneAtribute;
-import com.netcracker.crm.entity.enums.ProductInOrderAtribute;
-import com.netcracker.crm.entity.enums.TabletAtribute;
-
 import java.util.List;
 
 public class Product extends Entity {
@@ -167,41 +162,16 @@ public class Product extends Entity {
                 ", productType='" + getEntityTypeName() + '\'' + "}";
     }
 
-//    private boolean setValueInList(String atribute, String value) {
-//        if (getAtributeValueMap() != null) {
-//            for (int i = 0; i < getAtributeValueMap().size(); i++) {
-//                if (getAtributeValueMap().get(i).getKey().getAtributeName().equals(atribute)) {
-//                    getAtributeValueMap().get(i).getValue().setValue(value);
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
-
-    private Integer getEnumAtributeId(String atribute){
-        if(getEntityTypeId() == EntityType.valueOf("Telephone").getTypeId()){
-            return PhoneAtribute.valueOf(atribute).getAtributeId();
-        }
-        else if(getEntityTypeId()==EntityType.valueOf("Tablet").getTypeId()){
-            return TabletAtribute.valueOf(atribute).getAtributeId();
-        }
-        else if(getEntityTypeId()==EntityType.valueOf("ProductInOrder").getTypeId()){
-            return ProductInOrderAtribute.valueOf(atribute).getAtributeId();
-        }
-        return null;
-    }
-
     public void setValueInList(String atribute, String value) {
         boolean f = false;
         for (int i = 0; i < getValueList().size(); i++) {
-            if (getValueList().get(i).getAtributeId() == getEnumAtributeId(atribute)) {
+            if (getValueList().get(i).getAtributeId() == getAtributeId(atribute)) {
                 getValueList().get(i).setValue(value);
                 f = true;
             }
         }
         if (!f) {
-            getValueList().add(new Value(value, getId(), getEnumAtributeId(atribute)));
+            getValueList().add(new Value(value, getId(), getAtributeId(atribute)));
         }
     }
 
