@@ -13,7 +13,6 @@ import javax.sql.DataSource;
  */
 public abstract class AbstractDao<T extends AbstractEntity> extends JdbcDaoSupport implements IDao<T> {
 
-    protected DataSource dataSource;
 
     /*@Required
     public void setSource(DataSource dataSource) {
