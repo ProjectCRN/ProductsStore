@@ -34,7 +34,7 @@ public class EAVlistExtractor implements ResultSetExtractor<Entity> {
                 entityTypeId = resultSet.getString(COLUMN_ENTITY_TYPE_ID),
                 resultSet.getString(COLUMN_ENTITY_TYPE_NAME),
                 resultSet.getString(COLUMN_ENTITY_USER_ID));
-        if ((this.entiyIdList.size() != 1) && (this.entiyIdList.get(0).equals(""))){
+        if (!this.entiyIdList.get(0).equals("")){
             entityId = resultSet.getInt(COLUMN_ENTITY_ID);
             for (String item : this.entiyIdList) {
                 atributeValueMap.add(
