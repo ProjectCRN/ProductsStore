@@ -43,14 +43,17 @@ public class DaoConstants {
     public static final String PARAM_IN_ENTITY_VALUES = "inValueCSV";
     public static final String PARAM_IN_ENTITY_OPERATORS = "inOperatorCSV";
 
-
+    public static final String PARAM_IN_PAGE_NUMBER = "inPageNumber";
+    public static final String PARAM_IN_PAGE_SIZE = "inPageSize";
 
     public static final String PARAM_OUT_ENTITY_LIST = "outEntity";
+    public static final String PARAM_OUT_COUNT = "outCount";
 
 
 
     public static final String PROCEDURE_ENTITY_GET_LIST = "sp_entity_list";
     public static final String PROCEDURE_ENTITY_GET_LIST_VALUES = "sp_entity_listValues";
+    public static final String PROCEDURE_ROWS_COUNTER = "sp_count_rows";
 
 
 

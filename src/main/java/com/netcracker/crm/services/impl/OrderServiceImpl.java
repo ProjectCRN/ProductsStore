@@ -95,7 +95,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     }
 
     @Override
-    public List<Order> getList(int typeId, String atributesId, String values, String operators) {
+    public List<Order> getList(int typeId, String atributesId, String values, String operators, int pageNumber, int pageSize) {
         return null;
     }
 

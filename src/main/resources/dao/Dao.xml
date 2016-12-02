@@ -16,14 +16,4 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-
-    <bean class="com.netcracker.crm.dao.impl.UserDaoImpl" id="userDao">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <bean class="com.netcracker.crm.dao.impl.EntityDaoImpl" id="entityDao">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-
 </beans>
