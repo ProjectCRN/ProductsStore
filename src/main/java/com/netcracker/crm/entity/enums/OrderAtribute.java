@@ -1,4 +1,4 @@
-package com.netcracker.crm.entity.serviceEntity;
+package com.netcracker.crm.entity.enums;
 
 /**
  * Created by on 30.11.2016.

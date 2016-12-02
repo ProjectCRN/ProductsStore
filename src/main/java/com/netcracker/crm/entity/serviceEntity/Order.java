@@ -1,14 +1,14 @@
 package com.netcracker.crm.entity.serviceEntity;
 
 import com.netcracker.crm.entity.*;
+import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.enums.OrderAtribute;
 import javafx.util.Pair;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Nastya on 11/22/2016.
@@ -238,8 +238,6 @@ public class Order extends Entity {
 
     private void setValueInList(String atribute, String value) {
         boolean f = false;
-//        if(getValueList()==null)
-//            setValueList(new ArrayList<Value>());
         for (int i = 0; i < getValueList().size(); i++) {
             if (getValueList().get(i).getAtributeId() == OrderAtribute.valueOf(atribute).getAtributeId()) {
                 getValueList().get(i).setValue(value);

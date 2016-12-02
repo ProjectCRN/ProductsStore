@@ -5,22 +5,23 @@ import com.netcracker.crm.dao.IUserDao;
 import com.netcracker.crm.dao.exception.DaoException;
 import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.Value;
-import com.netcracker.crm.entity.serviceEntity.Cart;
-import com.netcracker.crm.entity.serviceEntity.CartItem;
-import com.netcracker.crm.entity.serviceEntity.Order;
-import com.netcracker.crm.entity.serviceEntity.Product;
+import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.serviceEntity.*;
 import com.netcracker.crm.services.AbstractService;
 import com.netcracker.crm.services.IOrderService;
 import com.netcracker.crm.services.constants.ServiceConstants;
 import com.netcracker.crm.services.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +37,8 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     @Autowired
     private IUserDao userDao;
     private static Logger logger = LogManager.getLogger(OrderServiceImpl.class);
+    private final static String boughtProductStr = "BoughtProduct";
+    private final static String dateFormatStr = "dd-mm-yyyy";
 
     @Override
     public Order makeOrderByCart(Cart cart){
@@ -44,7 +47,8 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
         order.setCart(cart);
         order.setByUser(user);
         order.setTotal(cart.countTotal());
-        Date date = new Date();
+        LocalDate ld = LocalDate.now();
+        Date date = ld.toDate();
         order.setCreatedDate(date);
         order.setPaidDate(date);
         order.setOrderNumber("somenumber");
@@ -60,8 +64,13 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
             id = entityDao.add(order);
             for (CartItem item : order.getCart().getCartItems()) {
                 Product product = item.getProduct();
+                //добавляем entity с типом купленного продукта
+                product.setEntityTypeId(EntityType.valueOf(boughtProductStr).getTypeId());
+                product.setUserId(order.getEntityUserId());
                 product.setQuantity(item.getQuantity());
                 product.setOrderId(id);
+                product.setValueInList("ProductID", String.valueOf(product.getId()));
+                product.setPrice(product.getPrice());
                 entityDao.add(product);
             }
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + order.toString());

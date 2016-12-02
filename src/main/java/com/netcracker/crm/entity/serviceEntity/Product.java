@@ -3,6 +3,10 @@ package com.netcracker.crm.entity.serviceEntity;
 
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
+import com.netcracker.crm.entity.enums.BoughtProductAtribute;
+import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.enums.PhoneAtribute;
+import com.netcracker.crm.entity.enums.TabletAtribute;
 
 import java.util.List;
 
@@ -73,7 +77,7 @@ public class Product extends Entity {
 
     public void setPrice(double price) {
         this.price = price;
-        setValueInMap("Price", String.valueOf(price));
+        setValueInList("Price", String.valueOf(price));
     }
 
     public String getSummary() {
@@ -82,7 +86,7 @@ public class Product extends Entity {
 
     public void setSummary(String summary) {
         this.summary = summary;
-        setValueInMap("Summary", summary);
+        setValueInList("Summary", summary);
     }
 
     public int getOrderId() {
@@ -91,7 +95,7 @@ public class Product extends Entity {
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
-        setValueInMap("OrderID", String.valueOf(orderId));
+        setValueInList("OrderID", String.valueOf(orderId));
     }
 
     public String getImageUrl() {
@@ -100,7 +104,7 @@ public class Product extends Entity {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-        setValueInMap("ImageURL", imageUrl);
+        setValueInList("ImageURL", imageUrl);
     }
 
     public int getQuantity() {
@@ -109,7 +113,7 @@ public class Product extends Entity {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-        setValueInMap("Quantity", String.valueOf(quantity));
+        setValueInList("Quantity", String.valueOf(quantity));
     }
 
     public String getFabricator() {
@@ -118,7 +122,7 @@ public class Product extends Entity {
 
     public void setFabricator(String fabricator) {
         this.fabricator = fabricator;
-        setValueInMap("Fabricator", fabricator);
+        setValueInList("Fabricator", fabricator);
     }
 
     @Override
@@ -163,30 +167,43 @@ public class Product extends Entity {
                 ", productType='" + getEntityTypeName() + '\'' + "}";
     }
 
-    private boolean setValueInMap(String atribute, String value) {
-        if (getAtributeValueMap() != null) {
-            for (int i = 0; i < getAtributeValueMap().size(); i++) {
-                if (getAtributeValueMap().get(i).getKey().getAtributeName().equals(atribute)) {
-                    getAtributeValueMap().get(i).getValue().setValue(value);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-//    private void setValueInList(String atribute, String value) {
-//        boolean f = false;
-//        for (int i = 0; i < getValueList().size(); i++) {
-//            if (getValueList().get(i).getAtributeId() == PrAtribute.valueOf(atribute).getAtributeId()) {
-//                getValueList().get(i).setValue(value);
-//                f = true;
+//    private boolean setValueInList(String atribute, String value) {
+//        if (getAtributeValueMap() != null) {
+//            for (int i = 0; i < getAtributeValueMap().size(); i++) {
+//                if (getAtributeValueMap().get(i).getKey().getAtributeName().equals(atribute)) {
+//                    getAtributeValueMap().get(i).getValue().setValue(value);
+//                    return true;
+//                }
 //            }
 //        }
-//        if (!f) {
-//            getValueList().add(new Value(value, getId(), PrAtribute.valueOf(atribute).getAtributeId()));
-//        }
+//        return false;
 //    }
+
+    private Integer getEnumAtributeId(String atribute){
+        if(getEntityTypeId() == EntityType.valueOf("Telephone").getTypeId()){
+            return PhoneAtribute.valueOf(atribute).getAtributeId();
+        }
+        else if(getEntityTypeId()==EntityType.valueOf("Tablet").getTypeId()){
+            return TabletAtribute.valueOf(atribute).getAtributeId();
+        }
+        else if(getEntityTypeId()==EntityType.valueOf("BoughtProduct").getTypeId()){
+            return BoughtProductAtribute.valueOf(atribute).getAtributeId();
+        }
+        return null;
+    }
+
+    public void setValueInList(String atribute, String value) {
+        boolean f = false;
+        for (int i = 0; i < getValueList().size(); i++) {
+            if (getValueList().get(i).getAtributeId() == getEnumAtributeId(atribute)) {
+                getValueList().get(i).setValue(value);
+                f = true;
+            }
+        }
+        if (!f) {
+            getValueList().add(new Value(value, getId(), getEnumAtributeId(atribute)));
+        }
+    }
 
     //    public Entity toEntity() {
 //        Entity entity = new Entity(getId(), name, isActive,
