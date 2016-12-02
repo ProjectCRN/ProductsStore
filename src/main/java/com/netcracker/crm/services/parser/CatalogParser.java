@@ -14,6 +14,7 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 
 import javax.xml.XMLConstants;
@@ -28,20 +29,31 @@ import java.util.List;
 /**
  * Created by egor on 26.11.2016.
  */
-@Service("catalogParser")
+
 public class CatalogParser {
 
-    @Autowired
+
     private IProductService productService;
-    @Autowired
     TelephoneTag telephoneTag;
-    @Autowired
     TabletTag tabletTag;
-    @Autowired
     TypeAttribute typeAttribute;
 
-
-
+    @Required
+    public void setProductService(IProductService productService) {
+        this.productService = productService;
+    }
+    @Required
+    public void setTelephoneTag(TelephoneTag telephoneTag) {
+        this.telephoneTag = telephoneTag;
+    }
+    @Required
+    public void setTabletTag(TabletTag tabletTag) {
+        this.tabletTag = tabletTag;
+    }
+    @Required
+    public void setTypeAttribute(TypeAttribute typeAttribute) {
+        this.typeAttribute = typeAttribute;
+    }
 
     public void exportCatalog(String url) throws ServiceException {
 

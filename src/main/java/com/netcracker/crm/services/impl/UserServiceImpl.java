@@ -10,6 +10,7 @@ import com.netcracker.crm.services.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,14 +20,16 @@ import java.util.Map;
  * Created by egor on 11.11.2016.
  */
 
-@Service("userService")
 public class UserServiceImpl extends AbstractService<User> implements IUserService{
 
-    @Autowired
     private IUserDao userDao;
 
     private static Logger logger = LogManager.getLogger(UserServiceImpl.class);
 
+    @Required
+    public void setUserDao(IUserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Override
     public int add(User user)  throws ServiceException{

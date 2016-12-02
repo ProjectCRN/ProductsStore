@@ -16,6 +16,7 @@ import com.netcracker.crm.services.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,11 +29,15 @@ import java.util.List;
 /**
  * Created by Nastya on 11/22/2016.
  */
-@Service("orderService")
+
 public class OrderServiceImpl extends AbstractService<Order> implements IOrderService {
 
-    @Autowired
     private IEntityDao entityDao;
+
+    @Required
+    public void setEntityDao(IEntityDao entityDao) {
+        this.entityDao = entityDao;
+    }
     @Autowired
     private IUserDao userDao;
     private static Logger logger = LogManager.getLogger(OrderServiceImpl.class);

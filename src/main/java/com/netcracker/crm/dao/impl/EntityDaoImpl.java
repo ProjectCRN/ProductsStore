@@ -27,7 +27,7 @@ import static com.netcracker.crm.dao.constants.DaoConstants.*;
 /**
  * Created by on 12.11.2016.
  */
-@Repository("entityDao")
+
 public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
 

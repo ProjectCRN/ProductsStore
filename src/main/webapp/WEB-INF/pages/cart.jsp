@@ -21,7 +21,8 @@
         <div class="row">
             <nav>
                 <li><a href="/">Main</a></li>
-                <li><a href="/products">Products</a></li>
+                <li><a href="/products/telephone">Telephone</a></li>
+                <li><a href="/products/tablet">Tablet</a></li>
                 <li><a href="/cart" class="active">Cart</a></li>
                 <li><a href="/createOrder">Create Order</a></li>
                 <li><a href="/createUser">Registration</a></li>
