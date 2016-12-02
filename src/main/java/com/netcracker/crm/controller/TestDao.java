@@ -30,12 +30,12 @@ public class TestDao {
 //        values.add(new Value(0,"5.1-inch (diagonal)",0,15));
 //        Entity entity=new Entity("Samsung Galaxy S3",true,8,-2,values);
 //
-              IEntityDao entityDao = (IEntityDao) context.getBean("entityDao");
+//             IEntityDao entityDao = (IEntityDao) context.getBean("entityDao");
 //        System.out.println(entityDao.getById(47));
 
-            for(Entity item : entityDao.getList(8,"","","","20")){
-            System.out.println(item);
-          }
+//            for(Entity item : entityDao.getList(8,"","","","20")){
+//            System.out.println(item);
+//          }
 
 // -----USER SERVICES-----
 //      IUserService userService = (UserServiceImpl) context.getBean("userService");
@@ -50,7 +50,7 @@ public class TestDao {
 //
 //        userService.isEmailFree("gav@panin.ru");
 
-//        IProductService productService = (IProductService) context.getBean("productService");
+        IProductService productService = (IProductService) context.getBean("productService");
 //        productService.getByUserAndType(-2, null);
 //       Product product = productService.getById(53);
 //        List <Product> productList = productService.getByUserAndType(-2,8);
@@ -71,6 +71,7 @@ public class TestDao {
 //        cart.addCartItem(new CartItem(productService.getById(54), 2));
 //        IOrderService orderService = (IOrderService) context.getBean("orderService");
 //        Order order = orderService.makeOrderByCart(cart);
+//        System.out.println(order);
 //        orderService.add(order);
 
 
