@@ -13,9 +13,8 @@ import org.dom4j.*;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.stereotype.Service;
+
 
 import javax.xml.XMLConstants;
 import javax.xml.transform.stream.StreamSource;
@@ -65,18 +64,18 @@ public class CatalogParser {
             catalogElement.add(xmlns);
             catalogElement.addAttribute(QName.get("noNamespaceSchemaLocation","xsi","http://www.w3.org/2001/XMLSchema-instance"), "catalogSchema.xsd");
 
-            List<Product> productList = productService.getByUserAndType(-2, 8);
-            productList.addAll(productService.getByUserAndType(-2,9));
+            List<Product> productList = productService.getByUserAndType(-2, 9);
             productList.addAll(productService.getByUserAndType(-2,10));
             for (Product product: productList) {
-                Element productElement = catalogElement.addElement("product").addAttribute("type",
-                        typeAttribute.getNameById(product.getEntityTypeId()));
+
+
+                Element productElement = catalogElement.addElement(typeAttribute.getNameById(product.getEntityTypeId()));
                 Element nameElement = productElement.addElement("name").addText(product.getEntityName());
                 Element attributesElement = productElement.addElement("attributes");
                 Product productDetails = productService.getById(product.getId());
                 int attributeId;
                 switch (product.getEntityTypeId()){
-                    case 8:
+                    case 9:
                         for (Pair<Atribute, Value> pair : productDetails.getAtributeValueMap()) {
                             attributeId = pair.getKey().getId();
                             if (telephoneTag.isCorrectId(attributeId)) {
@@ -85,7 +84,7 @@ public class CatalogParser {
                             }
                         }
                         break;
-                    case 9:
+                    case 10:
                         for (Pair<Atribute, Value> pair : productDetails.getAtributeValueMap()) {
                             attributeId = pair.getKey().getId();
                             if (tabletTag.isCorrectId(attributeId)) {
@@ -119,7 +118,7 @@ public class CatalogParser {
             SAXReader reader = new SAXReader();
             Document document = reader.read(inputFile);
             Element catalogElement = document.getRootElement();
-            List<Node> telephoneNodes = document.selectNodes("/catalog/product[@type='telephone']");
+            List<Node> telephoneNodes = document.selectNodes("/catalog/telephone");
             for (Node telephoneNode : telephoneNodes){
                 Element telephoneElement = (Element) telephoneNode;
                 Element productNameElement = (Element) telephoneNode.selectSingleNode("name");
@@ -134,12 +133,12 @@ public class CatalogParser {
                     Atribute atribute = new Atribute(0,attribute.getName(), 0, true, 0, true );
                     values.add(new Pair<Atribute, Value>(atribute,value));
                 }
-                Product telephone = new Product(productNameElement.getText(),true, 8, -2, null);
+                Product telephone = new Product(productNameElement.getText(),true, 9, -2, null);
                 telephone.setAtributeValueMap(values);
                 productService.add(telephone);
 
             }
-            List<Node> tabletNodes = document.selectNodes("/catalog/product[@type='tablet']");
+            List<Node> tabletNodes = document.selectNodes("/catalog/tablet");
             for (Node tabletNode : tabletNodes){
                 Element tabletElement = (Element) tabletNode;
                 Element productNameElement = (Element) tabletNode.selectSingleNode("name");
@@ -154,7 +153,7 @@ public class CatalogParser {
                     Atribute atribute = new Atribute(0,attribute.getName(), 0, true, 0, true );
                     values.add(new Pair<Atribute, Value>(atribute,value));
                 }
-                Product tablet = new Product(productNameElement.getText(),true, 9, -2, null);
+                Product tablet = new Product(productNameElement.getText(),true, 10, -2, null);
                 tablet.setAtributeValueMap(values);
                 productService.add(tablet);
 

@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class OrderTag extends AbstractTag{
     private OrderTag() {
         tags = HashBiMap.create(new HashMap() {{
-            put("orderNumber", 11);
+            put("orderNumber", 12);
         }});
     }
 }

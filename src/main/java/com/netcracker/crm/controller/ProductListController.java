@@ -45,10 +45,10 @@ public class ProductListController {
 
     @RequestMapping(value = "/products/{type}", method = RequestMethod.GET)
     public String products(@PathVariable String type, ModelMap model) {
-        int typeid=8;
+        int typeid=9;
         switch (type){
-            case "telephone": typeid=8; break;
-            case "tablet": typeid=9; break;
+            case "telephone": typeid=9; break;
+            case "tablet": typeid=10; break;
         }
         List<Product> productList = productService.getList(typeid,"","","");
         if(productList == null)

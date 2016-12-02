@@ -26,7 +26,6 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
 
     private IEntityDao entityDao;
 
-    @Autowired
     private static Logger logger = LogManager.getLogger(ProductServiceImpl.class);
 
     @Required

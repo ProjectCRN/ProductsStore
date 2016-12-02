@@ -1,48 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="catalogSchema.xsd">
-
-    <telephone>
-        <name>Paz</name>
-        <attributes>
-            <price>1</price>
-            <summary>1</summary>
-            <operatingSystem>1</operatingSystem>
-            <processorSpeedGHz>1</processorSpeedGHz>
-            <capacityGB>1</capacityGB>
-            <displayInch>1</displayInch>
-            <heightMM>1</heightMM>
-            <widthMM>1</widthMM>
-            <depthMM>1</depthMM>
-            <weightGrams>1</weightGrams>
-            <cameraMP>1</cameraMP>
-            <batteryHours>1</batteryHours>
-            <simCard>1</simCard>
-            <quantity>1</quantity>
-            <imageURL>1</imageURL>
-            <fabricator>1</fabricator>
-        </attributes>
-    </telephone>
-
+    
     <tablet>
-        <name>Dva</name>
+        <name>iPad mini 44</name>
         <attributes>
-            <price>2</price>
-            <summary>2</summary>
-            <operatingSystem>2</operatingSystem>
-            <processorSpeedGHz>2</processorSpeedGHz>
-            <capacityGB>2</capacityGB>
-            <displayInch>2</displayInch>
-            <heightMM>2</heightMM>
-            <widthMM>2</widthMM>
-            <depthMM>2</depthMM>
-            <weightGrams>2</weightGrams>
-            <cameraMP>2</cameraMP>
-            <batteryHours>2</batteryHours>
-            <simCard>2</simCard>
-            <quantity>2</quantity>
-            <imageURL>2</imageURL>
-            <fabricator>2</fabricator>
+            <price>399</price>
+            <summary>p</summary>
+            <operatingSystem>iOS</operatingSystem>
+            <processorSpeedGHz>1.5</processorSpeedGHz>
+            <capacityGB>32</capacityGB>
+            <displayInch>7.9</displayInch>
+            <heightMM>203.2</heightMM>
+            <widthMM>134.8</widthMM>
+            <depthMM>6.1</depthMM>
+            <weightGrams>298.8</weightGrams>
+            <cameraMP>8</cameraMP>
+            <batteryHours>10</batteryHours>
+            <simCard>Nano-SIM</simCard>
+            <fabricator>Apple</fabricator>
+            <imageURL>URL</imageURL>
         </attributes>
     </tablet>
 

@@ -25,9 +25,14 @@ public class TestDao {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext(new String[]{"SpringModule.xml"});
 
-        CatalogParser catalogParser = new CatalogParser();
-        catalogParser.exportCatalog("default");
+        CatalogParser catalogParser = (CatalogParser) context.getBean("catalogParser");
 
+        //импорт из resources/xml-parser/catalogToAdd.xml
+        catalogParser.importCatalog("default");
+
+
+        //экспорт в resources/xml-parser/generatedCatalog.xml
+        catalogParser.exportCatalog("default");
 
 //        List<Value> values =new ArrayList<>();
 //        values.add(new Value(0,"16Gb",0,14));
