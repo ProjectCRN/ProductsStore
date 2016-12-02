@@ -51,7 +51,7 @@ public class TestDao {
         IProductService productService = (IProductService) context.getBean("productService");
 //        productService.getByUserAndType(-2, null);
 //       Product product = productService.getById(53);
-//        List <Product> productList = productService.getByUserAndType(-2,9);
+//        List <Product> productList = productService.getList(9,"","","");
 //        for (Product op : productList) {
 //            System.out.println(op.toString());
 //        }
@@ -64,13 +64,18 @@ public class TestDao {
 
 
         //  ADD ORDER
-//        Cart cart = new Cart(-2);
+//        Cart cart = new Cart(-1);
 //        cart.addCartItem(new CartItem(productService.getById(53), 1));
 //        cart.addCartItem(new CartItem(productService.getById(54), 2));
-//        IOrderService orderService = (IOrderService) context.getBean("orderService");
+ //       IOrderService orderService = (IOrderService) context.getBean("orderService");
 //        Order order = orderService.makeOrderByCart(cart);
 //        int id = orderService.add(order);
 //        orderService.getById(373);
+//        for(Order o: orderService.getListForUser(-2)){
+//            System.out.println(o);
+//        }
+
+
 
 //        CatalogParser catalogParser = (CatalogParser) context.getBean("catalogParser");
 //        catalogParser.importCatalog("default");

@@ -234,7 +234,7 @@ public class Order extends Entity {
             }
         }
         if(cart!=null) {
-            str += cart.toString();
+            str += "\n" + cart.toString();
         }
         return str;
     }
