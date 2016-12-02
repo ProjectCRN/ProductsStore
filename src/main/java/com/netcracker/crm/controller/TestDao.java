@@ -25,17 +25,15 @@ public class TestDao {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext(new String[]{"SpringModule.xml"});
 
+        CatalogParser catalogParser = new CatalogParser();
+        catalogParser.exportCatalog("default");
+
+
 //        List<Value> values =new ArrayList<>();
 //        values.add(new Value(0,"16Gb",0,14));
 //        values.add(new Value(0,"5.1-inch (diagonal)",0,15));
 //        Entity entity=new Entity("Samsung Galaxy S3",true,8,-2,values);
 //
-              IEntityDao entityDao = (IEntityDao) context.getBean("entityDao");
-//        System.out.println(entityDao.getById(47));
-
-            for(Entity item : entityDao.getList(8,"","","","20")){
-            System.out.println(item);
-          }
 
 // -----USER SERVICES-----
 //      IUserService userService = (UserServiceImpl) context.getBean("userService");
@@ -49,11 +47,11 @@ public class TestDao {
 //        userService.isLoginFree("adm21in");
 //
 //        userService.isEmailFree("gav@panin.ru");
-
+//
 //        IProductService productService = (IProductService) context.getBean("productService");
 //        productService.getByUserAndType(-2, null);
 //       Product product = productService.getById(53);
-//        List <Product> productList = productService.getByUserAndType(-2,8);
+//        List <Product> productList = productService.getByUserAndType(-2,9);
 //        for (Product op : productList) {
 //            System.out.println(op.toString());
 //        }

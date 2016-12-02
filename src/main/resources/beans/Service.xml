@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.netcracker.crm.services" />
+
+    <import resource="Dao.xml"/>
+
+    <bean class="com.netcracker.crm.services.impl.UserServiceImpl" id="userService">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.services.impl.ProductServiceImpl" id="productService">
+        <property name="entityDao" ref="entityDao"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.services.impl.OrderServiceImpl" id="orderService">
+        <property name="entityDao" ref="entityDao"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.services.impl.SearchServiceImpl" id="searchService"/>
+
+    <bean class="com.netcracker.crm.entity.serviceEntity.Cart" id="cart">
+        <constructor-arg type="int" value="-2"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.services.impl.CartServiceImpl" id="cartService">
+        <property name="cart" ref="cart"/>
+        <property name="productService" ref="productService"/>
+    </bean>
+
+</beans>
