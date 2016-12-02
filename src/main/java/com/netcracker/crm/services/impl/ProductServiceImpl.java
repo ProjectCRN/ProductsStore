@@ -28,7 +28,6 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
 
     private IEntityDao entityDao;
 
-    @Autowired
     private static Logger logger = LogManager.getLogger(ProductServiceImpl.class);
 
     @Required
@@ -64,7 +63,6 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
             throw new ServiceException(exc.getMessage(), exc);
         }
         return product;
-        //return null;
     }
 
     @Override

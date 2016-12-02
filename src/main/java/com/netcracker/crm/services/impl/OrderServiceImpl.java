@@ -34,20 +34,13 @@ import java.util.List;
 public class OrderServiceImpl extends AbstractService<Order> implements IOrderService {
 
     private IEntityDao entityDao;
-
-    @Required
-    public void setEntityDao(IEntityDao entityDao) {
-        this.entityDao = entityDao;
-    }
-    @Autowired
     private IUserDao userDao;
     private static Logger logger = LogManager.getLogger(OrderServiceImpl.class);
     private final static String productInOrderStr = "ProductInOrder";
-    private final static String dateFormatStr = "dd-mm-yyyy";
     private final static String productIdStr = "ProductID";
 
     @Override
-    public Order makeOrderByCart(Cart cart){
+    public Order makeOrderByCart(Cart cart) {
         User user = userDao.getById(cart.getUserId());
         Order order = new Order("ordername", true, user.getId());
         order.setCart(cart);
@@ -80,7 +73,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
                 entityDao.add(product);
             }
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + order.toString());
-        }catch(DaoException exc){
+        } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
@@ -89,8 +82,18 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
 
     @Override
     public Order getById(int id) {
-        return null;
+        Order order;
+        try {
+            order = new Order(entityDao.getById(id));
+            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getById " + order.toString());
+        }
+        catch (DaoException exc){
+            logger.error(exc.getMessage());
+            throw new ServiceException(exc.getMessage(), exc);
+        }
+        return order;
     }
+
     @Override
     public List<Order> getList(int typeId, String atributesId, String values, String operators) {
         return null;
@@ -104,6 +107,16 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     @Override
     public void delete(int id) {
 
+    }
+
+    @Required
+    public void setEntityDao(IEntityDao entityDao) {
+        this.entityDao = entityDao;
+    }
+
+    @Required
+    public void setUserDao(IUserDao userDao) {
+        this.userDao = userDao;
     }
 
 }

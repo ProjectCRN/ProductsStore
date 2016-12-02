@@ -7,6 +7,7 @@ package com.netcracker.crm.entity;
 import com.netcracker.crm.entity.enums.EntityType;
 import com.netcracker.crm.entity.enums.OrderAtribute;
 import com.netcracker.crm.entity.enums.PhoneAtribute;
+import com.netcracker.crm.entity.enums.ProductInOrderAtribute;
 import com.netcracker.crm.services.parser.TypeAttribute;
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,7 +105,7 @@ public class Entity extends AbstractEntity {
         this.entityName = entityName;
         this.isActive = isActive;
         this.entityTypeId = entityTypeId;
-//        нужно установить typeName
+        this.entityTypeName = EntityType.findByKey(entityTypeId).name();
         this.userId = userId;
         valueList = new ArrayList<>();
     }
@@ -173,7 +174,7 @@ public class Entity extends AbstractEntity {
             return PhoneAtribute.valueOf(atribute).getAtributeId();
         }
         else if(entityTypeId== EntityType.valueOf("ProductInOrder").getTypeId()){
-            return PhoneAtribute.valueOf(atribute).getAtributeId();
+            return ProductInOrderAtribute.valueOf(atribute).getAtributeId();
         }
         else if(entityTypeId== EntityType.valueOf("Order").getTypeId()){
             return OrderAtribute.valueOf(atribute).getAtributeId();
