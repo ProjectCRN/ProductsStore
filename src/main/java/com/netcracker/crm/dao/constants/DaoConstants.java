@@ -52,6 +52,7 @@ public class DaoConstants {
 
 
     public static final String PROCEDURE_ENTITY_GET_LIST = "sp_entity_list";
+    public static final String PROCEDURE_ENTITY_GET_LIST_NO_PAGINATION = "sp_entity_NoPaging";
     public static final String PROCEDURE_ENTITY_GET_LIST_VALUES = "sp_entity_listValues";
     public static final String PROCEDURE_ROWS_COUNTER = "sp_count_rows";
 
