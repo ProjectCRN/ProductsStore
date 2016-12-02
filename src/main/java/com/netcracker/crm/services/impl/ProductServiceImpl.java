@@ -64,11 +64,12 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
     }
 
     @Override
-    public List<Product> getList(int typeId, String atributesId, String values, String operators) {
+    public List<Product> getList(int typeId, String atributesId, String values, String operators, int pageNumber, int pageSize) {
         List<Product> productList;
-        String priceId = getAtributeIdByTypeId(typeId, "Price");
-        try {
-            List<Entity> list = entityDao.getList(typeId, atributesId, values, operators, priceId);
+
+        String priceId=String.valueOf(getAtributeIdByTypeId(typeId, "Price"));
+        try{
+            List<Entity> list = entityDao.getList(typeId,atributesId, values, operators, priceId, pageNumber, pageSize);
             productList = new ArrayList<>(list.size());
             for (Entity e : list) {
                 productList.add(new Product(e));

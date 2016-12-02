@@ -50,7 +50,7 @@ public class ProductListController {
             case "telephone": typeid=9; break;
             case "tablet": typeid=10; break;
         }
-        List<Product> productList = productService.getList(typeid,"","","");
+        List<Product> productList = productService.getList(typeid,"","","",1,5);
         if(productList == null)
             productList = new ArrayList<>();
         model.addAttribute("productList", productList);
@@ -68,7 +68,9 @@ public class ProductListController {
                 searchAttr.getTypeId(),
                 searchAttr.getAttribute(),
                 searchAttr.getValues(),
-                searchAttr.getOperators());
+                searchAttr.getOperators(),
+                1,
+                5);
         if(productList == null)
             productList = new ArrayList<>();
         if(productList.isEmpty())

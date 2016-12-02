@@ -25,7 +25,7 @@ public class TestDao {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext(new String[]{"SpringModule.xml"});
 
-        CatalogParser catalogParser = new CatalogParser();
+//        CatalogParser catalogParser = new CatalogParser();
 //        catalogParser.exportCatalog("default");
 
 
@@ -33,7 +33,9 @@ public class TestDao {
 //        values.add(new Value(0,"16Gb",0,14));
 //        values.add(new Value(0,"5.1-inch (diagonal)",0,15));
 //        Entity entity=new Entity("Samsung Galaxy S3",true,8,-2,values);
-//
+
+//            IEntityDao entityDao= (IEntityDao) context.getBean("entityDao");
+//        System.out.println(entityDao.getList(8,"","","","",1,3));
 
 // -----USER SERVICES-----
 //      IUserService userService = (UserServiceImpl) context.getBean("userService");
@@ -49,6 +51,10 @@ public class TestDao {
 //        userService.isEmailFree("gav@panin.ru");
 //
         IProductService productService = (IProductService) context.getBean("productService");
+        for (Product item : productService.getList(9,"","","",1,2)) {
+            System.out.println(item.toString());
+        }
+
 //        productService.getByUserAndType(-2, null);
 //       Product product = productService.getById(53);
 //        List <Product> productList = productService.getList(9,"","","");
@@ -67,10 +73,10 @@ public class TestDao {
 //        Cart cart = new Cart(-1);
 //        cart.addCartItem(new CartItem(productService.getById(53), 1));
 //        cart.addCartItem(new CartItem(productService.getById(54), 2));
- //       IOrderService orderService = (IOrderService) context.getBean("orderService");
+        IOrderService orderService = (IOrderService) context.getBean("orderService");
 //        Order order = orderService.makeOrderByCart(cart);
 //        int id = orderService.add(order);
-//        orderService.getById(373);
+        orderService.getById(373);
 //        for(Order o: orderService.getListForUser(-2)){
 //            System.out.println(o);
 //        }

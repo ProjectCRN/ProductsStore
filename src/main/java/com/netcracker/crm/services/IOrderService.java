@@ -13,3 +13,4 @@ public interface IOrderService extends IEntityService<Order> {
     public List<Order> getListForUser(int userId);
     public void updateByOrder(Order order);
 }
+
