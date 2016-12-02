@@ -166,6 +166,34 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         return getListWithAttributes(strEntityIdList,atributesIdView);
     }
 
+    @Override
+    public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView) {
+        getJdbcTemplate().setResultsMapCaseInsensitive(true);
+        SqlParameterSource in = new MapSqlParameterSource()
+                .addValue(PARAM_IN_ENTITY_ENTITYTYPEID, typeId)
+                .addValue(PARAM_IN_ENTITY_ATRIBUTES, atributesId)
+                .addValue(PARAM_IN_ENTITY_VALUES, values)
+                .addValue(PARAM_IN_ENTITY_OPERATORS, operators);
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(getJdbcTemplate())
+                .withProcedureName(PROCEDURE_ENTITY_GET_LIST_NO_PAGINATION)
+                .returningResultSet(PARAM_OUT_ENTITY_LIST, new RowMapper<String>() {
+                    public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        String string;
+                        string=(rs.getString(COLUMN_ENTITY_ID));
+                        return string;
+                    }
+                });
+
+        Map result = jdbcCall.execute(in);
+        List<String> entiyIdList = new ArrayList<>((ArrayList) result.get(PARAM_OUT_ENTITY_LIST));
+        String strEntityIdList="";
+        for(String item : entiyIdList){
+            strEntityIdList+=","+item;
+        }
+        strEntityIdList=strEntityIdList.substring(1);
+        return getListWithAttributes(strEntityIdList,atributesIdView);
+    }
+
     private List<Entity> getListWithAttributes (String entiyIdList, String atributesId){
         List<String> attributesList=new ArrayList<>();
         String[] arr = atributesId.split(",");

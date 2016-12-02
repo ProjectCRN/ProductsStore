@@ -95,13 +95,13 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
                     (EntityType.valueOf(productInOrderStr).getTypeId(), "Quantity");
             String priceId = getAtributeIdByTypeId
                     (EntityType.valueOf(productInOrderStr).getTypeId(), "Price");
-//            List<Entity> list = entityDao.getList(EntityType.valueOf(productInOrderStr).getTypeId(),
-//                    String.valueOf(ProductInOrderAtribute.valueOf(orderIdStr).getAtributeId()),
-//                    String.valueOf(order.getId()), "=", quantityId + "," + priceId);
-//            for (Entity e : list) {
-//                Product prod = new Product(e);
-//                cart.addCartItem(new CartItem(prod, prod.getQuantity()));
-//            }
+            List<Entity> list = entityDao.getList(EntityType.valueOf(productInOrderStr).getTypeId(),
+                    String.valueOf(ProductInOrderAtribute.valueOf(orderIdStr).getAtributeId()),
+                    String.valueOf(order.getId()), "=", quantityId + "," + priceId);
+            for (Entity e : list) {
+                Product prod = new Product(e);
+                cart.addCartItem(new CartItem(prod, prod.getQuantity()));
+            }
             order.setCart(cart);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getById " + order.toString());
         } catch (DaoException exc) {

@@ -55,7 +55,7 @@ public class Cart extends AbstractEntity {
 
     @Override
     public String toString() {
-        String str = "Cart:\nUserID=" + userId + "\n" + "Total=" + total + "\n";
+        String str = "Cart:\nUserID=" + userId + "\n" + "Total=" + total;
         for (CartItem item : cartItems) {
             str += "\n" + item.toString();
         }
