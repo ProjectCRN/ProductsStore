@@ -24,7 +24,7 @@ import java.util.List;
  * Created by .. on 20.11.2016.
  */
 
-public class ProductServiceImpl  extends AbstractService<Product> implements IProductService {
+public class ProductServiceImpl extends AbstractService<Product> implements IProductService {
 
     private IEntityDao entityDao;
 
@@ -42,8 +42,7 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
         try {
             id = entityDao.add(product);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + product.toString());
-        }
-        catch(DaoException exc){
+        } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
@@ -57,8 +56,7 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
         try {
             product = new Product(entityDao.getById(id));
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getById " + product.toString());
-        }
-        catch (DaoException exc){
+        } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
@@ -68,16 +66,15 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
     @Override
     public List<Product> getList(int typeId, String atributesId, String values, String operators) {
         List<Product> productList;
-        String priceId=String.valueOf(getAtributeIdByTypeId(typeId, "Price"));
-        try{
-            List<Entity> list = entityDao.getList(typeId,atributesId, values, operators, priceId);
+        String priceId = getAtributeIdByTypeId(typeId, "Price");
+        try {
+            List<Entity> list = entityDao.getList(typeId, atributesId, values, operators, priceId);
             productList = new ArrayList<>(list.size());
             for (Entity e : list) {
                 productList.add(new Product(e));
             }
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getAll for Product");
-        }
-        catch (DaoException exc){
+        } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
@@ -87,43 +84,40 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
     @Override
     public List<Product> getByUserAndType(Integer userID, Integer entityTypeID) {
         List<Product> productList;
-        try{
-            List<Entity> list = entityDao.getByUserAndType(userID, entityTypeID);
+        try {
+            List<Entity> list = entityDao.getByUserAndType(userID, entityTypeID,
+                    getAtributeIdByTypeId(EntityType.findByKey(entityTypeID).getTypeId(),
+                            "Price"));
             productList = new ArrayList<>(list.size());
             for (Entity e : list) {
                 productList.add(new Product(e));
             }
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getByUserAndType for Product");
-        }
-        catch (DaoException exc){
+        } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
         return productList;
     }
 
-    //getAllByType - сделано.
-
-
     @Override
     public void update(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
         try {
             entityDao.update(id, entityName, isActive, userId, valuesArr);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " update product #" + id);
-        }
-        catch(DaoException exc){
+        } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
     }
 
     @Override
-    public void updateByProduct(Product product){
+    public void updateByProduct(Product product) {
         try {
             entityDao.updateByEntity(product);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " update product #" + product.getId());
 
-        } catch(DaoException exc){
+        } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
@@ -135,7 +129,7 @@ public class ProductServiceImpl  extends AbstractService<Product> implements IPr
         try {
             entityDao.delete(id);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " delete product #" + id);
-        } catch(DaoException exc){
+        } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }

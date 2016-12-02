@@ -136,7 +136,8 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     @Override
-    public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView) {
+    public List<Entity> getList(int typeId, String atributesId, String values,
+                                String operators, String atributesIdView) {
         getJdbcTemplate().setResultsMapCaseInsensitive(true);
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue(PARAM_IN_ENTITY_ENTITYTYPEID, typeId)
@@ -187,9 +188,9 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
 
     @Override
-    public List<Entity> getByUserAndType(Integer userID, Integer entityTypeID) {
+    public List<Entity> getByUserAndType(Integer userID, Integer entityTypeID, String atributesIdView) {
 
-        String sql = "SELECT  E.ENTITYID ,E.ENTITYNAME ,E.ISACTIVE ,E.ENTITYTYPEID,T.ENTITYTYPENAME ,E.USERID " +
+        String sql = "SELECT  E.ENTITYID " +
                 " FROM TBL_ENTITY E INNER JOIN TBL_ENTITYTYPE T ON E.ENTITYTYPEID=" +
                 "T.ENTITYTYPEID WHERE (E." + COLUMN_ENTITY_USER_ID
                 + "=?) AND ((? IS NOT NULL AND E." + COLUMN_ENTITY_TYPE_ID + "=?) OR " +
@@ -199,9 +200,14 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 //        Map<String, Object> params = new HashMap<>();
 //        params.put("inUser", userID);
 //        params.put("inType", entityTypeID);
-        List<Entity> entiyList = getJdbcTemplate().query(sql, new Object[]{userID, entityTypeID,
-                entityTypeID, entityTypeID}, new EntityRowMapper());
-        return entiyList;
+        List<String> entiyIdList = getJdbcTemplate().queryForList(sql, new Object[]{userID, entityTypeID,
+                entityTypeID, entityTypeID}, String.class);
+        String strEntityIdList="";
+        for(String item : entiyIdList){
+            strEntityIdList+=","+item;
+        }
+        strEntityIdList=strEntityIdList.substring(1);
+        return getListWithAttributes(strEntityIdList,atributesIdView);
     }
 
     @Override
