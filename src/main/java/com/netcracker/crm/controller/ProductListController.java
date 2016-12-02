@@ -24,9 +24,7 @@ public class ProductListController {
     private static final String PRODUCTS = "products";
     private static final String ITEM = "item";
 
-
     IProductService productService = (IProductService) context.getBean("productService");
-    ICartService cartService = (ICartService) context.getBean("cartService");
     ISearchService searchService = (ISearchService) context.getBean("searchService");
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
@@ -56,14 +54,6 @@ public class ProductListController {
         model.addAttribute("searchAttr", searchService.getSearchAttributes());
         model.addAttribute("SearchRes", searchService.getSearchRes());
         return PRODUCTS;
-    }
-
-    @RequestMapping(value = "/addProduct/{id}", method = RequestMethod.GET)
-    public void addProduct(@PathVariable String id, ModelMap model) {
-        cartService.createCart(-2);
-        cartService.addProduct(Integer.parseInt(id));
-
-
     }
 
     @RequestMapping(value = "/item/{id}", method = RequestMethod.GET)

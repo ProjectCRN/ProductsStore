@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service("cartService")
 public class CartServiceImpl extends AbstractService<Cart> implements ICartService {
 
-    private static Cart cart;
+    private Cart cart;
 
     @Override
     public void createCart(int userId)
