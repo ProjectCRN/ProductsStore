@@ -164,14 +164,14 @@ public class Order extends Entity {
         this.cart = cart;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-        setValueInList("Description", description);
-    }
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//        setValueInList("Description", description);
+//    }
 
     public void setByUser(User user) {
         setContactName(user.getUserName());

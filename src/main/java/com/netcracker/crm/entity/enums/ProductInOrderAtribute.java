@@ -3,13 +3,13 @@ package com.netcracker.crm.entity.enums;
 /**
  * Created by пк on 02.12.2016.
  */
-public enum BoughtProductAtribute {
+public enum ProductInOrderAtribute {
 
-    Price(60), OrderID(61), ProductID(62), Quantity(63);
+    Price(19), OrderID(21), ProductID(20), Quantity(22);
 
     private int atributeId;
 
-    BoughtProductAtribute(int id) {
+    ProductInOrderAtribute(int id) {
         atributeId = id;
     }
 

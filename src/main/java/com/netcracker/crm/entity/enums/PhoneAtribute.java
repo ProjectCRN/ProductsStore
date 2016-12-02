@@ -4,23 +4,21 @@ package com.netcracker.crm.entity.enums;
  * Created by пк on 02.12.2016.
  */
 public enum PhoneAtribute {
-    OrderID(19),
-    Price(20),
-    Summary(21),
-    OperatingSystem(22),
-    Processorspeed(23),
-    Capacity(24),
-    Display(25),
-    Height(26),
-    Width(27),
-    Depth(28),
-    Weight(29),
-    Camera(30),
-    Battery(31),
-    SIMCard(32),
-    Quantity(33),
-    ImageURL(34),
-    Fabricator(35);
+    Price(23),
+    Summary(24),
+    OperatingSystem(25),
+    Processorspeed(26),
+    Capacity(27),
+    Display(28),
+    Height(29),
+    Width(30),
+    Depth(31),
+    Weight(32),
+    Camera(33),
+    Battery(34),
+    SIMCard(35),
+    ImageURL(36),
+    Fabricator(37);
 
     private int atributeId;
 

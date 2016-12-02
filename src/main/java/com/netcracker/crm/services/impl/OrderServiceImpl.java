@@ -37,8 +37,9 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     @Autowired
     private IUserDao userDao;
     private static Logger logger = LogManager.getLogger(OrderServiceImpl.class);
-    private final static String boughtProductStr = "BoughtProduct";
+    private final static String productInOrderStr = "ProductInOrder";
     private final static String dateFormatStr = "dd-mm-yyyy";
+    private final static String productIdStr = "ProductID";
 
     @Override
     public Order makeOrderByCart(Cart cart){
@@ -52,7 +53,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
         order.setCreatedDate(date);
         order.setPaidDate(date);
         order.setOrderNumber("somenumber");
-        order.setDescription("somedescription");
+//        order.setDescription("somedescription");
         return order;
     }
 
@@ -65,11 +66,11 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
             for (CartItem item : order.getCart().getCartItems()) {
                 Product product = item.getProduct();
                 //добавляем entity с типом купленного продукта
-                product.setEntityTypeId(EntityType.valueOf(boughtProductStr).getTypeId());
+                product.setEntityTypeId(EntityType.valueOf(productInOrderStr).getTypeId());
                 product.setUserId(order.getEntityUserId());
                 product.setQuantity(item.getQuantity());
                 product.setOrderId(id);
-                product.setValueInList("ProductID", String.valueOf(product.getId()));
+                product.setValueInList(productIdStr, String.valueOf(product.getId()));
                 product.setPrice(product.getPrice());
                 entityDao.add(product);
             }

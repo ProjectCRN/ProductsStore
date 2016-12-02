@@ -3,9 +3,9 @@ package com.netcracker.crm.entity.serviceEntity;
 
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
-import com.netcracker.crm.entity.enums.BoughtProductAtribute;
 import com.netcracker.crm.entity.enums.EntityType;
 import com.netcracker.crm.entity.enums.PhoneAtribute;
+import com.netcracker.crm.entity.enums.ProductInOrderAtribute;
 import com.netcracker.crm.entity.enums.TabletAtribute;
 
 import java.util.List;
@@ -186,8 +186,8 @@ public class Product extends Entity {
         else if(getEntityTypeId()==EntityType.valueOf("Tablet").getTypeId()){
             return TabletAtribute.valueOf(atribute).getAtributeId();
         }
-        else if(getEntityTypeId()==EntityType.valueOf("BoughtProduct").getTypeId()){
-            return BoughtProductAtribute.valueOf(atribute).getAtributeId();
+        else if(getEntityTypeId()==EntityType.valueOf("ProductInOrder").getTypeId()){
+            return ProductInOrderAtribute.valueOf(atribute).getAtributeId();
         }
         return null;
     }
