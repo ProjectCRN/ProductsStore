@@ -25,14 +25,9 @@ public class TestDao {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext(new String[]{"SpringModule.xml"});
 
-        CatalogParser catalogParser = (CatalogParser) context.getBean("catalogParser");
+        CatalogParser catalogParser = new CatalogParser();
+//        catalogParser.exportCatalog("default");
 
-        //импорт из resources/xml-parser/catalogToAdd.xml
-        catalogParser.importCatalog("default");
-
-
-        //экспорт в resources/xml-parser/generatedCatalog.xml
-        catalogParser.exportCatalog("default");
 
 //        List<Value> values =new ArrayList<>();
 //        values.add(new Value(0,"16Gb",0,14));
@@ -53,7 +48,7 @@ public class TestDao {
 //
 //        userService.isEmailFree("gav@panin.ru");
 //
-//        IProductService productService = (IProductService) context.getBean("productService");
+        IProductService productService = (IProductService) context.getBean("productService");
 //        productService.getByUserAndType(-2, null);
 //       Product product = productService.getById(53);
 //        List <Product> productList = productService.getByUserAndType(-2,9);
@@ -74,8 +69,8 @@ public class TestDao {
 //        cart.addCartItem(new CartItem(productService.getById(54), 2));
 //        IOrderService orderService = (IOrderService) context.getBean("orderService");
 //        Order order = orderService.makeOrderByCart(cart);
-//        orderService.add(order);
-
+//        int id = orderService.add(order);
+//        orderService.getById(373);
 
 //        CatalogParser catalogParser = (CatalogParser) context.getBean("catalogParser");
 //        catalogParser.importCatalog("default");

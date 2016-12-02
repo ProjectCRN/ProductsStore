@@ -15,4 +15,14 @@ public enum EntityType {
     public int getTypeId() {
         return typeId;
     }
+
+    public static EntityType findByKey(int i) {
+        EntityType[] enums = EntityType.values();
+        for (EntityType eEnum : enums) {
+            if (eEnum.typeId == i) {
+                return eEnum;
+            }
+        }
+        return null;
+    }
 }

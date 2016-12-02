@@ -72,17 +72,13 @@ public class Value extends AbstractEntity {
 
         Value other = (Value) obj;
         if (!value.equals(other.value)) return false;
-        if(entityId != other.entityId) return false;
-        if(atributeId != other.atributeId) return false;
+        if (entityId != other.entityId) return false;
+        if (atributeId != other.atributeId) return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Value{" +
-                "value='" + value + '\'' +
-                ", entityId=" + entityId +
-                ", atributeId=" + atributeId +
-                '}';
+        return value;
     }
 }

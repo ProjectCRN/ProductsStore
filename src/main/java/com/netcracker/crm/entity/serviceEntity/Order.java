@@ -42,7 +42,8 @@ public class Order extends Entity {
             for (int i = 0; i < getAtributeValueMap().size(); i++) {
                 String atributeName = getAtributeValueMap().get(i).getKey().getAtributeName();
                 String atributeValue = getAtributeValueMap().get(i).getValue().getValue();
-                DateFormat df = new SimpleDateFormat("dd-mon-yy");
+                DateFormat df1 = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
+                //DateFormat df2 = new SimpleDateFormat("EE MMM dd yyyy");
                 switch (atributeName) {
                     case "Order Number":
                         orderNumber = atributeValue;
@@ -61,14 +62,14 @@ public class Order extends Entity {
                         break;
                     case "Created Date":
                         try {
-                            createdDate = df.parse(atributeValue);
+                            createdDate = df1.parse(atributeValue);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
                         break;
                     case "Paid Date":
                         try {
-                            createdDate = df.parse(atributeValue);
+                            createdDate = df1.parse(atributeValue);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -229,10 +230,12 @@ public class Order extends Entity {
         if (getAtributeValueMap() != null) {
             for (Pair<Atribute, Value> item : getAtributeValueMap()) {
                 str += "\n" + item.getKey().toString();
-                str += "\n" + item.getValue().toString();
+                str += ": " + item.getValue().toString();
             }
         }
-        str += cart.toString();
+        if(cart!=null) {
+            str += cart.toString();
+        }
         return str;
     }
 

@@ -14,7 +14,8 @@ public class Atribute extends AbstractEntity {
     private String entityTypeName;
     private boolean isRequired;
 
-    public Atribute() {}
+    public Atribute() {
+    }
 
     public Atribute(int id, String atributeName) {
         super(id);
@@ -132,14 +133,6 @@ public class Atribute extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Atribute{" +
-                "atributeName='" + atributeName + '\'' +
-                ", atributeTypeId=" + atributeTypeId +
-                ", atributeTypeName='" + atributeTypeName + '\'' +
-                ", isActive=" + isActive +
-                ", entityTypeId=" + entityTypeId +
-                ", entityTypeName='" + entityTypeName + '\'' +
-                ", isRequired=" + isRequired +
-                '}';
+        return atributeName;
     }
 }

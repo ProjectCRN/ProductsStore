@@ -18,6 +18,7 @@
 
     <bean class="com.netcracker.crm.services.impl.OrderServiceImpl" id="orderService">
         <property name="entityDao" ref="entityDao"/>
+        <property name="userDao" ref="userDao"/>
     </bean>
 
     <bean class="com.netcracker.crm.services.impl.SearchServiceImpl" id="searchService"/>
