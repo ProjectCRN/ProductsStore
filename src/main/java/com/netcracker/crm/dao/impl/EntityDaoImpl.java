@@ -136,19 +136,22 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     @Override
-    public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView) {
+    public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView,int pageNumber, int pageSize) {
         getJdbcTemplate().setResultsMapCaseInsensitive(true);
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue(PARAM_IN_ENTITY_ENTITYTYPEID, typeId)
                 .addValue(PARAM_IN_ENTITY_ATRIBUTES, atributesId)
                 .addValue(PARAM_IN_ENTITY_VALUES, values)
-                .addValue(PARAM_IN_ENTITY_OPERATORS, operators);
+                .addValue(PARAM_IN_ENTITY_OPERATORS, operators)
+                .addValue(PARAM_IN_PAGE_NUMBER, pageNumber)
+                .addValue(PARAM_IN_PAGE_SIZE, pageSize);
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(getJdbcTemplate())
                 .withProcedureName(PROCEDURE_ENTITY_GET_LIST)
                 .returningResultSet(PARAM_OUT_ENTITY_LIST, new RowMapper<String>() {
                     public String mapRow(ResultSet rs, int rowNum) throws SQLException {
                         String string;
                         string=(rs.getString(COLUMN_ENTITY_ID));
+                        int rnum = rs.getInt("RNUM");
                         return string;
                     }
                 });
@@ -202,6 +205,21 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         List<Entity> entiyList = getJdbcTemplate().query(sql, new Object[]{userID, entityTypeID,
                 entityTypeID, entityTypeID}, new EntityRowMapper());
         return entiyList;
+    }
+
+    @Override
+    public int rowCounter(int typeId, String atributesId, String values, String operators) {
+        getJdbcTemplate().setResultsMapCaseInsensitive(true);
+        SqlParameterSource in = new MapSqlParameterSource()
+                .addValue(PARAM_IN_ENTITY_ENTITYTYPEID, typeId)
+                .addValue(PARAM_IN_ENTITY_ATRIBUTES, atributesId)
+                .addValue(PARAM_IN_ENTITY_VALUES, values)
+                .addValue(PARAM_IN_ENTITY_OPERATORS, operators);
+
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(getJdbcTemplate())
+                .withProcedureName(PROCEDURE_ROWS_COUNTER);
+        Map out = jdbcCall.execute(in);
+        return Integer.parseInt(String.valueOf(out.get(PARAM_OUT_COUNT)));
     }
 
     @Override
