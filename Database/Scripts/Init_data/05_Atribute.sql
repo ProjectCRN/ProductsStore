@@ -126,7 +126,9 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	1,
 	60);
   
-        INSERT INTO ns_admin.TBL_ATRIBUTE (
+  --Product In Order--
+  
+  INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
 	ATRIBUTETYPEID,
@@ -137,15 +139,29 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	values
 	(
 	SQ_MAIN.nextval,
-	'Order Description',
+	'Price',
+	3,
 	1,
+	8,
 	1,
-	7,
+	10);
+  INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'ProductID',
+	2,
 	1,
-	70);
-  
-
-  --Telephone--
+	8,
+	1,
+	20);  
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -161,8 +177,27 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	2,
 	1,
 	8,
-	0,
-	1);
+	1,
+	30);
+    INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Quantity',
+	2,
+	1,
+	8,
+	1,
+	40);
+  --Telephone--
+  
 INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -177,7 +212,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Price',
 	3,
 	1,
-	8,
+	9,
 	1,
 	2);
   INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -194,7 +229,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Summary',
 	1,
 	1,
-	8,
+	9,
 	1,
 	3);
   
@@ -212,7 +247,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Operating System',
 	1,
 	1,
-	8,
+	9,
 	1,
 	5);
   
@@ -230,7 +265,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Processor speed, GHz',
 	3,
 	1,
-	8,
+	9,
 	1,
 	8);
 INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -247,7 +282,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Capacity, GB',
 	2,
 	1,
-	8,
+	9,
 	1,
 	10);
   
@@ -265,7 +300,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Display, inch',
 	3,
 	1,
-	8,
+	9,
 	1,
 	20);
   
@@ -283,7 +318,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Height, mm',
 	3,
 	1,
-	8,
+	9,
 	1,
 	30);
     INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -300,7 +335,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Width, mm',
 	3,
 	1,
-	8,
+	9,
 	1,
 	40);
       INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -317,7 +352,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Depth, mm',
 	3,
 	1,
-	8,
+	9,
 	1,
 	50);
   
@@ -335,7 +370,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Weight, grams',
 	3,
 	1,
-	8,
+	9,
 	1,
 	60);
           INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -352,7 +387,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Camera, MP',
 	3,
 	1,
-	8,
+	9,
 	1,
 	70);
   INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -369,7 +404,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Battery, hours',
 	3,
 	1,
-	8,
+	9,
 	1,
 	80);
   
@@ -387,26 +422,10 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'SIM Card',
 	1,
 	1,
-	8,
+	9,
 	1,
 	90);
-    INSERT INTO ns_admin.TBL_ATRIBUTE (
-  ATRIBUTEID,
-	ATRIBUTENAME,
-	ATRIBUTETYPEID,
-	ISACTIVE,
-	ENTITYTYPEID,
-	ISREQUIRED,
-	SORTORDER) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'Quantity',
-	2,
-	1,
-	8,
-	1,
-	1000);
+    
     INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -421,7 +440,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'ImageURL',
 	1,
 	1,
-	8,
+	9,
 	1,
 	900);
    INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -438,27 +457,11 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Fabricator',
 	1,
 	1,
-	8,
+	9,
 	1,
 	100);
   --Tablet--
-   INSERT INTO ns_admin.TBL_ATRIBUTE (
-  ATRIBUTEID,
-	ATRIBUTENAME,
-	ATRIBUTETYPEID,
-	ISACTIVE,
-	ENTITYTYPEID,
-	ISREQUIRED,
-	SORTORDER) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'OrderID',
-	2,
-	1,
-	9,
-	0,
-	1);
+  
 INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -473,7 +476,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Price',
 	3,
 	1,
-	9,
+	10,
 	1,
 	2);
   INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -490,7 +493,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Summary',
 	1,
 	1,
-	9,
+	10,
 	1,
 	3);
 
@@ -508,7 +511,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Operating System',
 	1,
 	1,
-	9,
+	10,
 	1,
 	5);
   
@@ -526,7 +529,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Processor speed, GHz',
 	3,
 	1,
-	9,
+	10,
 	1,
 	8);
 INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -543,7 +546,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Capacity, GB',
 	2,
 	1,
-	9,
+	10,
 	1,
 	10);
   
@@ -561,7 +564,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Display, inch',
 	3,
 	1,
-	9,
+	10,
 	1,
 	20);
   
@@ -579,7 +582,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Height, mm',
 	3,
 	1,
-	9,
+	10,
 	1,
 	30);
     INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -596,7 +599,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Width, mm',
 	3,
 	1,
-	9,
+	10,
 	1,
 	40);
       INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -613,7 +616,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Depth, mm',
 	3,
 	1,
-	9,
+	10,
 	1,
 	50);
   
@@ -631,7 +634,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Weight, grams',
 	3,
 	1,
-	9,
+	10,
 	1,
 	60);
           INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -648,7 +651,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Camera, MP',
 	3,
 	1,
-	9,
+	10,
 	1,
 	70);
   INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -665,7 +668,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Battery, hours',
 	3,
 	1,
-	9,
+	10,
 	1,
 	80);
   
@@ -683,26 +686,10 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'SIM Card',
 	1,
 	1,
-	9,
+	10,
 	1,
 	90);
-      INSERT INTO ns_admin.TBL_ATRIBUTE (
-  ATRIBUTEID,
-	ATRIBUTENAME,
-	ATRIBUTETYPEID,
-	ISACTIVE,
-	ENTITYTYPEID,
-	ISREQUIRED,
-	SORTORDER) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'Quantity',
-	2,
-	1,
-	9,
-	1,
-	1000);
+  
    INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -717,7 +704,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'ImageURL',
 	1,
 	1,
-	9,
+	10,
 	1,
 	900);
    INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -739,6 +726,3 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	100);
   
     commit;
-
-exit;
-/
