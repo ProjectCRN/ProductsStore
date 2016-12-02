@@ -15,25 +15,15 @@ public class SearchAttributes {
     private String maxBattery;
     private String name;
     private String type;
-    private static List<String> types;
+
     private int typeId;
     private String attribute;
     private String operators;
     private String values;
 
-    public SearchAttributes() {
-        if(types == null)
-        {
-            types = new ArrayList<String>();
-            types.add("Telephone");
-            types.add("Tablet");
-            typeId = 8;
-            attribute = "";
-            operators = "";
-            values = "";
-        }
-    }
+    public SearchAttributes() {    }
 
+    public String getLists() {return attribute+" | "+operators+" | "+values;}
     public String getMinPrice() {
         return minPrice;
     }
@@ -98,19 +88,7 @@ public class SearchAttributes {
         this.type = type;
     }
 
-    public static List<String> getTypes() {
-        return types;
-    }
-
-    public static void setTypes(List<String> types) {
-        SearchAttributes.types = types;
-    }
-
-    public int getTypeId() {
-        if(!(typeId==8 || typeId ==9))
-            return 8;
-        return typeId;
-    }
+    public int getTypeId() { return typeId; }
 
     public void setTypeId(int typeId) {
         this.typeId = typeId;

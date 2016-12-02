@@ -21,6 +21,66 @@
 		</property>
 	</bean>
 
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@//localhost:1521/XE" />
+		<property name="username" value="ns_admin" />
+		<property name="password" value="qwerty" />
+	</bean>
+
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.dao.impl.UserDaoImpl" id="userDao">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.services.impl.SearchServiceImpl" id="searchService" />
+
+	<bean class="com.netcracker.crm.entity.serviceEntity.Cart" id="cart">
+		<constructor-arg type="int" value="-2"/>
+	</bean>
+	<bean class="com.netcracker.crm.services.impl.CartServiceImpl" id="cartService">
+		<property name="cart" ref="cart"/>
+		<property name="productService" ref="productService"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.dao.impl.EntityDaoImpl" id="entityDao">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.services.impl.UserServiceImpl" id="userService">
+		<property name="userDao" ref="userDao"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.services.impl.ProductServiceImpl" id="productService">
+		<property name="entityDao" ref="entityDao"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.services.parser.TabletTag" id="tabletTag"/>
+	<bean class="com.netcracker.crm.services.parser.TelephoneTag" id="telephoneTag"/>
+	<bean class="com.netcracker.crm.services.parser.TypeAttribute" id="typeAttribute"/>
+	<bean class="com.netcracker.crm.services.parser.CatalogParser" id="catalogParser">
+		<property name="productService" ref="productService"/>
+		<property name="tabletTag" ref="tabletTag"/>
+		<property name="telephoneTag" ref="telephoneTag"/>
+		<property name="typeAttribute" ref="typeAttribute"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.services.impl.OrderServiceImpl" id="orderService">
+		<property name="entityDao" ref="entityDao"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.controller.ProductListController" id="productListController">
+		<property name="productService" ref="productService"/>
+		<property name="searchService" ref="searchService"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.controller.CartController" id="cartController">
+		<property name="cartService" ref="cartService"/>
+	</bean>
+
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 
 	<mvc:annotation-driven />

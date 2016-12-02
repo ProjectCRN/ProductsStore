@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Ксения on 22.11.2016.
  */
-@Component
+
 public class ProductService {
 
     private static ProductList product;

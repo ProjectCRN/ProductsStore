@@ -7,48 +7,29 @@ import org.springframework.stereotype.Service;
 /**
  * Created by Ксения on 29.11.2016.
  */
-@Service("searchService")
+@Service
 public class SearchServiceImpl implements ISearchService {
 
-    private SearchAttributes searchAttributes;
-
-    public SearchServiceImpl() {
-        if (searchAttributes == null)
-            searchAttributes = new SearchAttributes();
-    }
-
-    public SearchAttributes getSearchAttributes1() {
-        return searchAttributes;
-    }
-
-    public void setSearchAttributes(SearchAttributes searchAttributes) {
-        this.searchAttributes = searchAttributes;
-    }
+    public SearchServiceImpl() {  }
 
     @Override
-    public String getSearchRes() {
-        return searchAttributes.getTypeId() + " | " + searchAttributes.getAttribute() + " | " + searchAttributes.getOperators() + " | " + searchAttributes.getValues();
-    }
-
-    @Override
-    public void parseSearchAttributes() {
-        SearchAttributes searchAttr = this.getSearchAttributes();
+    public void parseSearchAttributes(SearchAttributes searchAttr) {
         String list1 = "";
         String list2 = "";
         String list3 = "";
         int typeId = 8;
 
         switch (searchAttr.getType()) {
-            case "Telephone":
+            case "telephone":
                 typeId = 8;
                 break;
-            case "Tablet":
+            case "tablet":
                 typeId = 9;
                 break;
         }
 
 
-        if (!searchAttr.getName().equals("")) {
+        /*if (!searchAttr.getName().equals("")) {
             if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
@@ -57,7 +38,7 @@ public class SearchServiceImpl implements ISearchService {
             list1 += "entityName";
             list2 += "like";
             list3 += searchAttr.getName();
-        }
+        }*/
 
         if (!searchAttr.getMinPrice().equals("")) {
             if (!list1.equals("")) {
@@ -68,8 +49,8 @@ public class SearchServiceImpl implements ISearchService {
             if (typeId == 8)
                 list1 += "20";
             else list1 += "37";
-            list2 += ">";
-            list3 += searchAttr.getMinPrice() + ".0";
+            list2 += ">=";
+            list3 += searchAttr.getMinPrice();
         }
 
         if (!searchAttr.getMaxPrice().equals("")) {
@@ -81,8 +62,8 @@ public class SearchServiceImpl implements ISearchService {
             if (typeId == 8)
                 list1 += "20";
             else list1 += "37";
-            list2 += "<";
-            list3 += searchAttr.getMaxPrice() + ".0";
+            list2 += "<=";
+            list3 += searchAttr.getMaxPrice();
         }
 
         if (!searchAttr.getMinCapacity().equals("")) {
@@ -94,7 +75,7 @@ public class SearchServiceImpl implements ISearchService {
             if (typeId == 8)
                 list1 += "24";
             else list1 += "41";
-            list2 += ">";
+            list2 += ">=";
             list3 += searchAttr.getMinCapacity();
         }
 
@@ -107,7 +88,7 @@ public class SearchServiceImpl implements ISearchService {
             if (typeId == 8)
                 list1 += "24";
             else list1 += "41";
-            list2 += "<";
+            list2 += "<=";
             list3 += searchAttr.getMaxCapacity();
         }
 
@@ -120,7 +101,7 @@ public class SearchServiceImpl implements ISearchService {
             if (typeId == 8)
                 list1 += "31";
             else list1 += "48";
-            list2 += ">";
+            list2 += ">=";
             list3 += searchAttr.getMinBattery();
         }
 
@@ -133,7 +114,7 @@ public class SearchServiceImpl implements ISearchService {
             if (typeId == 8)
                 list1 += "31";
             else list1 += "48";
-            list2 += "<";
+            list2 += "<=";
             list3 += searchAttr.getMaxBattery();
         }
         searchAttr.setTypeId(typeId);
@@ -151,7 +132,7 @@ public class SearchServiceImpl implements ISearchService {
         if (!searchAttr.getMaxCapacity().matches("^[0-9]+$")) searchAttr.setMaxCapacity("");
         if (!searchAttr.getMinBattery().matches("^[0-9]+$")) searchAttr.setMinBattery("");
         if (!searchAttr.getMaxBattery().matches("^[0-9]+$")) searchAttr.setMaxBattery("");
-        if (!searchAttr.getName().matches("^[a-zA-Z0-9 ]+$")) searchAttr.setName("");
+       // if (!searchAttr.getName().matches("^[a-zA-Z0-9 ]+$")) searchAttr.setName("");
 
         if (!searchAttr.getMinPrice().equals("") && !searchAttr.getMaxPrice().equals(""))
             if (Integer.parseInt(searchAttr.getMinPrice()) > Integer.parseInt(searchAttr.getMaxPrice())) {
@@ -172,18 +153,7 @@ public class SearchServiceImpl implements ISearchService {
                 searchAttr.setMinBattery(searchAttr.getMaxBattery());
                 searchAttr.setMaxBattery(buf);
             }
-        this.setSearchAttributes(searchAttr);
-
 
     }
 
-    @Override
-    public void setSearchAttributes() {
-
-    }
-
-    @Override
-    public SearchAttributes getSearchAttributes() {
-        return searchAttributes;
-    }
 }

@@ -23,7 +23,7 @@ import static com.netcracker.crm.dao.constants.DaoConstants.*;
 /**
  * Created by egor on 11.11.2016.
  */
-@Repository("userDao")
+
 public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
 
     private static Logger logger = LogManager.getLogger(UserDaoImpl.class);

@@ -12,6 +12,7 @@ import com.netcracker.crm.services.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,13 +22,17 @@ import java.util.List;
  * Created by .. on 20.11.2016.
  */
 
-@Service("productService")
 public class ProductServiceImpl  extends AbstractService<Product> implements IProductService {
 
+    private IEntityDao entityDao;
 
     @Autowired
-    private IEntityDao entityDao;
     private static Logger logger = LogManager.getLogger(ProductServiceImpl.class);
+
+    @Required
+    public void setEntityDao(IEntityDao entityDao) {
+        this.entityDao = entityDao;
+    }
 
     @Override
     public int add(Product product) {

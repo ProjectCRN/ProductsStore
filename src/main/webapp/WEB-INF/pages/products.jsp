@@ -30,7 +30,8 @@
         <div class="row">
             <nav>
                 <li><a href="/">Main</a></li>
-                <li><a href="/products" class="active">Products</a></li>
+                <li><a href="/products/telephone">Telephone</a></li>
+                <li><a href="/products/tablet">Tablet</a></li>
                 <li><a href="/cart">Cart</a></li>
                 <li><a href="/createOrder">Create Order</a></li>
                 <li><a href="/createUser">Registration</a></li>
@@ -39,42 +40,28 @@
 
                 <div class="col-md-3 search">
                     <h3>Search:</h3>
-                    <sf:form method="post" modelAttribute="searchAttr" action="products">
+                    <sf:form method="get" modelAttribute="searchAttr" action="search">
 
-
-                        <label>Type: </label>
-                        <sf:select path="type">
-                            <c:forEach items="${types}" var="item">
-                                <option
-                                        <c:if test="${item eq currType}">selected="selected"</c:if>
-                                        value="${item}">${item}</option>
-                            </c:forEach>
-                        </sf:select><br>
-
-
-                        <label>Name: </label>
-                        <sf:input path="name" size="21"/><br>
                         <label>Price: </label>
-                        <sf:input path="minPrice" size="8" placeholder="min"/>
-                        <sf:input path="maxPrice" size="8" placeholder="max"/><br>
+                        <sf:input path="minPrice" size="8" placeholder="min" pattern="^[ 0-9]+$"/>
+                        <sf:input path="maxPrice" size="8" placeholder="max" pattern="^[ 0-9]+$"/><br>
 
                         <label>Capacity (GB): </label>
-                        <sf:input path="minCapacity" size="8" placeholder="min"/>
-                        <sf:input path="maxCapacity" size="8" placeholder="max"/><br>
+                        <sf:input path="minCapacity" size="8" placeholder="min" pattern="^[ 0-9]+$"/>
+                        <sf:input path="maxCapacity" size="8" placeholder="max" pattern="^[ 0-9]+$"/><br>
 
 
                         <label>Battery (Hours): </label>
-                        <sf:input path="minBattery" size="8" placeholder="min"/>
-                        <sf:input path="maxBattery" size="8" placeholder="max"/><br>
+                        <sf:input path="minBattery" size="8" placeholder="min" pattern="^[ 0-9]+$"/>
+                        <sf:input path="maxBattery" size="8" placeholder="max" pattern="^[ 0-9]+$"/><br>
 
+                        <sf:input path="type" style="display: none;" value="${currType}"/>
                         <input type="submit" value="Search" class="btn"/>
-
-                        ${SearchRes}
                     </sf:form>
                 </div>
                 <div class="col-md-8">
                     <ul class="listOfProducts">
-
+                        ${emptyList}
                         <c:forEach items="${productList}" var="item">
                             <li>
                                 <a href="/item/${item.getId()}">
@@ -91,7 +78,6 @@
 
                                     <button name="sample1${item.getId()}" class="sample1${item.getId()} btn btn-default btnLink">add to
                                         cart</button>
-
                                     <div  id="added${item.getId()}"  style="display: none;">Added</div>
                                     <script>
                                         $('.sample1${item.getId()}').click( function() {

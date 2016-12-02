@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * Created by egor on 27.11.2016.
  */
-@Component("tabletTag")
+
 public class TabletTag extends AbstractTag {
     private TabletTag() {
         tags = HashBiMap.create(new HashMap(){{
