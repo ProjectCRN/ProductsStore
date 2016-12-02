@@ -4,9 +4,7 @@ package com.netcracker.crm.entity;
  * Created by egor on 23.10.2016.
  */
 
-import com.netcracker.crm.entity.serviceEntity.EntityType;
 import com.netcracker.crm.services.parser.TypeAttribute;
-import com.netcracker.crm.services.parser.exception.NoSuchIdXMLException;
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -129,13 +127,6 @@ public class Entity extends AbstractEntity {
     }
 
     public List<Value> getValueList() {
-//        if(atributeValueMap!=null) {
-//            List<Value> values = new ArrayList<>();
-//            for (Pair<Atribute, Value> p : atributeValueMap) {
-//                values.add(p.getValue());
-//            }
-//            return values;
-//        } else return null;
         return valueList;
     }
 
