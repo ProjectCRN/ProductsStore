@@ -101,11 +101,11 @@ public class TestDao {
 //        System.out.println(cartService.getCart().toString());
 
         IProductService productService = (IProductService)context.getBean("productService");
-//        Product product = new Product("newproduct", true, EntityType.Tablet.getTypeId(), -2);
-//        product.setValueInList(TabletAtribute.Fabricator.name(), "newfabricator");
-//        Product pr1 = new Product();
-//        pr1.setEntityName("newname");
-//        productService.add(pr1);
+        Product product = new Product("newproduct", true, EntityType.Tablet.getTypeId(), -2);
+        product.setValueInList(TabletAtribute.Fabricator.name(), "newfabricator");
+        Product pr1 = new Product();
+        pr1.setEntityName("newname");
+        productService.add(pr1);
 
     }
 }
