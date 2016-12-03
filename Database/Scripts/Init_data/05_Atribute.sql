@@ -721,7 +721,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	'Fabricator',
 	1,
 	1,
-	9,
+	10,
 	1,
 	100);
   
