@@ -2,31 +2,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Cart</title>
-    <spring:url value="/resources/css/style.css" var="mainCss"/>
-    <spring:url value="/resources/lib/bootstrap/bootstrap-grid-3.3.1.min.css" var="btsCss"/>
-    <spring:url value="/resources/lib/jquery/jquery-1.8.3.js" var="jquery"/>
-    <spring:url value="/resources/img/spinner.gif" var="spinner"/>
-    <link href="${btsCss}" rel="stylesheet"/>
-    <link href="${mainCss}" rel="stylesheet"/>
-</head>
-<body>
-
-<div class="content">
 
 
-    <div class="block1">
-        <div class="row">
-            <nav>
-                <li><a href="/">Main</a></li>
-                <li><a href="/products/telephone">Telephone</a></li>
-                <li><a href="/products/tablet">Tablet</a></li>
-                <li><a href="/cart" class="active">Cart</a></li>
-                <li><a href="/createOrder">Create Order</a></li>
-                <li><a href="/createUser">Registration</a></li>
-            </nav>
+
             <div class="container align_center">
 
                 <div class="col-md-9">
@@ -47,14 +25,33 @@
 
                                 <div class="btn_right">
 
-                                    <a class="btn btn-default btnLink" role="button"
-                                       href="/addCartProduct/${item.getProduct().getId()}">add</a><br>
-                                    <a class="btn btn-default btnLink" role="button"
-                                       href="/deleteCartProduct/${item.getProduct().getId()}">delete</a>
+                                    <a class="btn btn-default btnLink " id="btnAdd_${item.getProduct().getId()}" role="button"
+                                       href="#">add</a><br>
+                                    <a class="btn btn-default btnLink " id="btnDel_${item.getProduct().getId()}" role="button"
+                                       href="#">delete</a>
                                     <br><span>${item.getProduct().getPrice()}$</span> <br>
                                 </div>
                             </li>
 
+                            <script type="text/javascript" language="javascript">
+                                $('#btnAdd_${item.getProduct().getId()}').click( function() {
+                                    $.ajax({
+                                        url: '/addCartProduct/${item.getProduct().getId()}',
+                                        success: function(data) {
+                                            $('.results').html(data);
+                                        }
+                                    });
+                                });
+                                $('#btnDel_${item.getProduct().getId()}').click( function() {
+                                    $.ajax({
+                                        url: '/deleteCartProduct/${item.getProduct().getId()}',
+                                        success: function(data) {
+                                            $('.results').html(data);
+                                        }
+                                    });
+                                });
+
+                            </script>
 
                         </c:forEach>
                     </ul>
@@ -63,10 +60,5 @@
                 <h1>Total: ${total}</h1>
 
             </div>
-        </div>
-    </div>
 
 
-</div>
-</body>
-</html>
