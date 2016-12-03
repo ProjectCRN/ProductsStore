@@ -23,6 +23,8 @@
 
     <bean class="com.netcracker.crm.services.impl.SearchServiceImpl" id="searchService"/>
 
+    <bean class="com.netcracker.crm.services.impl.PaginationServiceImpl" id="paginationService"/>
+
     <bean class="com.netcracker.crm.entity.serviceEntity.Cart" id="cart">
         <constructor-arg type="int" value="-2"/>
     </bean>

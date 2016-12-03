@@ -40,7 +40,7 @@
 
                 <div class="col-md-3 search">
                     <h3>Search:</h3>
-                    <sf:form method="get" modelAttribute="searchAttr" action="search">
+                    <sf:form method="get" modelAttribute="searchAttr" action="${searchBtn}">
 
                         <label>Price: </label>
                         <sf:input path="minPrice" size="8" placeholder="min" pattern="^[ 0-9]+$"/>
@@ -96,6 +96,11 @@
                                     <br><span>${item.getPrice()}$</span> <br>
                                 </div>
                             </li>
+                        </c:forEach>
+                    </ul>
+                    <ul class="pagination">
+                        <c:forEach items="${pages}" var="page">
+                            <li><a href="/${searchReq}/${currType}/page/${page}">${page}</a> </li>
                         </c:forEach>
                     </ul>
                 </div>

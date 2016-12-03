@@ -32,6 +32,7 @@
 	<bean class="com.netcracker.crm.controller.ProductListController" id="productListController">
 		<property name="productService" ref="productService"/>
 		<property name="searchService" ref="searchService"/>
+		<property name="paginationService" ref="paginationService"/>
 	</bean>
 
 	<bean class="com.netcracker.crm.controller.CartController" id="cartController">

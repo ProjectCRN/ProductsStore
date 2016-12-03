@@ -1,5 +1,8 @@
 package com.netcracker.crm.services.impl;
 
+import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.enums.PhoneAtribute;
+import com.netcracker.crm.entity.enums.TabletAtribute;
 import com.netcracker.crm.entity.serviceEntity.SearchAttributes;
 import com.netcracker.crm.services.ISearchService;
 import org.springframework.stereotype.Service;
@@ -17,14 +20,14 @@ public class SearchServiceImpl implements ISearchService {
         String list1 = "";
         String list2 = "";
         String list3 = "";
-        int typeId = 8;
+        int typeId = 9;
 
         switch (searchAttr.getType()) {
             case "telephone":
-                typeId = 8;
+                typeId = EntityType.Telephone.getTypeId();
                 break;
             case "tablet":
-                typeId = 9;
+                typeId = EntityType.Tablet.getTypeId();
                 break;
         }
 
@@ -46,9 +49,9 @@ public class SearchServiceImpl implements ISearchService {
                 list2 += ",";
                 list3 += ",";
             }
-            if (typeId == 8)
-                list1 += "20";
-            else list1 += "37";
+            if (typeId == EntityType.Telephone.getTypeId())
+                list1 += PhoneAtribute.Price.getAtributeId();
+            else list1 += TabletAtribute.Price.getAtributeId();
             list2 += ">=";
             list3 += searchAttr.getMinPrice();
         }
@@ -59,9 +62,9 @@ public class SearchServiceImpl implements ISearchService {
                 list2 += ",";
                 list3 += ",";
             }
-            if (typeId == 8)
-                list1 += "20";
-            else list1 += "37";
+            if (typeId == EntityType.Telephone.getTypeId())
+                list1 += PhoneAtribute.Price.getAtributeId();
+            else list1 += TabletAtribute.Price.getAtributeId();
             list2 += "<=";
             list3 += searchAttr.getMaxPrice();
         }
@@ -72,9 +75,9 @@ public class SearchServiceImpl implements ISearchService {
                 list2 += ",";
                 list3 += ",";
             }
-            if (typeId == 8)
-                list1 += "24";
-            else list1 += "41";
+            if (typeId == EntityType.Telephone.getTypeId())
+                list1 += PhoneAtribute.Capacity.getAtributeId();
+            else list1 += TabletAtribute.Capacity.getAtributeId();
             list2 += ">=";
             list3 += searchAttr.getMinCapacity();
         }
@@ -85,9 +88,9 @@ public class SearchServiceImpl implements ISearchService {
                 list2 += ",";
                 list3 += ",";
             }
-            if (typeId == 8)
-                list1 += "24";
-            else list1 += "41";
+            if (typeId == EntityType.Telephone.getTypeId())
+                list1 += PhoneAtribute.Capacity.getAtributeId();
+            else list1 += TabletAtribute.Capacity.getAtributeId();
             list2 += "<=";
             list3 += searchAttr.getMaxCapacity();
         }
@@ -98,9 +101,9 @@ public class SearchServiceImpl implements ISearchService {
                 list2 += ",";
                 list3 += ",";
             }
-            if (typeId == 8)
-                list1 += "31";
-            else list1 += "48";
+            if (typeId == EntityType.Telephone.getTypeId())
+                list1 += PhoneAtribute.Battery.getAtributeId();
+            else list1 += TabletAtribute.Battery.getAtributeId();
             list2 += ">=";
             list3 += searchAttr.getMinBattery();
         }
@@ -111,9 +114,9 @@ public class SearchServiceImpl implements ISearchService {
                 list2 += ",";
                 list3 += ",";
             }
-            if (typeId == 8)
-                list1 += "31";
-            else list1 += "48";
+            if (typeId == EntityType.Telephone.getTypeId())
+                list1 += PhoneAtribute.Battery.getAtributeId();
+            else list1 += TabletAtribute.Battery.getAtributeId();
             list2 += "<=";
             list3 += searchAttr.getMaxBattery();
         }
