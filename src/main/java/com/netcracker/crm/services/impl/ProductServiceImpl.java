@@ -40,8 +40,12 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
 
         int id;
         try {
-            id = entityDao.add(product);
-            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + product.toString());
+            if (product != null && product.getEntityName() != null &&
+                    product.getEntityUserId()!=null && product.getEntityTypeId()!=null) {
+                id = entityDao.add(product);
+                logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + product.toString());
+            } else
+                throw new ServiceException("Can't insert empty product");
         } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
@@ -67,9 +71,9 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
     public List<Product> getList(int typeId, String atributesId, String values, String operators, int pageNumber, int pageSize) {
         List<Product> productList;
 
-        String priceId=String.valueOf(getAtributeIdByTypeId(typeId, "Price"));
-        try{
-            List<Entity> list = entityDao.getList(typeId,atributesId, values, operators, priceId, pageNumber, pageSize);
+        String priceId = String.valueOf(getAtributeIdByTypeId(typeId, "Price"));
+        try {
+            List<Entity> list = entityDao.getList(typeId, atributesId, values, operators, priceId, pageNumber, pageSize);
             productList = new ArrayList<>(list.size());
             for (Entity e : list) {
                 productList.add(new Product(e));

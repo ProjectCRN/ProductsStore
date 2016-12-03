@@ -232,12 +232,15 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 //        params.put("inType", entityTypeID);
         List<String> entiyIdList = getJdbcTemplate().queryForList(sql, new Object[]{userID, entityTypeID,
                 entityTypeID, entityTypeID}, String.class);
-        String strEntityIdList="";
-        for(String item : entiyIdList){
-            strEntityIdList+=","+item;
+        if(entiyIdList!=null && entiyIdList.size()>0) {
+            String strEntityIdList="";
+            for (String item : entiyIdList) {
+                strEntityIdList += "," + item;
+            }
+            strEntityIdList = strEntityIdList.substring(1);
+            return getListWithAttributes(strEntityIdList,atributesIdView);
         }
-        strEntityIdList=strEntityIdList.substring(1);
-        return getListWithAttributes(strEntityIdList,atributesIdView);
+        return null;
     }
 
     @Override
