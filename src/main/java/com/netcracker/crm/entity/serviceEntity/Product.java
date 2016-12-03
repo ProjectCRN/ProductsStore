@@ -65,6 +65,10 @@ public class Product extends Entity {
         super(id, name, isActive, productTypeId, productTypeName, userId);
     }
 
+    public Product(String name, boolean isActive, int productTypeId, int userId) {
+        super(name, isActive, productTypeId, userId);
+    }
+
     public Product(String name, boolean isActive, int productTypeId, int userId, List<Value> valueList) {
         super(name, isActive, productTypeId, userId, valueList);
     }

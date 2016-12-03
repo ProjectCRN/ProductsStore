@@ -20,9 +20,9 @@ public class Entity extends AbstractEntity {
     private static final long serialVersionUID = 1L;
     private String entityName;
     private boolean isActive;
-    private int entityTypeId;
+    private Integer entityTypeId;
     private String entityTypeName;
-    private int userId;
+    private Integer userId;
     private List<Value> valueList;
     private List<Pair<Atribute,Value>> atributeValueMap;
 
@@ -77,7 +77,7 @@ public class Entity extends AbstractEntity {
         if(atributeValueMap!=null) {
             for (Pair<Atribute, Value> item : atributeValueMap) {
                 str += "\n" + item.getKey().toString();
-                str += "\n" + item.getValue().toString();
+                str += ": " + item.getValue().toString();
             }
         }
         return str;
@@ -118,15 +118,24 @@ public class Entity extends AbstractEntity {
         return ((isActive==true) ? 1 : 0);
     }
 
-    public int getEntityTypeId() {
+    public Integer getEntityTypeId() {
         return entityTypeId;
+    }
+
+    public void setEntityTypeId(Integer entityTypeId) {
+        this.entityTypeId = entityTypeId;
+        this.entityTypeName = EntityType.findByKey(entityTypeId).name();
     }
 
     public String getEntityTypeName() {
         return entityTypeName;
     }
 
-    public int getEntityUserId() {
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getEntityUserId() {
         return userId;
     }
 
@@ -154,18 +163,11 @@ public class Entity extends AbstractEntity {
         this.isActive = isActive;
     }
 
-    public void setEntityTypeId(int entityTypeId) {
-        this.entityTypeId = entityTypeId;
-        this.entityTypeName = EntityType.findByKey(entityTypeId).name();
-    }
 
     public void setEntityTypeName(String entityTypeName) {
         this.entityTypeName = entityTypeName;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     protected Integer getAtributeId(String atribute){
         if(entityTypeId== EntityType.valueOf("Telephone").getTypeId()){

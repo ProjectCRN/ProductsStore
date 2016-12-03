@@ -3,6 +3,8 @@ package com.netcracker.crm.controller;
 import com.netcracker.crm.dao.IEntityDao;
 import com.netcracker.crm.dao.impl.EntityDaoImpl;
 import com.netcracker.crm.entity.Entity;
+import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.enums.TabletAtribute;
 import com.netcracker.crm.entity.serviceEntity.Cart;
 import com.netcracker.crm.entity.serviceEntity.CartItem;
 import com.netcracker.crm.entity.serviceEntity.Order;
@@ -68,7 +70,7 @@ public class TestDao {
 //        Cart cart = new Cart(-1);
 //        cart.addCartItem(new CartItem(productService.getById(53), 1));
 //        cart.addCartItem(new CartItem(productService.getById(54), 2));
-        IOrderService orderService = (IOrderService) context.getBean("orderService");
+//        IOrderService orderService = (IOrderService) context.getBean("orderService");
 //        Order order = orderService.makeOrderByCart(cart);
 //        int id = orderService.add(order);
 //        orderService.getById(187);
@@ -98,6 +100,12 @@ public class TestDao {
 //        cartService.countTotal();
 //        System.out.println(cartService.getCart().toString());
 
+        IProductService productService = (IProductService)context.getBean("productService");
+        Product product = new Product("newproduct", true, EntityType.Tablet.getTypeId(), -2);
+        product.setValueInList(TabletAtribute.Fabricator.name(), "newfabricator");
+        Product pr1 = new Product();
+        pr1.setEntityName("newname");
+        productService.add(pr1);
 
     }
 }
