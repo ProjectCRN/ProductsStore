@@ -1,8 +1,11 @@
 package com.netcracker.crm.entity.serviceEntity;
 
 
+import com.netcracker.crm.entity.Atribute;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
+import javafx.util.Pair;
+
 import java.util.List;
 
 public class Product extends Entity {
@@ -15,9 +18,9 @@ public class Product extends Entity {
 
     private double price;
     private String summary;
-    private int orderId; //0 - не в заказе
+    private int orderId; //0 - не в заказе, толкьо у productInOrder
     private String imageUrl;
-    private int quantity;
+    private int quantity;  //толкьо у productInOrder
     private String fabricator;
 
 
@@ -155,25 +158,21 @@ public class Product extends Entity {
 
     @Override
     public String toString() {
-        return "Product{" +
+        String str = "Product{" +
                 "id='" + getId() + '\'' +
                 ", name='" + getEntityName() + '\'' +
-                ", price='" + price + '\'' +
+                ", user='" + getEntityUserId() + '\'' +
                 ", productType='" + getEntityTypeName() + '\'' + "}";
-    }
-
-    public void setValueInList(String atribute, String value) {
-        boolean f = false;
-        for (int i = 0; i < getValueList().size(); i++) {
-            if (getValueList().get(i).getAtributeId() == getAtributeId(atribute)) {
-                getValueList().get(i).setValue(value);
-                f = true;
+        if (getAtributeValueMap() != null) {
+            for (Pair<Atribute, Value> item : getAtributeValueMap()) {
+                str += "\n" + item.getKey().toString();
+                str += ": " + item.getValue().toString();
             }
         }
-        if (!f) {
-            getValueList().add(new Value(value, getId(), getAtributeId(atribute)));
-        }
+        return str;
     }
+
+
 
     //    public Entity toEntity() {
 //        Entity entity = new Entity(getId(), name, isActive,

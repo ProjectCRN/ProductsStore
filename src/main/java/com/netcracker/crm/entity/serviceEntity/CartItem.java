@@ -63,7 +63,6 @@ public class CartItem extends AbstractEntity {
     public String toString() {
         return "CartItem{" +
                 "product=" + product.toString() +
-                ", Quantity=" + Quantity +
                 '}';
     }
 }

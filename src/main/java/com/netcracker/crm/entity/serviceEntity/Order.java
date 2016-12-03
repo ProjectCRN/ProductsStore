@@ -239,19 +239,6 @@ public class Order extends Entity {
         return str;
     }
 
-    private void setValueInList(String atribute, String value) {
-        boolean f = false;
-        for (int i = 0; i < getValueList().size(); i++) {
-            if (getValueList().get(i).getAtributeId() == OrderAtribute.valueOf(atribute).getAtributeId()) {
-                getValueList().get(i).setValue(value);
-                f = true;
-            }
-        }
-        if (!f) {
-            getValueList().add(new Value(value, getId(), OrderAtribute.valueOf(atribute).getAtributeId()));
-        }
-    }
-
     //    public Entity toEntity() {
 //        Entity entity = new Entity(getId(), name, isActive, EntityType.valueOf(entityType).getTypeId(), entityType, userId);
 //        entity.setAtributeValueMap(atributeValueMap);
