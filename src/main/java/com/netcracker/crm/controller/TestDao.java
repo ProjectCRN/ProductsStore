@@ -50,19 +50,14 @@ public class TestDao {
 //
 //        userService.isEmailFree("gav@panin.ru");
 //
-        IProductService productService = (IProductService) context.getBean("productService");
-        for (Product item : productService.getList(9,"","","",1,2)) {
-            System.out.println(item.toString());
-        }
-
+//        IProductService productService = (IProductService) context.getBean("productService");
+//        for (Product item : productService.getList(9,"","","",1,2)) {
+//            System.out.println(item.toString());
+//        }
 //        productService.getByUserAndType(-2, null);
 //       Product product = productService.getById(53);
-//        List <Product> productList = productService.getList(9,"","","");
-//        for (Product op : productList) {
-//            System.out.println(op.toString());
-//        }
 //        int a = product.getOrderId();
-        //        productService.delete(43);
+//        productService.delete(54);
 //        productService.update(40, "iphone6s", 1, -2, null);
 //        List<Value> values = new ArrayList<>();
 //        values.add(new Value(41, "16Gb", 40, 14));
@@ -73,14 +68,16 @@ public class TestDao {
 //        Cart cart = new Cart(-1);
 //        cart.addCartItem(new CartItem(productService.getById(53), 1));
 //        cart.addCartItem(new CartItem(productService.getById(54), 2));
-//        IOrderService orderService = (IOrderService) context.getBean("orderService");
+        IOrderService orderService = (IOrderService) context.getBean("orderService");
 //        Order order = orderService.makeOrderByCart(cart);
 //        int id = orderService.add(order);
-//        orderService.getById(373);
-//        for(Order o: orderService.getListForUser(-2)){
-//            System.out.println(o);
+//        orderService.getById(187);
+//        List<Order> list = orderService.getListForUser(-1);
+//        if (list != null) {
+//            for (Order o : list) {
+//                System.out.println(o);
+//            }
 //        }
-
 
 
 //        CatalogParser catalogParser = (CatalogParser) context.getBean("catalogParser");

@@ -156,6 +156,7 @@ public class Entity extends AbstractEntity {
 
     public void setEntityTypeId(int entityTypeId) {
         this.entityTypeId = entityTypeId;
+        this.entityTypeName = EntityType.findByKey(entityTypeId).name();
     }
 
     public void setEntityTypeName(String entityTypeName) {
@@ -180,5 +181,26 @@ public class Entity extends AbstractEntity {
             return OrderAtribute.valueOf(atribute).getAtributeId();
         }
         else return null;
+    }
+
+    public void setValueInList(String atribute, String value) {
+        boolean f = false;
+        for (int i = 0; i < getValueList().size(); i++) {
+            if (getValueList().get(i).getAtributeId() == getAtributeId(atribute)) {
+                getValueList().get(i).setValue(value);
+                f = true;
+            }
+        }
+        if (!f) {
+            getValueList().add(new Value(value, getId(), getAtributeId(atribute)));
+        }
+    }
+    public String getValueFromMap(String atribute){
+        for (int i = 0; i < getAtributeValueMap().size(); i++) {
+            if (getAtributeValueMap().get(i).getKey().getAtributeName().equals(atribute)) {
+                return getAtributeValueMap().get(i).getValue().getValue();
+            }
+        }
+        return null;
     }
 }
