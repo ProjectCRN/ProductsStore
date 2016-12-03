@@ -2,40 +2,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Create Order</title>
-    <spring:url value="/resources/css/style.css" var="mainCss"/>
-    <spring:url value="/resources/lib/bootstrap/bootstrap-grid-3.3.1.min.css" var="btsCss"/>
-    <spring:url value="/resources/img/spinner.gif" var="spinner"/>
-    <link href="${btsCss}" rel="stylesheet"/>
-    <link href="${mainCss}" rel="stylesheet"/>
-    <style>
-        .error {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-
-<div class="content">
 
 
-    <div class="block1">
-        <div class="row">
-            <nav>
-                <li><a href="/">Main</a></li>
-                <li><a href="/products/telephone">Telephone</a></li>
-                <li><a href="/products/tablet">Tablet</a></li>
-                <li><a href="/cart">Cart</a></li>
-                <li><a href="/createOrder" class="active">Create Order</a></li>
-                <li><a href="/createUser">Registration</a></li>
-            </nav>
-            <div class="container">
 
 
-                <sf:form method="post" modelAttribute="order" action="createOrder">
+                <sf:form method="post" id="formOrder" modelAttribute="order" action="javascript:void(null);" onsubmit="orderFun()">
 
                     <table class="table table-striped">
 
@@ -90,12 +61,19 @@
                     </table>
 
                 </sf:form>
-            </div>
-        </div>
-    </div>
+
+<script type="text/javascript" language="javascript">
+    function orderFun() {
+        var msg   = $('#formOrder').serialize();
+        $.ajax({
+            type: 'POST',
+            url: 'createOrder',
+            data: msg,
+            success: function(data) {
+                $('.results').html(data);
+            }
+        });
+    }
 
 
-</div>
-</body>
-
-</html>
+</script>
