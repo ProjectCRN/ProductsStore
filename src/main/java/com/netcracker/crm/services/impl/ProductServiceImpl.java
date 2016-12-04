@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by .. on 20.11.2016.
+ * Created by οκ on 20.11.2016.
  */
 
 public class ProductServiceImpl extends AbstractService<Product> implements IProductService {
@@ -40,12 +40,8 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
 
         int id;
         try {
-            if (product != null && product.getEntityName() != null &&
-                    product.getEntityUserId()!=null && product.getEntityTypeId()!=null) {
                 id = entityDao.add(product);
                 logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + product.toString());
-            } else
-                throw new ServiceException("Can't insert empty product");
         } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);

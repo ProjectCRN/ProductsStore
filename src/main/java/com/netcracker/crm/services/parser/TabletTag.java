@@ -10,23 +10,24 @@ import java.util.HashMap;
  */
 
 public class TabletTag extends AbstractTag {
-    private TabletTag() {
+    public TabletTag() {
         tags = HashBiMap.create(new HashMap(){{
             put("price", 38);
             put("summary", 39);
-            put("operatingSystem", 40);
-            put("processorSpeedGHz", 41);
-            put("capacityGB", 42);
-            put("displayInch", 43);
-            put("heightMM", 44);
-            put("widthMM", 45);
-            put("depthMM", 46);
-            put("weightGrams", 47);
-            put("cameraMP", 48);
-            put("batteryHours", 49);
-            put("simCard", 50);
-            put("imageURL", 51);
+            put("operatingsystem", 40);
+            put("processorspeed", 41);
+            put("capacity", 42);
+            put("display", 43);
+            put("height", 44);
+            put("width", 45);
+            put("depth", 46);
+            put("weight", 47);
+            put("camera", 48);
+            put("battery", 49);
+            put("simcard", 50);
+            put("imageurl", 51);
             put("fabricator", 52);
         }});
+        typeName = "Tablet";
     }
 }

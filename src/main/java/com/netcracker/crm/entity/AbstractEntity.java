@@ -3,7 +3,7 @@ package com.netcracker.crm.entity;
 import java.io.Serializable;
 
 /**
- * Created by .. on 12.11.2016.
+ * Created by di on 12.11.2016.
  */
 public class AbstractEntity implements Serializable {
 

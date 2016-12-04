@@ -6,7 +6,7 @@ import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.IProductService;
 import com.netcracker.crm.services.exception.ServiceException;
 import com.netcracker.crm.services.listworker.ProductListWorker;
-import com.netcracker.crm.services.parser.exception.NoSuchTagXMLException;
+import com.netcracker.crm.services.parser.exception.NoSuchTagException;
 import com.netcracker.crm.services.parser.exception.WrongXMLShemaException;
 import javafx.util.Pair;
 import org.dom4j.*;
@@ -94,7 +94,7 @@ public class CatalogParser {
                         }
                         break;
                      default:
-                        throw new NoSuchTagXMLException("Unsupported ProductType");
+                        throw new NoSuchTagException("Unsupported ProductType");
 
                 }
             }
@@ -160,7 +160,7 @@ public class CatalogParser {
             }
 
 
-        } catch (DocumentException  | FileNotFoundException | NoSuchTagXMLException e){
+        } catch (DocumentException  | FileNotFoundException | NoSuchTagException e){
             throw new ServiceException(e.getMessage());
         } catch ( WrongXMLShemaException e  ){
             throw new WrongXMLShemaException("Wrong XML Schema: " + e.getMessage());

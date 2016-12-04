@@ -1,7 +1,7 @@
 package com.netcracker.crm.entity;
 
 /**
- * Created by �� on 13.11.2016.
+ * Created by di on 13.11.2016.
  */
 public class Atribute extends AbstractEntity {
 
