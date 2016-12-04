@@ -30,7 +30,6 @@ public class FrontController {
 
         model.addAttribute("message", "Our dream team ^_^");
         return VIEW_INDEX;
-
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.GET)

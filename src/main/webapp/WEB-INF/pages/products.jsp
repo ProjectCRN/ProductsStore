@@ -14,18 +14,18 @@
                     <h3>Search:</h3>
                     <sf:form method="get" id="formSearch" modelAttribute="searchAttr" action="javascript:void(null);" onsubmit="searchFun()">
 
-                        <label>Price: </label>
-                        <sf:input path="minPrice" size="8" placeholder="min" pattern="^[ 0-9]+$"/>
-                        <sf:input path="maxPrice" size="8" placeholder="max" pattern="^[ 0-9]+$"/><br>
+                        <label>Price: </label><br>
+                        <sf:input path="minPrice" size="12" placeholder="min" pattern="^[ 0-9]+$"/>
+                        <sf:input path="maxPrice" size="12" placeholder="max" pattern="^[ 0-9]+$"/><br><br><br>
 
-                        <label>Capacity (GB): </label>
-                        <sf:input path="minCapacity" size="8" placeholder="min" pattern="^[ 0-9]+$"/>
-                        <sf:input path="maxCapacity" size="8" placeholder="max" pattern="^[ 0-9]+$"/><br>
+                        <label>Capacity (GB): </label><br>
+                        <sf:input path="minCapacity" size="12" placeholder="min" pattern="^[ 0-9]+$"/>
+                        <sf:input path="maxCapacity" size="12" placeholder="max" pattern="^[ 0-9]+$"/><br><br><br>
 
 
-                        <label>Battery (Hours): </label>
-                        <sf:input path="minBattery" size="8" placeholder="min" pattern="^[ 0-9]+$"/>
-                        <sf:input path="maxBattery" size="8" placeholder="max" pattern="^[ 0-9]+$"/><br>
+                        <label>Battery (Hours): </label><br>
+                        <sf:input path="minBattery" size="12" placeholder="min" pattern="^[ 0-9]+$"/>
+                        <sf:input path="maxBattery" size="12" placeholder="max" pattern="^[ 0-9]+$"/><br><br>
 
                         <sf:input path="type" style="display: none;" value="${currType}"/>
                         <input type="submit" value="Search" class="btn"/>
@@ -77,7 +77,8 @@
                             </li>
                         </c:forEach>
                     </ul>
-                    <ul class="pagination">
+                    <ul class="list_pagination">
+
                         <c:forEach items="${pages}" var="page">
                             <li><a id="page" href="#">${page}</a>
 
@@ -96,6 +97,7 @@
                             </script>
                             </li>
                         </c:forEach>
+
                     </ul>
                 </div>
 

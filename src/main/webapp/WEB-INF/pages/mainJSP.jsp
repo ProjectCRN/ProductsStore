@@ -24,7 +24,8 @@
         <div class="row">
 
             <nav>
-                <li><a href="/">Main</a></li>
+                <li><a class="logo" href="/"><br></a></li>
+                <li><a class="mainLink" href="/">Main</a></li>
                 <li>
                     <a href="#">Products</a>
                     <ul class="submenu">
@@ -33,7 +34,6 @@
                     </ul>
                 </li>
                 <li><a class="cart" href="#">Cart</a></li>
-                <li><a class="createOrder" href="#">Create Order</a></li>
                 <li><a class="createUser" href="#">Registration</a></li>
             </nav>
 
@@ -73,10 +73,6 @@
 
     $('.cart').click( function() {
         funLoad('/cart');
-    });
-
-    $('.createOrder').click( function() {
-        funLoad('/createOrder');
     });
 
     $('.createUser').click( function() {
