@@ -1,14 +1,6 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!--<script>
-$(window).on('load', function () {
-var $preloader = $('#page-preloader'),
-$spinner   = $preloader.find('.spinner');
-$spinner.fadeOut();
-$preloader.delay(350).fadeOut('slow');
-});
-</script>-->
 
 <div class="col-md-3 search">
     <h3>Search:</h3>
@@ -80,7 +72,7 @@ $preloader.delay(350).fadeOut('slow');
     <ul class="list_pagination">
 
         <c:forEach items="${pages}" var="page">
-            <li><a id="page" class="page_${page}" href="#">${page}</a>
+            <li><a class="page_${page}" href="#">${page}</a>
 
                 <script type="text/javascript" language="javascript">
 
