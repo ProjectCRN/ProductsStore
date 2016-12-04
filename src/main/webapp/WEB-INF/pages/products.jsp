@@ -36,7 +36,7 @@
                         ${emptyList}
                         <c:forEach items="${productList}" var="item">
                             <li>
-                                <a href="#" id="seeMore_${item.getId()}">
+                                <a href="#" class="seeMore_btn_${item.getId()}">
                                     <img src="/resources/img/img_phone.jpg"/>
 
                                     <span>${item.getEntityName()}</span><br>
@@ -53,7 +53,7 @@
                                     <div  id="added${item.getId()}"  style="display: none;">Added</div>
 
 
-                                    <a class="btn btn-default btnLink" role="button" id="seeMore_btn_${item.getId()}" href="#">see more</a>
+                                    <a class="btn btn-default btnLink seeMore_btn_${item.getId()}" role="button"  href="#">see more</a>
                                     <br><span>${item.getPrice()}$</span> <br>
 
                                     <script>
@@ -64,15 +64,7 @@
                                             document.getElementById('added${item.getId()}').style.display = "block";
                                         });
 
-                                        $('#seeMore_${item.getId()}').click( function() {
-                                            $.ajax({
-                                                url: '/item/${item.getId()}',
-                                                success: function(data) {
-                                                    $('.results').html(data);
-                                                }
-                                            });
-                                        });
-                                        $('#seeMore_btn_${item.getId()}').click( function() {
+                                        $('.seeMore_btn_${item.getId()}').click( function() {
                                             $.ajax({
                                                 url: '/item/${item.getId()}',
                                                 success: function(data) {
