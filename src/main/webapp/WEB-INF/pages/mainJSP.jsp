@@ -25,8 +25,13 @@
 
             <nav>
                 <li><a href="/">Main</a></li>
-                <li><a class="telephone" href="#">Telephone</a></li>
-                <li><a class="tablet" href="#">Tablet</a></li>
+                <li>
+                    <a href="#">Products</a>
+                    <ul class="submenu">
+                        <li><a class="telephone" href="#">Telephone</a></li>
+                        <li><a class="tablet" href="#">Tablet</a></li>
+                    </ul>
+                </li>
                 <li><a class="cart" href="#">Cart</a></li>
                 <li><a class="createOrder" href="#">Create Order</a></li>
                 <li><a class="createUser" href="#">Registration</a></li>

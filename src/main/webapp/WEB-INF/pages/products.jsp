@@ -53,7 +53,7 @@
                                     <div  id="added${item.getId()}"  style="display: none;">Added</div>
 
 
-                                    <a class="btn btn-default btnLink" role="button" id="seeMore_${item.getId()}" href="#">see more</a>
+                                    <a class="btn btn-default btnLink" role="button" id="seeMore_btn_${item.getId()}" href="#">see more</a>
                                     <br><span>${item.getPrice()}$</span> <br>
 
                                     <script>
@@ -65,6 +65,14 @@
                                         });
 
                                         $('#seeMore_${item.getId()}').click( function() {
+                                            $.ajax({
+                                                url: '/item/${item.getId()}',
+                                                success: function(data) {
+                                                    $('.results').html(data);
+                                                }
+                                            });
+                                        });
+                                        $('#seeMore_btn_${item.getId()}').click( function() {
                                             $.ajax({
                                                 url: '/item/${item.getId()}',
                                                 success: function(data) {
