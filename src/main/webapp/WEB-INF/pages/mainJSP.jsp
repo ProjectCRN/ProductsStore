@@ -14,6 +14,10 @@
 
 </head>
 <body>
+
+<div id="page-preloader" style="display: none;"><span class="spinner">loading...</span></div>
+
+
 <div class="content">
 
     <div class="block1">
@@ -42,48 +46,37 @@
 
 
 <script language="javascript" type="text/javascript">
+
+    function funLoad(str) {
+        $('#page-preloader').show();
+        $.ajax({
+            url: str,
+            success: function(data) {
+                $('.results').html(data);
+                $('#page-preloader').hide();
+            }
+        });
+    }
+
     $('.telephone').click( function() {
-        $.ajax({
-            url: '/products/telephone',
-            success: function(data) {
-                $('.results').html(data);
-            }
-        });
+        funLoad('/products/telephone');
     });
+
     $('.tablet').click( function() {
-        $.ajax({
-            url: '/products/tablet',
-            success: function(data) {
-                $('.results').html(data);
-            }
-        });
+        funLoad('/products/tablet');
     });
+
     $('.cart').click( function() {
-        $.ajax({
-            url: '/cart',
-            success: function(data) {
-                $('.results').html(data);
-            }
-        });
+        funLoad('/cart');
     });
+
     $('.createOrder').click( function() {
-        $.ajax({
-            url: '/createOrder',
-            success: function(data) {
-                $('.results').html(data);
-            }
-        });
+        funLoad('/createOrder');
     });
+
     $('.createUser').click( function() {
-        $.ajax({
-            url: '/createUser',
-            success: function(data) {
-                $('.results').html(data);
-            }
-        });
+        funLoad('/createUser');
     });
-
-
 
 
 </script>
