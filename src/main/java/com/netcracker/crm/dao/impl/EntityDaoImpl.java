@@ -2,12 +2,15 @@ package com.netcracker.crm.dao.impl;
 
 import com.netcracker.crm.dao.AbstractDao;
 import com.netcracker.crm.dao.IEntityDao;
+import com.netcracker.crm.dao.exception.DaoException;
 import com.netcracker.crm.dao.rowmapper.AtributeValueRowMapper;
 import com.netcracker.crm.dao.rowmapper.EAVlistRowMapper;
 import com.netcracker.crm.dao.rowmapper.EntityRowMapper;
 import com.netcracker.crm.entity.Atribute;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -46,7 +49,12 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                     idEntity,
                     item.getAtributeId()
             };
+            try {
             getJdbcTemplate().update(sql, args);
+            } catch (DataAccessException e){
+                logger.error("Can't addValue() "+e.getMessage());
+                throw new DaoException("Data access Exception", e);
+            }
         }
     }
 
@@ -68,7 +76,12 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 entity.getEntityTypeId(),
                 entity.getEntityUserId()
         };
+        try {
         getJdbcTemplate().update(sql, args);
+        } catch (DataAccessException e){
+            logger.error("Can't add() " +e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
         if(entity.getValueList()!=null) {
             addValue(entity.getValueList(), id);
         }
@@ -78,13 +91,23 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     @Override
     public Entity getById(int id) {
+        Entity entity=null;
         String sql = "SELECT E.ENTITYID ,E.ENTITYNAME ,E.ISACTIVE ,E.ENTITYTYPEID,T.ENTITYTYPENAME ,E.USERID  " +
                 "FROM TBL_ENTITY E" +
                 "    INNER JOIN TBL_ENTITYTYPE T" +
                 "    ON E.ENTITYTYPEID=T.ENTITYTYPEID" +
                 "    WHERE (E.ENTITYID = ?)";
 
-        Entity entity = getJdbcTemplate().queryForObject(sql, new Object[]{id}, new EntityRowMapper());
+        try {
+             entity = getJdbcTemplate().queryForObject(sql, new Object[]{id}, new EntityRowMapper());
+        } catch (EmptyResultDataAccessException e){
+            logger.error("Can't getById() "+e.getMessage());
+            throw new DaoException("Can't find entity with id = " + id, e);
+        } catch (DataAccessException e){
+            logger.error(e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
+
         sql = "SELECT A.ATRIBUTEID ,A.ATRIBUTENAME ,A.ATRIBUTETYPEID ,T.ATRIBUTETYPENAME,A.ISACTIVE ,A.ENTITYTYPEID ,A.ISREQUIRED , V.VALUEID ,V.VALUE ,V.ENTITYID " +
                 " FROM TBL_ATRIBUTE A " +
                 " INNER JOIN TBL_ATRIBUTETYPE T " +
@@ -93,7 +116,15 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 " ON A.ATRIBUTEID=V.ATRIBUTEID" +
                 " WHERE (V.ENTITYID = ?)" +
                 " ORDER BY A.SORTORDER";
+        try {
         entity.setAtributeValueMap(getJdbcTemplate().query(sql, new Object[]{id}, new AtributeValueRowMapper()));
+        } catch (EmptyResultDataAccessException e){
+            logger.error("Can't getById() "+e.getMessage());
+            throw new DaoException("Can't find Value with EntityId = " + id, e);
+        } catch (DataAccessException e){
+            logger.error(e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
         return entity;
     }
 
@@ -106,7 +137,12 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 userId,
                 id
         };
+        try {
         getJdbcTemplate().update(sqlUpdateEntity, args);
+        } catch (DataAccessException e){
+            logger.error("Can't updateEntity() " +e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
     }
 
     public void updateValue(List<Value> valuesArr) {
@@ -115,7 +151,12 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         for (Value v : valuesArr) {
             args.add(new Object[]{v.getValue(), v.getId()});
         }
+        try {
         getJdbcTemplate().batchUpdate(sql, args);
+        } catch (DataAccessException e){
+            logger.error("Can't updateValue() " +e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
     }
 
     @Override
@@ -137,6 +178,8 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     @Override
     public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView,int pageNumber, int pageSize) {
+        List<String> entiyIdList=null;
+        try {
         getJdbcTemplate().setResultsMapCaseInsensitive(true);
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue(PARAM_IN_ENTITY_ENTITYTYPEID, typeId)
@@ -145,6 +188,8 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 .addValue(PARAM_IN_ENTITY_OPERATORS, operators)
                 .addValue(PARAM_IN_PAGE_NUMBER, pageNumber)
                 .addValue(PARAM_IN_PAGE_SIZE, pageSize);
+
+
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(getJdbcTemplate())
                 .withProcedureName(PROCEDURE_ENTITY_GET_LIST)
                 .returningResultSet(PARAM_OUT_ENTITY_LIST, new RowMapper<String>() {
@@ -157,7 +202,15 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 });
 
         Map result = jdbcCall.execute(in);
-        List<String> entiyIdList = new ArrayList<>((ArrayList) result.get(PARAM_OUT_ENTITY_LIST));
+         entiyIdList = new ArrayList<>((ArrayList) result.get(PARAM_OUT_ENTITY_LIST));
+
+        } catch (EmptyResultDataAccessException e){
+            logger.error("Can't getList()"+e.getMessage());
+            throw new DaoException("Entity, Attribute or Value table is empty", e);
+        } catch (DataAccessException e){
+            logger.error(e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
         String strEntityIdList="";
         for(String item : entiyIdList){
             strEntityIdList+=","+item;
@@ -168,6 +221,8 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     @Override
     public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView) {
+        List<String> entiyIdList=null;
+        try {
         getJdbcTemplate().setResultsMapCaseInsensitive(true);
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue(PARAM_IN_ENTITY_ENTITYTYPEID, typeId)
@@ -185,7 +240,15 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 });
 
         Map result = jdbcCall.execute(in);
-        List<String> entiyIdList = new ArrayList<>((ArrayList) result.get(PARAM_OUT_ENTITY_LIST));
+         entiyIdList = new ArrayList<>((ArrayList) result.get(PARAM_OUT_ENTITY_LIST));
+        } catch (EmptyResultDataAccessException e){
+            logger.error("Can't getList()"+e.getMessage());
+            throw new DaoException("Entity, Attribute or Value table is empty", e);
+        } catch (DataAccessException e){
+            logger.error(e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
+
         String strEntityIdList="";
         for(String item : entiyIdList){
             strEntityIdList+=","+item;
@@ -196,11 +259,13 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     private List<Entity> getListWithAttributes (String entiyIdList, String atributesId){
         List<String> attributesList=new ArrayList<>();
+        List<Entity> entiyList=null;
         String[] arr = atributesId.split(",");
         for ( String ss : arr) {
             attributesList.add(ss);
         }
 
+        try {
         getJdbcTemplate().setResultsMapCaseInsensitive(true);
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue(PARAM_IN_ENTITY_ENTITYID, entiyIdList)
@@ -210,7 +275,15 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 .returningResultSet(PARAM_OUT_ENTITY_LIST,new EAVlistRowMapper(attributesList));
 
         Map result = jdbcCall.execute(in);
-        List<Entity> entiyList= new ArrayList<>((ArrayList)result.get(PARAM_OUT_ENTITY_LIST));
+         entiyList= new ArrayList<>((ArrayList)result.get(PARAM_OUT_ENTITY_LIST));
+
+        } catch (EmptyResultDataAccessException e){
+            logger.error("Can't getListWithAttributes()"+e.getMessage());
+            throw new DaoException("Attribute or Value table is empty", e);
+        } catch (DataAccessException e){
+            logger.error(e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
 
         return entiyList;
 
@@ -219,7 +292,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     @Override
     public List<Entity> getByUserAndType(Integer userID, Integer entityTypeID, String atributesIdView) {
-
+        List<String> entiyIdList=null;
         String sql = "SELECT  E.ENTITYID " +
                 " FROM TBL_ENTITY E INNER JOIN TBL_ENTITYTYPE T ON E.ENTITYTYPEID=" +
                 "T.ENTITYTYPEID WHERE (E." + COLUMN_ENTITY_USER_ID
@@ -230,8 +303,18 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 //        Map<String, Object> params = new HashMap<>();
 //        params.put("inUser", userID);
 //        params.put("inType", entityTypeID);
-        List<String> entiyIdList = getJdbcTemplate().queryForList(sql, new Object[]{userID, entityTypeID,
+        try {
+         entiyIdList = getJdbcTemplate().queryForList(sql, new Object[]{userID, entityTypeID,
                 entityTypeID, entityTypeID}, String.class);
+        } catch (EmptyResultDataAccessException e){
+            logger.error("Can't getByUserAndType()"+e.getMessage());
+            throw new DaoException("Entity table is empty", e);
+        } catch (DataAccessException e){
+            logger.error(e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
+
+
         String strEntityIdList="";
         for(String item : entiyIdList){
             strEntityIdList+=","+item;
@@ -242,6 +325,8 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     @Override
     public int rowCounter(int typeId, String atributesId, String values, String operators) {
+        Map out=null;
+        try {
         getJdbcTemplate().setResultsMapCaseInsensitive(true);
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue(PARAM_IN_ENTITY_ENTITYTYPEID, typeId)
@@ -251,8 +336,16 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(getJdbcTemplate())
                 .withProcedureName(PROCEDURE_ROWS_COUNTER);
-        Map out = jdbcCall.execute(in);
-        return Integer.parseInt(String.valueOf(out.get(PARAM_OUT_COUNT)));
+         out = jdbcCall.execute(in);
+    } catch (EmptyResultDataAccessException e){
+        logger.error("Can't getByUserAndType()"+e.getMessage());
+        throw new DaoException("Entity table is empty", e);
+    } catch (DataAccessException e){
+        logger.error(e.getMessage());
+        throw new DaoException("Data access Exception", e);
+    }
+
+    return Integer.parseInt(String.valueOf(out.get(PARAM_OUT_COUNT)));
     }
 
     @Override
@@ -262,12 +355,23 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         Object[] args = new Object[]{
                 id
         };
+        try {
         getJdbcTemplate().update(sqlDeleteEntity, args);
+        } catch (DataAccessException e){
+            logger.error("Can't delete()"+e.getMessage());
+            throw new DaoException(e.getMessage(), e);
+        }
     }
 
     private int getKey() {
+        int out=-100;
         final String sql = "SELECT SQ_MAIN.NEXTVAL from dual";
-        int out = getJdbcTemplate().queryForObject(sql, Integer.class);
+        try {
+         out = getJdbcTemplate().queryForObject(sql, Integer.class);
+        } catch (DataAccessException e){
+            logger.error("Can't getKey()"+e.getMessage());
+            throw new DaoException(e.getMessage(), e);
+        }
         return out;
     }
 
