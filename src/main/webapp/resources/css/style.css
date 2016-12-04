@@ -28,13 +28,13 @@ body {
     min-height: 65px;
     padding: 0;
     background: #fcfcfc;
-    margin: 0px auto 0px;
+    margin: 0 auto;
     border-bottom: 1px solid #e8ebef;
 }
 
 .block1 nav li {
     display: inline-block;
-    margin: 0 0px;
+    margin: 0 -2px;
     font-size: 24px;
     position:relative;
 }
@@ -45,11 +45,12 @@ body {
     height: 65px;
     color: #6d6d6d;
     padding: 20px 0;
+    margin: 0;
     border-left: 1px solid #e8ebef;
 }
 
 .block1 nav li :hover {
-    background: #FFF;
+    background: #f9f9f9;
 }
 
 
@@ -58,6 +59,7 @@ body {
 
 .block1 nav .submenu{
     position:absolute;
+    left: 2px;
     display:none;
     margin-top: 0;
     padding: 0;
@@ -80,13 +82,13 @@ body {
 }
 
 .block1 nav .cart {
-    padding-left: 60px;
-    background: url('../img/korzina_z_shop.png') 60px 20px no-repeat;
+    padding-left: 55px;
+    background: url('../img/korzina_z_shop.png') 55px 20px no-repeat;
 }
 
 .block1 nav .cart:hover {
-    padding-left: 60px;
-    background: url('../img/korzina_z_shop.png') 60px 20px no-repeat #FFF;
+    padding-left: 55px;
+    background: url('../img/korzina_z_shop.png') 55px 20px no-repeat #f9f9f9;
 }
 
 
@@ -98,7 +100,7 @@ body {
 
 
 .block1 .active {
-    background: #dee3ea;
+    background: #f9f9f9;
 }
 
 .block1 input{
@@ -215,11 +217,11 @@ body {
 
 .list_pagination li a{
     display: inline-block;
-    width: 50px;
-    height: 50px;
+    width: 27px;
+    height: 30px;
     margin: 20px;
     font-size: 24px;
-    padding: 10px;
+    padding-bottom: 6px;
     text-align: center;
     border: 1px solid #575859;
     background: #e8ebef;
@@ -235,7 +237,7 @@ body {
     border: none;
 }
 .block1 nav .logo:hover{
-    background: url('../img/logo.png') no-repeat #FFF;
+    background: url('../img/logo.png') no-repeat #f9f9f9;
     border: none;
 }
 
