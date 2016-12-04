@@ -19,16 +19,52 @@ public class EntityDaoValidation implements IEntityValidation  {
     private static final List<String> operators = (Arrays.asList(">","<","<=",">=","=","like","isnull"));
 
 
-    public static void updateValidation(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
-
-       validEntity(id,entityName,isActive,userId,valuesArr);
+       public static void updateValidation(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
+        if (!idInTable(TABLE_ENTITY, id))
+            throw new DaoException("Invalid Id");
+        if (entityName == null)
+            throw new DaoException("Invalid entityName. Can't be null");
+        if (isActive != 0 && isActive != 1)
+            throw new DaoException("Invalid isActive. Must be 1 or 0");
+        if (valuesArr != null) {
+            for (Value val : valuesArr) {
+                if(val.getValue()==null){
+                    throw new DaoException("Invalid value. Can't be null");
+                }
+                if (!idInTable(TABLE_VALUE, val.getId())) {
+                    throw new DaoException("Invalid value id");
+                }
+                if (val.getEntityId() != id) {
+                    throw new DaoException("Value doesn't match entity");
+                }
+                if(!idInTable(TABLE_ATRIBUTE, val.getAtributeId())){
+                    throw new DaoException("Invalid atribute id");
+                }
+            }
+        }
     }
 
 
     public static void addValidation(Entity entity) {
-        validEntity(entity.getId(),entity.getEntityName(), entity.getisActive(),entity.getEntityUserId(),entity.getValueList());
+        if (entity.getEntityName() == null)
+            throw new DaoException("Invalid entityName. Can't be null");
+        if (entity.getisActive() != 0 && entity.getisActive() != 1)
+            throw new DaoException("Invalid isActive. Must be 1 or 0");
+        if (entity.getValueList() != null) {
+            for (Value val : entity.getValueList()) {
+                if(val.getValue()==null){
+                    throw new DaoException("Invalid value. Can't be null");
+                }
+                
+                if (val.getEntityId() != entity.getId()) {
+                    throw new DaoException("Value doesn't match entity");
+                }
+                if(!idInTable(TABLE_ATRIBUTE, val.getAtributeId())){
+                    throw new DaoException("Invalid atribute id");
+                }
+            }
+        }
     }
-
     public static void getByIdValidation(int id) {
         if (!idInTable(TABLE_ENTITY,id))
             throw new DaoException("Invalid Id");
