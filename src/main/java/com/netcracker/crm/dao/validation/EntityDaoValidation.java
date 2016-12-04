@@ -7,6 +7,7 @@ import static com.netcracker.crm.dao.constants.DaoConstants.*;
 import com.netcracker.crm.dao.exception.DaoException;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
+import com.netcracker.crm.entity.enums.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +28,7 @@ public class EntityDaoValidation implements IEntityValidation {
             throw new DaoException("Invalid isActive. Must be 1 or 0");
         if (valuesArr != null) {
             for (Value val : valuesArr) {
-                if(val.getValue()==null){
+                if (val.getValue() == null) {
                     throw new DaoException("Invalid value. Can't be null");
                 }
                 if (!idInTable(TABLE_VALUE, val.getId())) {
@@ -36,7 +37,7 @@ public class EntityDaoValidation implements IEntityValidation {
                 if (val.getEntityId() != id) {
                     throw new DaoException("Value doesn't match entity");
                 }
-                if(!idInTable(TABLE_ATRIBUTE, val.getAtributeId())){
+                if (!idInTable(TABLE_ATRIBUTE, val.getAtributeId())) {
                     throw new DaoException("Invalid atribute id");
                 }
             }
@@ -81,7 +82,16 @@ public class EntityDaoValidation implements IEntityValidation {
     }
 
     private boolean validAttribute(int typeId, int attributeId) {
-        return true;
+        if (typeId == EntityType.valueOf("Telephone").getTypeId()) {
+            return PhoneAtribute.findByKey(attributeId) != null ? true : false;
+        } else if (typeId == EntityType.valueOf("Tablet").getTypeId()) {
+            return TabletAtribute.findByKey(attributeId) != null ? true : false;
+        } else if (typeId == EntityType.valueOf("ProductInOrder").getTypeId()) {
+            return ProductInOrderAtribute.findByKey(attributeId) != null ? true : false;
+        } else if (typeId == EntityType.valueOf("Order").getTypeId()) {
+            return OrderAtribute.findByKey(attributeId) != null ? true : false;
+        }
+        else return false;
     }
 
     private boolean validValues(int typeId, int attributeId, int entityId) {

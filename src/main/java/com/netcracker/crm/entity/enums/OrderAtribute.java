@@ -23,4 +23,13 @@ public enum OrderAtribute {
     public int getAtributeId() {
         return atributeId;
     }
+
+    public static OrderAtribute findByKey(int i) {
+        for (OrderAtribute eEnum : values()) {
+            if (eEnum.atributeId == i) {
+                return eEnum;
+            }
+        }
+        return null;
+    }
 }

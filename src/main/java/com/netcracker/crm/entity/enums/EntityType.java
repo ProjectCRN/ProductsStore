@@ -17,8 +17,7 @@ public enum EntityType {
     }
 
     public static EntityType findByKey(int i) {
-        EntityType[] enums = EntityType.values();
-        for (EntityType eEnum : enums) {
+        for (EntityType eEnum : values()) {
             if (eEnum.typeId == i) {
                 return eEnum;
             }

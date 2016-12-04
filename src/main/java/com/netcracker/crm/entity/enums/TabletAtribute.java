@@ -3,7 +3,7 @@ package com.netcracker.crm.entity.enums;
 /**
  * Created by пк on 02.12.2016.
  */
-public enum TabletAtribute {
+public enum TabletAtribute{
     Price(38),
     Summary(39),
     OperatingSystem(40),
@@ -28,5 +28,14 @@ public enum TabletAtribute {
 
     public int getAtributeId() {
         return atributeId;
+    }
+
+    public static TabletAtribute findByKey(int i) {
+        for (TabletAtribute eEnum : values()) {
+            if (eEnum.atributeId == i) {
+                return eEnum;
+            }
+        }
+        return null;
     }
 }
