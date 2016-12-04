@@ -211,12 +211,15 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
             logger.error(e.getMessage());
             throw new DaoException("Data access Exception", e);
         }
-        String strEntityIdList="";
-        for(String item : entiyIdList){
-            strEntityIdList+=","+item;
+        if(entiyIdList!=null && entiyIdList.size()>0) {
+            String strEntityIdList="";
+            for (String item : entiyIdList) {
+                strEntityIdList += "," + item;
+            }
+            strEntityIdList = strEntityIdList.substring(1);
+            return getListWithAttributes(strEntityIdList,atributesIdView);
         }
-        strEntityIdList=strEntityIdList.substring(1);
-        return getListWithAttributes(strEntityIdList,atributesIdView);
+        return null;
     }
 
     @Override
@@ -249,12 +252,15 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
             throw new DaoException("Data access Exception", e);
         }
 
-        String strEntityIdList="";
-        for(String item : entiyIdList){
-            strEntityIdList+=","+item;
+        if(entiyIdList!=null && entiyIdList.size()>0) {
+            String strEntityIdList="";
+            for (String item : entiyIdList) {
+                strEntityIdList += "," + item;
+            }
+            strEntityIdList = strEntityIdList.substring(1);
+            return getListWithAttributes(strEntityIdList,atributesIdView);
         }
-        strEntityIdList=strEntityIdList.substring(1);
-        return getListWithAttributes(strEntityIdList,atributesIdView);
+        return null;
     }
 
     private List<Entity> getListWithAttributes (String entiyIdList, String atributesId){
@@ -284,9 +290,10 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
             logger.error(e.getMessage());
             throw new DaoException("Data access Exception", e);
         }
-
-        return entiyList;
-
+        if(entiyList!=null && entiyList.size()>0) {
+            return entiyList;
+        }
+        return null;
     }
 
 
@@ -314,13 +321,15 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
             throw new DaoException("Data access Exception", e);
         }
 
-
-        String strEntityIdList="";
-        for(String item : entiyIdList){
-            strEntityIdList+=","+item;
+        if(entiyIdList!=null && entiyIdList.size()>0) {
+            String strEntityIdList="";
+            for (String item : entiyIdList) {
+                strEntityIdList += "," + item;
+            }
+            strEntityIdList = strEntityIdList.substring(1);
+            return getListWithAttributes(strEntityIdList,atributesIdView);
         }
-        strEntityIdList=strEntityIdList.substring(1);
-        return getListWithAttributes(strEntityIdList,atributesIdView);
+        return null;
     }
 
     @Override
