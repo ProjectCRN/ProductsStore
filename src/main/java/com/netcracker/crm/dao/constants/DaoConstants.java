@@ -57,7 +57,10 @@ public class DaoConstants {
     public static final String PROCEDURE_ROWS_COUNTER = "sp_count_rows";
 
 
-
+    public static final String TABLE_ENTITYTYPE = "TBL_EntityType";
+    public static final String TABLE_ENTITY = "TBL_Entity";
+    public static final String TABLE_VALUE = "TBL_Value";
+    public static final String TABLE_ATRIBUTE = "TBL_Atribute";
 
     private DaoConstants(){}
 }

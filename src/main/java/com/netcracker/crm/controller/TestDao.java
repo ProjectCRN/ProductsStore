@@ -1,8 +1,11 @@
 package com.netcracker.crm.controller;
 
 import com.netcracker.crm.dao.IEntityDao;
+import com.netcracker.crm.dao.exception.DaoException;
 import com.netcracker.crm.dao.impl.EntityDaoImpl;
+import com.netcracker.crm.dao.validation.EntityDaoValidation;
 import com.netcracker.crm.entity.Entity;
+import com.netcracker.crm.entity.Value;
 import com.netcracker.crm.entity.enums.EntityType;
 import com.netcracker.crm.entity.enums.TabletAtribute;
 import com.netcracker.crm.entity.serviceEntity.Cart;
@@ -15,6 +18,7 @@ import com.netcracker.crm.services.impl.OrderServiceImpl;
 import com.netcracker.crm.services.parser.CatalogParser;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.dao.DataAccessException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,11 +104,16 @@ public class TestDao {
 //        cartService.countTotal();
 //        System.out.println(cartService.getCart().toString());
 
-//        IEntityDao entityDao = (IEntityDao)context.getBean("entityDao");
+        IEntityDao entityDao = (IEntityDao) context.getBean("entityDao");
 //        List<Entity> list = entityDao.getByUserAndType(-2, 7 , "");
 //        for(Entity e: list){
 //            System.out.println(e);
 //        }
+        List<Value> values = new ArrayList<>();
+        values.add(new Value("16Gb", 1410, 14));
+        System.out.println(entityDao.update(1410, "hoho", 1, -2, values));
+        entityDao.delete(1000);
+
 
 //        IProductService productService = (IProductService)context.getBean("productService");
 //        Product product = new Product("newproduct", true, EntityType.Tablet.getTypeId(), -2);
