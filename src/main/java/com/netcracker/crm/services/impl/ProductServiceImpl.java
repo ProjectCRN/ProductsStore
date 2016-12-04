@@ -128,6 +128,11 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
         }
     }
 
+    @Override
+    public int rowCounter(int typeId, String atributesId, String values, String operators) {
+        return entityDao.rowCounter(typeId, atributesId, values, operators);
+    }
+
 
     @Override
     public void delete(int id) {

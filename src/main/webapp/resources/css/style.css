@@ -121,7 +121,7 @@ body {
 #page-preloader {
     position: fixed;
     left: 0;
-    top: 0;
+    top: 100px;
     right: 0;
     bottom: 0;
     background: #FFF;
@@ -133,7 +133,12 @@ body {
     height: 248px;
     position: absolute;
     left: 40%;
-    top: 40%;
+    top: 10%;
     background: url('../img/spinner2.gif') no-repeat 50% 50%;
     margin: -16px 0 0 -16px;
+    font-size: 24px;
+    font-weight: 600;
+    padding-top: 250px;
+    padding-left: 100px;
+    color: #575859;
 }

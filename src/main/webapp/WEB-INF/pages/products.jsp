@@ -84,10 +84,12 @@
                             <script type="text/javascript" language="javascript">
 
                                 $('#page').click( function() {
+                                    $('#page-preloader').show();
                                     $.ajax({
                                         url: '${searchReq}/${currType}/page/${page}',
                                         success: function(data) {
                                             $('.results').html(data);
+                                            $('#page-preloader').hide();
                                         }
                                     });
                                 });
@@ -100,6 +102,7 @@
 
 <script type="text/javascript" language="javascript">
     function searchFun() {
+        $('#page-preloader').show();
         var msg   = $('#formSearch').serialize();
         $.ajax({
             type: 'GET',
@@ -107,6 +110,7 @@
             data: msg,
             success: function(data) {
                 $('.results').html(data);
+                $('#page-preloader').hide();
             }
         });
     }

@@ -41,6 +41,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     private IUserDao userDao;
     private static Logger logger = LogManager.getLogger(OrderServiceImpl.class);
     private final static String productInOrderStr = "ProductInOrder";
+    private final static String orderStr = "Order";
     private final static String productIdStr = "ProductID";
     private final static String orderIdStr = "OrderID";
 
@@ -157,6 +158,11 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
+    }
+
+    @Override
+    public int rowCounter(int typeId, String atributesId, String values, String operators) {
+        return entityDao.rowCounter(EntityType.valueOf(orderStr).getTypeId(),atributesId,values,operators);
     }
 
     @Override

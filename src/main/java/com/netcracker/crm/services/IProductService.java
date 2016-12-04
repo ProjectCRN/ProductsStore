@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface IProductService extends IEntityService<Product> {
     public void updateByProduct(Product entity);
-
+    public int rowCounter(int typeId, String atributesId, String values, String operators);
     public List<Product> getByUserAndType(Integer userID, Integer entityTypeID);
 }
