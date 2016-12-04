@@ -100,7 +100,13 @@ public class TestDao {
 //        cartService.countTotal();
 //        System.out.println(cartService.getCart().toString());
 
-        IProductService productService = (IProductService)context.getBean("productService");
+//        IEntityDao entityDao = (IEntityDao)context.getBean("entityDao");
+//        List<Entity> list = entityDao.getByUserAndType(-2, 7 , "");
+//        for(Entity e: list){
+//            System.out.println(e);
+//        }
+
+//        IProductService productService = (IProductService)context.getBean("productService");
 //        Product product = new Product("newproduct", true, EntityType.Tablet.getTypeId(), -2);
 //        product.setValueInList(TabletAtribute.Fabricator.name(), "newfabricator");
 //        Product pr1 = new Product();
