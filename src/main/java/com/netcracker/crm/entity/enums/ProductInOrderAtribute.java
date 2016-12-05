@@ -16,4 +16,13 @@ public enum ProductInOrderAtribute {
     public int getAtributeId() {
         return atributeId;
     }
+
+    public static ProductInOrderAtribute findByKey(int i) {
+        for (ProductInOrderAtribute eEnum : values()) {
+            if (eEnum.atributeId == i) {
+                return eEnum;
+            }
+        }
+        return null;
+    }
 }

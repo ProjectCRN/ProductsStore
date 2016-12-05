@@ -29,7 +29,7 @@ import static com.netcracker.crm.dao.constants.DaoConstants.*;
 import static com.netcracker.crm.dao.validation.EntityDaoValidation.*;
 
 /**
- * Created by di on 12.11.2016.
+ * Created by on 12.11.2016.
  */
 
 public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
@@ -42,19 +42,21 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 COLUMN_VALUE_ENTITY_ID + ", " +
                 COLUMN_VALUE_ATRIBUTE_ID +
                 ") VALUES (?, ?, ?, ?)";
-        for (Value item : valuesArr) {
-            int id = getKey();
-            Object[] args = new Object[]{
-                    id,
-                    item.getValue(),
-                    idEntity,
-                    item.getAtributeId()
-            };
-            try {
-                getJdbcTemplate().update(sql, args);
-            } catch (DataAccessException e) {
-                logger.error("Can't addValue() " + e.getMessage());
-                throw new DaoException("Data access Exception", e);
+        if (valuesArr != null && valuesArr.size() > 0) {
+            for (Value item : valuesArr) {
+                int id = getKey();
+                Object[] args = new Object[]{
+                        id,
+                        item.getValue(),
+                        idEntity,
+                        item.getAtributeId()
+                };
+                try {
+                    getJdbcTemplate().update(sql, args);
+                } catch (DataAccessException e) {
+                    logger.error("Can't addValue() " + e.getMessage());
+                    throw new DaoException("Data access Exception", e);
+                }
             }
         }
     }
@@ -62,6 +64,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public int add(Entity entity) {
+        addValidation(entity);
         final String sql = "INSERT INTO TBL_ENTITY (" +
                 COLUMN_ENTITY_ID + ", " +
                 COLUMN_ENTITY_NAME + ", " +
@@ -92,6 +95,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     @Override
     public Entity getById(int id) {
+        getByIdValidation(id);
         Entity entity = null;
         String sql = "SELECT E.ENTITYID ,E.ENTITYNAME ,E.ISACTIVE ,E.ENTITYTYPEID,T.ENTITYTYPENAME ,E.USERID  " +
                 "FROM TBL_ENTITY E" +
@@ -130,7 +134,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     public int updateEntity(int id, String entityName, int isActive, int userId) {
-        String sqlUpdateEntity = "UPDATE TBL_ENTITY SET ENTITYNAME = ?, ISACTIVE = ?, " +
+        final String sqlUpdateEntity = "UPDATE TBL_ENTITY SET ENTITYNAME = ?, ISACTIVE = ?, " +
                 "USERID = ? WHERE ENTITYID = ?";
         int numb;
         Object[] args = new Object[]{
@@ -141,9 +145,6 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         };
         try {
             numb = getJdbcTemplate().update(sqlUpdateEntity, args);
-//            if (numb == 0) {
-//                throw new DaoException("No row was updated, check id");
-//            }
         } catch (DataAccessException e) {
             logger.error("Can't updateEntity() " + e.getMessage());
             throw new DaoException("Data access Exception", e);
@@ -158,12 +159,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
             args.add(new Object[]{v.getValue(), v.getId()});
         }
         try {
-            int[] updateArr = getJdbcTemplate().batchUpdate(sql, args);
-//            for(int u: updateArr){
-//                if(u==0){
-//                    throw new DaoException("Value wasn't updated, check its id");
-//                }
-//            }
+            int[] numb = getJdbcTemplate().batchUpdate(sql, args);
         } catch (DataAccessException e) {
             logger.error("Can't updateValue() " + e.getMessage());
             throw new DaoException("Data access Exception", e);
@@ -177,7 +173,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         //update entity table
         int numb = updateEntity(id, entityName, isActive, userId);
         //update value table
-        if (valuesArr != null && numb>0) {
+        if (valuesArr != null && numb > 0) {
             updateValue(valuesArr);
         }
         return numb;
@@ -185,6 +181,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     @Override
     public int updateByEntity(Entity entity) {
+        updateByEntityValidation(entity);
         int numb = update(entity.getId(), entity.getEntityName(), entity.getisActive(),
                 entity.getEntityUserId(), entity.getValueList());
         return numb;
@@ -192,6 +189,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     @Override
     public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView, int pageNumber, int pageSize) {
+        getListValidation(typeId, atributesId, values, operators, atributesIdView, pageNumber, pageSize);
         List<String> entiyIdList = null;
         try {
             getJdbcTemplate().setResultsMapCaseInsensitive(true);
@@ -238,6 +236,8 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     @Override
     public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView) {
+        getListValidation(typeId, atributesId, values, operators, atributesIdView);
+
         List<String> entiyIdList = null;
         try {
             getJdbcTemplate().setResultsMapCaseInsensitive(true);
@@ -313,13 +313,18 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     @Override
     public List<Entity> getByUserAndType(Integer userID, Integer entityTypeID, String atributesIdView) {
-        List<String> entiyIdList;
+        getByUserAndTypeValidation(userID, entityTypeID, atributesIdView);
+        List<String> entiyIdList = null;
         String sql = "SELECT  E.ENTITYID " +
                 " FROM TBL_ENTITY E INNER JOIN TBL_ENTITYTYPE T ON E.ENTITYTYPEID=" +
                 "T.ENTITYTYPEID WHERE (E." + COLUMN_ENTITY_USER_ID
                 + "=?) AND ((? IS NOT NULL AND E." + COLUMN_ENTITY_TYPE_ID + "=?) OR " +
                 "(? IS NULL))";
 
+        //maybe namedparameterjdbctemplate
+//        Map<String, Object> params = new HashMap<>();
+//        params.put("inUser", userID);
+//        params.put("inType", entityTypeID);
         try {
             entiyIdList = getJdbcTemplate().queryForList(sql, new Object[]{userID, entityTypeID,
                     entityTypeID, entityTypeID}, String.class);
@@ -330,6 +335,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
             logger.error(e.getMessage());
             throw new DaoException("Data access Exception", e);
         }
+
         if (entiyIdList != null && entiyIdList.size() > 0) {
             String strEntityIdList = "";
             for (String item : entiyIdList) {
@@ -343,6 +349,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     @Override
     public int rowCounter(int typeId, String atributesId, String values, String operators) {
+        rowCounterValidation(typeId, atributesId, values, operators);
         Map out = null;
         try {
             getJdbcTemplate().setResultsMapCaseInsensitive(true);
@@ -368,6 +375,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     @Override
     public void delete(int id) {
+        deleteValidation(id);
         //final String sqlDeleteValue = "DELETE FROM TBL_VALUE WHERE ENTITYID = ?";
         final String sqlDeleteEntity = "UPDATE TBL_ENTITY SET ISACTIVE = 0 WHERE ENTITYID = ?";
         Object[] args = new Object[]{

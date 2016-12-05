@@ -1,8 +1,8 @@
 package com.netcracker.crm.entity.serviceEntity;
 
 import com.netcracker.crm.entity.*;
-import com.netcracker.crm.entity.enums.EntityType;
-import com.netcracker.crm.entity.enums.OrderAtribute;
+import com.netcracker.crm.services.parser.AbstractTag;
+import com.netcracker.crm.services.parser.TypeAttribute;
 import javafx.util.Pair;
 
 import java.text.DateFormat;
@@ -30,6 +30,7 @@ public class Order extends Entity {
     private Date paidDate;
     private Cart cart;
     private String description;
+    private final static int ORDERTYPE = 7;
 
     public Order() {
     }
@@ -86,12 +87,12 @@ public class Order extends Entity {
 
     public Order(int id, String name, boolean isActive,
                  int userId) {
-        super(id, name, isActive, EntityType.valueOf("Order").getTypeId(),
+        super(id, name, isActive, ORDERTYPE,
                 "Order", userId);
     }
 
     public Order(String name, boolean isActive, int userId) {
-        super(name, isActive, EntityType.valueOf("Order").getTypeId(), userId);
+        super(name, isActive, ORDERTYPE, userId);
     }
 
     public String getOrderNumber() {
@@ -239,9 +240,4 @@ public class Order extends Entity {
         return str;
     }
 
-    //    public Entity toEntity() {
-//        Entity entity = new Entity(getId(), name, isActive, EntityType.valueOf(entityType).getTypeId(), entityType, userId);
-//        entity.setAtributeValueMap(atributeValueMap);
-//        return entity;
-//    }
 }

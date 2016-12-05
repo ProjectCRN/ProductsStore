@@ -1,5 +1,7 @@
 package com.netcracker.crm.controller;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 import com.netcracker.crm.dao.IEntityDao;
 import com.netcracker.crm.dao.exception.DaoException;
 import com.netcracker.crm.dao.impl.EntityDaoImpl;
@@ -15,12 +17,16 @@ import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.IOrderService;
 import com.netcracker.crm.services.IProductService;
 import com.netcracker.crm.services.impl.OrderServiceImpl;
+import com.netcracker.crm.services.parser.AbstractTag;
 import com.netcracker.crm.services.parser.CatalogParser;
+import com.netcracker.crm.services.parser.OrderTag;
+import com.netcracker.crm.services.parser.TypeAttribute;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.DataAccessException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -109,14 +115,17 @@ public class TestDao {
 //        for(Entity e: list){
 //            System.out.println(e);
 //        }
-        List<Value> values = new ArrayList<>();
-        values.add(new Value("16Gb", 1410, 14));
-        System.out.println(entityDao.update(1410, "hoho", 1, -2, values));
-        entityDao.delete(1000);
+//        List<Value> values = new ArrayList<>();
+//        values.add(new Value(142, "1443", 141, 19));  !!!!!!!!!!!
+//        Entity e = new Entity(141, "cactus", true, 8, -2, values);
+//        entityDao.updateByEntity(e);
+//        System.out.println(entityDao.update(141, "itisnewname", 1, -2, values));
+//        entityDao.delete(1000);
+//        System.out.println(entityDao.getByUserAndType(-2, 9, AbstractTag.getTag(9).getIdByName("summary") + ""));
+//        System.out.println(entityDao.getByUserAndType(-2, 9, "22"));
 
 
 //        IProductService productService = (IProductService)context.getBean("productService");
-//        Product product = new Product("newproduct", true, EntityType.Tablet.getTypeId(), -2);
 //        product.setValueInList(TabletAtribute.Fabricator.name(), "newfabricator");
 //        Product pr1 = new Product();
 //        pr1.setEntityName("newname");

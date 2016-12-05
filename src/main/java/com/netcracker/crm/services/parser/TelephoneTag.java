@@ -10,24 +10,24 @@ import java.util.HashMap;
  */
 
 public class TelephoneTag extends AbstractTag {
-    private TelephoneTag(){
+    public TelephoneTag(){
         tags = HashBiMap.create(new HashMap(){{
             put("price", 23);
             put("summary", 24);
-            put("operatingSystem", 25);
-            put("processorSpeedGHz", 26);
-            put("capacityGB", 27);
-            put("displayInch", 28);
-            put("heightMM", 29);
-            put("widthMM", 30);
-            put("depthMM", 31);
-            put("weightGrams", 32);
-            put("cameraMP", 33);
-            put("batteryHours", 34);
-            put("simCard", 35);
-            put("imageURL", 36);
+            put("operatingsystem", 25);
+            put("processorspeed", 26);
+            put("capacity", 27);
+            put("display", 28);
+            put("height", 29);
+            put("width", 30);
+            put("depth", 31);
+            put("weight", 32);
+            put("camera", 33);
+            put("battery", 34);
+            put("simcard", 35);
+            put("imageurl", 36);
             put("fabricator", 37);
         }});
-
+        typeName = "Telephone";
     }
 }

@@ -175,14 +175,4 @@ public class Product extends Entity {
         }
         return str;
     }
-
-
-
-    //    public Entity toEntity() {
-//        Entity entity = new Entity(getId(), name, isActive,
-//                EntityType.valueOf(productType).getTypeId(), productType, userId);
-//        entity.setAtributeValueMap(atributeValueMap);
-//        return entity;
-//    }
-
 }

@@ -4,13 +4,9 @@ package com.netcracker.crm.entity;
  * Created by egor on 23.10.2016.
  */
 
-import com.netcracker.crm.entity.enums.EntityType;
-import com.netcracker.crm.entity.enums.OrderAtribute;
-import com.netcracker.crm.entity.enums.PhoneAtribute;
-import com.netcracker.crm.entity.enums.ProductInOrderAtribute;
-import com.netcracker.crm.services.parser.TypeAttribute;
+import com.netcracker.crm.services.parser.AbstractTag;
+import com.netcracker.crm.services.parser.exception.NoSuchTagException;
 import javafx.util.Pair;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +20,8 @@ public class Entity extends AbstractEntity {
     private String entityTypeName;
     private Integer userId;
     private List<Value> valueList;
-    private List<Pair<Atribute,Value>> atributeValueMap;
+    private List<Pair<Atribute, Value>> atributeValueMap;
 
-    @Autowired
-    private TypeAttribute typeAttribute;
 
     @Override
     public boolean equals(Object o) {
@@ -66,15 +60,15 @@ public class Entity extends AbstractEntity {
 
     @Override
     public String toString() {
-        String str= "Entity{" +
-                "entityId="+getId()+
+        String str = "Entity{" +
+                "entityId=" + getId() +
                 "\nentityName='" + entityName + '\'' +
                 ", isActive=" + isActive +
                 ", entityTypeId=" + entityTypeId +
                 ", entityTypeName='" + entityTypeName + '\'' +
                 ", userId=" + userId +
                 '}';
-        if(atributeValueMap!=null) {
+        if (atributeValueMap != null) {
             for (Pair<Atribute, Value> item : atributeValueMap) {
                 str += "\n" + item.getKey().toString();
                 str += ": " + item.getValue().toString();
@@ -93,11 +87,13 @@ public class Entity extends AbstractEntity {
         valueList = new ArrayList<>();
     }
 
+    public Entity(int id, String entityName, boolean isActive, int entityTypeId, int userId, List<Value> valueList) {
+        this(id, entityName, isActive, entityTypeId, AbstractTag.getTag(entityTypeId).getTypeName(), userId);
+        this.valueList = valueList;
+    }
+
     public Entity(String entityName, boolean isActive, int entityTypeId, int userId, List<Value> valueList) {
-        this.entityName = entityName;
-        this.isActive = isActive;
-        this.entityTypeId = entityTypeId;
-        this.userId = userId;
+        this(entityName, isActive, entityTypeId, userId);
         this.valueList = valueList;
     }
 
@@ -105,7 +101,7 @@ public class Entity extends AbstractEntity {
         this.entityName = entityName;
         this.isActive = isActive;
         this.entityTypeId = entityTypeId;
-        this.entityTypeName = EntityType.findByKey(entityTypeId).name();
+        this.entityTypeName = AbstractTag.getTag(entityTypeId).getTypeName();
         this.userId = userId;
         valueList = new ArrayList<>();
     }
@@ -115,7 +111,7 @@ public class Entity extends AbstractEntity {
     }
 
     public int getisActive() {
-        return ((isActive==true) ? 1 : 0);
+        return ((isActive == true) ? 1 : 0);
     }
 
     public Integer getEntityTypeId() {
@@ -124,7 +120,7 @@ public class Entity extends AbstractEntity {
 
     public void setEntityTypeId(Integer entityTypeId) {
         this.entityTypeId = entityTypeId;
-        this.entityTypeName = EntityType.findByKey(entityTypeId).name();
+        this.entityTypeName =  AbstractTag.getTag(entityTypeId).getTypeName();
     }
 
     public String getEntityTypeName() {
@@ -147,11 +143,11 @@ public class Entity extends AbstractEntity {
         this.valueList = valueList;
     }
 
-    public List<Pair<Atribute,Value>> getAtributeValueMap() {
+    public List<Pair<Atribute, Value>> getAtributeValueMap() {
         return atributeValueMap;
     }
 
-    public void setAtributeValueMap(List<Pair<Atribute,Value>> atributeValueMap) {
+    public void setAtributeValueMap(List<Pair<Atribute, Value>> atributeValueMap) {
         this.atributeValueMap = atributeValueMap;
     }
 
@@ -170,22 +166,18 @@ public class Entity extends AbstractEntity {
 
 
     protected Integer getAtributeId(String atribute){
-        if(entityTypeId== EntityType.valueOf("Telephone").getTypeId()){
-            return PhoneAtribute.valueOf(atribute).getAtributeId();
+        AbstractTag tag = AbstractTag.getTag(getEntityTypeId());
+        if (tag != null) {
+            try {
+                return tag.getIdByName(atribute);
+            } catch (NoSuchTagException e) {
+                e.printStackTrace();
+            }
         }
-        else if(entityTypeId== EntityType.valueOf("Tablet").getTypeId()){
-            return PhoneAtribute.valueOf(atribute).getAtributeId();
-        }
-        else if(entityTypeId== EntityType.valueOf("ProductInOrder").getTypeId()){
-            return ProductInOrderAtribute.valueOf(atribute).getAtributeId();
-        }
-        else if(entityTypeId== EntityType.valueOf("Order").getTypeId()){
-            return OrderAtribute.valueOf(atribute).getAtributeId();
-        }
-        else return null;
+        return null;
     }
 
-    public void setValueInList(String atribute, String value) {
+    public void setValueInList(String atribute, String value){
         boolean f = false;
         for (int i = 0; i < getValueList().size(); i++) {
             if (getValueList().get(i).getAtributeId() == getAtributeId(atribute)) {
@@ -197,7 +189,8 @@ public class Entity extends AbstractEntity {
             getValueList().add(new Value(value, getId(), getAtributeId(atribute)));
         }
     }
-    public String getValueFromMap(String atribute){
+
+    public String getValueFromMap(String atribute) {
         for (int i = 0; i < getAtributeValueMap().size(); i++) {
             if (getAtributeValueMap().get(i).getKey().getAtributeName().equals(atribute)) {
                 return getAtributeValueMap().get(i).getValue().getValue();

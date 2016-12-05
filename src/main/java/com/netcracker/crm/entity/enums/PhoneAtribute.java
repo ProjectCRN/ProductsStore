@@ -29,4 +29,13 @@ public enum PhoneAtribute {
     public int getAtributeId() {
         return atributeId;
     }
+
+    public static PhoneAtribute findByKey(int i) {
+        for (PhoneAtribute eEnum : values()) {
+            if (eEnum.atributeId == i) {
+                return eEnum;
+            }
+        }
+        return null;
+    }
 }
