@@ -4,9 +4,7 @@ import com.google.common.collect.HashBiMap;
 
 import java.util.HashMap;
 
-/**
- * Created by οκ on 04.12.2016.
- */
+
 public class ProductInOrderTag extends AbstractTag {
 
     public ProductInOrderTag() {

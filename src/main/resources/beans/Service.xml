@@ -25,6 +25,9 @@
         <property name="userService" ref="userService"/>
     </bean>
 
+    <bean class="com.netcracker.crm.entity.controllerEntity.LoginValidator" id="loginValidator" scope="session">
+        <property name="userService" ref="userService"/>
+    </bean>
 
     <bean class="com.netcracker.crm.entity.User" id="user" scope="session">
         <property name="id" value="-2"/>

@@ -59,7 +59,6 @@
     </div>
 </form:form>
 
-
 <script type="text/javascript" language="javascript">
     function signupFun() {
         var msg   = $('#signupForm').serialize();

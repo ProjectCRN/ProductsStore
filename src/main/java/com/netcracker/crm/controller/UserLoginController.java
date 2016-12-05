@@ -1,5 +1,7 @@
 package com.netcracker.crm.controller;
 import com.netcracker.crm.entity.User;
+import com.netcracker.crm.entity.controllerEntity.LoginForm;
+import com.netcracker.crm.entity.controllerEntity.LoginValidator;
 import com.netcracker.crm.entity.controllerEntity.SignupForm;
 import com.netcracker.crm.entity.controllerEntity.SignupValidator;
 import com.netcracker.crm.services.IUserService;
@@ -14,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.validation.BindingResult;
 
 @Controller
-
-@RequestMapping("/createUser")
 public class UserLoginController{
 
     private static final String REGISTER = "register";
+    private static final String LOGIN = "login";
     private static final String REGISTER_SUCCESS = "register-success";
     private SignupValidator signupValidator;
+    private LoginValidator loginValidator;
     private IUserService userService;
     private User user;
 
@@ -39,14 +41,19 @@ public class UserLoginController{
         this.signupValidator = signupValidator;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @Required
+    public void setLoginValidator(LoginValidator loginValidator) {
+        this.loginValidator = loginValidator;
+    }
+
+    @RequestMapping(value="/createUser", method = RequestMethod.GET)
     public String signup(ModelMap model) {
         SignupForm signupForm = new SignupForm();
         model.put("signupForm", signupForm);
         return REGISTER;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value="/createUser", method = RequestMethod.POST)
     public String processSignup(SignupForm signupForm, BindingResult result, ModelMap model) {
         signupValidator.validate(signupForm, result);
         if (result.hasErrors()) {
@@ -56,6 +63,26 @@ public class UserLoginController{
         signupForm.setId(5);
         userService.add(signupForm);
         user.clone(signupForm);
+        model.addAttribute("user", user);
+        return REGISTER_SUCCESS;
+    }
+
+    @RequestMapping(value="/login", method = RequestMethod.GET)
+    public String login(ModelMap model) {
+        LoginForm loginForm = new LoginForm();
+        model.put("loginForm", loginForm);
+        return LOGIN;
+    }
+
+    @RequestMapping(value="/login", method = RequestMethod.POST)
+    public String processLogin(LoginForm loginForm, BindingResult result, ModelMap model) {
+        loginValidator.validate(loginForm, result);
+        if (result.hasErrors()) {
+            return LOGIN;
+        }
+        int id=userService.getIdByLogin(loginForm.getLogin());
+        User buf = userService.getById(id);
+        user.clone(buf);
         model.addAttribute("user", user);
         return REGISTER_SUCCESS;
     }

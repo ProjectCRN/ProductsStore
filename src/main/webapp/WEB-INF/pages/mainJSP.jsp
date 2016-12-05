@@ -42,9 +42,11 @@
                     <img src="${spinner}"/>
                     <h1>${message}</h1>
                     <h2>Hello, ${userName}!</h2>
+                    <a class="btn btn-default btnLink" role="button"  href="/login">login</a>
                 </div>
             </div>
         </div>
+
     </div>
 
 

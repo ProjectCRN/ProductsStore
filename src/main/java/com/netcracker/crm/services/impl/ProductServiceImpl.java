@@ -20,9 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by οκ on 20.11.2016.
- */
+
 
 public class ProductServiceImpl extends AbstractService<Product> implements IProductService {
 
