@@ -210,7 +210,22 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
         return (!containsIgnoreCase(emailList, email));
     }
 
+        @Override
+    public int getIdByLogin(String login) throws DaoException {
+        String sql = "SELECT " + COLUMN_USER_ID +" from TBL_USER where "+ COLUMN_USER_LOGIN+"=?";
 
+        int userId=-100;
+        try {
+            userId = getJdbcTemplate().queryForObject(sql, new Object[]{login}, Integer.class);
+        } catch (EmptyResultDataAccessException e){
+            logger.error(e.getMessage());
+            throw new DaoException("Can't find user with login = " + login, e);
+        } catch (DataAccessException e){
+            logger.error(e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
+        return userId;
+    }
 
 
     private boolean containsIgnoreCase(List<String> list, String soughtFor) {
