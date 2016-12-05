@@ -95,4 +95,5 @@ public class Cart extends AbstractEntity {
         }
         return total;
     }
+
 }

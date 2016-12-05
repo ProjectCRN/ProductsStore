@@ -4,8 +4,8 @@ import com.netcracker.crm.entity.controllerEntity.LoginForm;
 import com.netcracker.crm.entity.controllerEntity.LoginValidator;
 import com.netcracker.crm.entity.controllerEntity.SignupForm;
 import com.netcracker.crm.entity.controllerEntity.SignupValidator;
+import com.netcracker.crm.services.ICartService;
 import com.netcracker.crm.services.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,6 +24,7 @@ public class UserLoginController{
     private SignupValidator signupValidator;
     private LoginValidator loginValidator;
     private IUserService userService;
+    private ICartService cartService;
     private User user;
 
     @Required
@@ -46,6 +47,11 @@ public class UserLoginController{
         this.loginValidator = loginValidator;
     }
 
+    @Required
+    public void setCartService(ICartService cartService) {
+        this.cartService = cartService;
+    }
+
     @RequestMapping(value="/createUser", method = RequestMethod.GET)
     public String signup(ModelMap model) {
         SignupForm signupForm = new SignupForm();
@@ -60,9 +66,10 @@ public class UserLoginController{
             return REGISTER;
         }
         signupForm.setRoleId(User.ROLE_USER);
-        signupForm.setId(5);
         userService.add(signupForm);
         user.clone(signupForm);
+        int id=userService.getIdByLogin(signupForm.getLogin());
+        cartService.getCart().setId(id);
         model.addAttribute("user", user);
         return REGISTER_SUCCESS;
     }
@@ -83,6 +90,7 @@ public class UserLoginController{
         int id=userService.getIdByLogin(loginForm.getLogin());
         User buf = userService.getById(id);
         user.clone(buf);
+        cartService.getCart().setId(id);
         model.addAttribute("user", user);
         return REGISTER_SUCCESS;
     }

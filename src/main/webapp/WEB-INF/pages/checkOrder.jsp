@@ -7,7 +7,7 @@
     <table class="table table-striped">
         <tr>
             <td>Order:</td>
-            <td>№${order.getId()}</td>
+            <td>№${order.getOrderNumber()}</td>
         </tr>
         <tr>
             <td>Total:</td>
@@ -15,23 +15,27 @@
         </tr>
         <tr>
             <td>Name:</td>
-            <td>${order.getName()}</td>
+            <td>${order.getContactName()}</td>
         </tr>
         <tr>
             <td>Address:</td>
-            <td>${order.getAddress()}</td>
+            <td>${order.getContactAddress()}</td>
         </tr>
         <tr>
             <td>Phone:</td>
-            <td>${order.getPhone()}</td>
+            <td>${order.getContactPhone()}</td>
         </tr>
         <tr>
-            <td>Email:</td>
-            <td>${order.getEmail()}</td>
+            <td>Created Date:</td>
+            <td>${order.getCreatedDate()}</td>
         </tr>
         <tr>
-            <td>Comments:</td>
-            <td>${order.getComments()}</td>
+            <td>Paid Date:</td>
+            <td>${order.getPaidDate()}</td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td>${order.getDescription()}</td>
         </tr>
     </table>
 

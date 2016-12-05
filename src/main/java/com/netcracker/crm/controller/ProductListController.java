@@ -3,13 +3,10 @@ package com.netcracker.crm.controller;
 
 import com.netcracker.crm.entity.enums.EntityType;
 import com.netcracker.crm.entity.serviceEntity.Product;
-import com.netcracker.crm.services.ICartService;
 import com.netcracker.crm.services.IPaginationService;
 import com.netcracker.crm.services.IProductService;
 import com.netcracker.crm.services.ISearchService;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,8 +24,6 @@ import java.util.List;
 @Controller
 public class ProductListController {
 
-    ApplicationContext context =
-            new ClassPathXmlApplicationContext(new String[]{"SpringModule.xml"});
     private static final String PRODUCTS = "products";
     private static final String ITEM = "item";
 

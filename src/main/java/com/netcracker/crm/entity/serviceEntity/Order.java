@@ -1,8 +1,6 @@
 package com.netcracker.crm.entity.serviceEntity;
 
 import com.netcracker.crm.entity.*;
-import com.netcracker.crm.services.parser.AbstractTag;
-import com.netcracker.crm.services.parser.TypeAttribute;
 import javafx.util.Pair;
 
 import java.text.DateFormat;
@@ -21,15 +19,15 @@ public class Order extends Entity {
 //    private int userId;
 //    private List<Pair<Atribute, Value>> atributeValueMap;
 
-    private String orderNumber;
-    private String contactName;
-    private String contactPhone;
-    private String contactAdress;
+    private String orderNumber = "";
+    private String contactName = "";
+    private String contactPhone = "";
+    private String contactAddress = "";
     private int total;
     private Date createdDate;
     private Date paidDate;
     private Cart cart;
-    private String description;
+    private String description = "";
     private final static int ORDERTYPE = 7;
 
     public Order() {
@@ -56,7 +54,7 @@ public class Order extends Entity {
                         contactPhone = atributeValue;
                         break;
                     case "Contact Adress":
-                        contactAdress = atributeValue;
+                        contactAddress = atributeValue;
                         break;
                     case "Total":
                         total = Integer.parseInt(atributeValue);
@@ -122,13 +120,13 @@ public class Order extends Entity {
         setValueInList("ContactPhone", contactPhone);
     }
 
-    public String getContactAdress() {
-        return contactAdress;
+    public String getContactAddress() {
+        return contactAddress;
     }
 
-    public void setContactAdress(String contactAdress) {
-        this.contactAdress = contactAdress;
-        setValueInList("ContactAdress", contactAdress);
+    public void setContactAddress(String contactAddress) {
+        this.contactAddress = contactAddress;
+        setValueInList("ContactAdress", contactAddress);
     }
 
     public int getTotal() {
@@ -178,7 +176,7 @@ public class Order extends Entity {
     public void setByUser(User user) {
         setContactName(user.getUserName());
         setContactPhone(user.getContactPhone());
-        setContactAdress(user.getContactAddress());
+        setContactAddress(user.getContactAddress());
     }
 
     @Override
@@ -196,7 +194,7 @@ public class Order extends Entity {
             return false;
         if (getContactPhone() != null ? !getContactPhone().equals(order.getContactPhone()) : order.getContactPhone() != null)
             return false;
-        if (getContactAdress() != null ? !getContactAdress().equals(order.getContactAdress()) : order.getContactAdress() != null)
+        if (getContactAddress() != null ? !getContactAddress().equals(order.getContactAddress()) : order.getContactAddress() != null)
             return false;
         if (getCreatedDate() != null ? !getCreatedDate().equals(order.getCreatedDate()) : order.getCreatedDate() != null)
             return false;
@@ -206,13 +204,21 @@ public class Order extends Entity {
 
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (getOrderNumber() != null ? getOrderNumber().hashCode() : 0);
         result = 31 * result + (getContactName() != null ? getContactName().hashCode() : 0);
         result = 31 * result + (getContactPhone() != null ? getContactPhone().hashCode() : 0);
-        result = 31 * result + (getContactAdress() != null ? getContactAdress().hashCode() : 0);
+        result = 31 * result + (getContactAddress() != null ? getContactAddress().hashCode() : 0);
         result = 31 * result + getTotal();
         result = 31 * result + (getCreatedDate() != null ? getCreatedDate().hashCode() : 0);
         result = 31 * result + (getPaidDate() != null ? getPaidDate().hashCode() : 0);

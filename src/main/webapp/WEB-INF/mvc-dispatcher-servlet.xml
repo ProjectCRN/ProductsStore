@@ -9,7 +9,6 @@
 
 	<context:component-scan base-package="com.netcracker.crm.controller" />
 	<context:component-scan base-package="com.netcracker.crm.entity.controllerEntity" />
-	<context:component-scan base-package="com.netcracker.crm.entity.controllerEntity.controllerService" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,11 +22,6 @@
 
 
 	<import resource="classpath*:SpringModule.xml"/>
-
-
-
-
-
 
 	<bean class="com.netcracker.crm.controller.ProductListController" id="productListController" scope="session">
 		<property name="productService" ref="productService"/>
@@ -44,10 +38,18 @@
 		<property name="userService" ref="userService"/>
 		<property name="user" ref="user"/>
 		<property name="loginValidator" ref="loginValidator"/>
+		<property name="cartService" ref="cartService"/>
 	</bean>
 
 	<bean class="com.netcracker.crm.controller.FrontController" id="frontController" scope="session">
 		<property name="user" ref="user"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.controller.OrderController" id="orderController" scope="session">
+		<property name="cartService" ref="cartService"/>
+		<property name="orderService" ref="orderService"/>
+		<property name="user" ref="user"/>
+		<property name="orderValidator" ref="orderValidator"/>
 	</bean>
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 
