@@ -55,7 +55,6 @@
                             });
                             document.getElementById('added${item.getId()}').style.display = "block";
                         });
-
                         $('.seeMore_btn_${item.getId()}').click( function() {
                             $.ajax({
                                 url: '/item/${item.getId()}',
@@ -75,11 +74,12 @@
             <li><a class="page_${page}" href="#">${page}</a>
 
                 <script type="text/javascript" language="javascript">
-
                     $('.page_${page}').click( function() {
                         $('#page-preloader').show();
+                        var msg   = $('#formSearch').serialize();
                         $.ajax({
                             url: '${searchReq}/${currType}/page/${page}',
+                            data: msg,
                             success: function(data) {
                                 $('.results').html(data);
                                 $('#page-preloader').hide();
@@ -108,6 +108,4 @@
             }
         });
     }
-
-
 </script>

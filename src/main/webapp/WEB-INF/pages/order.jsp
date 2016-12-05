@@ -5,75 +5,54 @@
 
 
 
+<sf:form method="post" id="formOrder" modelAttribute="order" action="javascript:void(null);" onsubmit="orderFun()">
+    <div class="col-md-4"></div>
+    <ul class="col-md-4 formOrder">
 
-                <sf:form method="post" id="formOrder" modelAttribute="order" action="javascript:void(null);" onsubmit="orderFun()">
+        <li>
+            <sf:input path="name" size="30" placeholder="Name" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required="required" /><br/>
+            <sf:errors path="name"/>
+        </li>
 
-                    <table class="table table-striped">
+        <li>
+            <sf:input path="address" size="30" placeholder="Address" required="required"/><br/>
+            <sf:errors path="address" cssClass="error"/>
+        </li>
 
-                        <tr>
-                            <th><label>Name:</label></th>
-                            <td><sf:input path="name" size="30"/><br/>
-                                <sf:errors path="name"/>
-                                <small>No spaces, please.</small>
-                                <br/>
-                            </td>
-                        </tr>
+        <li>
+            <sf:input path="phone" size="30" placeholder="Phone" pattern="^((8|\+375)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" required="required"/><br/>
+            <sf:errors path="phone" cssClass="error"/>
+        </li>
 
-                        <tr>
-                            <th><sf:label path="address">Address:</sf:label></th>
-                            <td><sf:input path="address" size="30"/><br/>
-                                <sf:errors path="address" cssClass="error"/>
-                            </td>
-                        </tr>
+        <li>
+            <sf:input path="email" size="30" pattern="\S+@[a-z]+.[a-z]+" placeholder="E-mail" required="required"/><br/>
+            <sf:errors path="email" cssClass="error"/>
+        </li>
 
-                        <tr>
-                            <th><sf:label path="phone">Phone:</sf:label></th>
-                            <td><sf:input path="phone" size="30"/><br/>
-                                <sf:errors path="phone" cssClass="error"/>
-                                <small>Possible patterns +375XX XXX XX XX and 80XX XXX XX XX</small>
-                                <br/>
-                            </td>
-                        </tr>
+        <li>
+            <sf:input path="comments" size="30" placeholder="Comments"/><br/>
+            <sf:errors path="comments" cssClass="error"/><br>
+        </li>
+        <li>
+            <br>
+            <input type="submit" class="btn btn-default btnLink" value="Create Order"/>
+                ${msg}
+        </li>
 
-                        <tr>
-                            <th><sf:label path="email">Email:</sf:label></th>
-                            <td><sf:input path="email" size="30" pattern="\S+@[a-z]+.[a-z]+" placeholder="E-mail"/><br/>
-                                <sf:errors path="email" cssClass="error"/>
-                            </td>
-                        </tr>
+    </ul>
 
-                        <tr>
-                            <th><sf:label path="comments">Comments:</sf:label></th>
-                            <td><sf:input path="comments" size="30"/><br/>
-                                <sf:errors path="comments" cssClass="error"/>
-                                <small>if you need something else</small>
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <td><input type="submit" value="Create Order"/><br/>
-                                <small>${msg}</small>
-                                <br/>
-                            </td>
-                        </tr>
-
-                    </table>
-
-                </sf:form>
+</sf:form>
 
 <script type="text/javascript" language="javascript">
     function orderFun() {
-        var msg   = $('#formOrder').serialize();
+        var msg = $('#formOrder').serialize();
         $.ajax({
             type: 'POST',
             url: 'createOrder',
             data: msg,
-            success: function(data) {
+            success: function (data) {
                 $('.results').html(data);
             }
         });
     }
-
-
 </script>

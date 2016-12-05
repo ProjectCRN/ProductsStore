@@ -10,7 +10,7 @@
 
     <import resource="Service.xml"/>
 
-    <bean class="com.netcracker.crm.services.parser.CatalogParser" id="catalogParser">
+    <bean class="com.netcracker.crm.services.parser.CatalogParser" id="catalogParser" scope="session">
         <property name="productService" ref="productService"/>
         <property name="tabletTag" ref="tabletTag"/>
         <property name="telephoneTag" ref="telephoneTag"/>
@@ -18,9 +18,9 @@
     </bean>
 
 
-    <bean class="com.netcracker.crm.services.parser.TabletTag" id="tabletTag"/>
-    <bean class="com.netcracker.crm.services.parser.TelephoneTag" id="telephoneTag"/>
-    <bean class="com.netcracker.crm.services.parser.TypeAttribute" id="typeAttribute"/>
+    <bean class="com.netcracker.crm.services.parser.TabletTag" id="tabletTag" scope="session"/>
+    <bean class="com.netcracker.crm.services.parser.TelephoneTag" id="telephoneTag" scope="session"/>
+    <bean class="com.netcracker.crm.services.parser.TypeAttribute" id="typeAttribute" scope="session"/>
 
 
 </beans>

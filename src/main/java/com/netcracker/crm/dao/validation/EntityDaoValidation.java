@@ -46,8 +46,8 @@ public class EntityDaoValidation implements IEntityValidation  {
 
     @Override
     public void getListValidation(int typeId, String atributesId, String values, String operators, String atributesIdView) {
-        if (!idInTable(TABLE_ENTITYTYPE,typeId))
-            throw new DaoException("Invalid TypeId");
+        /*if (!idInTable(TABLE_ENTITYTYPE,typeId))
+            throw new DaoException("Invalid TypeId");*/
 
     }
 

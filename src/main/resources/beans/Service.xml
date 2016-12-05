@@ -8,28 +8,43 @@
 
     <import resource="Dao.xml"/>
 
-    <bean class="com.netcracker.crm.services.impl.UserServiceImpl" id="userService">
+    <bean class="com.netcracker.crm.services.impl.UserServiceImpl" id="userService" scope="session">
         <property name="userDao" ref="userDao"/>
     </bean>
 
-    <bean class="com.netcracker.crm.services.impl.ProductServiceImpl" id="productService">
+    <bean class="com.netcracker.crm.services.impl.ProductServiceImpl" id="productService" scope="session">
         <property name="entityDao" ref="entityDao"/>
     </bean>
 
-    <bean class="com.netcracker.crm.services.impl.OrderServiceImpl" id="orderService">
+    <bean class="com.netcracker.crm.services.impl.OrderServiceImpl" id="orderService" scope="session">
         <property name="entityDao" ref="entityDao"/>
         <property name="userDao" ref="userDao"/>
     </bean>
 
-    <bean class="com.netcracker.crm.services.impl.SearchServiceImpl" id="searchService"/>
+    <bean class="com.netcracker.crm.entity.controllerEntity.SignupValidator" id="signupValidator" scope="session">
+        <property name="userService" ref="userService"/>
+    </bean>
 
-    <bean class="com.netcracker.crm.services.impl.PaginationServiceImpl" id="paginationService"/>
 
-    <bean class="com.netcracker.crm.entity.serviceEntity.Cart" id="cart">
+    <bean class="com.netcracker.crm.entity.User" id="user" scope="session">
+        <property name="id" value="-2"/>
+        <property name="contactAddress" value=""/>
+        <property name="contactPhone" value=""/>
+        <property name="email" value="anon@gmail.com"/>
+        <property name="login" value="anon"/>
+        <property name="password" value="anon"/>
+        <property name="roleId" value="N"/>
+        <property name="userName" value="Guest"/>
+    </bean>
+    <bean class="com.netcracker.crm.services.impl.SearchServiceImpl" id="searchService" scope="session"/>
+
+    <bean class="com.netcracker.crm.services.impl.PaginationServiceImpl" id="paginationService" scope="session"/>
+
+    <bean class="com.netcracker.crm.entity.serviceEntity.Cart" id="cart" scope="session">
         <constructor-arg type="int" value="-2"/>
     </bean>
 
-    <bean class="com.netcracker.crm.services.impl.CartServiceImpl" id="cartService">
+    <bean class="com.netcracker.crm.services.impl.CartServiceImpl" id="cartService" scope="session">
         <property name="cart" ref="cart"/>
         <property name="productService" ref="productService"/>
     </bean>

@@ -37,7 +37,6 @@
                             });
                             document.getElementById('added${item.getId()}').style.display = "block";
                         });
-
                     </script>
                 </div>
             </li>

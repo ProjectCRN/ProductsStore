@@ -34,13 +34,14 @@
                     </ul>
                 </li>
                 <li><a class="cart" href="#">Cart</a></li>
-                <li><a class="createUser" href="#">Registration</a></li>
+                <li><a class="createUser" href="#">User</a></li>
             </nav>
 
             <div class="container">
                 <div class="results">
                     <img src="${spinner}"/>
                     <h1>${message}</h1>
+                    <h2>Hello, ${userName}!</h2>
                 </div>
             </div>
         </div>
@@ -51,7 +52,6 @@
 
 
 <script language="javascript" type="text/javascript">
-
     function funLoad(str) {
         $('#page-preloader').show();
         $.ajax({
@@ -62,24 +62,18 @@
             }
         });
     }
-
     $('.telephone').click( function() {
         funLoad('/products/telephone');
     });
-
     $('.tablet').click( function() {
         funLoad('/products/tablet');
     });
-
     $('.cart').click( function() {
         funLoad('/cart');
     });
-
     $('.createUser').click( function() {
         funLoad('/createUser');
     });
-
-
 </script>
 
 </body>
