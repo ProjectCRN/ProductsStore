@@ -163,6 +163,7 @@ body {
     color: #575859;
     margin: 0px 0;
     font-weight: 500;
+   
 }
 .block1 .col-md-8{
     text-align: left;
@@ -257,3 +258,18 @@ body {
     padding-left: 40px;
     border-left: 1px solid #e8ebef;
 }
+
+.block1 .formOrder{
+    display: block;
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+.block1 .formOrder li{
+    display: inline-block;
+    margin: 0 auto;
+    height: 30px;
+    width: 212px;
+    text-align: center;
+}
+

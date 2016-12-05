@@ -6,7 +6,8 @@
 
 
 <form:form method="post" id="signupForm" commandName="signupForm" action="javascript:void(null);" onsubmit="signupFun()">
-
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
     <table class="table table-striped">
         <tr>
             <td>Login:</td>
@@ -49,6 +50,7 @@
             <td colspan="3"><input type="submit" value="Submit" /></td>
         </tr>
     </table>
+    </div>
 </form:form>
 
 

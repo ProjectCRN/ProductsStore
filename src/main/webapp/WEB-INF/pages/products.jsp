@@ -78,8 +78,10 @@
 
                     $('.page_${page}').click( function() {
                         $('#page-preloader').show();
+                        var msg   = $('#formSearch').serialize();
                         $.ajax({
                             url: '${searchReq}/${currType}/page/${page}',
+                            data: msg,
                             success: function(data) {
                                 $('.results').html(data);
                                 $('#page-preloader').hide();

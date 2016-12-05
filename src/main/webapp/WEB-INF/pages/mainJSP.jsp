@@ -34,7 +34,7 @@
                     </ul>
                 </li>
                 <li><a class="cart" href="#">Cart</a></li>
-                <li><a class="createUser" href="#">Registration</a></li>
+                <li><a class="createUser" href="#">User</a></li>
             </nav>
 
             <div class="container">
