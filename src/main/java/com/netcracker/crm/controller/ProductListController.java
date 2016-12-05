@@ -99,7 +99,7 @@ public class ProductListController {
         int pageNumber = 2;
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq","products");
-        model.addAttribute("searchBtn","../../search");
+        model.addAttribute("searchBtn","search");
         return PRODUCTS;
     }
 
@@ -125,7 +125,7 @@ public class ProductListController {
         this.setSearchAttributes(searchAttr);
         int pageNumber = 2;
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
-        model.addAttribute("searchReq","products/search");
+        model.addAttribute("searchReq","products");
         model.addAttribute("searchBtn","search");
         return PRODUCTS;
     }

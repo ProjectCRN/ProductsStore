@@ -17,4 +17,5 @@ public interface IUserService extends IService<User>{
                        String uPhone, String uAddress, String uEmail) throws ServiceException;
     public boolean isLoginFree(String login);
     public boolean isEmailFree(String email)  throws ServiceException;
+    public int getIdByLogin(String login)  throws ServiceException;
 }

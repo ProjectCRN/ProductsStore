@@ -8,6 +8,7 @@ public class User extends AbstractEntity {
     private static final long serialVersionUID = 1L;
     public static final String ROLE_ADMIN = "A";
     public static final String ROLE_USER = "U";
+    public static final String ROLE_ANON = "N";
 
     private String login;
     private String password;
@@ -30,6 +31,17 @@ public class User extends AbstractEntity {
         this.email = email;
     }
 
+    public void clone(User user)
+    {
+        this.setId(user.getId());
+        this.setLogin(user.getLogin());
+        this.setPassword(user.getPassword());
+        this.setUserName(user.getUserName());
+        this.setContactPhone(user.getContactPhone());
+        this.setContactAddress(user.getContactAddress());
+        this.setRoleId(user.getRoleId());
+        this.setEmail(user.getEmail());
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

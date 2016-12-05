@@ -1,6 +1,7 @@
 package com.netcracker.crm.entity.serviceEntity;
 
 import com.netcracker.crm.entity.AbstractEntity;
+import org.springframework.context.annotation.Scope;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  * Created by Nastya on 11/22/2016.
  */
-
+@Scope(value="session")
 public class Cart extends AbstractEntity {
     private List<CartItem> cartItems;
     private int userId;

@@ -29,16 +29,25 @@
 
 
 
-	<bean class="com.netcracker.crm.controller.ProductListController" id="productListController">
+	<bean class="com.netcracker.crm.controller.ProductListController" id="productListController" scope="session">
 		<property name="productService" ref="productService"/>
 		<property name="searchService" ref="searchService"/>
 		<property name="paginationService" ref="paginationService"/>
 	</bean>
 
-	<bean class="com.netcracker.crm.controller.CartController" id="cartController">
+	<bean class="com.netcracker.crm.controller.CartController" id="cartController" scope="session">
 		<property name="cartService" ref="cartService"/>
 	</bean>
 
+	<bean class="com.netcracker.crm.controller.UserLoginController" id="userLoginController" scope="session">
+		<property name="signupValidator" ref="signupValidator"/>
+		<property name="userService" ref="userService"/>
+		<property name="user" ref="user"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.controller.FrontController" id="frontController" scope="session">
+		<property name="user" ref="user"/>
+	</bean>
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 
 	<mvc:annotation-driven />

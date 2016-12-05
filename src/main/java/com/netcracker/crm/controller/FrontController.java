@@ -1,8 +1,10 @@
 package com.netcracker.crm.controller;
 
+import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.controllerEntity.Cart;
 import com.netcracker.crm.entity.controllerEntity.Order;
 import com.netcracker.crm.entity.controllerEntity.ProductList;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,13 +26,18 @@ public class FrontController {
     private static Cart cart = new Cart();
 
     private static Random rand = new Random();
+    private User user;
 
+    @Required
+    public void setUser(User user) {
+        this.user = user;
+    }
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome(ModelMap model) {
 
         model.addAttribute("message", "Our dream team ^_^");
+        model.addAttribute("userName", user.getUserName());
         return VIEW_INDEX;
-
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.GET)

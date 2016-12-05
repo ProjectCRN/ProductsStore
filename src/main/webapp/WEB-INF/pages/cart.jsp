@@ -5,14 +5,14 @@
 
 
 
-            <div class="container align_center">
+            <div class="align_center">
 
                 <div class="col-md-9">
                     <ul class="listOfProducts">
                         <c:forEach items="${cartList}" var="item">
 
                             <li>
-                                <a href="/item/${item.getProduct().getId()}">
+                                <a href="#" class="seeMore_btn_${item.getProduct().getId()}">
                                     <img src="/resources/img/img_phone.jpg"/>
 
                                     <span>${item.getProduct().getEntityName()}</span></a><br>
@@ -51,14 +51,41 @@
                                     });
                                 });
 
+                                $('.seeMore_btn_${item.getProduct().getId()}').click( function() {
+                                    $.ajax({
+                                        url: '/item/${item.getProduct().getId()}',
+                                        success: function(data) {
+                                            $('.results').html(data);
+                                        }
+                                    });
+                                });
                             </script>
 
                         </c:forEach>
                     </ul>
                 </div>
-
-                <h1>Total: ${total}</h1>
-
+                <div class="col-md-3 left_block">
+                     <h1>Total: ${total}$</h1>
+                     <a class="btn btn-default btnLink createOrder" href="#">Create Order</a>
+                </div>
             </div>
 
 
+<script language="javascript" type="text/javascript">
+
+    function funLoad(str) {
+        $('#page-preloader').show();
+        $.ajax({
+            url: str,
+            success: function(data) {
+                $('.results').html(data);
+                $('#page-preloader').hide();
+            }
+        });
+    }
+    $('.createOrder').click( function() {
+        funLoad('/createOrder');
+    });
+
+
+</script>
