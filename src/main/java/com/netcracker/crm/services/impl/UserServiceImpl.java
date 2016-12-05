@@ -136,5 +136,18 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
         }
         return is;
     }
+    
+    @Override
+    public int getIdByLogin(String login) throws ServiceException {
+        int userId=-100;
+        try {
+            userId = userDao.getIdByLogin(login);
+            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getIdByLogin " + userId);
+        } catch (DaoException e){
+            logger.error(e.getMessage());
+            throw new ServiceException(e.getMessage(), e);
+        }
+        return userId;
+    }
 
 }
