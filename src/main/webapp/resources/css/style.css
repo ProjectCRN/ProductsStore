@@ -15,7 +15,7 @@ body {
     min-height: 900px;
     padding-top: 20px;
 }
-.block1 img {
+.block1 .mainSpinner{
     margin-top: 100px;
 }
 
@@ -30,6 +30,8 @@ body {
     background: #fcfcfc;
     margin: 0 auto;
     border-bottom: 1px solid #e8ebef;
+    position:relative;
+    z-index: 110;
 }
 
 .block1 nav li {
@@ -37,6 +39,7 @@ body {
     margin: 0 -2px;
     font-size: 24px;
     position:relative;
+    z-index: 110;
 }
 
 .block1 nav a {
@@ -47,6 +50,7 @@ body {
     padding: 20px 0;
     margin: 0;
     border-left: 1px solid #e8ebef;
+    z-index: 110;
 }
 
 .block1 nav li :hover {
@@ -181,9 +185,11 @@ body {
 #page-preloader {
     position: fixed;
     left: 0;
-    top: 66px;
+    top: 0;
     right: 0;
     bottom: 0;
+    width: inherit;
+    margin: inherit;
     background: #FFF;
     z-index: 102;
 }
@@ -193,13 +199,13 @@ body {
     height: 248px;
     position: absolute;
     left: 40%;
-    top: 10%;
+    top: 20%;
     background: url('../img/spinner2.gif') no-repeat 50% 50%;
     margin: -16px 0 0 -16px;
     font-size: 24px;
     font-weight: 600;
     padding-top: 250px;
-    padding-left: 100px;
+    padding-left: 0px;
     color: #575859;
 }
 
@@ -262,13 +268,35 @@ body {
 .block1 .formOrder{
     display: block;
     padding: 0;
-    margin: 0 auto;
     text-align: center;
+    margin: 30px auto 0;
 }
 .block1 .formOrder li{
     display: inline-block;
-    margin: 0 auto;
     height: 30px;
     width: 212px;
     text-align: center;
+    margin: 0 auto 5px;
+}
+
+.block1 .formOrder input {
+    text-align: center;
+
+}
+
+.block1 .submit_btn{
+    margin-left: 55px;
+    margin-top: 10px;
+}
+
+.block1 .formOrder h3{
+    margin: 0 auto 10px;
+}
+
+.error{
+    display: inline-block;
+    margin-top: 100px;
+    font-size: 170px;
+    font-weight: 600;
+    color: #6d6d6d;
 }

@@ -81,6 +81,10 @@
             success: function(data) {
                 $('.results').html(data);
                 $('#page-preloader').hide();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $('.results').html('<img src="/resources/img/spinner3.gif" /><span class="error">'+textStatus + errorThrown + '</spam>');
+                $('#page-preloader').hide();
             }
         });
     }

@@ -15,7 +15,6 @@
 </head>
 <body>
 
-<div id="page-preloader" style="display: none;"><span class="spinner">loading...</span></div>
 
 
 <div class="content">
@@ -38,11 +37,15 @@
             </nav>
 
             <div class="container">
+
+                <div id="page-preloader" style="display: none;">
+                    <span class="spinner">loading...</span>
+                </div>
+
                 <div class="results">
-                    <img src="${spinner}"/>
+                    <img class="mainSpinner" src="${spinner}"/>
                     <h1>${message}</h1>
                     <h2>Hello, ${userName}!</h2>
-                    <a class="btn btn-default btnLink" role="button"  href="/login">login</a>
                 </div>
             </div>
         </div>
@@ -74,8 +77,9 @@
         funLoad('/cart');
     });
     $('.createUser').click( function() {
-        funLoad('/createUser');
+        funLoad('/login');
     });
+
 </script>
 
 </body>
