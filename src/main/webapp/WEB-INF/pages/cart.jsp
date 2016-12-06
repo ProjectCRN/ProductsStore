@@ -67,7 +67,6 @@
                 <div class="col-md-3 left_block">
                      <h1>Total: ${total}$</h1>
                      <a class="btn btn-default btnLink createOrder" href="#">Create Order</a>
-                     <a href="/createOrder">create order</a>
                 </div>
             </div>
 

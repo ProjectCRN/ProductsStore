@@ -23,9 +23,11 @@ public class FrontController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome(ModelMap model) {
 
+        model.addAttribute("userRole",user.getRoleId());
         model.addAttribute("message", "Our dream team ^_^");
         model.addAttribute("userName", user.getUserName());
         model.addAttribute("user",user);
+
         return VIEW_INDEX;
     }
 

@@ -75,6 +75,7 @@ public class UserLoginController{
         cartService.getCart().setUserId(user.getId());
         model.addAttribute("hello", "Hello, "+user.getUserName()+"! ");
         model.addAttribute("msg", "Nice to meet you in our little shop ^_^");
+        model.addAttribute("userRole",user.getRoleId());
         return SUCCESS;
     }
 
@@ -97,6 +98,7 @@ public class UserLoginController{
         cartService.getCart().setUserId(user.getId());
         model.addAttribute("hello", "Hello, "+user.getUserName()+"! ");
         model.addAttribute("msg", "Nice to meet you in our little shop ^_^");
+        model.addAttribute("userRole",user.getRoleId());
         return SUCCESS;
     }
 
@@ -106,6 +108,7 @@ public class UserLoginController{
         user.logout();
         cartService.getCart().setUserId(user.getId());
         model.addAttribute("msg", "See you later in our little shop ^_^");
+        model.addAttribute("userRole",user.getRoleId());
         return SUCCESS;
     }
 }

@@ -12,3 +12,24 @@
     <h2>${msg}</h2>
     <img src="/resources/img/spinner4.gif">
 </div>
+
+<script language="javascript" type="text/javascript">
+
+    var role = '${userRole}';
+
+    if (role == 'N'){
+        $('.userRole').hide();
+        $('.adminRole').hide();
+        $('.guestRole').show();
+    }
+    if (role == 'U'){
+        $('.adminRole').hide();
+        $('.guestRole').hide();
+        $('.userRole').show();
+    }
+    if (role == 'A'){
+        $('.guestRole').hide();
+        $('.userRole').hide();
+        $('.adminRole').show();
+    }
+</script>

@@ -33,11 +33,21 @@
                     </ul>
                 </li>
                 <li><a class="cart" href="#">Cart</a></li>
-                <li><a href="#">User</a>
+                <li class="userRole" style="display: none"><a href="#">User</a>
+                    <ul class="submenu">
+                        <li><a class="logout" href="#">LogOut</a></li>
+                        <li><a class="allOrders" href="#">Orders</a></li>
+                    </ul>
+                </li>
+                <li class="guestRole" style="display: none"><a href="#">User</a>
                     <ul class="submenu">
                         <li><a class="login" href="#">LogIn</a></li>
-                        <li><a class="logout" href="#">LogOut</a></li>
                         <li><a class="registerUser" href="#">Register</a></li>
+                    </ul>
+                </li>
+                <li class="adminRole" style="display: none"><a href="#">Admin</a>
+                    <ul class="submenu">
+                        <li><a class="logout" href="#">LogOut</a></li>
                         <li><a class="allOrders" href="#">Orders</a></li>
                         <li><a class="newTelephone" href="#">Create Telephone</a></li>
                         <li><a class="newTablet" href="#">Create Tablet</a></li>
@@ -54,7 +64,7 @@
                 <div class="results">
                     <img class="mainSpinner" src="${spinner}"/>
                     <h1>${message}</h1>
-                    <h2>Hello, ${userName}!</h2>
+                    <h2>Hello, ${userName}! </h2>
                 </div>
             </div>
         </div>
@@ -66,6 +76,22 @@
 
 
 <script language="javascript" type="text/javascript">
+
+
+    var role = '${userRole}';
+
+    if (role == 'N'){
+        $('.guestRole').show();
+    }
+    if (role == 'U'){
+        $('.userRole').show();
+    }
+    if (role == 'A'){
+        $('.adminRole').show();
+    }
+
+
+
     function funLoad(str) {
         $('#page-preloader').show();
         $.ajax({
