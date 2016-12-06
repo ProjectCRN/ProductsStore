@@ -51,10 +51,12 @@ public class Entity extends AbstractEntity {
     }
 
     public Entity() {
+        valueList = new ArrayList<>();
     }
 
     public Entity(int id) {
         super(id);
+        valueList = new ArrayList<>();
     }
 
 
@@ -120,7 +122,7 @@ public class Entity extends AbstractEntity {
 
     public void setEntityTypeId(Integer entityTypeId) {
         this.entityTypeId = entityTypeId;
-        this.entityTypeName =  AbstractTag.getTag(entityTypeId).getTypeName();
+        this.entityTypeName = AbstractTag.getTag(entityTypeId).getTypeName();
     }
 
     public String getEntityTypeName() {
@@ -141,6 +143,15 @@ public class Entity extends AbstractEntity {
 
     public void setValueList(List<Value> valueList) {
         this.valueList = valueList;
+    }
+
+    protected void setValueListByMap(List<Pair<Atribute, Value>> atributeValueMap) {
+        if(atributeValueMap!=null) {
+            this.valueList = new ArrayList<>(atributeValueMap.size());
+            for (Pair<Atribute, Value> pair : atributeValueMap) {
+                valueList.add(pair.getValue());
+            }
+        }
     }
 
     public List<Pair<Atribute, Value>> getAtributeValueMap() {
@@ -165,7 +176,7 @@ public class Entity extends AbstractEntity {
     }
 
 
-    protected Integer getAtributeId(String atribute){
+    protected Integer getAtributeId(String atribute) {
         AbstractTag tag = AbstractTag.getTag(getEntityTypeId());
         if (tag != null) {
             try {
@@ -177,7 +188,7 @@ public class Entity extends AbstractEntity {
         return null;
     }
 
-    public void setValueInList(String atribute, String value){
+    public void setValueInList(String atribute, String value) {
         for (int i = 0; i < getValueList().size(); i++) {
             if (getValueList().get(i).getAtributeId() == getAtributeId(atribute)) {
                 getValueList().get(i).setValue(value);
@@ -187,7 +198,7 @@ public class Entity extends AbstractEntity {
         getValueList().add(new Value(value, getId(), getAtributeId(atribute)));
     }
 
-    public void setValueInList(int atributeId, String value){
+    public void setValueInList(int atributeId, String value) {
         for (int i = 0; i < getValueList().size(); i++) {
             if (getValueList().get(i).getAtributeId() == atributeId) {
                 getValueList().get(i).setValue(value);
@@ -208,7 +219,7 @@ public class Entity extends AbstractEntity {
 
     public String getValueFromMap(int atributeId) {
         for (int i = 0; i < getAtributeValueMap().size(); i++) {
-            if (getAtributeValueMap().get(i).getKey().getId()==atributeId) {
+            if (getAtributeValueMap().get(i).getKey().getId() == atributeId) {
                 return getAtributeValueMap().get(i).getValue().getValue();
             }
         }

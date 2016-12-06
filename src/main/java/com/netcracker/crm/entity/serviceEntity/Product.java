@@ -31,6 +31,7 @@ public class Product extends Entity {
         super(entity.getId(), entity.getEntityName(), entity.getisActive() == 1 ? true : false,
                 entity.getEntityTypeId(), entity.getEntityTypeName(), entity.getEntityUserId());
         setAtributeValueMap(entity.getAtributeValueMap());
+        setValueListByMap(getAtributeValueMap());
         if (getAtributeValueMap() != null) {
             for (int i = 0; i < getAtributeValueMap().size(); i++) {
                 String atributeName = getAtributeValueMap().get(i).getKey().getAtributeName();

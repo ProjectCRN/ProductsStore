@@ -62,7 +62,11 @@ public class TestDao {
 //
 //        userService.isEmailFree("gav@panin.ru");
 //
-//        IProductService productService = (IProductService) context.getBean("productServiceTest");
+        IProductService productService = (IProductService) context.getBean("productServiceTest");
+        Product product = productService.getById(53);
+        product.setValueInList(23, "600");
+        System.out.println(product);
+//        System.out.println("PRODUCT\n" + product);
 //        for (Product item : productService.getList(9,"","","",1,2)) {
 //            System.out.println(item.toString());
 //        }
@@ -81,6 +85,7 @@ public class TestDao {
 //        cart.addCartItem(new CartItem(productService.getById(53), 1));
 //        cart.addCartItem(new CartItem(productService.getById(54), 2));
 //        IOrderService orderService = (IOrderService) context.getBean("orderServiceTest");
+//        Order o = orderService.getById(245);
 //        Order order = orderService.makeOrderByCart(cart);
 //        int id = orderService.add(order);
 //        orderService.getById(187);
