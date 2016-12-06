@@ -69,8 +69,9 @@ public class UserLoginController{
         if(signupForm.getUserName().equals(""))
             signupForm.setUserName(signupForm.getLogin());
         userService.add(signupForm);
-        user.clone(signupForm);
         int id=userService.getIdByLogin(signupForm.getLogin());
+        user.clone(signupForm);
+        user.setId(id);
         cartService.getCart().setUserId(user.getId());
         model.addAttribute("hello", "Hello, "+user.getUserName()+"! ");
         model.addAttribute("msg", "Nice to meet you in our little shop ^_^");

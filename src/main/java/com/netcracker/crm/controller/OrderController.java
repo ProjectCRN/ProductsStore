@@ -89,6 +89,7 @@ public class OrderController {
             return NO_ROOTS;
         List<Order> orderList = orderService.getListForUser(user.getId());
         model.addAttribute("orderList", orderList);
+        model.addAttribute("orderInfo",orderList.toString());
         return ALL_ORDERS;
     }
 

@@ -10,4 +10,5 @@
             <br>
         </li>
     </c:forEach>
+    <h1>${orderInfo}</h1>
 </div>
