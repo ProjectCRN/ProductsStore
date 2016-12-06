@@ -118,12 +118,20 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     public List<Order> getListForUser(int userId) {
         List<Order> orderList;
         try {
+            String createdDateId = getAtributeIdByTypeId(EntityType.Order.getTypeId(), "CreatedDate");
+            String totalId = getAtributeIdByTypeId(EntityType.Order.getTypeId(), "Total");
+            String orderNumberId = getAtributeIdByTypeId(EntityType.Order.getTypeId(), "OrderNumber");
             List<Entity> list = entityDao.getByUserAndType(userId, EntityType.Order.getTypeId(),
-                    getAtributeIdByTypeId(EntityType.Order.getTypeId(), "CreatedDate"));
-            orderList = new ArrayList<>(list.size());
-            for (Entity e : list) {
-                orderList.add(new Order(e));
-            }
+                    createdDateId + "," + totalId + "," + orderNumberId);
+            if(list!=null) {
+                orderList = new ArrayList<>(list.size());
+                for (Entity e : list) {
+                    Order o = new Order(e);
+                    orderList.add(new Order(e));
+                    //System.out.println(o);
+                }
+            } else
+            return null;
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getListForUser for Order");
         } catch (DaoException exc) {
             logger.error(exc.getMessage());
