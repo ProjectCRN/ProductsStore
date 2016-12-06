@@ -124,12 +124,13 @@ public class TestDao {
 //        System.out.println(entityDao.getByUserAndType(-2, 9, AbstractTag.getTag(9).getIdByName("summary") + ""));
 //        System.out.println(entityDao.getByUserAndType(-2, 9, "22"));
 
-        
+
 
 //          TEST DAO NEW VERSION
 //        IProductService productService = (IProductService)context.getBean("productServiceTest");
 //        productService.getById(53);
 //        IOrderService orderService = (IOrderService)context.getBean("orderServiceTest");
+//        orderService.getById(245);
 //        List<Order> list = orderService.getListForUser(244);
 //        for(Order o : list){
 //            System.out.println(o.getId() + "\n" +o);

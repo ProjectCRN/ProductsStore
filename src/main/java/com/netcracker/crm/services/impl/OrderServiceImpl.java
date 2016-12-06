@@ -99,7 +99,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
             String prodId = getAtributeIdByTypeId
                     (EntityType.valueOf(productInOrderStr).getTypeId(), "ProductID");
             List<Entity> list = entityDao.getList(EntityType.valueOf(productInOrderStr).getTypeId(),
-                    String.valueOf(ProductInOrderAtribute.valueOf(orderIdStr).getAtributeId()),
+                    String.valueOf(ProductInOrderAtribute.valueOf("OrderID").getAtributeId()),
                     String.valueOf(order.getId()), "=", quantityId + "," + priceId+ "," + prodId);
             for (Entity e : list) {
                 Product prod = new Product(e);
