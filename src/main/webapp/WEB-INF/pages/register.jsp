@@ -53,6 +53,7 @@
 
 <script type="text/javascript" language="javascript">
     function signupFun() {
+        $('#page-preloader').show();
         var msg   = $('#signupForm').serialize();
         $.ajax({
             type: 'POST',
@@ -60,6 +61,7 @@
             data: msg,
             success: function(data) {
                 $('.results').html(data);
+                $('#page-preloader').hide();
             }
         });
     }

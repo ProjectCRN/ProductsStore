@@ -39,6 +39,7 @@
 
 <script type="text/javascript" language="javascript">
     function orderFun() {
+        $('#page-preloader').show();
         var msg = $('#formOrder').serialize();
         $.ajax({
             type: 'POST',
@@ -46,6 +47,7 @@
             data: msg,
             success: function (data) {
                 $('.results').html(data);
+                $('#page-preloader').hide();
             }
         });
     }

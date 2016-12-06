@@ -90,8 +90,6 @@
         $('.adminRole').show();
     }
 
-
-
     function funLoad(str) {
         $('#page-preloader').show();
         $.ajax({
