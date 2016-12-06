@@ -62,7 +62,7 @@ public class TestDao {
 //
 //        userService.isEmailFree("gav@panin.ru");
 //
-//        IProductService productService = (IProductService) context.getBean("productService");
+//        IProductService productService = (IProductService) context.getBean("productServiceTest");
 //        for (Product item : productService.getList(9,"","","",1,2)) {
 //            System.out.println(item.toString());
 //        }
@@ -80,7 +80,7 @@ public class TestDao {
 //        Cart cart = new Cart(-1);
 //        cart.addCartItem(new CartItem(productService.getById(53), 1));
 //        cart.addCartItem(new CartItem(productService.getById(54), 2));
-//        IOrderService orderService = (IOrderService) context.getBean("orderService");
+//        IOrderService orderService = (IOrderService) context.getBean("orderServiceTest");
 //        Order order = orderService.makeOrderByCart(cart);
 //        int id = orderService.add(order);
 //        orderService.getById(187);
@@ -109,36 +109,6 @@ public class TestDao {
 //        cartService.delete(51);
 //        cartService.countTotal();
 //        System.out.println(cartService.getCart().toString());
-
-        IEntityDao entityDao = (IEntityDao) context.getBean("entityDao");
-//        List<Entity> list = entityDao.getByUserAndType(-2, 7 , "");
-//        for(Entity e: list){
-//            System.out.println(e);
-//        }
-//        List<Value> values = new ArrayList<>();
-//        values.add(new Value(142, "1443", 141, 19));  !!!!!!!!!!!
-//        Entity e = new Entity(141, "cactus", true, 8, -2, values);
-//        entityDao.updateByEntity(e);
-//        System.out.println(entityDao.update(141, "itisnewname", 1, -2, values));
-//        entityDao.delete(1000);
-//        System.out.println(entityDao.getByUserAndType(-2, 9, AbstractTag.getTag(9).getIdByName("summary") + ""));
-//        System.out.println(entityDao.getByUserAndType(-2, 9, "22"));
-
-
-
-//          TEST DAO NEW VERSION
-//        IProductService productService = (IProductService)context.getBean("productServiceTest");
-//        productService.getById(53);
-//        IOrderService orderService = (IOrderService)context.getBean("orderServiceTest");
-//        orderService.getById(245);
-//        List<Order> list = orderService.getListForUser(244);
-//        for(Order o : list){
-//            System.out.println(o.getId() + "\n" +o);
-//        }
-//        product.setValueInList(TabletAtribute.Fabricator.name(), "newfabricator");
-//        Product pr1 = new Product();
-//        pr1.setEntityName("newname");
-//        productService.add(pr1);
 
     }
 }

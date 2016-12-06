@@ -190,6 +190,19 @@ public class Entity extends AbstractEntity {
         }
     }
 
+    public void setValueInList(int atributeId, String value){
+        boolean f = false;
+        for (int i = 0; i < getValueList().size(); i++) {
+            if (getValueList().get(i).getAtributeId() == atributeId) {
+                getValueList().get(i).setValue(value);
+                f = true;
+            }
+        }
+        if (!f) {
+            getValueList().add(new Value(value, getId(), atributeId));
+        }
+    }
+
     public String getValueFromMap(String atribute) {
         for (int i = 0; i < getAtributeValueMap().size(); i++) {
             if (getAtributeValueMap().get(i).getKey().getAtributeName().equals(atribute)) {

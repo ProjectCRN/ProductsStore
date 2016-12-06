@@ -166,7 +166,7 @@ public class Product extends Entity {
                 "id='" + getId() + '\'' +
                 ", name='" + getEntityName() + '\'' +
                 ", user='" + getEntityUserId() + '\'' +
-                ", productType='" + getEntityTypeName() + '\'' + "}";
+                ", type='" + getEntityTypeName() + '\'' + "}";
         if (getAtributeValueMap() != null) {
             for (Pair<Atribute, Value> item : getAtributeValueMap()) {
                 str += "\n" + item.getKey().toString();

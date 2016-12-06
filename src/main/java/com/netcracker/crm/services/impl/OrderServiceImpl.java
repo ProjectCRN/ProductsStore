@@ -7,11 +7,11 @@ import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.Value;
 import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.enums.OrderAtribute;
 import com.netcracker.crm.entity.enums.ProductInOrderAtribute;
 import com.netcracker.crm.entity.serviceEntity.*;
 import com.netcracker.crm.services.AbstractService;
 import com.netcracker.crm.services.IOrderService;
-import com.netcracker.crm.services.IProductService;
 import com.netcracker.crm.services.constants.ServiceConstants;
 import com.netcracker.crm.services.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
@@ -24,9 +24,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,10 +37,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     private IEntityDao entityDao;
     private IUserDao userDao;
     private static Logger logger = LogManager.getLogger(OrderServiceImpl.class);
-    private final static String productInOrderStr = "ProductInOrder";
     private final static String orderStr = "Order";
-    private final static String productIdStr = "productid";
-    private final static String orderIdStr = "orderid";
 
     @Override
     public Order makeOrderByCart(Cart cart) {
@@ -70,11 +64,12 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
             for (CartItem item : order.getCart().getCartItems()) {
                 Product product = item.getProduct();
                 //добавляем entity с типом ProductInOrder
-                product.setEntityTypeId(EntityType.valueOf(productInOrderStr).getTypeId());
+                product.setEntityTypeId(EntityType.ProductInOrder.getTypeId());
                 product.setUserId(order.getEntityUserId());
                 product.setQuantity(item.getQuantity());
                 product.setOrderId(id);
-                product.setValueInList(productIdStr, String.valueOf(product.getId()));
+                product.setValueInList(ProductInOrderAtribute.ProductID.getAtributeId(),
+                        String.valueOf(product.getId()));
                 product.setPrice(product.getPrice());
                 entityDao.add(product);
             }
@@ -92,14 +87,11 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
         try {
             order = new Order(entityDao.getById(id));
             Cart cart = new Cart(order.getEntityUserId(), order.getTotal());
-            String quantityId = getAtributeIdByTypeId
-                    (EntityType.valueOf(productInOrderStr).getTypeId(), "Quantity");
-            String priceId = getAtributeIdByTypeId
-                    (EntityType.valueOf(productInOrderStr).getTypeId(), "Price");
-            String prodId = getAtributeIdByTypeId
-                    (EntityType.valueOf(productInOrderStr).getTypeId(), "ProductID");
-            List<Entity> list = entityDao.getList(EntityType.valueOf(productInOrderStr).getTypeId(),
-                    String.valueOf(ProductInOrderAtribute.valueOf("OrderID").getAtributeId()),
+            String quantityId = String.valueOf(ProductInOrderAtribute.Quantity.getAtributeId());
+            String priceId = String.valueOf(ProductInOrderAtribute.Price.getAtributeId());
+            String prodId = String.valueOf(ProductInOrderAtribute.ProductID.getAtributeId());
+            List<Entity> list = entityDao.getList(EntityType.ProductInOrder.getTypeId(),
+                    String.valueOf(ProductInOrderAtribute.OrderID.getAtributeId()),
                     String.valueOf(order.getId()), "=", quantityId + "," + priceId+ "," + prodId);
             for (Entity e : list) {
                 Product prod = new Product(e);
@@ -118,9 +110,9 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     public List<Order> getListForUser(int userId) {
         List<Order> orderList;
         try {
-            String createdDateId = getAtributeIdByTypeId(EntityType.Order.getTypeId(), "CreatedDate");
-            String totalId = getAtributeIdByTypeId(EntityType.Order.getTypeId(), "Total");
-            String orderNumberId = getAtributeIdByTypeId(EntityType.Order.getTypeId(), "OrderNumber");
+            String createdDateId = String.valueOf(OrderAtribute.CreatedDate.getAtributeId());
+            String totalId = String.valueOf(OrderAtribute.Total.getAtributeId());
+            String orderNumberId = String.valueOf(OrderAtribute.OrderNumber.getAtributeId());
             List<Entity> list = entityDao.getByUserAndType(userId, EntityType.Order.getTypeId(),
                     createdDateId + "," + totalId + "," + orderNumberId);
             if(list!=null) {
@@ -170,7 +162,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
 
     @Override
     public int rowCounter(int typeId, String atributesId, String values, String operators) {
-        return entityDao.rowCounter(EntityType.valueOf(orderStr).getTypeId(),atributesId,values,operators);
+        return entityDao.rowCounter(EntityType.Order.getTypeId(),atributesId,values,operators);
     }
 
     @Override
