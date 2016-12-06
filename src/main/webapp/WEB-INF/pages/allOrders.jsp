@@ -5,8 +5,8 @@
         <li>
             Number: №${item.getOrderNumber()} <br>
             Total: ${item.getTotal()} <br>
-            ${item.getDescription()}<br>
-            <a href="/getOrder/"${item.getId()}>see more</a>
+                ${item.getId()}<br>
+            <a href="/getOrder/${item.getId()}">see more</a>
             <br>
         </li>
     </c:forEach>

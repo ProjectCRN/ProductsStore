@@ -11,7 +11,7 @@
 	<context:component-scan base-package="com.netcracker.crm.entity.controllerEntity" />
 
 	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
 			<value>/WEB-INF/pages/</value>
 		</property>
@@ -50,6 +50,12 @@
 		<property name="orderService" ref="orderService"/>
 		<property name="user" ref="user"/>
 		<property name="orderValidator" ref="orderValidator"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.controller.AdminController" id="adminController" scope="session">
+		<property name="addProductValidator" ref="addProductValidator"/>
+		<property name="productService" ref="productService"/>
+		<property name="user" ref="user"/>
 	</bean>
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 

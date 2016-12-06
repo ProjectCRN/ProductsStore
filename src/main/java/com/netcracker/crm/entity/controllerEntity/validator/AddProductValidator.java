@@ -75,6 +75,11 @@ public class AddProductValidator {
             errors.rejectValue("operatingSystem", "operatingSystem.operatingSystemDontMatch", "operatingSystem don't match.");
         }
 
+        String name = prod.getName();
+        if (!(name.matches("^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$"))) {
+            errors.rejectValue("name", "name.nameDontMatch", "name don't match.");
+        }
+
         String simCard = prod.getSimCard();
         if (!(simCard.matches("^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$"))) {
             errors.rejectValue("simCard", "simCard.simCardDontMatch", "simCard don't match.");
