@@ -79,7 +79,7 @@ public class Product extends Entity {
 
     public void setPrice(double price) {
         this.price = price;
-        //setValueInList("Price", String.valueOf(price));
+        setValueInList("price", String.valueOf(price));
     }
 
     public String getSummary() {
@@ -88,7 +88,7 @@ public class Product extends Entity {
 
     public void setSummary(String summary) {
         this.summary = summary;
-        //setValueInList("Summary", summary);
+        setValueInList("summary", summary);
     }
 
     public int getOrderId() {
@@ -97,7 +97,7 @@ public class Product extends Entity {
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
-        //setValueInList("OrderID", String.valueOf(orderId));
+        setValueInList("orderid", String.valueOf(orderId));
     }
 
     public String getImageUrl() {
@@ -106,7 +106,7 @@ public class Product extends Entity {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-        //setValueInList("ImageURL", imageUrl);
+        setValueInList("imageurl", imageUrl);
     }
 
     public int getQuantity() {
@@ -115,7 +115,7 @@ public class Product extends Entity {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-        //setValueInList("Quantity", String.valueOf(quantity));
+        setValueInList("quantity", String.valueOf(quantity));
     }
 
     public String getFabricator() {
@@ -124,7 +124,7 @@ public class Product extends Entity {
 
     public void setFabricator(String fabricator) {
         this.fabricator = fabricator;
-        //setValueInList("Fabricator", fabricator);
+        setValueInList("fabricator", fabricator);
     }
 
     @Override

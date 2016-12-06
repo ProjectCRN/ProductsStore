@@ -42,8 +42,8 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     private static Logger logger = LogManager.getLogger(OrderServiceImpl.class);
     private final static String productInOrderStr = "ProductInOrder";
     private final static String orderStr = "Order";
-    private final static String productIdStr = "ProductID";
-    private final static String orderIdStr = "OrderID";
+    private final static String productIdStr = "productid";
+    private final static String orderIdStr = "orderid";
 
     @Override
     public Order makeOrderByCart(Cart cart) {

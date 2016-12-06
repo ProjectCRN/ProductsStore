@@ -107,7 +107,7 @@ public class Order extends Entity {
 
     public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
-        //setValueInList("OrderNumber", orderNumber);
+        setValueInList("ordernumber", orderNumber);
     }
 
     public String getContactName() {
@@ -116,7 +116,7 @@ public class Order extends Entity {
 
     public void setContactName(String contactName) {
         this.contactName = contactName;
-        //setValueInList("ContactName", contactName);
+        setValueInList("contactname", contactName);
     }
 
     public String getContactPhone() {
@@ -125,7 +125,7 @@ public class Order extends Entity {
 
     public void setContactPhone(String contactPhone) {
         this.contactPhone = contactPhone;
-        //setValueInList("ContactPhone", contactPhone);
+        setValueInList("contactphone", contactPhone);
     }
 
     public String getContactAddress() {
@@ -134,7 +134,7 @@ public class Order extends Entity {
 
     public void setContactAddress(String contactAddress) {
         this.contactAddress = contactAddress;
-        //setValueInList("ContactAdress", contactAddress);
+        setValueInList("contactadress", contactAddress);
     }
 
     public int getTotal() {
@@ -143,7 +143,7 @@ public class Order extends Entity {
 
     public void setTotal(int total) {
         this.total = total;
-        //setValueInList("Total", String.valueOf(total));
+        setValueInList("total", String.valueOf(total));
     }
 
     public Date getCreatedDate() {
@@ -152,7 +152,7 @@ public class Order extends Entity {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-        //setValueInList("CreatedDate", createdDate.toString());
+        setValueInList("createddate", createdDate.toString());
     }
 
     public Date getPaidDate() {
@@ -161,7 +161,7 @@ public class Order extends Entity {
 
     public void setPaidDate(Date paidDate) {
         this.paidDate = paidDate;
-        //setValueInList("PaidDate", paidDate.toString());
+        setValueInList("paiddate", paidDate.toString());
     }
 
     public Cart getCart() {
