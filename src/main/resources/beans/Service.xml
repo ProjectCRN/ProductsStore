@@ -21,6 +21,19 @@
         <property name="userDao" ref="userDao"/>
     </bean>
 
+    <bean class="com.netcracker.crm.services.impl.UserServiceImpl" id="userServiceTest">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.services.impl.ProductServiceImpl" id="productServiceTest">
+        <property name="entityDao" ref="entityDao"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.services.impl.OrderServiceImpl" id="orderServiceTest">
+        <property name="entityDao" ref="entityDao"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
     <bean class="com.netcracker.crm.entity.controllerEntity.validator.SignupValidator" id="signupValidator" scope="session">
         <property name="userService" ref="userService"/>
     </bean>
