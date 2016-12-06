@@ -47,6 +47,17 @@ public class User extends AbstractEntity {
     {
         return this.getRoleId().equals(User.ROLE_ADMIN);
     }
+
+    public boolean isUser()
+    {
+        return this.getRoleId().equals(User.ROLE_USER);
+    }
+
+    public boolean isAnon()
+    {
+        return this.getRoleId().equals(User.ROLE_ANON);
+    }
+
     public void logout()
     {
         this.setId(-1);
