@@ -32,16 +32,17 @@
                         <li><a class="tablet" href="#">Tablet</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#">Admin</a>
+                <li><a class="cart" href="#">Cart</a></li>
+                <li><a href="#">User</a>
                     <ul class="submenu">
+                        <li><a class="login" href="#">LogIn</a></li>
+                        <li><a class="logout" href="#">LogOut</a></li>
+                        <li><a class="registerUser" href="#">Register</a></li>
+                        <li><a class="allOrders" href="#">Orders</a></li>
                         <li><a class="newTelephone" href="#">Create Telephone</a></li>
                         <li><a class="newTablet" href="#">Create Tablet</a></li>
                     </ul>
                 </li>
-                <li><a class="cart" href="#">Cart</a></li>
-                <li><a class="allOrders" href="#">Orders</a></li>
-                <li><a class="createUser" href="#">User</a></li>
             </nav>
 
             <div class="container">
@@ -90,11 +91,17 @@
     $('.cart').click( function() {
         funLoad('/cart');
     });
-    $('.createUser').click( function() {
+    $('.login').click( function() {
         funLoad('/login');
     });
     $('.allOrders').click( function() {
         funLoad('/getAllOrders');
+    });
+    $('.registerUser').click( function() {
+        funLoad('/createUser');
+    })
+    $('.logout').click( function() {
+        funLoad('/logout');
     });
 </script>
 

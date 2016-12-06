@@ -5,7 +5,7 @@
 
 
 <h2>${cartInfo}</h2>
-<sf:form method="post" id="formOrder" modelAttribute="order" action="createOrder">
+<sf:form method="post" id="formOrder" modelAttribute="order" action="javascript:void(null);" onsubmit="orderFun()">
     <div class="col-md-4"></div>
     <ul class="col-md-4 formOrder">
 
@@ -30,7 +30,7 @@
         </li>
         <li>
             <br>
-            <input type="submit" class="btn btn-default btnLink" value="Create Order"/>
+            <input type="submit" class="btn btn-default btnLink submit_btn" value="Create Order"/>
         </li>
 
     </ul>
