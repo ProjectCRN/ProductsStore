@@ -82,7 +82,7 @@ public class AdminController{
         prod.setEntityName(addProductForm.getName());
         prod.setUserId(-2);
         prod.setEntityTypeId(typeid);
-        prod.setPrice(310.0);
+        prod.setPrice(Double.parseDouble(addProductForm.getPrice()));
         prod.setSummary(addProductForm.getSummary());
         prod.setFabricator(addProductForm.getFabricator());
         prod.setImageUrl(addProductForm.getImageUrl());
