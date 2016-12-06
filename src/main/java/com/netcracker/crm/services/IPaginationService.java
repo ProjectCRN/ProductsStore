@@ -7,4 +7,8 @@ import java.util.List;
  */
 public interface IPaginationService {
     List<String> getPageNums(int num);
+    int getPageNum();
+    void setPageNum(int pageNum);
+    int calcPageNum(int itemNum);
+    int getNumPerPage();
 }

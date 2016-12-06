@@ -42,6 +42,18 @@ public class User extends AbstractEntity {
         this.setRoleId(user.getRoleId());
         this.setEmail(user.getEmail());
     }
+
+    public void logout()
+    {
+        this.setId(-1);
+        this.setLogin("anon");
+        this.setPassword("anon");
+        this.setUserName("Guest");
+        this.setContactPhone("");
+        this.setContactAddress("");
+        this.setRoleId(User.ROLE_ANON);
+        this.setEmail("anon@gmail.com");
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

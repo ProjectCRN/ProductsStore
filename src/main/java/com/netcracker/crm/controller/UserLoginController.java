@@ -66,11 +66,14 @@ public class UserLoginController{
             return REGISTER;
         }
         signupForm.setRoleId(User.ROLE_USER);
+        if(signupForm.getUserName().equals(""))
+            signupForm.setUserName(signupForm.getLogin());
         userService.add(signupForm);
         user.clone(signupForm);
         int id=userService.getIdByLogin(signupForm.getLogin());
         cartService.getCart().setId(id);
-        model.addAttribute("user", user);
+        model.addAttribute("hello", "Hello, "+user.getUserName()+"!");
+        model.addAttribute("msg", "Nice to meet you in our little shop ^_^");
         return REGISTER_SUCCESS;
     }
 
@@ -91,7 +94,17 @@ public class UserLoginController{
         User buf = userService.getById(id);
         user.clone(buf);
         cartService.getCart().setId(id);
-        model.addAttribute("user", user);
+        model.addAttribute("hello", "Hello, "+user.getUserName()+"!");
+        model.addAttribute("msg", "Nice to meet you in our little shop ^_^");
+        return REGISTER_SUCCESS;
+    }
+
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logout(ModelMap model) {
+        model.addAttribute("hello", "Goodbye, "+user.getUserName()+"!");
+        user.logout();
+        cartService.getCart().setId(user.getId());
+        model.addAttribute("msg", "See you later in our little shop ^_^");
         return REGISTER_SUCCESS;
     }
 }

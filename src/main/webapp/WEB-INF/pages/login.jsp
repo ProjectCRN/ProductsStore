@@ -21,6 +21,7 @@
             <li>
                 <input type="submit" class="btn btn-default btnLink" value="Submit" />
                 <a class="registerUser btn btn-default btnLink" role="button"  href="#">Register</a>
+                <a class="logoutUser btn btn-default btnLink" role="button"  href="#">Log Out</a>
             </li>
         </ul>
 </form:form>
@@ -50,6 +51,9 @@
     }
     $('.registerUser').click( function() {
         funLoad('/createUser');
+    })
+    $('.logoutUser').click( function() {
+        funLoad('/logout');
     });
 
 </script>

@@ -32,7 +32,7 @@
     <bean class="com.netcracker.crm.entity.controllerEntity.OrderValidator" id="orderValidator" scope="session"/>
 
     <bean class="com.netcracker.crm.entity.User" id="user" scope="session">
-        <property name="id" value="-2"/>
+        <property name="id" value="-1"/>
         <property name="contactAddress" value=""/>
         <property name="contactPhone" value=""/>
         <property name="email" value="anon@gmail.com"/>

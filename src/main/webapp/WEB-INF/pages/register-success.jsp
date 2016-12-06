@@ -8,7 +8,7 @@
 --%>
 
 <div align="center">
-    <h1>Hello, ${user.getUserName()}!</h1>
-    <h2>NIce to meet you in our little shop ^_^</h2>
+    <h1>${hello}</h1>
+    <h2>${msg}</h2>
     <img src="/resources/img/spinner4.gif">
 </div>

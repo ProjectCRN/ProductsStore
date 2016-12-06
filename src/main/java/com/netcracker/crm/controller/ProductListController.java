@@ -6,6 +6,7 @@ import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.IPaginationService;
 import com.netcracker.crm.services.IProductService;
 import com.netcracker.crm.services.ISearchService;
+import com.netcracker.crm.services.impl.PaginationServiceImpl;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -64,13 +65,15 @@ public class ProductListController {
             case "telephone": typeid=EntityType.Telephone.getTypeId(); break;
             case "tablet": typeid=EntityType.Tablet.getTypeId(); break;
         }
-        List<Product> productList = productService.getList(typeid,"","","",1,2);
+        List<Product> productList = productService.getList(typeid,"","","",
+                1, paginationService.getNumPerPage());
         if(productList == null)
             productList = new ArrayList<>();
         model.addAttribute("productList", productList);
         model.addAttribute("currType", type);
         model.addAttribute("searchAttr", new SearchAttributes());
-        int pageNumber = 2;
+        int pageNumber = paginationService.calcPageNum(productService.rowCounter(typeid,"","",""));
+        paginationService.setPageNum(pageNumber);
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq","products");
         model.addAttribute("searchBtn","search");
@@ -85,13 +88,14 @@ public class ProductListController {
             case "telephone": typeid=EntityType.Telephone.getTypeId(); break;
             case "tablet": typeid=EntityType.Tablet.getTypeId(); break;
         }
-        List<Product> productList = productService.getList(typeid,"","","",Integer.parseInt(pageNum),2);
+        List<Product> productList = productService.getList(typeid,"","","",
+                Integer.parseInt(pageNum),paginationService.getNumPerPage());
         if(productList == null)
             productList = new ArrayList<>();
         model.addAttribute("productList", productList);
         model.addAttribute("currType", type);
         model.addAttribute("searchAttr", new SearchAttributes());
-        int pageNumber = 2;
+        int pageNumber = paginationService.getPageNum();
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq","products");
         model.addAttribute("searchBtn","search");
@@ -109,7 +113,7 @@ public class ProductListController {
                 searchAttr.getValues(),
                 searchAttr.getOperators(),
                 1,
-                2);
+                paginationService.getNumPerPage());
         if(productList == null)
             productList = new ArrayList<>();
         if(productList.isEmpty())
@@ -118,7 +122,12 @@ public class ProductListController {
         model.addAttribute("currType",searchAttr.getType());
         model.addAttribute("searchAttr", searchAttr);
         this.setSearchAttributes(searchAttr);
-        int pageNumber = 2;
+        int pageNumber = paginationService.calcPageNum(productService.rowCounter(
+                searchAttr.getTypeId(),
+                searchAttr.getAttribute(),
+                searchAttr.getValues(),
+                searchAttr.getOperators()));
+        paginationService.setPageNum(pageNumber);
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq","products");
         model.addAttribute("searchBtn","search");
@@ -135,7 +144,7 @@ public class ProductListController {
                 searchAttr.getValues(),
                 searchAttr.getOperators(),
                 Integer.parseInt(pageNum),
-                2);
+                paginationService.getNumPerPage());
         if(productList == null)
             productList = new ArrayList<>();
         if(productList.isEmpty())
@@ -144,7 +153,7 @@ public class ProductListController {
         model.addAttribute("currType",searchAttr.getType());
         model.addAttribute("searchAttr", searchAttr);
         this.setSearchAttributes(searchAttr);
-        int pageNumber = 2;
+        int pageNumber = paginationService.getPageNum();
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq","products/search");
         model.addAttribute("searchBtn","../../../search");
