@@ -2,7 +2,8 @@ package com.netcracker.crm.controller;
 
 import com.netcracker.crm.entity.User;
 
-import com.netcracker.crm.entity.controllerEntity.OrderValidator;
+import com.netcracker.crm.entity.controllerEntity.form.OrderForm;
+import com.netcracker.crm.entity.controllerEntity.validator.OrderValidator;
 import com.netcracker.crm.entity.serviceEntity.Order;
 import com.netcracker.crm.services.ICartService;
 import com.netcracker.crm.services.IOrderService;
@@ -49,29 +50,31 @@ public class OrderController {
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
     public String createOrder(ModelMap model) {
-        Order order = orderService.makeOrderByCart(cartService.getCart());
-        //Order order = new Order();
+
         model.addAttribute("cartInfo",cartService.getCart().toString());
+        OrderForm order = new OrderForm();
         if(user.getRoleId().equals(User.ROLE_ANON)) {
             model.addAttribute("order", order);
         }
         else{
-            order.setContactName(user.getUserName());
-            order.setContactPhone(user.getContactPhone());
-            order.setContactAddress(user.getContactAddress());
+            order.setFieldsFromUser(user);
             model.addAttribute("order",order);
         }
         return ORDER;
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
-    public String saveOrder(Order order, BindingResult result, ModelMap model) {
-        orderValidator.validate(order, result);
+    public String saveOrder(OrderForm orderForm, BindingResult result, ModelMap model) {
+        orderValidator.validate(orderForm, result);
         if (result.hasErrors()) {
             return ORDER;
         }
+
+        Order order = orderService.makeOrderByCart(cartService.getCart());
+        order.setFieldsFromForm(orderForm);
         orderService.add(order);
         model.addAttribute("order", order);
+        model.addAttribute("orderInfo",order.toString());
         return CHECK;
     }
 }

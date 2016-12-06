@@ -1,4 +1,4 @@
-package com.netcracker.crm.entity.controllerEntity;
+package com.netcracker.crm.entity.controllerEntity.form;
 
 /**
  * Created by Ксения on 05.12.2016.

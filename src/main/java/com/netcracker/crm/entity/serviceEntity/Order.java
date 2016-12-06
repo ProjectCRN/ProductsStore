@@ -1,6 +1,7 @@
 package com.netcracker.crm.entity.serviceEntity;
 
 import com.netcracker.crm.entity.*;
+import com.netcracker.crm.entity.controllerEntity.form.OrderForm;
 import javafx.util.Pair;
 
 import java.text.DateFormat;
@@ -89,6 +90,13 @@ public class Order extends Entity {
                 "Order", userId);
     }
 
+    public void setFieldsFromForm(OrderForm form)
+    {
+        this.setContactName(form.getContactName());
+        this.setContactPhone(form.getContactPhone());
+        this.setContactAddress(form.getContactAddress());
+        this.setDescription(form.getDescription());
+    }
     public Order(String name, boolean isActive, int userId) {
         super(name, isActive, ORDERTYPE, userId);
     }
@@ -99,7 +107,7 @@ public class Order extends Entity {
 
     public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
-        setValueInList("OrderNumber", orderNumber);
+        //setValueInList("OrderNumber", orderNumber);
     }
 
     public String getContactName() {
@@ -108,7 +116,7 @@ public class Order extends Entity {
 
     public void setContactName(String contactName) {
         this.contactName = contactName;
-        setValueInList("ContactName", contactName);
+        //setValueInList("ContactName", contactName);
     }
 
     public String getContactPhone() {
@@ -117,7 +125,7 @@ public class Order extends Entity {
 
     public void setContactPhone(String contactPhone) {
         this.contactPhone = contactPhone;
-        setValueInList("ContactPhone", contactPhone);
+        //setValueInList("ContactPhone", contactPhone);
     }
 
     public String getContactAddress() {
@@ -126,7 +134,7 @@ public class Order extends Entity {
 
     public void setContactAddress(String contactAddress) {
         this.contactAddress = contactAddress;
-        setValueInList("ContactAdress", contactAddress);
+        //setValueInList("ContactAdress", contactAddress);
     }
 
     public int getTotal() {
@@ -135,7 +143,7 @@ public class Order extends Entity {
 
     public void setTotal(int total) {
         this.total = total;
-        setValueInList("Total", String.valueOf(total));
+        //setValueInList("Total", String.valueOf(total));
     }
 
     public Date getCreatedDate() {
@@ -144,7 +152,7 @@ public class Order extends Entity {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-        setValueInList("CreatedDate", createdDate.toString());
+        //setValueInList("CreatedDate", createdDate.toString());
     }
 
     public Date getPaidDate() {
@@ -153,7 +161,7 @@ public class Order extends Entity {
 
     public void setPaidDate(Date paidDate) {
         this.paidDate = paidDate;
-        setValueInList("PaidDate", paidDate.toString());
+        //setValueInList("PaidDate", paidDate.toString());
     }
 
     public Cart getCart() {

@@ -1,5 +1,6 @@
-package com.netcracker.crm.entity.controllerEntity;
+package com.netcracker.crm.entity.controllerEntity.validator;
 
+import com.netcracker.crm.entity.controllerEntity.form.OrderForm;
 import com.netcracker.crm.entity.serviceEntity.*;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -10,12 +11,11 @@ import org.springframework.validation.Validator;
  */
 public class OrderValidator implements Validator {
     public boolean supports(Class<?> clazz) {
-        return Order.class.isAssignableFrom(clazz);
+        return OrderForm.class.isAssignableFrom(clazz);
     }
 
     public void validate(Object target, Errors errors) {
-        Order order = (Order) target;
-
+        OrderForm order = (OrderForm) target;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "contactName", "contactName.empty", "ContactName must not be empty.");
         String contactName = order.getContactName();

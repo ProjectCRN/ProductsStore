@@ -1,6 +1,8 @@
-package com.netcracker.crm.entity.controllerEntity;
+package com.netcracker.crm.entity.controllerEntity.validator;
 
 import com.netcracker.crm.entity.User;
+import com.netcracker.crm.entity.controllerEntity.form.SignupForm;
+import com.netcracker.crm.entity.controllerEntity.form.LoginForm;
 import com.netcracker.crm.services.IUserService;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.validation.Errors;

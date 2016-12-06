@@ -1,9 +1,9 @@
 package com.netcracker.crm.controller;
 import com.netcracker.crm.entity.User;
-import com.netcracker.crm.entity.controllerEntity.LoginForm;
-import com.netcracker.crm.entity.controllerEntity.LoginValidator;
-import com.netcracker.crm.entity.controllerEntity.SignupForm;
-import com.netcracker.crm.entity.controllerEntity.SignupValidator;
+import com.netcracker.crm.entity.controllerEntity.form.LoginForm;
+import com.netcracker.crm.entity.controllerEntity.validator.LoginValidator;
+import com.netcracker.crm.entity.controllerEntity.form.SignupForm;
+import com.netcracker.crm.entity.controllerEntity.validator.SignupValidator;
 import com.netcracker.crm.services.ICartService;
 import com.netcracker.crm.services.IUserService;
 import org.springframework.beans.factory.annotation.Required;
@@ -71,8 +71,8 @@ public class UserLoginController{
         userService.add(signupForm);
         user.clone(signupForm);
         int id=userService.getIdByLogin(signupForm.getLogin());
-        cartService.getCart().setId(id);
-        model.addAttribute("hello", "Hello, "+user.getUserName()+"!");
+        cartService.getCart().setUserId(user.getId());
+        model.addAttribute("hello", "Hello, "+user.getUserName()+"! ");
         model.addAttribute("msg", "Nice to meet you in our little shop ^_^");
         return REGISTER_SUCCESS;
     }
@@ -93,17 +93,17 @@ public class UserLoginController{
         int id=userService.getIdByLogin(loginForm.getLogin());
         User buf = userService.getById(id);
         user.clone(buf);
-        cartService.getCart().setId(id);
-        model.addAttribute("hello", "Hello, "+user.getUserName()+"!");
+        cartService.getCart().setUserId(user.getId());
+        model.addAttribute("hello", "Hello, "+user.getUserName()+"! ");
         model.addAttribute("msg", "Nice to meet you in our little shop ^_^");
         return REGISTER_SUCCESS;
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logout(ModelMap model) {
-        model.addAttribute("hello", "Goodbye, "+user.getUserName()+"!");
+        model.addAttribute("hello", "Goodbye, "+user.getUserName()+"! ");
         user.logout();
-        cartService.getCart().setId(user.getId());
+        cartService.getCart().setUserId(user.getId());
         model.addAttribute("msg", "See you later in our little shop ^_^");
         return REGISTER_SUCCESS;
     }

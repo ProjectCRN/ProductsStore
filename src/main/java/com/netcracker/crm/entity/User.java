@@ -43,6 +43,10 @@ public class User extends AbstractEntity {
         this.setEmail(user.getEmail());
     }
 
+    public boolean isAdmin()
+    {
+        return this.getRoleId().equals(User.ROLE_ADMIN);
+    }
     public void logout()
     {
         this.setId(-1);

@@ -40,4 +40,5 @@
     </table>
 
     <a class="btn btn-default btnLink" href="/">Ok</a>
+    <h1>${orderInfo}</h1>
 </div>
