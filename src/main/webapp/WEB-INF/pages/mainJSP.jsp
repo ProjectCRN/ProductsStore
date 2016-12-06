@@ -32,6 +32,13 @@
                         <li><a class="tablet" href="#">Tablet</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#">Admin</a>
+                    <ul class="submenu">
+                        <li><a class="newTelephone" href="#">Create Telephone</a></li>
+                        <li><a class="newTablet" href="#">Create Tablet</a></li>
+                    </ul>
+                </li>
                 <li><a class="cart" href="#">Cart</a></li>
                 <li><a class="allOrders" href="#">Orders</a></li>
                 <li><a class="createUser" href="#">User</a></li>
@@ -73,6 +80,12 @@
     });
     $('.tablet').click( function() {
         funLoad('/products/tablet');
+    });
+    $('.newTelephone').click( function() {
+        funLoad('/newProduct/telephone');
+    });
+    $('.newTablet').click( function() {
+        funLoad('/newProduct/tablet');
     });
     $('.cart').click( function() {
         funLoad('/cart');

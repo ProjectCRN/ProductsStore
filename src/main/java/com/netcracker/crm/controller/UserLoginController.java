@@ -20,7 +20,7 @@ public class UserLoginController{
 
     private static final String REGISTER = "register";
     private static final String LOGIN = "login";
-    private static final String REGISTER_SUCCESS = "register-success";
+    private static final String SUCCESS = "register-success";
     private SignupValidator signupValidator;
     private LoginValidator loginValidator;
     private IUserService userService;
@@ -75,7 +75,7 @@ public class UserLoginController{
         cartService.getCart().setUserId(user.getId());
         model.addAttribute("hello", "Hello, "+user.getUserName()+"! ");
         model.addAttribute("msg", "Nice to meet you in our little shop ^_^");
-        return REGISTER_SUCCESS;
+        return SUCCESS;
     }
 
     @RequestMapping(value="/login", method = RequestMethod.GET)
@@ -97,7 +97,7 @@ public class UserLoginController{
         cartService.getCart().setUserId(user.getId());
         model.addAttribute("hello", "Hello, "+user.getUserName()+"! ");
         model.addAttribute("msg", "Nice to meet you in our little shop ^_^");
-        return REGISTER_SUCCESS;
+        return SUCCESS;
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
@@ -106,6 +106,6 @@ public class UserLoginController{
         user.logout();
         cartService.getCart().setUserId(user.getId());
         model.addAttribute("msg", "See you later in our little shop ^_^");
-        return REGISTER_SUCCESS;
+        return SUCCESS;
     }
 }

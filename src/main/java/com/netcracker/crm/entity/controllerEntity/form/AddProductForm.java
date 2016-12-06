@@ -1,9 +1,18 @@
 package com.netcracker.crm.entity.controllerEntity.form;
 
+import com.netcracker.crm.entity.Value;
+import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.enums.PhoneAtribute;
+import com.netcracker.crm.entity.enums.TabletAtribute;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Ксения on 06.12.2016.
  */
 public class AddProductForm {
+    String name;
     String price;
     String summary;
     String operatingSystem;
@@ -19,6 +28,14 @@ public class AddProductForm {
     String simCard;
     String fabricator;
     String imageUrl;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getDepth() {
         return depth;
@@ -138,5 +155,42 @@ public class AddProductForm {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public List<Value> getListValue(int typeid){
+
+        List<Value> values = new ArrayList<>();
+        if(typeid == EntityType.Telephone.getTypeId())
+        {
+            values.add(new Value(operatingSystem,typeid, PhoneAtribute.OperatingSystem.getAtributeId()));
+            values.add(new Value(processorSpeed,typeid, PhoneAtribute.Processorspeed.getAtributeId()));
+            values.add(new Value(capacity,typeid, PhoneAtribute.Capacity.getAtributeId()));
+            values.add(new Value(display,typeid, PhoneAtribute.Display.getAtributeId()));
+            values.add(new Value(height,typeid, PhoneAtribute.Height.getAtributeId()));
+            values.add(new Value(width,typeid, PhoneAtribute.Width.getAtributeId()));
+            values.add(new Value(depth,typeid, PhoneAtribute.Depth.getAtributeId()));
+            values.add(new Value(weight,typeid, PhoneAtribute.Weight.getAtributeId()));
+            values.add(new Value(camera,typeid, PhoneAtribute.Camera.getAtributeId()));
+            values.add(new Value(battery,typeid, PhoneAtribute.Battery.getAtributeId()));
+            values.add(new Value(simCard,typeid, PhoneAtribute.SIMCard.getAtributeId()));
+        }
+
+        else
+        {
+            values.add(new Value(operatingSystem,typeid, TabletAtribute.OperatingSystem.getAtributeId()));
+            values.add(new Value(processorSpeed,typeid, TabletAtribute.Processorspeed.getAtributeId()));
+            values.add(new Value(capacity,typeid, TabletAtribute.Capacity.getAtributeId()));
+            values.add(new Value(display,typeid, TabletAtribute.Display.getAtributeId()));
+            values.add(new Value(height,typeid, TabletAtribute.Height.getAtributeId()));
+            values.add(new Value(width,typeid, TabletAtribute.Width.getAtributeId()));
+            values.add(new Value(depth,typeid, TabletAtribute.Depth.getAtributeId()));
+            values.add(new Value(weight,typeid, TabletAtribute.Weight.getAtributeId()));
+            values.add(new Value(camera,typeid, TabletAtribute.Camera.getAtributeId()));
+            values.add(new Value(battery,typeid, TabletAtribute.Battery.getAtributeId()));
+            values.add(new Value(simCard,typeid, TabletAtribute.SIMCard.getAtributeId()));
+        }
+
+
+        return values;
     }
 }
