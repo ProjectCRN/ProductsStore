@@ -33,6 +33,7 @@
                     </ul>
                 </li>
                 <li><a class="cart" href="#">Cart</a></li>
+                <li><a class="allOrders" href="#">Orders</a></li>
                 <li><a class="createUser" href="#">User</a></li>
             </nav>
 
@@ -79,7 +80,9 @@
     $('.createUser').click( function() {
         funLoad('/login');
     });
-
+    $('.allOrders').click( function() {
+        funLoad('/getAllOrders');
+    });
 </script>
 
 </body>
