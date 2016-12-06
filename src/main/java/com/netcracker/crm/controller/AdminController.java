@@ -1,9 +1,12 @@
 package com.netcracker.crm.controller;
 
 import com.netcracker.crm.entity.User;
+import com.netcracker.crm.entity.Value;
 import com.netcracker.crm.entity.controllerEntity.form.AddProductForm;
 import com.netcracker.crm.entity.controllerEntity.validator.AddProductValidator;
 import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.enums.PhoneAtribute;
+import com.netcracker.crm.entity.enums.TabletAtribute;
 import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.IProductService;
 import org.springframework.beans.factory.annotation.Required;
@@ -78,12 +81,40 @@ public class AdminController{
 
         prod.setEntityName(addProductForm.getName());
         prod.setUserId(-2);
-        prod.setPrice((double)Integer.parseInt(addProductForm.getPrice()));
+        prod.setPrice(310.0);
         prod.setEntityTypeId(typeid);
         prod.setSummary(addProductForm.getSummary());
         prod.setFabricator(addProductForm.getFabricator());
         prod.setImageUrl(addProductForm.getImageUrl());
-        prod.setValueList(addProductForm.getListValue(typeid));
+        if(typeid == EntityType.Telephone.getTypeId())
+        {
+            prod.setValueInList(PhoneAtribute.OperatingSystem.getAtributeId(),addProductForm.getOperatingSystem());
+            prod.setValueInList(PhoneAtribute.Processorspeed.getAtributeId(),addProductForm.getProcessorSpeed());
+            prod.setValueInList(PhoneAtribute.Capacity.getAtributeId(),addProductForm.getCapacity());
+            prod.setValueInList(PhoneAtribute.Display.getAtributeId(),addProductForm.getDisplay());
+            prod.setValueInList(PhoneAtribute.Height.getAtributeId(),addProductForm.getHeight());
+            prod.setValueInList(PhoneAtribute.Width.getAtributeId(),addProductForm.getWidth());
+            prod.setValueInList(PhoneAtribute.Depth.getAtributeId(),addProductForm.getDepth());
+            prod.setValueInList(PhoneAtribute.Weight.getAtributeId(),addProductForm.getWeight());
+            prod.setValueInList(PhoneAtribute.Camera.getAtributeId(),addProductForm.getCamera());
+            prod.setValueInList(PhoneAtribute.Battery.getAtributeId(),addProductForm.getBattery());
+            prod.setValueInList(PhoneAtribute.SIMCard.getAtributeId(),addProductForm.getSimCard());
+        }
+
+        else
+        {
+            prod.setValueInList(TabletAtribute.OperatingSystem.getAtributeId(),addProductForm.getOperatingSystem());
+            prod.setValueInList(TabletAtribute.Processorspeed.getAtributeId(),addProductForm.getProcessorSpeed());
+            prod.setValueInList(TabletAtribute.Capacity.getAtributeId(),addProductForm.getCapacity());
+            prod.setValueInList(TabletAtribute.Display.getAtributeId(),addProductForm.getDisplay());
+            prod.setValueInList(TabletAtribute.Height.getAtributeId(),addProductForm.getHeight());
+            prod.setValueInList(TabletAtribute.Width.getAtributeId(),addProductForm.getWidth());
+            prod.setValueInList(TabletAtribute.Depth.getAtributeId(),addProductForm.getDepth());
+            prod.setValueInList(TabletAtribute.Weight.getAtributeId(),addProductForm.getWeight());
+            prod.setValueInList(TabletAtribute.Camera.getAtributeId(),addProductForm.getCamera());
+            prod.setValueInList(TabletAtribute.Battery.getAtributeId(),addProductForm.getBattery());
+            prod.setValueInList(TabletAtribute.SIMCard.getAtributeId(),addProductForm.getSimCard());
+        }
         model.addAttribute("hello", "Product created");
         return SUCCESS;
     }
