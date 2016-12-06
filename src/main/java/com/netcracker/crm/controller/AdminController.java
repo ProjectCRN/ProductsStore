@@ -115,6 +115,7 @@ public class AdminController{
             prod.setValueInList(TabletAtribute.Battery.getAtributeId(),addProductForm.getBattery());
             prod.setValueInList(TabletAtribute.SIMCard.getAtributeId(),addProductForm.getSimCard());
         }
+        productService.add(prod);
         model.addAttribute("hello", "Product created");
         return SUCCESS;
     }
