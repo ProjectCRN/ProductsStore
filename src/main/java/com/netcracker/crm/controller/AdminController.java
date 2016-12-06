@@ -1,5 +1,7 @@
 package com.netcracker.crm.controller;
 
+import org.springframework.stereotype.Controller;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,17 +11,7 @@ import java.io.IOException;
 /**
  * Created by egor on 24.10.2016.
  */
-public class AdminController extends HttpServlet{
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+@Controller
+public class AdminController{
 
-
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-    }
 }
