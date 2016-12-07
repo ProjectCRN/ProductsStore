@@ -8,11 +8,11 @@
             Number: №${item.getOrderNumber()} <br>
             Total: ${item.getTotal()} <br>
                 ${item.getId()}<br>
-            <a class="btn btn-default btnLink seeMoreOrder" href="#">see more</a>
+            <a class="btn btn-default btnLink seeMoreOrder_${item.getId()}" href="#">see more</a>
             <br>
 
             <script type="text/javascript" language="javascript">
-                $('.seeMoreOrder').click( function() {
+                $('.seeMoreOrder_${item.getId()}').click( function() {
                     funLoad('/getOrder/${item.getId()}');
                 });
             </script>

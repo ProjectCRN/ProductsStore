@@ -111,7 +111,7 @@ public class OrderController {
             return NO_ROOTS;
         model.addAttribute("cartList", order.getCart().getCartItems());
         model.addAttribute("total", order.getTotal());
-        model.addAttribute("prev","order");
+        model.addAttribute("prev","2");
         return CART;
     }
 }

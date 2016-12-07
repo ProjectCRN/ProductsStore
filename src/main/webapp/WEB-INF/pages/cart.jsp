@@ -13,7 +13,7 @@
 
                             <li>
                                 <a href="#" class="seeMore_btn_${item.getProduct().getId()}">
-                                    <img src="${item.getProduct().getImageUrl()}"/>
+                                    <img src="/resources/img/img_phone.jpg"/>
 
                                     <span>${item.getProduct().getEntityName()}</span></a><br>
                                     id: ${item.getProduct().getId()} <br>
@@ -25,9 +25,9 @@
 
                                 <div class="btn_right">
 
-                                    <a class="btn btn-default btnLink " id="btnAdd_${item.getProduct().getId()}" role="button"
+                                    <a class="btn btn-default btnLink hide_show " id="btnAdd_${item.getProduct().getId()}" role="button"
                                        href="#">add</a><br>
-                                    <a class="btn btn-default btnLink " id="btnDel_${item.getProduct().getId()}" role="button"
+                                    <a class="btn btn-default btnLink hide_show" id="btnDel_${item.getProduct().getId()}" role="button"
                                        href="#">delete</a>
                                     <br><span>${item.getProduct().getPrice()}$</span> <br>
                                 </div>
@@ -65,13 +65,32 @@
                     </ul>
                 </div>
                 <div class="col-md-3 left_block">
-                     <h1>Total: ${total}$</h1>
-                     <a class="btn btn-default btnLink createOrder" href="#">Create Order</a>
+                     <h1>Total: ${total}$ </h1>
+                     <a class="btn btn-default btnLink createOrder hide_show" href="#">Create Order</a>
                 </div>
             </div>
 
 
 <script language="javascript" type="text/javascript">
+
+
+    if(${total} == '0'){
+        $('.createOrder').hide();
+    } else {
+        $('.createOrder').show();
+    }
+
+    if(${prev} == '2'){
+        $('.hide_show').hide();
+    } else {
+        $('.hide_show').show();
+    }
+
+
+    $('.createOrder').click( function() {
+        funLoad('/createOrder');
+    });
+
 
     function funLoad(str) {
         $('#page-preloader').show();
@@ -87,14 +106,7 @@
             }
         });
     }
-    $('.createOrder').click( function() {
-        funLoad('/createOrder');
-    });
-    if(${total} == '0'){
-        $('.createOrder').hide();
-    } else {
-        $('.createOrder').show();
-    }
+
 
 
 </script>
