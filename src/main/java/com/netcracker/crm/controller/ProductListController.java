@@ -1,6 +1,7 @@
 package com.netcracker.crm.controller;
 
 
+import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.enums.EntityType;
 import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.IPaginationService;
@@ -17,6 +18,7 @@ import com.netcracker.crm.entity.serviceEntity.SearchAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Ксения on 22.11.2016.
@@ -33,6 +35,12 @@ public class ProductListController {
     private IPaginationService paginationService;
 
     private SearchAttributes searchAttributes;
+    private User user;
+
+    @Required
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Required
     public void setProductService(IProductService productService) {
@@ -81,7 +89,7 @@ public class ProductListController {
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
-        model.addAttribute("role", "1"); //1 - admin, 0 - no
+        model.addAttribute("role", user.getRoleId());
         return PRODUCTS;
     }
 
@@ -108,7 +116,7 @@ public class ProductListController {
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq", "products");
         model.addAttribute("searchBtn", "search");
-        model.addAttribute("role", "1"); //1 - admin, 0 - no
+        model.addAttribute("role", user.getRoleId());
         return PRODUCTS;
     }
 
@@ -141,7 +149,7 @@ public class ProductListController {
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
-        model.addAttribute("role", "1"); //1 - admin, 0 - no
+        model.addAttribute("role", user.getRoleId());
         return PRODUCTS;
     }
 
@@ -181,7 +189,7 @@ public class ProductListController {
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
-        model.addAttribute("role", "1"); //1 - admin, 0 - no
+        model.addAttribute("role", user.getRoleId());
         return PRODUCTS;
     }
 

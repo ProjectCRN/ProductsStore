@@ -43,7 +43,6 @@
                     <button name="sample1${item.getId()}" class="sample1${item.getId()} btn btn-default btnLink">add to
                         cart</button>
                     <div  id="added${item.getId()}"  style="display: none;">Added</div>
-
                     <a class="btn btn-default btnLink hideAdminRule delete_btn_${item.getId()}" role="button"  href="#">delete</a>
                     <a class="btn btn-default btnLink seeMore_btn_${item.getId()}" role="button"  href="#">see more</a>
                     <br><span>${item.getPrice()}$</span> <br>
@@ -106,7 +105,9 @@
 
 <script type="text/javascript" language="javascript">
 
-    if(${role} == '1'){
+    var userRole = '${role}';
+
+    if (userRole == 'A'){
         $('.hideAdminRule').show();
     } else {
         $('.hideAdminRule').hide();

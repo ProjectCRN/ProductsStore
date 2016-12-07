@@ -85,7 +85,9 @@
     if(${total} == '0'){
         $('.createOrder').hide();
     } else {
-        $('.createOrder').show();
+        if(${prev} != '2'){
+            $('.createOrder').show();
+        }
     }
 
 

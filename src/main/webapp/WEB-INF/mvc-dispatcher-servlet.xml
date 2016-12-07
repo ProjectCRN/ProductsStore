@@ -27,6 +27,7 @@
 		<property name="productService" ref="productService"/>
 		<property name="searchService" ref="searchService"/>
 		<property name="paginationService" ref="paginationService"/>
+		<property name="user" ref="user"/>
 	</bean>
 
 	<bean class="com.netcracker.crm.controller.CartController" id="cartController" scope="session">
