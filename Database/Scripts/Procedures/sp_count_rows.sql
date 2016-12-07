@@ -35,7 +35,7 @@ IF (LENGTH(inAttribute) IS NULL) THEN
       FROM
       (SELECT E.ENTITYID
       FROM TBL_ENTITY E
-      WHERE E.ENTITYTYPEID=inEntityTypeId);
+      WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1)));
       
 END IF;
 
@@ -89,7 +89,7 @@ END IF;
        HAVING COUNT(1) = counter
        ) X  
        INNER JOIN TBL_ENTITY CX ON CX.EntityId = X.EntityId
-       WHERE CX.ENTITYTYPEID=inEntityTypeId); 
+       WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1) )); 
   
   END IF;
  
