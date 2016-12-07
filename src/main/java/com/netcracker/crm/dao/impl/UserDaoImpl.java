@@ -191,7 +191,7 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
             logger.error(e.getMessage());
             throw new DaoException(e.getCause().getMessage(), e);
     }
-       return (!containsIgnoreCase(loginList, login));
+       return (!contains(loginList, login));
     }
 
 
@@ -207,7 +207,7 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
             logger.error(e.getMessage());
             throw new DaoException(e.getCause().getMessage(), e);
         }
-        return (!containsIgnoreCase(emailList, email));
+        return (!contains(emailList, email));
     }
 
         @Override
@@ -232,6 +232,16 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
         for (String current : list) {
             if (current != null) {
                 if (current.equalsIgnoreCase(soughtFor)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    private boolean contains(List<String> list, String soughtFor) {
+        for (String current : list) {
+            if (current != null) {
+                if (current.equals(soughtFor)) {
                     return true;
                 }
             }
