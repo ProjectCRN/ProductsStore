@@ -69,11 +69,13 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
         try {
             List<Entity> list = entityDao.getList(typeId, atributesId, values, operators,
                     priceId + "," + imageId, pageNumber, pageSize);
-            productList = new ArrayList<>(list.size());
-            for (Entity e : list) {
-                Product p = new Product(e);
-                productList.add(p);
-            }
+            if(list!=null) {
+                productList = new ArrayList<>(list.size());
+                for (Entity e : list) {
+                    Product p = new Product(e);
+                    productList.add(p);
+                }
+            }else return null;
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getAll for Product");
         } catch (DaoException exc) {
             logger.error(exc.getMessage());
@@ -89,11 +91,13 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
             String imageId = String.valueOf(getAtributeIdByTypeId(entityTypeID, "ImageURL"));
             String priceId = getAtributeIdByTypeId(entityTypeID, "Price");
             List<Entity> list = entityDao.getByUserAndType(userID, entityTypeID, priceId + "," + imageId);
-            productList = new ArrayList<>(list.size());
-            for (Entity e : list) {
-                Product p = new Product(e);
-                productList.add(p);
-            }
+            if(list!=null) {
+                productList = new ArrayList<>(list.size());
+                for (Entity e : list) {
+                    Product p = new Product(e);
+                    productList.add(p);
+                }
+            }else return null;
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getByUserAndType for Product");
         } catch (DaoException exc) {
             logger.error(exc.getMessage());

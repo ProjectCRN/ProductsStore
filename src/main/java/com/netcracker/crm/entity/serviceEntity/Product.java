@@ -16,6 +16,7 @@ public class Product extends Entity {
 //    private int userId;
 //    private List<Pair<Atribute, Value>> atributeValueMap;  //атрибуты телефона (камера и т.п.)
 
+    private static final long serialVersionUID = 1L;
     private double price;
     private String summary;
     private int orderId; //0 - не в заказе, толкьо у productInOrder

@@ -21,6 +21,7 @@ public class Order extends Entity {
 //    private int userId;
 //    private List<Pair<Atribute, Value>> atributeValueMap;
 
+    private static final long serialVersionUID = 1L;
     private String orderNumber = "";
     private String contactName = "";
     private String contactPhone = "";

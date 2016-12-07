@@ -79,6 +79,7 @@ public class AdminController{
                 break;
         }
 
+        prod.setIsActive(true);
         prod.setEntityName(addProductForm.getName());
         prod.setUserId(-2);
         prod.setEntityTypeId(typeid);
