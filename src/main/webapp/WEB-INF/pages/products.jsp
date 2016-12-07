@@ -30,7 +30,7 @@
             <li>
                 <a href="#" class="seeMore_btn_${item.getId()}">
                     <img src="/resources/img/img_phone.jpg"/>
-
+                        ${item.getImageUrl()}
                     <span>${item.getEntityName()}</span><br>
                     id: ${item.getId()}
 

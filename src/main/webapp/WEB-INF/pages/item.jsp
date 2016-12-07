@@ -11,14 +11,11 @@
 
             <li>
 
-                <img src="/resources/img/img_phone.jpg"/>
+                <img src="${item.getImageUrl()}"/>
 
                 <span>${item.getEntityName()}</span><br>
-                id: ${item.getId()} <br>
-                fabricator: ${item.getFabricator()} <br>
+                ${item.ValuestoString()}
 
-
-                ${item.getSummary()}
                 <br>
 
                 <div class="btn_right">

@@ -26,6 +26,7 @@ public class CartController {
     public String cart(ModelMap model) {
         model.addAttribute("cartList", cartService.getCart().getCartItems());
         model.addAttribute("total", cartService.countTotal());
+        model.addAttribute("prev","cart");
         return CART;
     }
 

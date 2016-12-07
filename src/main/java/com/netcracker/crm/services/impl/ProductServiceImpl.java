@@ -70,6 +70,9 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
             List<Entity> list = entityDao.getList(typeId, atributesId, values, operators, priceId, pageNumber, pageSize);
             productList = new ArrayList<>(list.size());
             for (Entity e : list) {
+                /*Product p = new Product(e);
+                if(p.getImageUrl().equals("URL"))
+                    p.setImageUrl("/resources/img/img_phone.jpg");*/
                 productList.add(new Product(e));
             }
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getAll for Product");

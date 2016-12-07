@@ -29,16 +29,14 @@
             <td>Created Date:</td>
             <td>${order.getCreatedDate()}</td>
         </tr>
-        <tr>
-            <td>Paid Date:</td>
-            <td>${order.getPaidDate()}</td>
-        </tr>
-        <tr>
-            <td>Description:</td>
-            <td>${order.getDescription()}</td>
-        </tr>
+
     </table>
 
     <a class="btn btn-default btnLink" href="/">Ok</a>
-    <h1>${orderInfo}</h1>
+    <a class="btn btn-default btnLink cartFromOrder" href="#">See Cart</a>
+    <script type="text/javascript" language="javascript">
+        $('.cartFromOrder').click( function() {
+            funLoad('/getCart/${order.getId()}');
+        });
+    </script>
 </div>

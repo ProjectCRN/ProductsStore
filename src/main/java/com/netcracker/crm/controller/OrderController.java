@@ -28,6 +28,7 @@ public class OrderController {
     private static final String CHECK = "checkOrder";
     private static final String ALL_ORDERS = "allOrders";
     private static final String NO_ROOTS = "noRoots";
+    private static final String CART = "cart";
     private ICartService cartService;
     private IOrderService orderService;
     private OrderValidator orderValidator;
@@ -99,5 +100,18 @@ public class OrderController {
             return NO_ROOTS;
         model.addAttribute("order", order);
         return CHECK;
+    }
+
+    @RequestMapping(value = "/getCart/{id}", method = RequestMethod.GET)
+    public String getCartFromOrder(@PathVariable String id, ModelMap model) {
+        if(user.isAnon())
+            return NO_ROOTS;
+        Order order = orderService.getById(Integer.parseInt(id));
+        if (user.getId() != order.getEntityUserId())
+            return NO_ROOTS;
+        model.addAttribute("cartList", order.getCart().getCartItems());
+        model.addAttribute("total", order.getTotal());
+        model.addAttribute("prev","order");
+        return CART;
     }
 }
