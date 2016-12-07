@@ -29,8 +29,8 @@
         <c:forEach items="${productList}" var="item">
             <li>
                 <a href="#" class="seeMore_btn_${item.getId()}">
-                    <img src="/resources/img/img_phone.jpg"/>
-                        ${item.getImageUrl()}
+                    <img src="${item.getImageUrl()}"/>
+
                     <span>${item.getEntityName()}</span><br>
                     id: ${item.getId()}
 
@@ -44,7 +44,7 @@
                         cart</button>
                     <div  id="added${item.getId()}"  style="display: none;">Added</div>
 
-
+                    <a class="btn btn-default btnLink delete_btn_${item.getId()}" role="button"  href="#">delete</a>
                     <a class="btn btn-default btnLink seeMore_btn_${item.getId()}" role="button"  href="#">see more</a>
                     <br><span>${item.getPrice()}$</span> <br>
 
@@ -55,9 +55,18 @@
                             });
                             document.getElementById('added${item.getId()}').style.display = "block";
                         });
+
                         $('.seeMore_btn_${item.getId()}').click( function() {
                             $.ajax({
                                 url: '/item/${item.getId()}',
+                                success: function(data) {
+                                    $('.results').html(data);
+                                }
+                            });
+                        });
+                        $('.delete_btn_${item.getId()}').click( function() {
+                            $.ajax({
+                                url: '/deleteProduct/${currType}/${item.getId()}',
                                 success: function(data) {
                                     $('.results').html(data);
                                 }

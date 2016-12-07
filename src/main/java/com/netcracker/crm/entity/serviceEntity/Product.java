@@ -47,9 +47,9 @@ public class Product extends Entity {
                         orderId = Integer.parseInt(atributeValue);
                         break;
                     case "ImageURL":
-                        if(atributeValue.equals("URL"))
-                            atributeValue="/resources/img/img_phone.jpg";
                         imageUrl = atributeValue;
+                        if (atributeValue!=null && atributeValue.equals("URL"))
+                            setImageUrl("/resources/img/img_phone.jpg");
                         break;
                     case "Quantity":
                         quantity = Integer.parseInt(atributeValue);
@@ -178,11 +178,12 @@ public class Product extends Entity {
         }
         return str;
     }
+
     public String ValuestoString() {
         String str = "";
         if (getAtributeValueMap() != null) {
             for (Pair<Atribute, Value> item : getAtributeValueMap()) {
-                if(!item.getKey().toString().equals("ImageURL")) {
+                if (!item.getKey().toString().equals("ImageURL")) {
                     str += "\n" + item.getKey().toString();
                     str += ": " + item.getValue().toString() + "<br>";
                 }

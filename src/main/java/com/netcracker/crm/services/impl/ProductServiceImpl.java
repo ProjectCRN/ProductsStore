@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class ProductServiceImpl extends AbstractService<Product> implements IProductService {
 
     private IEntityDao entityDao;
@@ -38,8 +37,8 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
 
         int id;
         try {
-                id = entityDao.add(product);
-                logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + product.toString());
+            id = entityDao.add(product);
+            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + product.toString());
         } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
@@ -66,14 +65,14 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
         List<Product> productList;
 
         String priceId = String.valueOf(getAtributeIdByTypeId(typeId, "Price"));
+        String imageId = String.valueOf(getAtributeIdByTypeId(typeId, "ImageURL"));
         try {
-            List<Entity> list = entityDao.getList(typeId, atributesId, values, operators, priceId, pageNumber, pageSize);
+            List<Entity> list = entityDao.getList(typeId, atributesId, values, operators,
+                    priceId + "," + imageId, pageNumber, pageSize);
             productList = new ArrayList<>(list.size());
             for (Entity e : list) {
-                /*Product p = new Product(e);
-                if(p.getImageUrl().equals("URL"))
-                    p.setImageUrl("/resources/img/img_phone.jpg");*/
-                productList.add(new Product(e));
+                Product p = new Product(e);
+                productList.add(p);
             }
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getAll for Product");
         } catch (DaoException exc) {
@@ -87,12 +86,13 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
     public List<Product> getByUserAndType(Integer userID, Integer entityTypeID) {
         List<Product> productList;
         try {
-            List<Entity> list = entityDao.getByUserAndType(userID, entityTypeID,
-                    getAtributeIdByTypeId(EntityType.findByKey(entityTypeID).getTypeId(),
-                            "Price"));
+            String imageId = String.valueOf(getAtributeIdByTypeId(entityTypeID, "ImageURL"));
+            String priceId = getAtributeIdByTypeId(entityTypeID, "Price");
+            List<Entity> list = entityDao.getByUserAndType(userID, entityTypeID, priceId + "," + imageId);
             productList = new ArrayList<>(list.size());
             for (Entity e : list) {
-                productList.add(new Product(e));
+                Product p = new Product(e);
+                productList.add(p);
             }
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getByUserAndType for Product");
         } catch (DaoException exc) {

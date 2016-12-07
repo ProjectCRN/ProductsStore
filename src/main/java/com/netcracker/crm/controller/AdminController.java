@@ -119,5 +119,11 @@ public class AdminController{
         model.addAttribute("hello", "Product created");
         return SUCCESS;
     }
-
+    @RequestMapping(value = "/deleteProduct/{type}/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable String type, @PathVariable String id, ModelMap model) {
+        if(!user.isAdmin())
+            return NO_ROOTS;
+        productService.delete(Integer.parseInt(id));
+        return "redirect:/products/" + type;
+    }
 }
