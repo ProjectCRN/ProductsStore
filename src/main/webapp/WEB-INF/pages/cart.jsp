@@ -13,7 +13,7 @@
 
                             <li>
                                 <a href="#" class="seeMore_btn_${item.getProduct().getId()}">
-                                    <img src="/resources/img/img_phone.jpg"/>
+                                    <img src="${item.getProduct().getImageUrl()}"/>
 
                                     <span>${item.getProduct().getEntityName()}</span></a><br>
                                     id: ${item.getProduct().getId()} <br>
