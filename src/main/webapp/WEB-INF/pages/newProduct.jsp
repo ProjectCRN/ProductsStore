@@ -12,27 +12,27 @@
     <ul class="col-md-4 formOrder">
         <li><h3>Add product</h3></li>
         <li>
-            <form:input path="name"  size="30" placeholder="name" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required="required" />
+            <form:input path="name"  size="30" placeholder="name" pattern="^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$" required="required" />
             <span class="error"><form:errors path="name" /></span>
         </li>
         <li>
-            <form:input path="price"  size="30" placeholder="price" pattern="\d+(\.\d{0,2})?" required="required" />
+            <form:input path="price"  size="30" placeholder="price" pattern="\d+(\.,\d{0,2})?" required="required" />
             <span class="error"><form:errors path="price" /></span>
         </li>
         <li>
-            <form:input path="summary"  size="30" placeholder="summary" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{5,140}$" required="required" />
+            <form:input path="summary"  size="30" placeholder="summary" pattern="^[a-zA-Z][a-zA-Z0-9-_\. ]{5,140}$" required="required" />
             <span class="error"><form:errors path="summary" /></span>
         </li>
         <li>
-            <form:input path="operatingSystem"  size="30" placeholder="operatingSystem" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required="required" />
+            <form:input path="operatingSystem"  size="30" placeholder="operatingSystem" pattern="^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$" required="required" />
             <span class="error"><form:errors path="operatingSystem" /></span>
         </li>
         <li>
-            <form:input path="processorSpeed"  size="30" placeholder="processorSpeed" pattern="[ 0-9]{1,}" required="required" />
+            <form:input path="processorSpeed"  size="30" placeholder="processorSpeed" pattern="[0-9]{1,}" required="required" />
             <span class="error"><form:errors path="processorSpeed" /></span>
         </li>
         <li>
-            <form:input path="capacity"  size="30" placeholder="capacity" pattern="[ 0-9]{1,}" required="required" />
+            <form:input path="capacity"  size="30" placeholder="capacity" pattern="[0-9]{1,}" required="required" />
             <span class="error"><form:errors path="capacity" /></span>
         </li>
         <li>

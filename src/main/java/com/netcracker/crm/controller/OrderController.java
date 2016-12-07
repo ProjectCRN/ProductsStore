@@ -56,7 +56,6 @@ public class OrderController {
     @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
     public String createOrder(ModelMap model) {
 
-        model.addAttribute("cartInfo",cartService.getCart().toString());
         OrderForm order = new OrderForm();
         if(user.getRoleId().equals(User.ROLE_ANON)) {
             model.addAttribute("order", order);
@@ -79,7 +78,6 @@ public class OrderController {
         order.setFieldsFromForm(orderForm);
         orderService.add(order);
         model.addAttribute("order", order);
-        model.addAttribute("orderInfo",order.toString());
         return CHECK;
     }
 
@@ -89,7 +87,6 @@ public class OrderController {
             return NO_ROOTS;
         List<Order> orderList = orderService.getListForUser(user.getId());
         model.addAttribute("orderList", orderList);
-        model.addAttribute("orderInfo",orderList.toString());
         return ALL_ORDERS;
     }
 

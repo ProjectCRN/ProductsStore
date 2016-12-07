@@ -90,6 +90,10 @@
     $('.createOrder').click( function() {
         funLoad('/createOrder');
     });
-
+    if(${total} == '0'){
+        $('.createOrder').hide();
+    } else {
+        $('.createOrder').show();
+    }
 
 </script>

@@ -60,45 +60,53 @@ public class ProductListController {
     @RequestMapping(value = "/products/{type}", method = RequestMethod.GET)
     public String products(@PathVariable String type, ModelMap model) {
 
-        int typeid=9;
-        switch (type){
-            case "telephone": typeid=EntityType.Telephone.getTypeId(); break;
-            case "tablet": typeid=EntityType.Tablet.getTypeId(); break;
+        int typeid = 9;
+        switch (type) {
+            case "telephone":
+                typeid = EntityType.Telephone.getTypeId();
+                break;
+            case "tablet":
+                typeid = EntityType.Tablet.getTypeId();
+                break;
         }
-        List<Product> productList = productService.getList(typeid,"","","",
+        List<Product> productList = productService.getList(typeid, "", "", "",
                 1, paginationService.getNumPerPage());
-        if(productList == null)
+        if (productList == null)
             productList = new ArrayList<>();
         model.addAttribute("productList", productList);
         model.addAttribute("currType", type);
         model.addAttribute("searchAttr", new SearchAttributes());
-        int pageNumber = paginationService.calcPageNum(productService.rowCounter(typeid,"","",""));
+        int pageNumber = paginationService.calcPageNum(productService.rowCounter(typeid, "", "", ""));
         paginationService.setPageNum(pageNumber);
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
-        model.addAttribute("searchReq","products");
-        model.addAttribute("searchBtn","search");
+        model.addAttribute("searchReq", "products/search");
+        model.addAttribute("searchBtn", "search");
         return PRODUCTS;
     }
 
     @RequestMapping(value = "/products/{type}/page/{pageNum}", method = RequestMethod.GET)
     public String productsPages(@PathVariable String type, @PathVariable String pageNum, ModelMap model) {
 
-        int typeid=9;
-        switch (type){
-            case "telephone": typeid=EntityType.Telephone.getTypeId(); break;
-            case "tablet": typeid=EntityType.Tablet.getTypeId(); break;
+        int typeid = 9;
+        switch (type) {
+            case "telephone":
+                typeid = EntityType.Telephone.getTypeId();
+                break;
+            case "tablet":
+                typeid = EntityType.Tablet.getTypeId();
+                break;
         }
-        List<Product> productList = productService.getList(typeid,"","","",
-                Integer.parseInt(pageNum),paginationService.getNumPerPage());
-        if(productList == null)
+        List<Product> productList = productService.getList(typeid, "", "", "",
+                Integer.parseInt(pageNum), paginationService.getNumPerPage());
+        if (productList == null)
             productList = new ArrayList<>();
         model.addAttribute("productList", productList);
         model.addAttribute("currType", type);
         model.addAttribute("searchAttr", new SearchAttributes());
         int pageNumber = paginationService.getPageNum();
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
-        model.addAttribute("searchReq","products");
-        model.addAttribute("searchBtn","search");
+        model.addAttribute("searchReq", "products");
+        model.addAttribute("searchBtn", "search");
         return PRODUCTS;
     }
 
@@ -107,19 +115,19 @@ public class ProductListController {
 
         searchService.validate(searchAttr);
         searchService.parseSearchAttributes(searchAttr);
-        List<Product> productList =  productService.getList(
+        List<Product> productList = productService.getList(
                 searchAttr.getTypeId(),
                 searchAttr.getAttribute(),
                 searchAttr.getValues(),
                 searchAttr.getOperators(),
                 1,
                 paginationService.getNumPerPage());
-        if(productList == null)
+        if (productList == null)
             productList = new ArrayList<>();
-        if(productList.isEmpty())
-            model.addAttribute("emptyList","sorry, nothing to show");
+        if (productList.isEmpty())
+            model.addAttribute("emptyList", "sorry, nothing to show");
         model.addAttribute("productList", productList);
-        model.addAttribute("currType",searchAttr.getType());
+        model.addAttribute("currType", searchAttr.getType());
         model.addAttribute("searchAttr", searchAttr);
         this.setSearchAttributes(searchAttr);
         int pageNumber = paginationService.calcPageNum(productService.rowCounter(
@@ -129,39 +137,53 @@ public class ProductListController {
                 searchAttr.getOperators()));
         paginationService.setPageNum(pageNumber);
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
-        model.addAttribute("searchReq","products");
-        model.addAttribute("searchBtn","search");
+        model.addAttribute("searchReq", "products/search");
+        model.addAttribute("searchBtn", "search");
         return PRODUCTS;
     }
 
     @RequestMapping(value = "/products/search/{type}/page/{pageNum}", method = RequestMethod.GET)
-    public String searchProductsPages(@PathVariable String type, @PathVariable String pageNum, ModelMap model) {
+    public String searchProductsPages(SearchAttributes searchAttr, @PathVariable String type, @PathVariable String pageNum, ModelMap model) {
 
-        SearchAttributes searchAttr = this.getSearchAttributes();
-        List<Product> productList =  productService.getList(
+        searchService.validate(searchAttr);
+        searchService.parseSearchAttributes(searchAttr);
+        SearchAttributes searchAttr2 = this.getSearchAttributes();
+        int pagenum = Integer.parseInt(pageNum);
+        int pageNumber = paginationService.getPageNum();
+        if (!searchAttr.equals(searchAttr2)) {
+            pagenum = 1;
+            pageNumber = paginationService.calcPageNum(productService.rowCounter(
+                    searchAttr.getTypeId(),
+                    searchAttr.getAttribute(),
+                    searchAttr.getValues(),
+                    searchAttr.getOperators()));
+            paginationService.setPageNum(pageNumber);
+        }
+        List<Product> productList = productService.getList(
                 searchAttr.getTypeId(),
                 searchAttr.getAttribute(),
                 searchAttr.getValues(),
                 searchAttr.getOperators(),
-                Integer.parseInt(pageNum),
+                pagenum,
                 paginationService.getNumPerPage());
-        if(productList == null)
+        if (productList == null)
             productList = new ArrayList<>();
-        if(productList.isEmpty())
-            model.addAttribute("emptyList","sorry, nothing to show");
+        if (productList.isEmpty())
+            model.addAttribute("emptyList", "sorry, nothing to show");
         model.addAttribute("productList", productList);
-        model.addAttribute("currType",searchAttr.getType());
+        model.addAttribute("currType", searchAttr.getType());
         model.addAttribute("searchAttr", searchAttr);
         this.setSearchAttributes(searchAttr);
-        int pageNumber = paginationService.getPageNum();
+
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
-        model.addAttribute("searchReq","products/search");
-        model.addAttribute("searchBtn","../../../search");
+        model.addAttribute("searchReq", "products/search");
+        model.addAttribute("searchBtn", "search");
         return PRODUCTS;
     }
+
     @RequestMapping(value = "/item/{id}", method = RequestMethod.GET)
     public String item(@PathVariable String id, ModelMap model) {
-        model.addAttribute("item",productService.getById(Integer.parseInt(id)));
+        model.addAttribute("item", productService.getById(Integer.parseInt(id)));
         return ITEM;
     }
 
