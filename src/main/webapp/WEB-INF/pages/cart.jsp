@@ -74,16 +74,18 @@
 <script language="javascript" type="text/javascript">
 
 
-    if(${total} == '0'){
-        $('.createOrder').hide();
-    } else {
-        $('.createOrder').show();
-    }
+
 
     if(${prev} == '2'){
         $('.hide_show').hide();
     } else {
         $('.hide_show').show();
+    }
+
+    if(${total} == '0'){
+        $('.createOrder').hide();
+    } else {
+        $('.createOrder').show();
     }
 
 

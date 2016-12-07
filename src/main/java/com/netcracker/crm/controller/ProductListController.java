@@ -81,6 +81,7 @@ public class ProductListController {
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
+        model.addAttribute("role", "1"); //1 - admin, 0 - no
         return PRODUCTS;
     }
 
@@ -107,6 +108,7 @@ public class ProductListController {
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq", "products");
         model.addAttribute("searchBtn", "search");
+        model.addAttribute("role", "1"); //1 - admin, 0 - no
         return PRODUCTS;
     }
 
@@ -139,6 +141,7 @@ public class ProductListController {
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
+        model.addAttribute("role", "1"); //1 - admin, 0 - no
         return PRODUCTS;
     }
 
@@ -178,6 +181,7 @@ public class ProductListController {
         model.addAttribute("pages", paginationService.getPageNums(pageNumber));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
+        model.addAttribute("role", "1"); //1 - admin, 0 - no
         return PRODUCTS;
     }
 

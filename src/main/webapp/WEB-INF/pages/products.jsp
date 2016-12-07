@@ -44,7 +44,7 @@
                         cart</button>
                     <div  id="added${item.getId()}"  style="display: none;">Added</div>
 
-                    <a class="btn btn-default btnLink delete_btn_${item.getId()}" role="button"  href="#">delete</a>
+                    <a class="btn btn-default btnLink hideAdminRule delete_btn_${item.getId()}" role="button"  href="#">delete</a>
                     <a class="btn btn-default btnLink seeMore_btn_${item.getId()}" role="button"  href="#">see more</a>
                     <br><span>${item.getPrice()}$</span> <br>
 
@@ -105,6 +105,14 @@
 
 
 <script type="text/javascript" language="javascript">
+
+    if(${role} == '1'){
+        $('.hideAdminRule').show();
+    } else {
+        $('.hideAdminRule').hide();
+    }
+
+
     function searchFun() {
         $('#page-preloader').show();
         var msg   = $('#formSearch').serialize();
