@@ -50,7 +50,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
         Date date = ld.toDate();
         order.setCreatedDate(date);
         order.setPaidDate(date);
-        order.setOrderNumber("somenumber");
+        order.setOrderNumber(order.orderNumberGenerator());
 //        order.setDescription("somedescription");
         return order;
     }
