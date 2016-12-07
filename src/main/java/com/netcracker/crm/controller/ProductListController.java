@@ -161,7 +161,7 @@ public class ProductListController {
         SearchAttributes searchAttr2 = this.getSearchAttributes();
         int pagenum = Integer.parseInt(pageNum);
         int pageNumber = paginationService.getPageNum();
-        if (!searchAttr.equals(searchAttr2)) {
+        if (!searchAttr.equals(searchAttr2)&&(searchAttr2 != null)) {
             pagenum = 1;
             pageNumber = paginationService.calcPageNum(productService.rowCounter(
                     searchAttr.getTypeId(),

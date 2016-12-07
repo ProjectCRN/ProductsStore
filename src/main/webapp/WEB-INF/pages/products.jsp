@@ -21,6 +21,7 @@
 
         <sf:input path="type" style="display: none;" value="${currType}"/>
         <input type="submit" value="Search" class="btn"/>
+
     </sf:form>
 </div>
 <div class="col-md-8">
