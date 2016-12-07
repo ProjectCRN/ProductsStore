@@ -52,27 +52,27 @@
             <span class="error"><form:errors path="depth" /></span>
         </li>
         <li>
-            <form:input path="weight"  size="30" placeholder="weight" pattern="[ 0-9]{1,}" required="required" />
+            <form:input path="weight"  size="30" placeholder="weight" pattern="[0-9]{1,}" required="required" />
             <span class="error"><form:errors path="weight" /></span>
         </li>
         <li>
-            <form:input path="camera"  size="30" placeholder="camera" pattern="[ 0-9]{1,}" required="required" />
+            <form:input path="camera"  size="30" placeholder="camera" pattern="[0-9]{1,}" required="required" />
             <span class="error"><form:errors path="camera" /></span>
         </li>
         <li>
-            <form:input path="battery"  size="30" placeholder="battery" pattern="[ 0-9]{1,}" required="required" />
+            <form:input path="battery"  size="30" placeholder="battery" pattern="[0-9]{1,}" required="required" />
             <span class="error"><form:errors path="battery" /></span>
         </li>
         <li>
-            <form:input path="simCard"  size="30" placeholder="simCard" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required="required" />
+            <form:input path="simCard"  size="30" placeholder="simCard" pattern="^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$" required="required" />
             <span class="error"><form:errors path="simCard" /></span>
         </li>
         <li>
-            <form:input path="fabricator"  size="30" placeholder="fabricator" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required="required" />
+            <form:input path="fabricator"  size="30" placeholder="fabricator" pattern="^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$" required="required" />
             <span class="error"><form:errors path="fabricator" /></span>
         </li>
         <li>
-            <form:input path="imageUrl"  size="30" placeholder="imageUrl" pattern="(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?(\w+.(jpg|png|gif))" required="required" />
+            <form:input path="imageUrl"  size="30" placeholder="imageUrl" pattern="^(https?://)?(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$" required="required" />
             <span class="error"><form:errors path="imageUrl" /></span>
         </li>
 

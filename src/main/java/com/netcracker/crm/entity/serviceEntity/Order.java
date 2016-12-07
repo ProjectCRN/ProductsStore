@@ -8,7 +8,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 /**
  * Created by Nastya on 11/22/2016.
@@ -189,22 +188,6 @@ public class Order extends Entity {
         setContactAddress(user.getContactAddress());
     }
 
-    public String orderNumberGenerator(){
-        Date todaysDate = new Date();
-        DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        String str2 = df2.format(todaysDate);
-        String str3=str2.substring(0,2)+str2.substring(3,5)+str2.substring(8,10)+str2.substring(11,13)+str2.substring(14,16)+str2.substring(17,19);
-
-        char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < 2; i++) {
-            char c = chars[random.nextInt(chars.length)];
-            sb.append(c);
-        }
-        String output = sb.toString();
-        return (str3+output);
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

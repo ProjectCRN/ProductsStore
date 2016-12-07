@@ -41,57 +41,57 @@ public class AddProductValidator {
         }
 
         String capacity = prod.getCapacity();
-        if (!(capacity.matches("[ 0-9]{1,}"))) {
+        if (!(capacity.matches("[0-9]{1,}"))) {
             errors.rejectValue("capacity", "capacity.capacityDontMatch", "capacity don't match.");
         }
 
         String processorSpeed = prod.getProcessorSpeed();
-        if (!(processorSpeed.matches("[ 0-9]{1,}"))) {
+        if (!(processorSpeed.matches("[0-9]{1,}"))) {
             errors.rejectValue("processorSpeed", "processorSpeed.processorSpeedDontMatch", "processorSpeed don't match.");
         }
 
         String weight = prod.getWeight();
-        if (!(weight.matches("[ 0-9]{1,}"))) {
+        if (!(weight.matches("[0-9]{1,}"))) {
             errors.rejectValue("weight", "weight.weightDontMatch", "weight don't match.");
         }
 
         String camera = prod.getCamera();
-        if (!(camera.matches("[ 0-9]{1,}"))) {
+        if (!(camera.matches("[0-9]{1,}"))) {
             errors.rejectValue("camera", "camera.cameraDontMatch", "camera don't match.");
         }
 
         String battery = prod.getBattery();
-        if (!(battery.matches("[ 0-9]{1,}"))) {
+        if (!(battery.matches("[0-9]{1,}"))) {
             errors.rejectValue("battery", "battery.batteryDontMatch", "battery don't match.");
         }
 
         String summary = prod.getSummary();
-        if (!(summary.matches("^[a-zA-Z][a-zA-Z0-9-_\\.]{5,140}$"))) {
+        if (!(summary.matches("^[a-zA-Z][a-zA-Z0-9 -_\\.]{5,140}$"))) {
             errors.rejectValue("summary", "summary.summaryDontMatch", "summary don't match.");
         }
 
         String operatingSystem = prod.getOperatingSystem();
-        if (!(operatingSystem.matches("^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$"))) {
+        if (!(operatingSystem.matches("^[a-zA-Z][a-zA-Z0-9- _\\.]{1,20}$"))) {
             errors.rejectValue("operatingSystem", "operatingSystem.operatingSystemDontMatch", "operatingSystem don't match.");
         }
 
         String name = prod.getName();
-        if (!(name.matches("^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$"))) {
+        if (!(name.matches("^[a-zA-Z][a-zA-Z0-9- _\\.]{1,20}$"))) {
             errors.rejectValue("name", "name.nameDontMatch", "name don't match.");
         }
 
         String simCard = prod.getSimCard();
-        if (!(simCard.matches("^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$"))) {
+        if (!(simCard.matches("^[a-zA-Z][a-zA-Z0-9- _\\.]{1,20}$"))) {
             errors.rejectValue("simCard", "simCard.simCardDontMatch", "simCard don't match.");
         }
 
         String fabricator = prod.getFabricator();
-        if (!(fabricator.matches("^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$"))) {
+        if (!(fabricator.matches("^[a-zA-Z][a-zA-Z0-9- _\\.]{1,20}$"))) {
             errors.rejectValue("fabricator", "fabricator.fabricatorDontMatch", "fabricator don't match.");
         }
 
         String imageUrl = prod.getImageUrl();
-        if (!(imageUrl.matches("(http|https)\\:\\/\\/[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}(\\/\\S*)?(\\w+.(jpg|png|gif))"))) {
+        if (!(imageUrl.matches("^(https?://)?(?:[a-z0-9\\-]+\\.)+[a-z]{2,6}(?:/[^/#?]+)+\\.(?:jpg|gif|png)$"))) {
             errors.rejectValue("imageUrl", "imageUrl.imageUrlDontMatch", "imageUrl don't match.");
         }
 
