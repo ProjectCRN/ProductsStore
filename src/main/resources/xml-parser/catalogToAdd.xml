@@ -1,26 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="catalogSchema.xsd">
-    
+    <telephone>
+        <name>Raskladushka</name>
+        <attributes>
+            <price>228</price>
+            <summary>blabalbal</summary>
+            <operatingsystem>iOS 700</operatingsystem>
+            <processorspeed>1.23</processorspeed>
+            <capacity>126</capacity>
+            <display>42.0</display>
+            <height>1232.8</height>
+            <width>58.6</width>
+            <depth>7.6</depth>
+            <weight>112</weight>
+            <camera>8</camera>
+            <battery>10</battery>
+            <simcard>SIMSALABIM</simcard>
+            <fabricator>Appelsin</fabricator>
+            <imageurl>/resources/img/img_phone.jpg</imageurl>
+        </attributes>
+    </telephone>
+    <telephone>
+        <name>iPhone 36S</name>
+        <attributes>
+            <price>549.0</price>
+            <summary>IPhone 36s embody Apples continuing environmental progress</summary>
+            <operatingsystem>iOS 10</operatingsystem>
+            <processorspeed>1.8</processorspeed>
+            <capacity>32</capacity>
+            <display>4.7</display>
+            <height>138.3</height>
+            <width>67.1</width>
+            <depth>7.1</depth>
+            <weight>143</weight>
+            <camera>12</camera>
+            <battery>14</battery>
+            <simcard>Nano-SIM</simcard>
+            <fabricator>Apple</fabricator>
+            <imageurl>/resources/img/img_phone.jpg</imageurl>
+        </attributes>
+    </telephone>
+    <telephone>
+        <name>Galaxy S72Edge</name>
+        <attributes>
+            <price>769.99</price>
+            <summary>Samsung has created a beautiful phone with water resistance and fast loading</summary>
+            <operatingsystem>Android 6.0</operatingsystem>
+            <processorspeed>2.15</processorspeed>
+            <capacity>32</capacity>
+            <display>5.5</display>
+            <height>150.9</height>
+            <width>72.6</width>
+            <depth>7.7</depth>
+            <weight>157</weight>
+            <camera>12</camera>
+            <battery>13</battery>
+            <simcard>Nano-SIM</simcard>
+            <fabricator>Samsung</fabricator>
+            <imageurl>/resources/img/img_phone.jpg</imageurl>
+        </attributes>
+    </telephone>
     <tablet>
-        <name>iPad mini 44</name>
+        <name>iPadmini 413</name>
         <attributes>
             <price>399</price>
-            <summary>p</summary>
-            <operatingSystem>iOS</operatingSystem>
-            <processorSpeedGHz>1.5</processorSpeedGHz>
-            <capacityGB>32</capacityGB>
-            <displayInch>7.9</displayInch>
-            <heightMM>203.2</heightMM>
-            <widthMM>134.8</widthMM>
-            <depthMM>6.1</depthMM>
-            <weightGrams>298.8</weightGrams>
-            <cameraMP>8</cameraMP>
-            <batteryHours>10</batteryHours>
-            <simCard>Nano-SIM</simCard>
+            <summary>some summary</summary>
+            <operatingsystem>iOS</operatingsystem>
+            <processorspeed>1.5</processorspeed>
+            <capacity>32</capacity>
+            <display>7.9</display>
+            <height>203.2</height>
+            <width>134.8</width>
+            <depth>6.1</depth>
+            <weight>298.8</weight>
+            <camera>8</camera>
+            <battery>10</battery>
+            <simcard>Nano-SIM</simcard>
             <fabricator>Apple</fabricator>
-            <imageURL>URL</imageURL>
+            <imageurl>/resources/img/img_phone.jpg</imageurl>
         </attributes>
     </tablet>
-
 </catalog>
