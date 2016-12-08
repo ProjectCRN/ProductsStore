@@ -6,9 +6,11 @@ import com.netcracker.crm.dao.IEntityDao;
 import com.netcracker.crm.dao.exception.DaoException;
 import com.netcracker.crm.dao.impl.EntityDaoImpl;
 import com.netcracker.crm.dao.validation.EntityDaoValidation;
+import com.netcracker.crm.entity.Atribute;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
 import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.enums.PhoneAtribute;
 import com.netcracker.crm.entity.enums.TabletAtribute;
 import com.netcracker.crm.entity.serviceEntity.Cart;
 import com.netcracker.crm.entity.serviceEntity.CartItem;
@@ -17,11 +19,8 @@ import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.IOrderService;
 import com.netcracker.crm.services.IProductService;
 import com.netcracker.crm.services.impl.OrderServiceImpl;
-import com.netcracker.crm.services.parser.AbstractTag;
-import com.netcracker.crm.services.parser.CatalogParser;
-import com.netcracker.crm.services.parser.OrderTag;
-import com.netcracker.crm.services.parser.TypeAttribute;
-import com.netcracker.crm.services.parser.exception.WrongXMLSchemaException;
+import com.netcracker.crm.services.parser.*;
+import javafx.util.Pair;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.DataAccessException;
@@ -65,9 +64,12 @@ public class TestDao {
 //        values.add(new Value(0,"5.1-inch (diagonal)",0,15));
 //        Entity entity=new Entity("Samsung Galaxy S3",true,8,-2,values);
 
-        IEntityDao entityDao= (IEntityDao) context.getBean("entityDao");
-//        System.out.println(entityDao.getList(8,"","","","",1,3));
-        System.out.println(entityDao.getById(53));
+
+//      REGULAR EXPRESSION
+//        IProductService productService = (IProductService) context.getBean("productServiceTest");
+//        Product prod = productService.getById(53);
+//        System.out.println(prod.getRegExp(PhoneAtribute.Price.getAtributeId()));
+
 
 // -----USER SERVICES-----
 //      IUserService userService = (UserServiceImpl) context.getBean("userService");

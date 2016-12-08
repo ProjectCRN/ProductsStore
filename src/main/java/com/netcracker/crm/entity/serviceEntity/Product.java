@@ -24,7 +24,6 @@ public class Product extends Entity {
     private int quantity;  //толкьо у productInOrder
     private String fabricator;
 
-
     public Product() {
     }
 
@@ -49,7 +48,7 @@ public class Product extends Entity {
                         break;
                     case "ImageURL":
                         imageUrl = atributeValue;
-                        if (atributeValue!=null && atributeValue.equals("URL"))
+                        if (atributeValue != null && atributeValue.equals("URL"))
                             setImageUrl("/resources/img/img_phone.jpg");
                         break;
                     case "Quantity":

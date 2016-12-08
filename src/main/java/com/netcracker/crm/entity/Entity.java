@@ -146,7 +146,7 @@ public class Entity extends AbstractEntity {
     }
 
     protected void setValueListByMap(List<Pair<Atribute, Value>> atributeValueMap) {
-        if(atributeValueMap!=null) {
+        if (atributeValueMap != null) {
             this.valueList = new ArrayList<>(atributeValueMap.size());
             for (Pair<Atribute, Value> pair : atributeValueMap) {
                 valueList.add(pair.getValue());
@@ -225,4 +225,14 @@ public class Entity extends AbstractEntity {
         }
         return null;
     }
+
+    public String getRegExp(int atributeId) {
+        for (Pair<Atribute, Value> p : getAtributeValueMap()) {
+            if (p.getKey().getId() == atributeId)
+                return p.getKey().getRegularExpression();
+        }
+        return null;
+    }
+
+
 }
