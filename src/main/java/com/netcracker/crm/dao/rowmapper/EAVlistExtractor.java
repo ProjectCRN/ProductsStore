@@ -46,7 +46,8 @@ public class EAVlistExtractor implements ResultSetExtractor<Entity> {
                                         " ",
                                         "1",
                                         entityTypeId,
-                                        "1")
+                                        "1",
+                                        "No expression")
                                 ,
                                 EntityBuilder.buildValue(
                                         resultSet.getInt(COLUMN_VALUE_ID + item),

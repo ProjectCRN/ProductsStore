@@ -130,7 +130,7 @@ public class CatalogParser {
                 for (Element attribute : attributeList){
                     //values.add(new Value(0,attribute.getText(),0, telephoneTag.getIdByName(attribute.getName())));
                     Value value = new Value(0,attribute.getText(), 0, telephoneTag.getIdByName(attribute.getName()));
-                    Atribute atribute = new Atribute(0,attribute.getName(), 0, true, 0, true );
+                    Atribute atribute = new Atribute(0,attribute.getName(), 0, true, 0, true ,"No expression");
                     values.add(new Pair<Atribute, Value>(atribute,value));
                 }
                 Product telephone = new Product(productNameElement.getText(),true, 9, -2, null);
@@ -150,7 +150,7 @@ public class CatalogParser {
                 for (Element attribute : attributeList){
                     //values.add(new Value(0,attribute.getText(),0, telephoneTag.getIdByName(attribute.getName())));
                     Value value = new Value(0,attribute.getText(), 0, tabletTag.getIdByName(attribute.getName()));
-                    Atribute atribute = new Atribute(0,attribute.getName(), 0, true, 0, true );
+                    Atribute atribute = new Atribute(0,attribute.getName(), 0, true, 0, true ,"No expression");
                     values.add(new Pair<Atribute, Value>(atribute,value));
                 }
                 Product tablet = new Product(productNameElement.getText(),true, 10, -2, null);

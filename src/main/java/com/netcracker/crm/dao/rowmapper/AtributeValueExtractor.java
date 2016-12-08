@@ -27,7 +27,8 @@ public class AtributeValueExtractor implements ResultSetExtractor <Pair<Atribute
                 resultSet.getString(COLUMN_ATRIBUTE_TYPENAME),
                 resultSet.getString(COLUMN_ATRIBUTE_ISACTIVE),
                 resultSet.getString(COLUMN_ATRIBUTE_ENTITY_TYPE_ID),
-                resultSet.getString(COLUMN_ATRIBUTE_ISREQUIRED))
+                resultSet.getString(COLUMN_ATRIBUTE_ISREQUIRED),
+                resultSet.getString(COLUMN_ATRIBUTE_REGULAREXPRESSION))
                 ,
         EntityBuilder.buildValue(
                 resultSet.getInt(COLUMN_VALUE_ID),

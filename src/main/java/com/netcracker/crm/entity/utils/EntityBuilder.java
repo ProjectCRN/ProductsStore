@@ -36,7 +36,7 @@ public class EntityBuilder {
 
         return entity;
     }
-    public static Atribute buildAtribute(int id, String atributeName, String atributeTypeId,String atributeTypeName, String isActive, String entityTypeId, String isRequired){
+    public static Atribute buildAtribute(int id, String atributeName, String atributeTypeId,String atributeTypeName, String isActive, String entityTypeId, String isRequired, String regularExpression){
         Atribute atribute = new Atribute();
         atribute.setId(id);
         atribute.setAtributeName(atributeName);
@@ -45,6 +45,7 @@ public class EntityBuilder {
         atribute.setIsActive(((Integer.valueOf(isActive)) == 1));
         atribute.setEntityTypeId(Integer.valueOf(entityTypeId));
         atribute.setIsRequired(((Integer.valueOf(isRequired)) == 1));
+        atribute.setRegularExpression(regularExpression);
 
         return atribute;
     }

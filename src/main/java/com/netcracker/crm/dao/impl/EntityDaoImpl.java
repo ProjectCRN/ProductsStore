@@ -113,7 +113,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
             throw new DaoException("Data access Exception", e);
         }
 
-        sql = "SELECT A.ATRIBUTEID ,A.ATRIBUTENAME ,A.ATRIBUTETYPEID ,T.ATRIBUTETYPENAME,A.ISACTIVE ,A.ENTITYTYPEID ,A.ISREQUIRED , V.VALUEID ,V.VALUE ,V.ENTITYID " +
+        sql = "SELECT A.ATRIBUTEID ,A.ATRIBUTENAME ,A.ATRIBUTETYPEID ,T.ATRIBUTETYPENAME,A.ISACTIVE ,A.ENTITYTYPEID ,A.ISREQUIRED, A.REGULAREXPRESSION , V.VALUEID ,V.VALUE ,V.ENTITYID " +
                 " FROM TBL_ATRIBUTE A " +
                 " INNER JOIN TBL_ATRIBUTETYPE T " +
                 " ON A.ATRIBUTETYPEID=T.ATRIBUTETYPEID" +
@@ -363,7 +363,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                     .withProcedureName(PROCEDURE_ROWS_COUNTER);
             out = jdbcCall.execute(in);
         } catch (EmptyResultDataAccessException e) {
-            logger.error("Can't getByUserAndType()" + e.getMessage());
+            logger.error("Can't rowCounter" + e.getMessage());
             throw new DaoException("Entity table is empty", e);
         } catch (DataAccessException e) {
             logger.error(e.getMessage());

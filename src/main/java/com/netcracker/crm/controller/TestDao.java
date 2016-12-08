@@ -46,8 +46,9 @@ public class TestDao {
 //        values.add(new Value(0,"5.1-inch (diagonal)",0,15));
 //        Entity entity=new Entity("Samsung Galaxy S3",true,8,-2,values);
 
-//            IEntityDao entityDao= (IEntityDao) context.getBean("entityDao");
+        IEntityDao entityDao= (IEntityDao) context.getBean("entityDao");
 //        System.out.println(entityDao.getList(8,"","","","",1,3));
+        System.out.println(entityDao.getById(53));
 
 // -----USER SERVICES-----
 //      IUserService userService = (UserServiceImpl) context.getBean("userService");
@@ -62,7 +63,7 @@ public class TestDao {
 //
 //        userService.isEmailFree("gav@panin.ru");
 //
-        IProductService productService = (IProductService) context.getBean("productServiceTest");
+//        IProductService productService = (IProductService) context.getBean("productServiceTest");
 //        List<Product> list = productService.getList(10, "", "", "", 1, 2);
 //        if (list != null) {
 //            System.out.println(list.size());

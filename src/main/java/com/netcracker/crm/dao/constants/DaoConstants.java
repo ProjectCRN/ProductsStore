@@ -35,6 +35,7 @@ public class DaoConstants {
     public static final String COLUMN_ATRIBUTE_ISACTIVE="ISACTIVE";
     public static final String COLUMN_ATRIBUTE_ENTITY_TYPE_ID="ENTITYTYPEID";
     public static final String COLUMN_ATRIBUTE_ISREQUIRED="ISREQUIRED";
+    public static final String COLUMN_ATRIBUTE_REGULAREXPRESSION="REGULAREXPRESSION";
 
     public static final String PARAM_IN_ENTITY_ENTITYTYPEID = "inEntityTypeId";
     public static final String PARAM_IN_ENTITY_ENTITYID = "inEntityIDCSV";
