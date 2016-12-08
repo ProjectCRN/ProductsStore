@@ -7,7 +7,7 @@ import com.netcracker.crm.services.IProductService;
 import com.netcracker.crm.services.exception.ServiceException;
 import com.netcracker.crm.services.listworker.ProductListWorker;
 import com.netcracker.crm.services.parser.exception.NoSuchTagException;
-import com.netcracker.crm.services.parser.exception.WrongXMLShemaException;
+import com.netcracker.crm.services.parser.exception.WrongXMLSchemaException;
 import javafx.util.Pair;
 import org.dom4j.*;
 import org.dom4j.io.OutputFormat;
@@ -108,13 +108,15 @@ public class CatalogParser {
             throw new ServiceException(e.getMessage());
         }
     }
-    public void importCatalog(String url) throws ServiceException {
+    public int importCatalog(String url, String schemaLocation) throws ServiceException {
+        int productCount = 0;
         try {
-            List<Product> productsInBaseList = productService.getByUserAndType(-2, 8);
+            List<Product> productsInBaseList = new ArrayList<>();
             productsInBaseList.addAll(productService.getByUserAndType(-2,9));
             productsInBaseList.addAll(productService.getByUserAndType(-2,10));
-            File inputFile = new File("src/main/resources/xml-parser/catalogToAdd.xml");
-            validateAgainstXSD(new FileInputStream(inputFile), new FileInputStream(new File("src/main/resources/xml-parser/catalogSchema.xsd")));
+
+            File inputFile = new File(url);
+            validateAgainstXSD(url, schemaLocation);
             SAXReader reader = new SAXReader();
             Document document = reader.read(inputFile);
             Element catalogElement = document.getRootElement();
@@ -126,16 +128,15 @@ public class CatalogParser {
                 Node productAttributesNode = telephoneNode.selectSingleNode("attributes");
                 Element attributesElement = (Element) productAttributesNode;
                 List<Element> attributeList = attributesElement.elements();
-                List<Pair<Atribute, Value>> values = new ArrayList<>();
+
+                Product telephone = new Product(productNameElement.getText(),true, 9, -2);
+
                 for (Element attribute : attributeList){
-                    //values.add(new Value(0,attribute.getText(),0, telephoneTag.getIdByName(attribute.getName())));
-                    Value value = new Value(0,attribute.getText(), 0, telephoneTag.getIdByName(attribute.getName()));
-                    Atribute atribute = new Atribute(0,attribute.getName(), 0, true, 0, true );
-                    values.add(new Pair<Atribute, Value>(atribute,value));
+                    telephone.setValueInList(telephoneTag.getIdByName(attribute.getName()),attribute.getText());
+
                 }
-                Product telephone = new Product(productNameElement.getText(),true, 9, -2, null);
-                telephone.setAtributeValueMap(values);
                 productService.add(telephone);
+                productCount++;
 
             }
             List<Node> tabletNodes = document.selectNodes("/catalog/tablet");
@@ -146,40 +147,42 @@ public class CatalogParser {
                 Node productAttributesNode = tabletNode.selectSingleNode("attributes");
                 Element attributesElement = (Element) productAttributesNode;
                 List<Element> attributeList = attributesElement.elements();
-                List<Pair<Atribute, Value>> values = new ArrayList<>();
+                Product tablet = new Product(productNameElement.getText(),true, 10, -2);
+
                 for (Element attribute : attributeList){
-                    //values.add(new Value(0,attribute.getText(),0, telephoneTag.getIdByName(attribute.getName())));
-                    Value value = new Value(0,attribute.getText(), 0, tabletTag.getIdByName(attribute.getName()));
-                    Atribute atribute = new Atribute(0,attribute.getName(), 0, true, 0, true );
-                    values.add(new Pair<Atribute, Value>(atribute,value));
+                    tablet.setValueInList(tabletTag.getIdByName(attribute.getName()),attribute.getText());
+
                 }
-                Product tablet = new Product(productNameElement.getText(),true, 10, -2, null);
-                tablet.setAtributeValueMap(values);
                 productService.add(tablet);
+                productCount++;
 
             }
 
 
-        } catch (DocumentException  | FileNotFoundException | NoSuchTagException e){
+        } catch (DocumentException  | NoSuchTagException e){
             throw new ServiceException(e.getMessage());
-        } catch ( WrongXMLShemaException e  ){
-            throw new WrongXMLShemaException("Wrong XML Schema: " + e.getMessage());
+        } catch ( WrongXMLSchemaException e  ){
+            throw new WrongXMLSchemaException("Wrong XML Schema: " + e.getMessage());
         }
+        return productCount;
     }
 
-    static boolean validateAgainstXSD(InputStream xml, InputStream xsd) throws WrongXMLShemaException {
+    public boolean validateAgainstXSD(String xml, String xsd) throws WrongXMLSchemaException {
         try
         {
+            FileInputStream xmlIS = new FileInputStream(new File(xml));
+            FileInputStream xsdIS =  new FileInputStream(new File(xsd));
+
             SchemaFactory factory =
                     SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = factory.newSchema(new StreamSource(xsd));
+            Schema schema = factory.newSchema(new StreamSource(xsdIS));
             Validator validator = schema.newValidator();
-            validator.validate(new StreamSource(xml));
+            validator.validate(new StreamSource(xmlIS));
             return true;
         }
         catch(Exception ex)
         {
-            throw new WrongXMLShemaException(ex.getMessage());
+            throw new WrongXMLSchemaException(ex.getMessage());
         }
     }
   }

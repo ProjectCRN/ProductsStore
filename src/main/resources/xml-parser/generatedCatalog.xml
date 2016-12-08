@@ -2,51 +2,83 @@
 
 <catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="catalogSchema.xsd">
   <telephone>
-    <name>iPhone61S</name>
-    <attributes/>
+    <name>iPhone5S</name>
+    <attributes>
+      <price>258.0</price>
+      <summary>Apple iPhone 5s smartphone was launched in September 2013</summary>
+      <operatingsystem>iOS 7</operatingsystem>
+      <processorspeed>1.3</processorspeed>
+      <capacity>16</capacity>
+      <display>4.0</display>
+      <height>123.8</height>
+      <width>58.6</width>
+      <depth>7.6</depth>
+      <weight>112</weight>
+      <camera>8</camera>
+      <battery>10</battery>
+      <simcard>Nano-SIM</simcard>
+      <fabricator>Apple</fabricator>
+      <imageurl>/resources/img/img_phone.jpg</imageurl>
+    </attributes>
   </telephone>
   <telephone>
-    <name>Galaxy S10 Edge</name>
-    <attributes/>
+    <name>iPhone 36S</name>
+    <attributes>
+      <price>549.0</price>
+      <summary>IPhone 36s embody Apples continuing environmental progress</summary>
+      <operatingsystem>iOS 10</operatingsystem>
+      <processorspeed>1.8</processorspeed>
+      <capacity>32</capacity>
+      <display>4.7</display>
+      <height>138.3</height>
+      <width>67.1</width>
+      <depth>7.1</depth>
+      <weight>143</weight>
+      <camera>12</camera>
+      <battery>14</battery>
+      <simcard>Nano-SIM</simcard>
+      <fabricator>Apple</fabricator>
+      <imageurl>/resources/img/img_phone.jpg</imageurl>
+    </attributes>
   </telephone>
   <telephone>
     <name>iPhone6S</name>
     <attributes>
       <price>549.0</price>
       <summary>IPhone 6s embody Apples continuing environmental progress</summary>
-      <operatingSystem>iOS 10</operatingSystem>
-      <processorSpeedGHz>1.8</processorSpeedGHz>
-      <capacityGB>32</capacityGB>
-      <displayInch>4.7</displayInch>
-      <heightMM>138.3</heightMM>
-      <widthMM>67.1</widthMM>
-      <depthMM>7.1</depthMM>
-      <weightGrams>143</weightGrams>
-      <cameraMP>12</cameraMP>
-      <batteryHours>14</batteryHours>
-      <simCard>Nano-SIM</simCard>
+      <operatingsystem>iOS 10</operatingsystem>
+      <processorspeed>1.8</processorspeed>
+      <capacity>32</capacity>
+      <display>4.7</display>
+      <height>138.3</height>
+      <width>67.1</width>
+      <depth>7.1</depth>
+      <weight>143</weight>
+      <camera>12</camera>
+      <battery>14</battery>
+      <simcard>Nano-SIM</simcard>
       <fabricator>Apple</fabricator>
-      <imageURL>URL</imageURL>
+      <imageurl>/resources/img/img_phone.jpg</imageurl>
     </attributes>
   </telephone>
   <telephone>
-    <name>iPhone5S</name>
+    <name>Raskladushka</name>
     <attributes>
-      <price>258.0</price>
-      <summary>Apple iPhone 5s smartphone was launched in September 2013</summary>
-      <operatingSystem>iOS 7</operatingSystem>
-      <processorSpeedGHz>1.3</processorSpeedGHz>
-      <capacityGB>16</capacityGB>
-      <displayInch>4.0</displayInch>
-      <heightMM>123.8</heightMM>
-      <widthMM>58.6</widthMM>
-      <depthMM>7.6</depthMM>
-      <weightGrams>112</weightGrams>
-      <cameraMP>8</cameraMP>
-      <batteryHours>10</batteryHours>
-      <simCard>Nano-SIM</simCard>
-      <fabricator>Apple</fabricator>
-      <imageURL>URL</imageURL>
+      <price>228</price>
+      <summary>blabalbal</summary>
+      <operatingsystem>iOS 700</operatingsystem>
+      <processorspeed>1.23</processorspeed>
+      <capacity>126</capacity>
+      <display>42.0</display>
+      <height>1232.8</height>
+      <width>58.6</width>
+      <depth>7.6</depth>
+      <weight>112</weight>
+      <camera>8</camera>
+      <battery>10</battery>
+      <simcard>SIMSALABIM</simcard>
+      <fabricator>Appelsin</fabricator>
+      <imageurl>/resources/img/img_phone.jpg</imageurl>
     </attributes>
   </telephone>
   <telephone>
@@ -54,70 +86,98 @@
     <attributes>
       <price>769.99</price>
       <summary>Samsung has created a beautiful phone with water resistance and fast loading</summary>
-      <operatingSystem>Android 6.0</operatingSystem>
-      <processorSpeedGHz>2.15</processorSpeedGHz>
-      <capacityGB>32</capacityGB>
-      <displayInch>5.5</displayInch>
-      <heightMM>150.9</heightMM>
-      <widthMM>72.6</widthMM>
-      <depthMM>7.7</depthMM>
-      <weightGrams>157</weightGrams>
-      <cameraMP>12</cameraMP>
-      <batteryHours>13</batteryHours>
-      <simCard>Nano-SIM</simCard>
+      <operatingsystem>Android 6.0</operatingsystem>
+      <processorspeed>2.15</processorspeed>
+      <capacity>32</capacity>
+      <display>5.5</display>
+      <height>150.9</height>
+      <width>72.6</width>
+      <depth>7.7</depth>
+      <weight>157</weight>
+      <camera>12</camera>
+      <battery>13</battery>
+      <simcard>Nano-SIM</simcard>
       <fabricator>Samsung</fabricator>
-      <imageURL>URL</imageURL>
+      <imageurl>/resources/img/img_phone.jpg</imageurl>
     </attributes>
   </telephone>
   <telephone>
-    <name>iPhone88S</name>
-    <attributes/>
+    <name>Galaxy S72Edge</name>
+    <attributes>
+      <price>769.99</price>
+      <summary>Samsung has created a beautiful phone with water resistance and fast loading</summary>
+      <operatingsystem>Android 6.0</operatingsystem>
+      <processorspeed>2.15</processorspeed>
+      <capacity>32</capacity>
+      <display>5.5</display>
+      <height>150.9</height>
+      <width>72.6</width>
+      <depth>7.7</depth>
+      <weight>157</weight>
+      <camera>12</camera>
+      <battery>13</battery>
+      <simcard>Nano-SIM</simcard>
+      <fabricator>Samsung</fabricator>
+      <imageurl>/resources/img/img_phone.jpg</imageurl>
+    </attributes>
   </telephone>
   <tablet>
-    <name>iPad mini 44</name>
-    <attributes/>
+    <name>iPad mini 4</name>
+    <attributes>
+      <price>399</price>
+      <operatingsystem>iOS</operatingsystem>
+      <processorspeed>1.5</processorspeed>
+      <capacity>32</capacity>
+      <display>7.9</display>
+      <height>203.2</height>
+      <width>134.8</width>
+      <depth>6.1</depth>
+      <weight>298.8</weight>
+      <camera>8</camera>
+      <battery>10</battery>
+      <simcard>Nano-SIM</simcard>
+      <fabricator>Apple</fabricator>
+      <imageurl>/resources/img/img_phone.jpg</imageurl>
+    </attributes>
+  </tablet>
+  <tablet>
+    <name>iPadmini413</name>
+    <attributes>
+      <price>399</price>
+      <summary>some summary</summary>
+      <operatingsystem>iOS</operatingsystem>
+      <processorspeed>1.5</processorspeed>
+      <capacity>32</capacity>
+      <display>7.9</display>
+      <height>203.2</height>
+      <width>134.8</width>
+      <depth>6.1</depth>
+      <weight>298.8</weight>
+      <camera>8</camera>
+      <battery>10</battery>
+      <simcard>Nano-SIM</simcard>
+      <fabricator>Apple</fabricator>
+      <imageurl>/resources/img/img_phone.jpg</imageurl>
+    </attributes>
   </tablet>
   <tablet>
     <name>iPad Air 2</name>
     <attributes>
       <price>399</price>
       <summary>iPad Air 2</summary>
-      <operatingSystem>iOS</operatingSystem>
-      <processorSpeedGHz>1.5</processorSpeedGHz>
-      <capacityGB>32</capacityGB>
-      <displayInch>9.7</displayInch>
-      <heightMM>240</heightMM>
-      <widthMM>169.5</widthMM>
-      <depthMM>6.1</depthMM>
-      <weightGrams>437</weightGrams>
-      <cameraMP>8</cameraMP>
-      <batteryHours>10</batteryHours>
-      <simCard>Nano-SIM</simCard>
+      <operatingsystem>iOS</operatingsystem>
+      <processorspeed>1.5</processorspeed>
+      <capacity>32</capacity>
+      <display>9.7</display>
+      <height>240</height>
+      <width>169.5</width>
+      <depth>6.1</depth>
+      <weight>437</weight>
+      <camera>8</camera>
+      <battery>10</battery>
+      <simcard>Nano-SIM</simcard>
       <fabricator>Apple</fabricator>
-      <imageURL>URL</imageURL>
+      <imageurl>/resources/img/img_phone.jpg</imageurl>
     </attributes>
-  </tablet>
-  <tablet>
-    <name>iPad mini 4</name>
-    <attributes>
-      <price>399</price>
-      <operatingSystem>iOS</operatingSystem>
-      <processorSpeedGHz>1.5</processorSpeedGHz>
-      <capacityGB>32</capacityGB>
-      <displayInch>7.9</displayInch>
-      <heightMM>203.2</heightMM>
-      <widthMM>134.8</widthMM>
-      <depthMM>6.1</depthMM>
-      <weightGrams>298.8</weightGrams>
-      <cameraMP>8</cameraMP>
-      <batteryHours>10</batteryHours>
-      <simCard>Nano-SIM</simCard>
-      <fabricator>Apple</fabricator>
-      <imageURL>URL</imageURL>
-    </attributes>
-  </tablet>
-  <tablet>
-    <name>iPad Air 42</name>
-    <attributes/>
   </tablet>
 </catalog>

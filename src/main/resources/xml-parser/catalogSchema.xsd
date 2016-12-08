@@ -14,19 +14,19 @@
                                     <xs:all>
                                         <xs:element name = "price" type="xs:decimal" nillable="false"></xs:element>
                                         <xs:element name = "summary" type="xs:string"></xs:element>
-                                        <xs:element name = "operatingSystem" type="xs:string" nillable="false"></xs:element>
-                                        <xs:element name = "processorSpeedGHz" type="xs:decimal"></xs:element>
-                                        <xs:element name = "capacityGB" type="xs:integer"></xs:element>
-                                        <xs:element name = "displayInch" type="xs:decimal"></xs:element>
-                                        <xs:element name = "heightMM" type="xs:decimal"></xs:element>
-                                        <xs:element name = "widthMM" type="xs:decimal"></xs:element>
-                                        <xs:element name = "depthMM" type="xs:decimal"></xs:element>
-                                        <xs:element name = "weightGrams" type="xs:decimal"></xs:element>
-                                        <xs:element name = "cameraMP" type="xs:decimal"></xs:element>
-                                        <xs:element name = "batteryHours" type="xs:decimal"></xs:element>
-                                        <xs:element name = "simCard" type="xs:string"></xs:element>
-                                        <xs:element name = "imageURL" type="xs:anyURI"></xs:element>
+                                        <xs:element name = "operatingsystem" type="xs:string" nillable="false"></xs:element>
+                                        <xs:element name = "processorspeed" type="xs:decimal"></xs:element>
+                                        <xs:element name = "capacity" type="xs:integer"></xs:element>
+                                        <xs:element name = "display" type="xs:decimal"></xs:element>
+                                        <xs:element name = "height" type="xs:decimal"></xs:element>
+                                        <xs:element name = "width" type="xs:decimal"></xs:element>
+                                        <xs:element name = "depth" type="xs:decimal"></xs:element>
+                                        <xs:element name = "weight" type="xs:decimal"></xs:element>
+                                        <xs:element name = "camera" type="xs:decimal"></xs:element>
+                                        <xs:element name = "battery" type="xs:decimal"></xs:element>
+                                        <xs:element name = "simcard" type="xs:string"></xs:element>
                                         <xs:element name = "fabricator" type="xs:string"></xs:element>
+                                        <xs:element name = "imageurl" type="xs:anyURI"></xs:element>
                                      </xs:all>
                                 </xs:complexType>
                             </xs:element>
@@ -43,19 +43,19 @@
                                     <xs:all>
                                         <xs:element name = "price" type="xs:decimal" nillable="false"></xs:element>
                                         <xs:element name = "summary" type="xs:string"></xs:element>
-                                        <xs:element name = "operatingSystem" type="xs:string" nillable="false"></xs:element>
-                                        <xs:element name = "processorSpeedGHz" type="xs:decimal"></xs:element>
-                                        <xs:element name = "capacityGB" type="xs:integer"></xs:element>
-                                        <xs:element name = "displayInch" type="xs:decimal"></xs:element>
-                                        <xs:element name = "heightMM" type="xs:decimal"></xs:element>
-                                        <xs:element name = "widthMM" type="xs:decimal"></xs:element>
-                                        <xs:element name = "depthMM" type="xs:decimal"></xs:element>
-                                        <xs:element name = "weightGrams" type="xs:decimal"></xs:element>
-                                        <xs:element name = "cameraMP" type="xs:decimal"></xs:element>
-                                        <xs:element name = "batteryHours" type="xs:decimal"></xs:element>
-                                        <xs:element name = "simCard" type="xs:string"></xs:element>
-                                        <xs:element name = "imageURL" type="xs:anyURI"></xs:element>
+                                        <xs:element name = "operatingsystem" type="xs:string" nillable="false"></xs:element>
+                                        <xs:element name = "processorspeed" type="xs:decimal"></xs:element>
+                                        <xs:element name = "capacity" type="xs:integer"></xs:element>
+                                        <xs:element name = "display" type="xs:decimal"></xs:element>
+                                        <xs:element name = "height" type="xs:decimal"></xs:element>
+                                        <xs:element name = "width" type="xs:decimal"></xs:element>
+                                        <xs:element name = "depth" type="xs:decimal"></xs:element>
+                                        <xs:element name = "weight" type="xs:decimal"></xs:element>
+                                        <xs:element name = "camera" type="xs:decimal"></xs:element>
+                                        <xs:element name = "battery" type="xs:decimal"></xs:element>
+                                        <xs:element name = "simcard" type="xs:string"></xs:element>
                                         <xs:element name = "fabricator" type="xs:string"></xs:element>
+                                        <xs:element name = "imageurl" type="xs:anyURI"></xs:element>
                                     </xs:all>
                                 </xs:complexType>
                             </xs:element>

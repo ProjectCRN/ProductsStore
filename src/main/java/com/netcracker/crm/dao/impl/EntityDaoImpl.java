@@ -64,7 +64,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public int add(Entity entity) {
-        addValidation(entity);
+       // addValidation(entity);
         final String sql = "INSERT INTO TBL_ENTITY (" +
                 COLUMN_ENTITY_ID + ", " +
                 COLUMN_ENTITY_NAME + ", " +

@@ -21,6 +21,7 @@ import com.netcracker.crm.services.parser.AbstractTag;
 import com.netcracker.crm.services.parser.CatalogParser;
 import com.netcracker.crm.services.parser.OrderTag;
 import com.netcracker.crm.services.parser.TypeAttribute;
+import com.netcracker.crm.services.parser.exception.WrongXMLSchemaException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.DataAccessException;
@@ -37,9 +38,27 @@ public class TestDao {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext(new String[]{"SpringModule.xml"});
 
-//        CatalogParser catalogParser = new CatalogParser();
-//        catalogParser.exportCatalog("default");
+        CatalogParser catalogParser = (CatalogParser) context.getBean("catalogParser");
 
+        String schemaLocation = "src/main/resources/xml-parser/catalogSchema.xsd";
+
+        String urlFrom = "src/main/resources/xml-parser/catalogToAdd.xml";
+        String urlTo = "src/main/resources/xml-parser/generatedCatalog.xml";
+        int productCount = 0;
+
+        catalogParser.exportCatalog(urlTo);
+
+        try {
+
+            productCount = catalogParser.importCatalog(urlFrom, schemaLocation);
+
+        }
+        catch (WrongXMLSchemaException e)
+        {
+            System.out.println("Wrong XML Schema Exception");
+        }
+
+        System.out.println(productCount + " new products was added");
 
 //        List<Value> values =new ArrayList<>();
 //        values.add(new Value(0,"16Gb",0,14));
@@ -62,7 +81,7 @@ public class TestDao {
 //
 //        userService.isEmailFree("gav@panin.ru");
 //
-        IProductService productService = (IProductService) context.getBean("productServiceTest");
+//        IProductService productService = (IProductService) context.getBean("productServiceTest");
 //        List<Product> list = productService.getList(10, "", "", "", 1, 2);
 //        if (list != null) {
 //            System.out.println(list.size());
