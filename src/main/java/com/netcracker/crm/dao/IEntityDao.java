@@ -20,4 +20,6 @@ public interface IEntityDao extends IDao<Entity> {
     public List<Entity> getByUserAndType(Integer userID, Integer entityTypeID, String atributesIdView);
 
     public int rowCounter(int typeId, String atributesId, String values, String operators);
+
+    public void restore(int id);
 }

@@ -157,4 +157,15 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
             throw new ServiceException(exc.getMessage(), exc);
         }
     }
+
+    @Override
+    public void restore(int id) {
+        try {
+            entityDao.restore(id);
+            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " restore product #" + id);
+        } catch (DaoException exc) {
+            logger.error(exc.getMessage());
+            throw new ServiceException(exc.getMessage(), exc);
+        }
+    }
 }

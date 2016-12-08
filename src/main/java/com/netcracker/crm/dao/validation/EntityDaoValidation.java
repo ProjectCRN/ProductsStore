@@ -172,6 +172,12 @@ public class EntityDaoValidation implements IEntityValidation {
         }
     }
 
+    public static void restoreValidation(int id) {
+        if (!idInTable(TABLE_ENTITY, id)) {
+            throw new DaoException("Invalid id");
+        }
+    }
+
     public static boolean idInTable(String tableName, int id) {
         return true;
     }

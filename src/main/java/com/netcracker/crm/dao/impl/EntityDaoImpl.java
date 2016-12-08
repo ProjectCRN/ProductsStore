@@ -96,7 +96,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     @Override
     public Entity getById(int id) {
         getByIdValidation(id);
-        Entity entity = null;
+        Entity entity;
         String sql = "SELECT E.ENTITYID ,E.ENTITYNAME ,E.ISACTIVE ,E.ENTITYTYPEID,T.ENTITYTYPENAME ,E.USERID  " +
                 "FROM TBL_ENTITY E" +
                 "    INNER JOIN TBL_ENTITYTYPE T" +
@@ -190,7 +190,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     @Override
     public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView, int pageNumber, int pageSize) {
         getListValidation(typeId, atributesId, values, operators, atributesIdView, pageNumber, pageSize);
-        List<String> entiyIdList = null;
+        List<String> entiyIdList;
         try {
             getJdbcTemplate().setResultsMapCaseInsensitive(true);
             SqlParameterSource in = new MapSqlParameterSource()
@@ -238,7 +238,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView) {
         getListValidation(typeId, atributesId, values, operators, atributesIdView);
 
-        List<String> entiyIdList = null;
+        List<String> entiyIdList;
         try {
             getJdbcTemplate().setResultsMapCaseInsensitive(true);
             SqlParameterSource in = new MapSqlParameterSource()
@@ -279,7 +279,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     private List<Entity> getListWithAttributes(String entiyIdList, String atributesId) {
         List<String> attributesList = new ArrayList<>();
-        List<Entity> entiyList = null;
+        List<Entity> entiyList;
         String[] arr = atributesId.split(",");
         for (String ss : arr) {
             attributesList.add(ss);
@@ -314,17 +314,12 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     @Override
     public List<Entity> getByUserAndType(Integer userID, Integer entityTypeID, String atributesIdView) {
         getByUserAndTypeValidation(userID, entityTypeID, atributesIdView);
-        List<String> entiyIdList = null;
+        List<String> entiyIdList;
         String sql = "SELECT  E.ENTITYID " +
                 " FROM TBL_ENTITY E INNER JOIN TBL_ENTITYTYPE T ON E.ENTITYTYPEID=" +
                 "T.ENTITYTYPEID WHERE (E." + COLUMN_ENTITY_USER_ID
                 + "=?) AND ((? IS NOT NULL AND E." + COLUMN_ENTITY_TYPE_ID + "=?) OR " +
                 "(? IS NULL))";
-
-        //maybe namedparameterjdbctemplate
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("inUser", userID);
-//        params.put("inType", entityTypeID);
         try {
             entiyIdList = getJdbcTemplate().queryForList(sql, new Object[]{userID, entityTypeID,
                     entityTypeID, entityTypeID}, String.class);
@@ -350,7 +345,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     @Override
     public int rowCounter(int typeId, String atributesId, String values, String operators) {
         rowCounterValidation(typeId, atributesId, values, operators);
-        Map out = null;
+        Map out;
         try {
             getJdbcTemplate().setResultsMapCaseInsensitive(true);
             SqlParameterSource in = new MapSqlParameterSource()
@@ -376,21 +371,29 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     @Override
     public void delete(int id) {
         deleteValidation(id);
-        //final String sqlDeleteValue = "DELETE FROM TBL_VALUE WHERE ENTITYID = ?";
         final String sqlDeleteEntity = "UPDATE TBL_ENTITY SET ISACTIVE = 0 WHERE ENTITYID = ?";
-        Object[] args = new Object[]{
-                id
-        };
         try {
-            getJdbcTemplate().update(sqlDeleteEntity, args);
+            getJdbcTemplate().update(sqlDeleteEntity, new Object[]{id});
         } catch (DataAccessException e) {
-            logger.error("Can't delete()" + e.getMessage());
+            logger.error("Can't delete " + e.getMessage());
+            throw new DaoException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void restore(int id) {
+        restoreValidation(id);
+        final String sqlRestoreEntity = "UPDATE TBL_ENTITY SET ISACTIVE = 1 WHERE ENTITYID = ?";
+        try {
+            getJdbcTemplate().update(sqlRestoreEntity, new Object[]{id});
+        } catch (DataAccessException e) {
+            logger.error("Can't restore " + e.getMessage());
             throw new DaoException(e.getMessage(), e);
         }
     }
 
     private int getKey() {
-        int out = -100;
+        int out;
         final String sql = "SELECT SQ_MAIN.NEXTVAL from dual";
         try {
             out = getJdbcTemplate().queryForObject(sql, Integer.class);
