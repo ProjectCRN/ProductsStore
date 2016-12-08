@@ -1,10 +1,12 @@
-CREATE OR REPLACE PROCEDURE ns_admin.sp_entity_NoPaging(
+CREATE OR REPLACE PROCEDURE ns_admin.sp_entity_list(
 
   inEntityTypeId IN INTEGER,
 --  inPriceId IN INTEGER,
   inAttributeCSV IN NVARCHAR2,
   inValueCSV IN NVARCHAR2,
   inOperatorCSV IN NVARCHAR2,
+  inPageNumber IN INTEGER,
+  inPageSize IN INTEGER,
 
   outEntity OUT SYS_REFCURSOR
 	)
@@ -13,7 +15,8 @@ IS
   inAttribute NVARCHAR2(4000) := inAttributeCSV;
   inValue NVARCHAR2(4000) := inValueCSV;
   inOperator NVARCHAR2(4000) := inOperatorCSV;
-
+  pageNumber INTEGER :=inPageNumber;
+  pageSize INTEGER :=inPageSize;
   counter INTEGER :=0;
   positionOfComma INTEGER :=0;  
   
@@ -33,9 +36,18 @@ BEGIN
 
 IF (LENGTH(inAttribute) IS NULL) THEN 
       OPEN outEntity FOR
+      SELECT * FROM
+      (
+          SELECT a.*, rownum rnum
+          FROM
+          (
               SELECT E.ENTITYID
               FROM TBL_ENTITY E
-              WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1));
+              WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1)) 
+            ) a
+          WHERE rownum < ((pageNumber * pageSize) + 1 )
+      )
+      WHERE rnum >= (((pageNumber-1) * pageSize) + 1);
       
 END IF;
 
@@ -69,6 +81,11 @@ END IF;
 
   IF (counter > 0) THEN   
     OPEN outEntity FOR
+    SELECT * FROM
+      (
+          SELECT a.*, rownum rnum
+          FROM
+          (
              SELECT CX.ENTITYID
              FROM 
              ( 
@@ -88,7 +105,11 @@ END IF;
              HAVING COUNT(1) = counter
              ) X  
              INNER JOIN TBL_ENTITY CX ON CX.EntityId = X.EntityId
-             WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1) );
+             WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1) )
+         ) a
+        WHERE rownum < ((pageNumber * pageSize) + 1 )
+    )
+    WHERE rnum >= (((pageNumber-1) * pageSize) + 1);
   
   END IF;
  
@@ -113,5 +134,8 @@ END IF;
 			RAISE;
 		END;  
 
-END sp_entity_NoPaging;
+END sp_entity_list;
 
+
+exit;
+/

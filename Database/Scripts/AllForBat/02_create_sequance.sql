@@ -3,3 +3,6 @@ CREATE SEQUENCE SQ_Main
 	START WITH 1
 	CACHE 5;
 
+exit;
+/
+

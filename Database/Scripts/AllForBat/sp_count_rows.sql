@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE ns_admin.sp_entity_NoPaging(
+CREATE OR REPLACE PROCEDURE ns_admin.sp_count_rows(
 
   inEntityTypeId IN INTEGER,
 --  inPriceId IN INTEGER,
@@ -6,14 +6,13 @@ CREATE OR REPLACE PROCEDURE ns_admin.sp_entity_NoPaging(
   inValueCSV IN NVARCHAR2,
   inOperatorCSV IN NVARCHAR2,
 
-  outEntity OUT SYS_REFCURSOR
+  outCount OUT INTEGER
 	)
   
 IS
   inAttribute NVARCHAR2(4000) := inAttributeCSV;
   inValue NVARCHAR2(4000) := inValueCSV;
   inOperator NVARCHAR2(4000) := inOperatorCSV;
-
   counter INTEGER :=0;
   positionOfComma INTEGER :=0;  
   
@@ -32,10 +31,11 @@ BEGIN
   inAttribute:= NVL(inAttribute,'');
 
 IF (LENGTH(inAttribute) IS NULL) THEN 
-      OPEN outEntity FOR
-              SELECT E.ENTITYID
-              FROM TBL_ENTITY E
-              WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1));
+      SELECT count(*) INTO outCount
+      FROM
+      (SELECT E.ENTITYID
+      FROM TBL_ENTITY E
+      WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1)));
       
 END IF;
 
@@ -68,27 +68,28 @@ END IF;
 
 
   IF (counter > 0) THEN   
-    OPEN outEntity FOR
-             SELECT CX.ENTITYID
-             FROM 
-             ( 
-             SELECT CA.EntityId 
-             FROM SearchTable T  
-             INNER JOIN TBL_VALUE CA  ON T.ATTRIBUTEID = CA.ATRIBUTEID 
-             WHERE 1 = CASE T.OperatorValue 
-             WHEN N'=' THEN CASE WHEN CAST(CA.Value AS NVARCHAR2(128)) = CAST(T.AttributeValue AS NVARCHAR2(128)) THEN 1 ELSE 0 END 
-             WHEN N'<=' THEN CASE WHEN TO_NUMBER(CA.Value) <= TO_NUMBER(T.AttributeValue) THEN 1 ELSE 0 END 
-             WHEN N'<' THEN CASE WHEN TO_NUMBER(CA.Value ) < TO_NUMBER(T.AttributeValue ) THEN 1 ELSE 0 END 
-             WHEN N'>' THEN CASE WHEN TO_NUMBER(CA.Value) > TO_NUMBER(T.AttributeValue) THEN 1 ELSE 0 END 
-             WHEN N'>=' THEN CASE WHEN TO_NUMBER(CA.Value) >= TO_NUMBER(T.AttributeValue) THEN 1 ELSE 0 END 
-             WHEN N'like' THEN CASE WHEN CAST(CA.Value AS NVARCHAR2(128)) LIKE CAST(T.AttributeValue AS NVARCHAR2(128)) THEN 1 ELSE 0 END 
-             WHEN N'ISNULL' THEN CASE WHEN CA.Value IS NULL THEN 1 ELSE 0 END 
-             ELSE 0 END                         
-             GROUP BY EntityId 
-             HAVING COUNT(1) = counter
-             ) X  
-             INNER JOIN TBL_ENTITY CX ON CX.EntityId = X.EntityId
-             WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1) );
+      SELECT count(*) INTO outCount
+      FROM
+       (SELECT CX.ENTITYID
+       FROM 
+       ( 
+       SELECT CA.EntityId 
+       FROM SearchTable T  
+       INNER JOIN TBL_VALUE CA  ON T.ATTRIBUTEID = CA.ATRIBUTEID 
+       WHERE 1 = CASE T.OperatorValue 
+       WHEN N'=' THEN CASE WHEN CAST(CA.Value AS NVARCHAR2(128)) = CAST(T.AttributeValue AS NVARCHAR2(128)) THEN 1 ELSE 0 END 
+       WHEN N'<=' THEN CASE WHEN TO_NUMBER(CA.Value) <= TO_NUMBER(T.AttributeValue) THEN 1 ELSE 0 END 
+       WHEN N'<' THEN CASE WHEN TO_NUMBER(CA.Value ) < TO_NUMBER(T.AttributeValue ) THEN 1 ELSE 0 END 
+       WHEN N'>' THEN CASE WHEN TO_NUMBER(CA.Value) > TO_NUMBER(T.AttributeValue) THEN 1 ELSE 0 END 
+       WHEN N'>=' THEN CASE WHEN TO_NUMBER(CA.Value) >= TO_NUMBER(T.AttributeValue) THEN 1 ELSE 0 END 
+       WHEN N'like' THEN CASE WHEN CAST(CA.Value AS NVARCHAR2(128)) LIKE CAST(T.AttributeValue AS NVARCHAR2(128)) THEN 1 ELSE 0 END 
+       WHEN N'ISNULL' THEN CASE WHEN CA.Value IS NULL THEN 1 ELSE 0 END 
+       ELSE 0 END                         
+       GROUP BY EntityId 
+       HAVING COUNT(1) = counter
+       ) X  
+       INNER JOIN TBL_ENTITY CX ON CX.EntityId = X.EntityId
+       WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1) )); 
   
   END IF;
  
@@ -113,5 +114,8 @@ END IF;
 			RAISE;
 		END;  
 
-END sp_entity_NoPaging;
+END sp_count_rows;
 
+
+exit;
+/

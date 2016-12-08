@@ -810,3 +810,6 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
   '^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$');
   
     commit;
+
+exit;
+/

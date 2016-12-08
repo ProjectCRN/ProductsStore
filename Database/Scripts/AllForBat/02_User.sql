@@ -42,3 +42,6 @@ INSERT INTO ns_admin.TBL_USER (
 	
 commit;
 
+exit;
+/
+
