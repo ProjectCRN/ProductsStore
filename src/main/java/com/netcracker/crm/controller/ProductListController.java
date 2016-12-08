@@ -130,6 +130,7 @@ public class ProductListController {
                 searchAttr.getAttribute(),
                 searchAttr.getValues(),
                 searchAttr.getOperators(),
+                searchAttr.getAttribute(),
                 1,
                 paginationService.getNumPerPage());
         if (productList == null)

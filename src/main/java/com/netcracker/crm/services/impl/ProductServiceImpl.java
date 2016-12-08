@@ -61,27 +61,9 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
     }
 
     @Override
-    public List<Product> getList(int typeId, String atributesId, String values, String operators, int pageNumber, int pageSize) {
-        List<Product> productList;
-
-        String priceId = String.valueOf(getAtributeIdByTypeId(typeId, "Price"));
-        String imageId = String.valueOf(getAtributeIdByTypeId(typeId, "ImageURL"));
-        try {
-            List<Entity> list = entityDao.getList(typeId, atributesId, values, operators,
-                    priceId + "," + imageId, pageNumber, pageSize);
-            if(list!=null) {
-                productList = new ArrayList<>(list.size());
-                for (Entity e : list) {
-                    Product p = new Product(e);
-                    productList.add(p);
-                }
-            }else return null;
-            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getAll for Product");
-        } catch (DaoException exc) {
-            logger.error(exc.getMessage());
-            throw new ServiceException(exc.getMessage(), exc);
-        }
-        return productList;
+    public List<Product> getList(int typeId, String atributesId, String values,
+                                 String operators, int pageNumber, int pageSize) {
+        return getList(typeId, atributesId, values, operators, "", pageNumber, pageSize);
     }
 
     @Override
@@ -91,14 +73,44 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
             String imageId = String.valueOf(getAtributeIdByTypeId(entityTypeID, "ImageURL"));
             String priceId = getAtributeIdByTypeId(entityTypeID, "Price");
             List<Entity> list = entityDao.getByUserAndType(userID, entityTypeID, priceId + "," + imageId);
-            if(list!=null) {
+            if (list != null) {
                 productList = new ArrayList<>(list.size());
                 for (Entity e : list) {
                     Product p = new Product(e);
                     productList.add(p);
                 }
-            }else return null;
+            } else return null;
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getByUserAndType for Product");
+        } catch (DaoException exc) {
+            logger.error(exc.getMessage());
+            throw new ServiceException(exc.getMessage(), exc);
+        }
+        return productList;
+    }
+
+    @Override
+    public List<Product> getList(int typeId, String atributesId, String values,
+                                 String operators, String atributesIdView,
+                                 int pageNumber, int pageSize) {
+        List<Product> productList;
+        String priceId = String.valueOf(getAtributeIdByTypeId(typeId, "Price"));
+        String imageId = String.valueOf(getAtributeIdByTypeId(typeId, "ImageURL"));
+        String viewStr = imageId + "," + atributesIdView;
+        if (!atributesIdView.contains(priceId)) {
+            String addStr = atributesIdView.equals("")? priceId: "," + priceId;
+            viewStr += addStr;
+        }
+        try {
+            List<Entity> list = entityDao.getList(typeId, atributesId, values, operators,
+                    viewStr, pageNumber, pageSize);
+            if (list != null) {
+                productList = new ArrayList<>(list.size());
+                for (Entity e : list) {
+                    Product p = new Product(e);
+                    productList.add(p);
+                }
+            } else return null;
+            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getAll for Product");
         } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);

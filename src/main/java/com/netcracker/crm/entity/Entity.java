@@ -217,10 +217,10 @@ public class Entity extends AbstractEntity {
         return null;
     }
 
-    public String getValueFromMap(int atributeId) {
-        for (int i = 0; i < getAtributeValueMap().size(); i++) {
-            if (getAtributeValueMap().get(i).getKey().getId() == atributeId) {
-                return getAtributeValueMap().get(i).getValue().getValue();
+    public String getValueFromList(int atributeId) {
+        for (int i = 0; i < getValueList().size(); i++) {
+            if (getValueList().get(i).getAtributeId() == atributeId) {
+                return getValueList().get(i).getValue();
             }
         }
         return null;
