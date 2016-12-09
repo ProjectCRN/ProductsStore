@@ -9,10 +9,10 @@ import java.util.List;
  */
 public interface IProductService extends IEntityService<Product> {
     public void updateByProduct(Product product);
-    public int rowCounter(int typeId, String atributesId, String values, String operators);
+    public int rowCounter(int typeId, String atributesId, String values, String operators, String role);
     public List<Product> getByUserAndType(Integer userID, Integer entityTypeID);
     public List<Product> getList(int typeId, String atributesId, String values,
-                                 String operators, String atributesIdView,int pageNumber, int pageSize);
+                                 String operators, String atributesIdView,int pageNumber, int pageSize, String role);
     public void restore(int id);
 
 }

@@ -61,9 +61,8 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
     }
 
     @Override
-    public List<Product> getList(int typeId, String atributesId, String values,
-                                 String operators, int pageNumber, int pageSize) {
-        return getList(typeId, atributesId, values, operators, "", pageNumber, pageSize);
+    public List<Product> getList(int typeId, String atributesId, String values, String operators, int pageNumber, int pageSize, String role) {
+        return getList(typeId, atributesId, values, operators, "", pageNumber, pageSize, role);
     }
 
     @Override
@@ -91,7 +90,7 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
     @Override
     public List<Product> getList(int typeId, String atributesId, String values,
                                  String operators, String atributesIdView,
-                                 int pageNumber, int pageSize) {
+                                 int pageNumber, int pageSize, String role) {
         List<Product> productList;
         String priceId = String.valueOf(getAtributeIdByTypeId(typeId, "Price"));
         String imageId = String.valueOf(getAtributeIdByTypeId(typeId, "ImageURL"));
@@ -102,7 +101,7 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
         }
         try {
             List<Entity> list = entityDao.getList(typeId, atributesId, values, operators,
-                    viewStr, pageNumber, pageSize);
+                    viewStr, pageNumber, pageSize,role);
             if (list != null) {
                 productList = new ArrayList<>(list.size());
                 for (Entity e : list) {
@@ -142,8 +141,8 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
     }
 
     @Override
-    public int rowCounter(int typeId, String atributesId, String values, String operators) {
-        return entityDao.rowCounter(typeId, atributesId, values, operators);
+    public int rowCounter(int typeId, String atributesId, String values, String operators, String role) {
+        return entityDao.rowCounter(typeId, atributesId, values, operators, role);
     }
 
 

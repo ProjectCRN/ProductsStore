@@ -188,7 +188,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     @Override
-    public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView, int pageNumber, int pageSize) {
+    public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView, int pageNumber, int pageSize, String role) {
         getListValidation(typeId, atributesId, values, operators, atributesIdView, pageNumber, pageSize);
         List<String> entiyIdList;
         try {
@@ -199,7 +199,8 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                     .addValue(PARAM_IN_ENTITY_VALUES, values)
                     .addValue(PARAM_IN_ENTITY_OPERATORS, operators)
                     .addValue(PARAM_IN_PAGE_NUMBER, pageNumber)
-                    .addValue(PARAM_IN_PAGE_SIZE, pageSize);
+                    .addValue(PARAM_IN_PAGE_SIZE, pageSize)
+                    .addValue(PARAM_IN_ROLE, role);
 
 
             SimpleJdbcCall jdbcCall = new SimpleJdbcCall(getJdbcTemplate())
@@ -343,7 +344,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     @Override
-    public int rowCounter(int typeId, String atributesId, String values, String operators) {
+    public int rowCounter(int typeId, String atributesId, String values, String operators, String role) {
         rowCounterValidation(typeId, atributesId, values, operators);
         Map out;
         try {
@@ -352,7 +353,8 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                     .addValue(PARAM_IN_ENTITY_ENTITYTYPEID, typeId)
                     .addValue(PARAM_IN_ENTITY_ATRIBUTES, atributesId)
                     .addValue(PARAM_IN_ENTITY_VALUES, values)
-                    .addValue(PARAM_IN_ENTITY_OPERATORS, operators);
+                    .addValue(PARAM_IN_ENTITY_OPERATORS, operators)
+                    .addValue(PARAM_IN_ROLE, role);
 
             SimpleJdbcCall jdbcCall = new SimpleJdbcCall(getJdbcTemplate())
                     .withProcedureName(PROCEDURE_ROWS_COUNTER);

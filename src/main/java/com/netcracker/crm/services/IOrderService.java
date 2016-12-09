@@ -12,7 +12,7 @@ public interface IOrderService extends IEntityService<Order> {
     public Order makeOrderByCart(Cart cart);
     public List<Order> getListForUser(int userId);
     public void updateByOrder(Order order);
-    public int rowCounter(int typeId, String atributesId, String values, String operators);
+    public int rowCounter(int typeId, String atributesId, String values, String operators, String role);
 
 }
 

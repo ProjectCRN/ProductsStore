@@ -144,7 +144,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     }
 
     @Override
-    public List<Order> getList(int typeId, String atributesId, String values, String operators, int pageNumber, int pageSize) {
+    public List<Order> getList(int typeId, String atributesId, String values, String operators, int pageNumber, int pageSize, String role) {
         return null;
     }
 
@@ -161,8 +161,8 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     }
 
     @Override
-    public int rowCounter(int typeId, String atributesId, String values, String operators) {
-        return entityDao.rowCounter(EntityType.Order.getTypeId(),atributesId,values,operators);
+    public int rowCounter(int typeId, String atributesId, String values, String operators, String role) {
+        return entityDao.rowCounter(EntityType.Order.getTypeId(),atributesId,values,operators, role);
     }
 
     @Override

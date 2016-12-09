@@ -5,7 +5,8 @@ CREATE OR REPLACE PROCEDURE ns_admin.sp_count_rows(
   inAttributeCSV IN NVARCHAR2,
   inValueCSV IN NVARCHAR2,
   inOperatorCSV IN NVARCHAR2,
-
+  inRole IN NVARCHAR2,
+  
   outCount OUT INTEGER
 	)
   
@@ -14,6 +15,7 @@ IS
   inValue NVARCHAR2(4000) := inValueCSV;
   inOperator NVARCHAR2(4000) := inOperatorCSV;
   counter INTEGER :=0;
+  intRole INTEGER :=1;
   positionOfComma INTEGER :=0;  
   
   elemAtribute NVARCHAR2(50) := '';
@@ -29,13 +31,17 @@ IS
 BEGIN 
   DELETE FROM SearchTable;
   inAttribute:= NVL(inAttribute,'');
+  
+  IF (inRole='A') THEN intRole:=0;
+  ELSE intRole:=1;
+  END IF;
 
 IF (LENGTH(inAttribute) IS NULL) THEN 
       SELECT count(*) INTO outCount
       FROM
       (SELECT E.ENTITYID
       FROM TBL_ENTITY E
-      WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1)));
+      WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1 OR E.ISACTIVE=intRole))) ;
       
 END IF;
 
@@ -89,7 +95,7 @@ END IF;
        HAVING COUNT(1) = counter
        ) X  
        INNER JOIN TBL_ENTITY CX ON CX.EntityId = X.EntityId
-       WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1) )); 
+       WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1 OR CX.ISACTIVE=intRole) )); 
   
   END IF;
  

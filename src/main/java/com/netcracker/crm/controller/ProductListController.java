@@ -70,14 +70,13 @@ public class ProductListController {
         SearchAttributes searchAttributes = new SearchAttributes();
         paginationService.setNumPerPage(Integer.parseInt(searchAttributes.getNumPerPage()));
         int typeid = findTypeId(type);
-        List<Product> productList = productService.getList(typeid, "", "", "",
-                1, paginationService.getNumPerPage());
+        List<Product> productList = productService.getList(typeid, "", "", "", 1, paginationService.getNumPerPage(),user.getRoleId());
         if (productList == null)
             productList = new ArrayList<>();
         model.addAttribute("productList", productList);
         model.addAttribute("currType", type);
         model.addAttribute("searchAttr", searchAttributes);
-        int pageNumber = paginationService.calcPageNum(productService.rowCounter(typeid, "", "", ""));
+        int pageNumber = paginationService.calcPageNum(productService.rowCounter(typeid, "", "", "", user.getRoleId()));
         paginationService.setPageNum(pageNumber);
         model.addAttribute("pages", paginationService.getPageNums(pageNumber,1));
         model.addAttribute("searchReq", "products/search");
@@ -105,7 +104,7 @@ public class ProductListController {
         int typeid = findTypeId(type);
 
         List<Product> productList = productService.getList(typeid, "", "", "",
-                Integer.parseInt(pageNum), paginationService.getNumPerPage());
+                Integer.parseInt(pageNum), paginationService.getNumPerPage(),user.getRoleId());
         if (productList == null)
             productList = new ArrayList<>();
         model.addAttribute("productList", productList);
@@ -132,7 +131,7 @@ public class ProductListController {
                 searchAttr.getOperators(),
                 searchAttr.getAttribute(),
                 1,
-                paginationService.getNumPerPage());
+                paginationService.getNumPerPage(),user.getRoleId());
         if (productList == null)
             productList = new ArrayList<>();
         if (productList.isEmpty())
@@ -145,7 +144,7 @@ public class ProductListController {
                 searchAttr.getTypeId(),
                 searchAttr.getAttribute(),
                 searchAttr.getValues(),
-                searchAttr.getOperators()));
+                searchAttr.getOperators(), user.getRoleId()));
         paginationService.setPageNum(pageNumber);
         model.addAttribute("pages", paginationService.getPageNums(pageNumber,1));
         model.addAttribute("searchReq", "products/search");
@@ -169,7 +168,7 @@ public class ProductListController {
                     searchAttr.getTypeId(),
                     searchAttr.getAttribute(),
                     searchAttr.getValues(),
-                    searchAttr.getOperators()));
+                    searchAttr.getOperators(), user.getRoleId()));
             paginationService.setPageNum(pageNumber);
         }
         List<Product> productList = productService.getList(
@@ -178,7 +177,7 @@ public class ProductListController {
                 searchAttr.getValues(),
                 searchAttr.getOperators(),
                 pagenum,
-                paginationService.getNumPerPage());
+                paginationService.getNumPerPage(),user.getRoleId());
         if (productList == null)
             productList = new ArrayList<>();
         if (productList.isEmpty())
