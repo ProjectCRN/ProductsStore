@@ -7,6 +7,7 @@ CREATE OR REPLACE PROCEDURE ns_admin.sp_entity_list(
   inOperatorCSV IN NVARCHAR2,
   inPageNumber IN INTEGER,
   inPageSize IN INTEGER,
+  inRole IN NVARCHAR2,
 
   outEntity OUT SYS_REFCURSOR
 	)
@@ -18,6 +19,7 @@ IS
   pageNumber INTEGER :=inPageNumber;
   pageSize INTEGER :=inPageSize;
   counter INTEGER :=0;
+  intRole INTEGER :=1;
   positionOfComma INTEGER :=0;  
   
   elemAtribute NVARCHAR2(50) := '';
@@ -33,6 +35,10 @@ IS
 BEGIN 
   DELETE FROM SearchTable;
   inAttribute:= NVL(inAttribute,'');
+  
+  IF (inRole='A') THEN intRole:=0;
+  ELSE intRole:=1;
+  END IF;
 
 IF (LENGTH(inAttribute) IS NULL) THEN 
       OPEN outEntity FOR
@@ -43,7 +49,7 @@ IF (LENGTH(inAttribute) IS NULL) THEN
           (
               SELECT E.ENTITYID
               FROM TBL_ENTITY E
-              WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1)) 
+              WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1 OR E.ISACTIVE=intRole)) 
             ) a
           WHERE rownum < ((pageNumber * pageSize) + 1 )
       )
@@ -105,7 +111,7 @@ END IF;
              HAVING COUNT(1) = counter
              ) X  
              INNER JOIN TBL_ENTITY CX ON CX.EntityId = X.EntityId
-             WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1) )
+             WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=0 OR CX.ISACTIVE=intRole))
          ) a
         WHERE rownum < ((pageNumber * pageSize) + 1 )
     )
