@@ -83,14 +83,14 @@
     <ul class="list_pagination">
 
         <c:forEach items="${pages}" var="page">
-            <li><a class="page_${page}" href="#">${page}</a>
+            <li><a class="page_${page.getKey()}  ${page.getValue()}" href="#">${page.getKey()}</a>
 
                 <script type="text/javascript" language="javascript">
-                    $('.page_${page}').click( function() {
+                    $('.page_${page.getKey()}').click( function() {
                         $('#page-preloader').show();
                         var msg   = $('#formSearch').serialize();
                         $.ajax({
-                            url: '${searchReq}/${currType}/page/${page}',
+                            url: '${searchReq}/${currType}/page/${page.getKey()}',
                             data: msg,
                             success: function(data) {
                                 $('.results').html(data);

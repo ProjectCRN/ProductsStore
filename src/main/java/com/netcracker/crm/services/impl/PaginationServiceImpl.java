@@ -1,6 +1,7 @@
 package com.netcracker.crm.services.impl;
 
 import com.netcracker.crm.services.IPaginationService;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +15,12 @@ public class PaginationServiceImpl implements IPaginationService {
     private int pageNum;
 
     @Override
-    public List<String> getPageNums(int num) {
-        List<String> pageNums = new ArrayList<>();
+    public List<Pair> getPageNums(int num, int now) {
+        List<Pair> pageNums = new ArrayList<>();
         for(int i=0;i<num;++i)
-            pageNums.add(Integer.toString(i+1));
+            if(i==now-1)
+                pageNums.add(new Pair(Integer.toString(i+1),"activePage"));
+            else pageNums.add(new Pair(Integer.toString(i+1),"nonActivePage"));
         return pageNums;
     }
 

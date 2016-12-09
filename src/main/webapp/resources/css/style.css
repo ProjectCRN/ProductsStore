@@ -222,6 +222,13 @@ body {
 
 }
 
+.activePage{
+    background-color: lightsalmon;
+}
+
+.nonActivePage{
+    background-color: #dddddd;
+}
 .list_pagination li a{
     display: inline-block;
     width: 27px;
@@ -230,8 +237,8 @@ body {
     font-size: 24px;
     padding-bottom: 6px;
     text-align: center;
+    border-radius: 6px;
     border: 1px solid #575859;
-    background: #e8ebef;
     color: #6d6d6d;
 }
 .list_pagination li a:hover{

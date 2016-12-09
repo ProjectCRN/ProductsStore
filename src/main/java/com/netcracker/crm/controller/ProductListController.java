@@ -78,7 +78,7 @@ public class ProductListController {
         model.addAttribute("searchAttr", new SearchAttributes());
         int pageNumber = paginationService.calcPageNum(productService.rowCounter(typeid, "", "", ""));
         paginationService.setPageNum(pageNumber);
-        model.addAttribute("pages", paginationService.getPageNums(pageNumber));
+        model.addAttribute("pages", paginationService.getPageNums(pageNumber,1));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
         model.addAttribute("role", user.getRoleId());
@@ -111,7 +111,7 @@ public class ProductListController {
         model.addAttribute("currType", type);
         model.addAttribute("searchAttr", new SearchAttributes());
         int pageNumber = paginationService.getPageNum();
-        model.addAttribute("pages", paginationService.getPageNums(pageNumber));
+        model.addAttribute("pages", paginationService.getPageNums(pageNumber,Integer.parseInt(pageNum)));
         model.addAttribute("searchReq", "products");
         model.addAttribute("searchBtn", "search");
         model.addAttribute("role", user.getRoleId());
@@ -146,7 +146,7 @@ public class ProductListController {
                 searchAttr.getValues(),
                 searchAttr.getOperators()));
         paginationService.setPageNum(pageNumber);
-        model.addAttribute("pages", paginationService.getPageNums(pageNumber));
+        model.addAttribute("pages", paginationService.getPageNums(pageNumber,1));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
         model.addAttribute("role", user.getRoleId());
@@ -187,7 +187,7 @@ public class ProductListController {
         model.addAttribute("searchAttr", searchAttr);
         this.setSearchAttributes(searchAttr);
 
-        model.addAttribute("pages", paginationService.getPageNums(pageNumber));
+        model.addAttribute("pages", paginationService.getPageNums(pageNumber,pagenum));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
         model.addAttribute("role", user.getRoleId());
