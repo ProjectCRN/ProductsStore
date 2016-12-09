@@ -57,6 +57,7 @@
 		<property name="addProductValidator" ref="addProductValidator"/>
 		<property name="productService" ref="productService"/>
 		<property name="user" ref="user"/>
+		<property name="patternsService" ref="patternsService"/>
 	</bean>
 
 	<bean class="com.netcracker.crm.controller.XmlController" id="xmlController" scope="session">
