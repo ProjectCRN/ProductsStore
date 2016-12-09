@@ -11,6 +11,7 @@
     <h1>${hello}</h1>
     <h2>${msg}</h2>
     <img src="/resources/img/spinner4.gif">
+    <a class="btn btn-default btnLink" href="/">Ok</a>
 </div>
 
 <script language="javascript" type="text/javascript">
