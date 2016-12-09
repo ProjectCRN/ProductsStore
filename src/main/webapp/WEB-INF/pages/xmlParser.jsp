@@ -16,7 +16,6 @@
     <div class="row">
 
         <div class="col-lg-12">
-            <p>Пример загрузки файла с помощью Spring MVC </p>
             <form action="/uploadFile" method="post"
                   enctype="multipart/form-data">
                 <table>
@@ -27,7 +26,9 @@
                     </tr>
                 </table>
             </form>
-            ${msg}
+            ${msg}<br>
+            ${msg2}
+            <a href="/">Home</a>
 
         </div>
 

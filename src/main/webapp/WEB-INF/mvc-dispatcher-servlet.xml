@@ -61,6 +61,7 @@
 
 	<bean class="com.netcracker.crm.controller.XmlController" id="xmlController" scope="session">
 		<property name="user" ref="user"/>
+		<property name="catalogParser" ref="catalogParser"/>
 	</bean>
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 
