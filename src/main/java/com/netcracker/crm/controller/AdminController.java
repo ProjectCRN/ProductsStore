@@ -91,32 +91,54 @@ public class AdminController {
         prod.setPrice(Double.parseDouble(addProductForm.getPrice()));
         prod.setSummary(addProductForm.getSummary());
         prod.setFabricator(addProductForm.getFabricator());
+        if(addProductForm.getImageUrl().equals(""))
+            addProductForm.setImageUrl("/resources/img/img_phone.jpg");
         prod.setImageUrl(addProductForm.getImageUrl());
 
         if (typeid == EntityType.Telephone.getTypeId()) {
-            prod.setValueInList(PhoneAtribute.OperatingSystem.getAtributeId(), addProductForm.getOperatingSystem());
-            prod.setValueInList(PhoneAtribute.Processorspeed.getAtributeId(), addProductForm.getProcessorSpeed());
             prod.setValueInList(PhoneAtribute.Capacity.getAtributeId(), addProductForm.getCapacity());
-            prod.setValueInList(PhoneAtribute.Display.getAtributeId(), addProductForm.getDisplay());
-            prod.setValueInList(PhoneAtribute.Height.getAtributeId(), addProductForm.getHeight());
-            prod.setValueInList(PhoneAtribute.Width.getAtributeId(), addProductForm.getWidth());
-            prod.setValueInList(PhoneAtribute.Depth.getAtributeId(), addProductForm.getDepth());
-            prod.setValueInList(PhoneAtribute.Weight.getAtributeId(), addProductForm.getWeight());
-            prod.setValueInList(PhoneAtribute.Camera.getAtributeId(), addProductForm.getCamera());
             prod.setValueInList(PhoneAtribute.Battery.getAtributeId(), addProductForm.getBattery());
-            prod.setValueInList(PhoneAtribute.SIMCard.getAtributeId(), addProductForm.getSimCard());
+
+            if(!addProductForm.getOperatingSystem().equals(""))
+                prod.setValueInList(PhoneAtribute.OperatingSystem.getAtributeId(), addProductForm.getOperatingSystem());
+            if(!addProductForm.getProcessorSpeed().equals(""))
+                prod.setValueInList(PhoneAtribute.Processorspeed.getAtributeId(), addProductForm.getProcessorSpeed());
+            if(!addProductForm.getDisplay().equals(""))
+                prod.setValueInList(PhoneAtribute.Display.getAtributeId(), addProductForm.getDisplay());
+            if(!addProductForm.getHeight().equals(""))
+                prod.setValueInList(PhoneAtribute.Height.getAtributeId(), addProductForm.getHeight());
+            if(!addProductForm.getWidth().equals(""))
+                prod.setValueInList(PhoneAtribute.Width.getAtributeId(), addProductForm.getWidth());
+            if(!addProductForm.getDepth().equals(""))
+                prod.setValueInList(PhoneAtribute.Depth.getAtributeId(), addProductForm.getDepth());
+            if(!addProductForm.getWeight().equals(""))
+                prod.setValueInList(PhoneAtribute.Weight.getAtributeId(), addProductForm.getWeight());
+            if(!addProductForm.getCamera().equals(""))
+                prod.setValueInList(PhoneAtribute.Camera.getAtributeId(), addProductForm.getCamera());
+            if(!addProductForm.getSimCard().equals(""))
+                prod.setValueInList(PhoneAtribute.SIMCard.getAtributeId(), addProductForm.getSimCard());
         } else {
-            prod.setValueInList(TabletAtribute.OperatingSystem.getAtributeId(), addProductForm.getOperatingSystem());
-            prod.setValueInList(TabletAtribute.Processorspeed.getAtributeId(), addProductForm.getProcessorSpeed());
             prod.setValueInList(TabletAtribute.Capacity.getAtributeId(), addProductForm.getCapacity());
-            prod.setValueInList(TabletAtribute.Display.getAtributeId(), addProductForm.getDisplay());
-            prod.setValueInList(TabletAtribute.Height.getAtributeId(), addProductForm.getHeight());
-            prod.setValueInList(TabletAtribute.Width.getAtributeId(), addProductForm.getWidth());
-            prod.setValueInList(TabletAtribute.Depth.getAtributeId(), addProductForm.getDepth());
-            prod.setValueInList(TabletAtribute.Weight.getAtributeId(), addProductForm.getWeight());
-            prod.setValueInList(TabletAtribute.Camera.getAtributeId(), addProductForm.getCamera());
             prod.setValueInList(TabletAtribute.Battery.getAtributeId(), addProductForm.getBattery());
-            prod.setValueInList(TabletAtribute.SIMCard.getAtributeId(), addProductForm.getSimCard());
+
+            if(!addProductForm.getOperatingSystem().equals(""))
+                prod.setValueInList(TabletAtribute.OperatingSystem.getAtributeId(), addProductForm.getOperatingSystem());
+            if(!addProductForm.getProcessorSpeed().equals(""))
+                prod.setValueInList(TabletAtribute.Processorspeed.getAtributeId(), addProductForm.getProcessorSpeed());
+            if(!addProductForm.getDisplay().equals(""))
+                prod.setValueInList(TabletAtribute.Display.getAtributeId(), addProductForm.getDisplay());
+            if(!addProductForm.getHeight().equals(""))
+                prod.setValueInList(TabletAtribute.Height.getAtributeId(), addProductForm.getHeight());
+            if(!addProductForm.getWidth().equals(""))
+                prod.setValueInList(TabletAtribute.Width.getAtributeId(), addProductForm.getWidth());
+            if(!addProductForm.getDepth().equals(""))
+                prod.setValueInList(TabletAtribute.Depth.getAtributeId(), addProductForm.getDepth());
+            if(!addProductForm.getWeight().equals(""))
+                prod.setValueInList(TabletAtribute.Weight.getAtributeId(), addProductForm.getWeight());
+            if(!addProductForm.getCamera().equals(""))
+                prod.setValueInList(TabletAtribute.Camera.getAtributeId(), addProductForm.getCamera());
+            if(!addProductForm.getSimCard().equals(""))
+                prod.setValueInList(TabletAtribute.SIMCard.getAtributeId(), addProductForm.getSimCard());
         }
         productService.add(prod);
         model.addAttribute("hello", "Product created");
