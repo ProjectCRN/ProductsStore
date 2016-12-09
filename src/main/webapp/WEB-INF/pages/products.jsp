@@ -33,7 +33,7 @@
                     <img src="${item.getImageUrl()}"/>
 
                     <span>${item.getEntityName()}</span><br>
-                    id: ${item.getId()}
+                    <!--id: ${item.getId()}-->
 
                 </a>
                     ${item.getSummary()}

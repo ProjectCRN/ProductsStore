@@ -15,12 +15,11 @@
 
                 <span>${item.getEntityName()}</span><br>
                 ${item.ValuestoString()}
-
                 <br>
 
                 <div class="btn_right">
 
-                    <button name="sample1${item.getId()}" class="sample1${item.getId()} btn btn-default btnLink">add to
+                    <button name="sample1${item.getId()}" class="sample1${item.getId()} btn btn-default btnLink isActive">add to
                         cart
                     </button>
                     <div id="added${item.getId()}" style="display: none;">Added</div>
@@ -28,6 +27,14 @@
 
 
                     <script>
+
+                        if( ${item.getisActive()}){
+                            $('.isActive').show();
+                        } else {
+                            $('.isActive').hide();
+                        }
+
+
                         $('.sample1${item.getId()}').click(function () {
                             $.ajax({
                                 url: '/addProduct/${item.getId()}',

@@ -30,13 +30,44 @@
             <td>${order.getCreatedDate()}</td>
         </tr>
 
-    </table>
-
-    <a class="btn btn-default btnLink" href="/">Ok</a>
+    </table><br>
+    <br>
+    <a class="btn btn-default btnLink" href="/">Ok</a><br>
     <a class="btn btn-default btnLink cartFromOrder" href="#">See Cart</a>
+    <a class="btn btn-default btnLink allOrdersInCheck" href="#">All Orders</a>
+
     <script type="text/javascript" language="javascript">
+
+        if(${order.getId()} == 0){
+            $('.cartFromOrder').hide()
+            $('.allOrdersInCheck').show()
+        } else {
+            $('.cartFromOrder').show()
+            $('.allOrdersInCheck').hide()
+        }
+
         $('.cartFromOrder').click( function() {
             funLoad('/getCart/${order.getId()}');
         });
+        $('.allOrders').click( function() {
+            funLoad('/getAllOrders');
+        });
+
+
+        function funLoad(str) {
+            $('#page-preloader').show();
+            $.ajax({
+                url: str,
+                success: function(data) {
+                    $('.results').html(data);
+                    $('#page-preloader').hide();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $('.results').html('<img src="/resources/img/spinner3.gif" /><span class="error">'+textStatus + errorThrown + '</spam>');
+                    $('#page-preloader').hide();
+                }
+            });
+        }
+
     </script>
 </div>

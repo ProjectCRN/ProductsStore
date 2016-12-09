@@ -10,7 +10,7 @@
 <div align="center">
     <h1>${hello}</h1>
     <h2>${msg}</h2>
-    <img src="/resources/img/spinner4.gif">
+    <img src="/resources/img/spinner4.gif"><br><br>
     <a class="btn btn-default btnLink" href="/">Ok</a>
 </div>
 
