@@ -123,6 +123,7 @@ public class ProductListController {
 
         searchService.validate(searchAttr);
         searchService.parseSearchAttributes(searchAttr);
+        paginationService.setNumPerPage(Integer.parseInt(searchAttr.getNumPerPage()));
         List<Product> productList = productService.getList(
                 searchAttr.getTypeId(),
                 searchAttr.getAttribute(),
@@ -157,6 +158,7 @@ public class ProductListController {
 
         searchService.validate(searchAttr);
         searchService.parseSearchAttributes(searchAttr);
+        paginationService.setNumPerPage(Integer.parseInt(searchAttr.getNumPerPage()));
         SearchAttributes searchAttr2 = this.getSearchAttributes();
         int pagenum = Integer.parseInt(pageNum);
         int pageNumber = paginationService.getPageNum();

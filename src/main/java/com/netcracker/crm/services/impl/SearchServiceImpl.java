@@ -135,6 +135,7 @@ public class SearchServiceImpl implements ISearchService {
         if (!searchAttr.getMaxCapacity().matches("^[0-9]+$")) searchAttr.setMaxCapacity("");
         if (!searchAttr.getMinBattery().matches("^[0-9]+$")) searchAttr.setMinBattery("");
         if (!searchAttr.getMaxBattery().matches("^[0-9]+$")) searchAttr.setMaxBattery("");
+        if (!searchAttr.getNumPerPage().matches("^[0-9]+$")) searchAttr.setNumPerPage("2");
        // if (!searchAttr.getName().matches("^[a-zA-Z0-9 ]+$")) searchAttr.setName("");
 
         if (!searchAttr.getMinPrice().equals("") && !searchAttr.getMaxPrice().equals(""))

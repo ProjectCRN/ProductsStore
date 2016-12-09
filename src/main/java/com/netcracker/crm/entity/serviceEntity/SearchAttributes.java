@@ -15,15 +15,25 @@ public class SearchAttributes {
     private String maxBattery;
     private String name;
     private String type;
+    private String numPerPage;
 
     private int typeId;
     private String attribute;
     private String operators;
     private String values;
 
-    public SearchAttributes() {    }
+    public SearchAttributes() { numPerPage="2";   }
 
     public String getLists() {return attribute+" | "+operators+" | "+values;}
+
+    public String getNumPerPage() {
+        return numPerPage;
+    }
+
+    public void setNumPerPage(String numPerPage) {
+        this.numPerPage = numPerPage;
+    }
+
     public String getMinPrice() {
         return minPrice;
     }
@@ -132,6 +142,7 @@ public class SearchAttributes {
         if (maxCapacity != null ? !maxCapacity.equals(that.maxCapacity) : that.maxCapacity != null) return false;
         if (minBattery != null ? !minBattery.equals(that.minBattery) : that.minBattery != null) return false;
         if (maxBattery != null ? !maxBattery.equals(that.maxBattery) : that.maxBattery != null) return false;
+        if (numPerPage != null ? !numPerPage.equals(that.numPerPage) : that.numPerPage != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         return !(type != null ? !type.equals(that.type) : that.type != null);
 

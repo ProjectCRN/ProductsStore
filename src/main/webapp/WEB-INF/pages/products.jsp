@@ -17,7 +17,10 @@
 
         <label>Battery (Hours): </label><br>
         <sf:input path="minBattery" size="12" placeholder="min" pattern="^[ 0-9]+$"/>
-        <sf:input path="maxBattery" size="12" placeholder="max" pattern="^[ 0-9]+$"/><br><br>
+        <sf:input path="maxBattery" size="12" placeholder="max" pattern="^[ 0-9]+$"/><br><br><br>
+
+        <label>Products per Page: </label><br>
+        <sf:input path="numPerPage" size="12" placeholder="products per page" pattern="^[ 0-9]+$"/><br><br>
 
         <sf:input path="type" style="display: none;" value="${currType}"/>
         <input type="submit" value="Search" class="btn"/>

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class PaginationServiceImpl implements IPaginationService {
 
-    public static final int NumPerPage = 2;
+    private int NumPerPage = 2;
     private int pageNum;
 
     @Override
@@ -19,6 +19,12 @@ public class PaginationServiceImpl implements IPaginationService {
         for(int i=0;i<num;++i)
             pageNums.add(Integer.toString(i+1));
         return pageNums;
+    }
+
+
+    @Override
+    public void setNumPerPage(int numPerPage) {
+        NumPerPage = numPerPage;
     }
 
     @Override

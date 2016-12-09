@@ -11,4 +11,5 @@ public interface IPaginationService {
     void setPageNum(int pageNum);
     int calcPageNum(int itemNum);
     int getNumPerPage();
+    void setNumPerPage(int numPerPage);
 }
