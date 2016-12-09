@@ -51,6 +51,7 @@
                         <li><a class="allOrders" href="#">Orders</a></li>
                         <li><a class="newTelephone" href="#">Create Telephone</a></li>
                         <li><a class="newTablet" href="#">Create Tablet</a></li>
+                        <li><a class="crateXml" href="#">Create Xml</a></li>
                     </ul>
                 </li>
             </nav>
@@ -123,6 +124,9 @@
     });
     $('.registerUser').click( function() {
         funLoad('/createUser');
+    })
+    $('.crateXml').click( function() {
+        funLoad('/uploadFile');
     })
     $('.logout').click( function() {
         funLoad('/logout');

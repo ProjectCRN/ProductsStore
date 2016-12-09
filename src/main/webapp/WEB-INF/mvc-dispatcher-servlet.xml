@@ -58,6 +58,10 @@
 		<property name="productService" ref="productService"/>
 		<property name="user" ref="user"/>
 	</bean>
+
+	<bean class="com.netcracker.crm.controller.XmlController" id="xmlController" scope="session">
+		<property name="user" ref="user"/>
+	</bean>
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 
 	<mvc:annotation-driven />
