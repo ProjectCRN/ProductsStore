@@ -28,9 +28,13 @@
                                     <a class="btn btn-default btnLink hide_show " id="btnAdd_${item.getProduct().getId()}" role="button"
                                        href="#">add</a><br>
                                     <a class="btn btn-default btnLink hide_show" id="btnDel_${item.getProduct().getId()}" role="button"
-                                       href="#">delete</a>
-                                    <br><span>${item.getProduct().getPrice()}$</span> <br>
-                                </div>
+                                       href="#">delete</a><br>
+                                    <sf:form method="get" modelAttribute="cartQuantity" action="/setQuantity/${item.getProduct().getId()}">
+                                        <sf:input path="quantity" size="12" placeholder="Quantity" pattern="^[ 0-9]+$"/><br>
+                                        <input type="submit" value="setQuantity" class="btn"/>
+                                    </sf:form>
+                                <br><span>${item.getProduct().getPrice()}$</span> <br>
+                </div>
                             </li>
 
                             <script type="text/javascript" language="javascript">

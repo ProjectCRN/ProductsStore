@@ -1,5 +1,6 @@
 package com.netcracker.crm.controller;
 
+import com.netcracker.crm.entity.controllerEntity.CartQuantity;
 import com.netcracker.crm.services.ICartService;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ public class CartController {
     public String cart(ModelMap model) {
         model.addAttribute("cartList", cartService.getCart().getCartItems());
         model.addAttribute("total", cartService.countTotal());
+        model.addAttribute("cartQuantity",new CartQuantity());
         model.addAttribute("prev","1");
         return CART;
     }
@@ -35,11 +37,7 @@ public class CartController {
         cartService.addProduct(Integer.parseInt(id));
     }
 
-    @RequestMapping(value = "/addCartProduct/{id}", method = RequestMethod.GET)
-    public String addCartProduct(@PathVariable String id, ModelMap model) {
-        cartService.addProduct(Integer.parseInt(id));
-        return "redirect:/" + CART;
-    }
+
 
     @RequestMapping(value = "/deleteCartProduct/{id}", method = RequestMethod.GET)
     public String deleteCartProduct(@PathVariable String id, ModelMap model) {
@@ -47,5 +45,12 @@ public class CartController {
         return "redirect:/" + CART;
     }
 
-
+    @RequestMapping(value = "/setQuantity/{id}", method = RequestMethod.GET)
+    public String setQuantity1(CartQuantity cartQuantity, @PathVariable String id, ModelMap model) {
+        cartQuantity.validate();
+        if(!cartQuantity.getQuantity().equals(""))
+            cartService.changeQuantity(Integer.parseInt(id),
+                    Integer.parseInt(cartQuantity.getQuantity()));
+        return "redirect:/" + CART;
+    }
 }
