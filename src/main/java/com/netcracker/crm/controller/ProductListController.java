@@ -68,15 +68,7 @@ public class ProductListController {
     @RequestMapping(value = "/products/{type}", method = RequestMethod.GET)
     public String products(@PathVariable String type, ModelMap model) {
 
-        int typeid = 9;
-        switch (type) {
-            case "telephone":
-                typeid = EntityType.Telephone.getTypeId();
-                break;
-            case "tablet":
-                typeid = EntityType.Tablet.getTypeId();
-                break;
-        }
+        int typeid = findTypeId(type);
         List<Product> productList = productService.getList(typeid, "", "", "",
                 1, paginationService.getNumPerPage());
         if (productList == null)
@@ -93,9 +85,7 @@ public class ProductListController {
         return PRODUCTS;
     }
 
-    @RequestMapping(value = "/products/{type}/page/{pageNum}", method = RequestMethod.GET)
-    public String productsPages(@PathVariable String type, @PathVariable String pageNum, ModelMap model) {
-
+    private int findTypeId(String type){
         int typeid = 9;
         switch (type) {
             case "telephone":
@@ -105,6 +95,14 @@ public class ProductListController {
                 typeid = EntityType.Tablet.getTypeId();
                 break;
         }
+        return typeid;
+    }
+
+    @RequestMapping(value = "/products/{type}/page/{pageNum}", method = RequestMethod.GET)
+    public String productsPages(@PathVariable String type, @PathVariable String pageNum, ModelMap model) {
+
+        int typeid = findTypeId(type);
+
         List<Product> productList = productService.getList(typeid, "", "", "",
                 Integer.parseInt(pageNum), paginationService.getNumPerPage());
         if (productList == null)

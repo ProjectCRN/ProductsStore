@@ -57,6 +57,7 @@
 		<property name="addProductValidator" ref="addProductValidator"/>
 		<property name="productService" ref="productService"/>
 		<property name="user" ref="user"/>
+		<property name="patternsService" ref="patternsService"/>
 	</bean>
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 
