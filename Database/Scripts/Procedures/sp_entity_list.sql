@@ -47,11 +47,12 @@ IF (LENGTH(inAttribute) IS NULL) THEN
           SELECT a.*, rownum rnum
           FROM
           (
-              SELECT E.ENTITYID
+              SELECT E.ENTITYID, E.ENTITYNAME
               FROM TBL_ENTITY E
               WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1 OR E.ISACTIVE=intRole)) 
             ) a
           WHERE rownum < ((pageNumber * pageSize) + 1 )
+          ORDER BY a.ENTITYNAME
       )
       WHERE rnum >= (((pageNumber-1) * pageSize) + 1);
       
@@ -92,7 +93,7 @@ END IF;
           SELECT a.*, rownum rnum
           FROM
           (
-             SELECT CX.ENTITYID
+             SELECT CX.ENTITYID, CX.ENTITYNAME
              FROM 
              ( 
              SELECT CA.EntityId 
@@ -111,9 +112,10 @@ END IF;
              HAVING COUNT(1) = counter
              ) X  
              INNER JOIN TBL_ENTITY CX ON CX.EntityId = X.EntityId
-             WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=0 OR CX.ISACTIVE=intRole))
+             WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1 OR CX.ISACTIVE=intRole))
          ) a
         WHERE rownum < ((pageNumber * pageSize) + 1 )
+        ORDER BY a.ENTITYNAME
     )
     WHERE rnum >= (((pageNumber-1) * pageSize) + 1);
   
