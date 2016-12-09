@@ -45,8 +45,14 @@ public class CartController {
         return "redirect:/" + CART;
     }
 
+    @RequestMapping(value = "/addCartProduct/{id}", method = RequestMethod.GET)
+    public String addCartProduct(@PathVariable String id, ModelMap model) {
+        cartService.addProduct(Integer.parseInt(id));
+        return "redirect:/" + CART;
+    }
+
     @RequestMapping(value = "/setQuantity/{id}", method = RequestMethod.GET)
-    public String setQuantity1(CartQuantity cartQuantity, @PathVariable String id, ModelMap model) {
+    public String setQuantity(CartQuantity cartQuantity, @PathVariable String id, ModelMap model) {
         cartQuantity.validate();
         if(!cartQuantity.getQuantity().equals(""))
             cartService.changeQuantity(Integer.parseInt(id),

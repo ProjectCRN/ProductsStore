@@ -98,7 +98,6 @@ public class Order extends Entity {
         this.setContactName(form.getContactName());
         this.setContactPhone(form.getContactPhone());
         this.setContactAddress(form.getContactAddress());
-        this.setDescription(form.getDescription());
     }
     public Order(String name, boolean isActive, int userId) {
         super(name, isActive, ORDERTYPE, userId);

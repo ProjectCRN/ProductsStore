@@ -86,7 +86,7 @@ public class AddProductValidator {
         }
 
         String fabricator = prod.getFabricator();
-        if (!(fabricator.matches("^[a-zA-Z][a-zA-Z0-9- _\\.]{1,20}$"))) {
+        if (!(fabricator.equals("") || fabricator.matches("^[a-zA-Z][a-zA-Z0-9- _\\.]{1,20}$"))) {
             errors.rejectValue("fabricator", "fabricator.fabricatorDontMatch", "fabricator don't match.");
         }
 

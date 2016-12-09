@@ -10,7 +10,6 @@ public class OrderForm {
     String contactName;
     String contactPhone;
     String contactAddress;
-    String description;
 
     public String getContactName() {
         return contactName;
@@ -36,13 +35,6 @@ public class OrderForm {
         this.contactAddress = contactAddress;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public void setFieldsFromUser(User user){
         this.contactName = user.getUserName();

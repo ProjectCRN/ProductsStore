@@ -25,10 +25,6 @@
         </li>
 
         <li>
-            <sf:input path="description" size="30" placeholder="Description"/><br/>
-            <sf:errors path="description" cssClass="error"/><br>
-        </li>
-        <li>
             <br>
             <input type="submit" class="btn btn-default btnLink submit_btn" value="Create Order"/>
         </li>

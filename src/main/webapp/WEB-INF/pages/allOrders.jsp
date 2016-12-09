@@ -7,7 +7,6 @@
         <li>
             Number: №${item.getOrderNumber()} <br>
             Total: ${item.getTotal()} <br>
-                ${item.getId()}<br>
             <a class="btn btn-default btnLink seeMoreOrder_${item.getId()}" href="#">see more</a>
             <br>
 

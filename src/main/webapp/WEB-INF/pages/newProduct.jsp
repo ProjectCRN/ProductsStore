@@ -68,7 +68,7 @@
             <span class="error"><form:errors path="simCard" /></span>
         </li>
         <li>
-            <form:input path="fabricator"  size="30" placeholder="fabricator" pattern="${pattern.getFabricator()}" required="required" />*
+            <form:input path="fabricator"  size="30" placeholder="fabricator" pattern="${pattern.getFabricator()}" />
             <span class="error"><form:errors path="fabricator" /></span>
         </li>
         <li>

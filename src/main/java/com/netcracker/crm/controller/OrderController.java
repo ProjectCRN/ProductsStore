@@ -2,6 +2,7 @@ package com.netcracker.crm.controller;
 
 import com.netcracker.crm.entity.User;
 
+import com.netcracker.crm.entity.controllerEntity.CartQuantity;
 import com.netcracker.crm.entity.controllerEntity.form.OrderForm;
 import com.netcracker.crm.entity.controllerEntity.validator.OrderValidator;
 import com.netcracker.crm.entity.serviceEntity.Order;
@@ -112,6 +113,7 @@ public class OrderController {
             return NO_ROOTS;
         model.addAttribute("cartList", order.getCart().getCartItems());
         model.addAttribute("total", order.getTotal());
+        model.addAttribute("cartQuantity",new CartQuantity());
         model.addAttribute("prev","2");
         return CART;
     }

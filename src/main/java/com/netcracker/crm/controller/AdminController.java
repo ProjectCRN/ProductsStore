@@ -90,6 +90,8 @@ public class AdminController {
         prod.setEntityTypeId(typeid);
         prod.setPrice(Double.parseDouble(addProductForm.getPrice()));
         prod.setSummary(addProductForm.getSummary());
+        if(addProductForm.getFabricator().equals(""))
+            addProductForm.setFabricator("Unknown");
         prod.setFabricator(addProductForm.getFabricator());
         if(addProductForm.getImageUrl().equals(""))
             addProductForm.setImageUrl("/resources/img/img_phone.jpg");
