@@ -79,6 +79,7 @@ public class OrderController {
         order.setFieldsFromForm(orderForm);
         orderService.add(order);
         model.addAttribute("order", order);
+        cartService.clearCart();
         return CHECK;
     }
 

@@ -11,4 +11,5 @@ public interface ICartService extends IService<Cart> {
      Cart getCart();
      void changeQuantity(int productId, int quantity);
      int countTotal();
+     void clearCart();
 }

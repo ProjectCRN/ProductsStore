@@ -39,6 +39,11 @@ public class CartServiceImpl extends AbstractService<Cart> implements ICartServi
     }
 
     @Override
+    public void clearCart() {
+        cart.clear();
+    }
+
+    @Override
     public int add(Cart abstractEntity) {
         this.cart=abstractEntity;
         return 0;

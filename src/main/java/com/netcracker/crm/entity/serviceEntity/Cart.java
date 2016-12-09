@@ -24,6 +24,11 @@ public class Cart extends AbstractEntity {
         total = 0;
     }
 
+    public void clear(){
+        total=0;
+        cartItems.clear();
+    }
+
     public Cart(int userId, int total) {
         cartItems = new ArrayList<>();
         this.userId = userId;
