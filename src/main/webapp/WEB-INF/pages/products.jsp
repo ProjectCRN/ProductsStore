@@ -47,11 +47,26 @@
                     <button name="sample1${item.getId()}" class="sample1${item.getId()} btn btn-default btnLink">add to
                         cart</button>
                     <div  id="added${item.getId()}"  style="display: none;">Added</div>
-                    <a class="btn btn-default btnLink hideAdminRule delete_btn_${item.getId()}" role="button"  href="#">delete</a>
+                    <a class="btn btn-default btnLink activeDelete${item.getId()} delete_btn_${item.getId()}" role="button"  href="#">delete</a>
+                    <a class="btn btn-default btnLink activeRestore${item.getId()} restore_btn_${item.getId()}" role="button"  href="#">restore</a>
                     <a class="btn btn-default btnLink seeMore_btn_${item.getId()}" role="button"  href="#">see more</a>
                     <br><span>${item.getPrice()}$</span> <br>
 
                     <script>
+                        var userRole = '${role}';
+
+                        if (userRole == 'A' && '${item.getisActive()}' == '0'){
+                            $('.activeRestore${item.getId()}').show();
+                        } else {
+                            $('.activeRestore${item.getId()}').hide();
+                        }
+
+                        if (userRole == 'A' && '${item.getisActive()}' == '1'){
+                            $('.activeDelete${item.getId()}').show();
+                        } else {
+                            $('.activeDelete${item.getId()}').hide();
+                        }
+
                         $('.sample1${item.getId()}').click( function() {
                             $.ajax({
                                 url: '/addProduct/${item.getId()}',
@@ -70,6 +85,14 @@
                         $('.delete_btn_${item.getId()}').click( function() {
                             $.ajax({
                                 url: '/deleteProduct/${currType}/${item.getId()}',
+                                success: function(data) {
+                                    $('.results').html(data);
+                                }
+                            });
+                        });
+                        $('.restore_btn_${item.getId()}').click( function() {
+                            $.ajax({
+                                url: '/restoreProduct/${currType}/${item.getId()}',
                                 success: function(data) {
                                     $('.results').html(data);
                                 }
@@ -108,15 +131,6 @@
 
 
 <script type="text/javascript" language="javascript">
-
-    var userRole = '${role}';
-
-    if (userRole == 'A'){
-        $('.hideAdminRule').show();
-    } else {
-        $('.hideAdminRule').hide();
-    }
-
 
     function searchFun() {
         $('#page-preloader').show();
