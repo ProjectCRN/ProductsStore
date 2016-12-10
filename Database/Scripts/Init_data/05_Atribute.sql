@@ -218,6 +218,44 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	1,
 	40,
   'No Expression');
+    INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER,
+  REGULAREXPRESSION) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'ImageURL',
+	1,
+	1,
+	8,
+	1,
+	50,
+  'No Expression');
+    INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER,
+  REGULAREXPRESSION) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Summary',
+	1,
+	1,
+	8,
+	1,
+	60,
+  'No Expression');
   --Telephone--
   
 INSERT INTO ns_admin.TBL_ATRIBUTE (
@@ -810,3 +848,4 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
   '^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$');
   
     commit;
+
