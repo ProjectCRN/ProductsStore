@@ -106,6 +106,12 @@ public class TestDao {
 
      //     ADD ORDER
 //        IOrderService orderService = (IOrderService) context.getBean("orderServiceTest");
+//        List<Order> list = orderService.getList();
+//        System.out.println(list.size());
+//        for(Order o :list){
+//            System.out.println(o);
+//        }
+//        orderService.delete(257);
 //        Cart cart = new Cart(-1);
 //        cart.addCartItem(new CartItem(productService.getById(55), 1));
 //        cart.addCartItem(new CartItem(productService.getById(58), 2));

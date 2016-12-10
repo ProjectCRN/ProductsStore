@@ -99,7 +99,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
             String summId = String.valueOf(ProductInOrderAtribute.Summary.getAtributeId());
             List<Entity> list = entityDao.getList(EntityType.ProductInOrder.getTypeId(),
                     String.valueOf(ProductInOrderAtribute.OrderID.getAtributeId()),
-                    String.valueOf(order.getId()), "=", quantityId + "," + priceId + "," +prodId +
+                    String.valueOf(order.getId()), "=", quantityId + "," + priceId + "," + prodId +
                             "," + imageId + "," + summId);
             for (Entity e : list) {
                 Product prod = new Product(e);
@@ -152,8 +152,28 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     }
 
     @Override
-    public List<Order> getList(int typeId, String atributesId, String values, String operators, int pageNumber, int pageSize, String role) {
-        return null;
+    public List<Order> getList() {
+        List<Order> orderList;
+        String createdDateId = String.valueOf(OrderAtribute.CreatedDate.getAtributeId());
+        String totalId = String.valueOf(OrderAtribute.Total.getAtributeId());
+        String orderNumberId = String.valueOf(OrderAtribute.OrderNumber.getAtributeId());
+        String viewStr = createdDateId + "," + totalId + "," + orderNumberId;
+        try {
+            List<Entity> list = entityDao.getList(EntityType.Order.getTypeId(), "", "", "",
+                    viewStr);
+            if (list != null) {
+                orderList = new ArrayList<>(list.size());
+                for (Entity e : list) {
+                    Order o  = new Order(e);
+                    orderList.add(o);
+                }
+            } else return null;
+            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getAll for Orders");
+        } catch (DaoException exc) {
+            logger.error(exc.getMessage());
+            throw new ServiceException(exc.getMessage(), exc);
+        }
+        return orderList;
     }
 
     @Override
