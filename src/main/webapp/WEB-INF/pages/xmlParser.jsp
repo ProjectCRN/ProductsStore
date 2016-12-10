@@ -22,10 +22,12 @@
                     <tr>
                         <td><b>File:</b></td>
                         <td><input type="file" name="file"></td>
-                        <td><input type="submit" value="загрузить файл"></td>
+                        <td><input type="submit" value="загрузить файл" class="btn btn-default btnLink"></td>
                     </tr>
                 </table>
             </form>
+            <a class="btn btn-default btnLink" href="/downloadSchema">download schema</a>
+            <a class="btn btn-default btnLink" href="/downloadCatalog">download catalog</a>
             ${msg}<br>
             ${msg2}
             <a href="/">Home</a>

@@ -4,14 +4,18 @@ import com.netcracker.crm.entity.User;
 import com.netcracker.crm.services.parser.CatalogParser;
 import com.netcracker.crm.services.parser.exception.WrongXMLSchemaException;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 
 /**
  * Created by Ксения on 09.12.2016.
@@ -19,7 +23,7 @@ import java.io.FileOutputStream;
 @Controller
 public class XmlController {
     private static final String NO_ROOTS = "noRoots";
-    private static final String SUCCESS = "register-success";
+    private static final int BUFFER_SIZE = 4096;
     private static final String XML = "xmlParser";
     private User user;
     CatalogParser catalogParser;
@@ -52,23 +56,21 @@ public class XmlController {
             try {
 
                 byte[] fileBytes = file.getBytes();
-                String rootPath = System.getProperty("catalina.home")+"/catalogToAdd";
+                String appPath = System.getProperty("catalina.home")+"/webapps/ROOT/WEB-INF/classes/xml-parser";
+                String fromPath = appPath+"/catalogToAdd";
                 int i=0;
-                while(new File(rootPath+i+".xml").exists()) ++i;
-                File newFile = new File(rootPath+i+".xml");
+                while(new File(fromPath+i+".xml").exists()) ++i;
+                File newFile = new File(fromPath+i+".xml");
 
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(newFile));
                 stream.write(fileBytes);
                 stream.close();
                 model.put("msg","File is saved under: " + newFile.getAbsoluteFile());
-                String schemaLocation = "/resources/xml-parser/catalogSchema.xsd";
-
-                //String urlFrom = newFile.getAbsolutePath();
-                String urlFrom = "/resources/xml-parser/catalogToAdd.xml";
-                //String urlTo = "src/main/resources/xml-parser/generatedCatalog.xml";
+                String schemaLocation = appPath+"/catalogSchema.xsd";
+                String urlFrom = newFile.getAbsolutePath();
                 int productCount = 0;
 
-                newFile.delete();
+
                 //catalogParser.exportCatalog(urlTo);
 
                 try {
@@ -81,7 +83,7 @@ public class XmlController {
                     model.put("msg2","Wrong XML Schema Exception");
                     return XML;
                 }
-
+                newFile.delete();
                 model.put("msg2",productCount + " new products was added");
 
                 return XML;
@@ -99,4 +101,88 @@ public class XmlController {
         }
     }
 
+    @RequestMapping(value = "/downloadSchema", method = RequestMethod.GET)
+    public void downloadSchema(HttpServletRequest request,
+                           HttpServletResponse response) throws IOException {
+
+
+        String appPath = System.getProperty("catalina.home")+"/webapps/ROOT/WEB-INF/classes/xml-parser";
+        String schemaLocation = appPath+"/catalogSchema.xsd";
+        ServletContext context = request.getServletContext();
+
+        File downloadFile = new File(schemaLocation);
+        FileInputStream inputStream = new FileInputStream(downloadFile);
+
+        String mimeType = context.getMimeType(schemaLocation);
+        if (mimeType == null) {
+            mimeType = "application/octet-stream";
+        }
+        System.out.println("MIME type: " + mimeType);
+
+        response.setContentType(mimeType);
+        response.setContentLength((int) downloadFile.length());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"",
+                downloadFile.getName());
+        response.setHeader(headerKey, headerValue);
+
+        OutputStream outStream = response.getOutputStream();
+
+        byte[] buffer = new byte[BUFFER_SIZE];
+        int bytesRead = -1;
+
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, bytesRead);
+        }
+
+        inputStream.close();
+        outStream.close();
+    }
+
+    @RequestMapping(value = "/downloadCatalog", method = RequestMethod.GET)
+    public void downloadCatalog(HttpServletRequest request,
+                               HttpServletResponse response) throws IOException {
+
+
+        String appPath = System.getProperty("catalina.home")+"/webapps/ROOT/WEB-INF/classes/xml-parser";
+        String schemaLocation = appPath+"/catalogSchema.xsd";
+
+        String fromPath = appPath+"/generatedCatalog";
+        int i=0;
+        while(new File(fromPath+i+".xml").exists()) ++i;
+        String urlTo = fromPath+i+".xml";
+        catalogParser.exportCatalog(urlTo);
+        ServletContext context = request.getServletContext();
+
+        File downloadFile = new File(urlTo);
+        FileInputStream inputStream = new FileInputStream(downloadFile);
+
+        String mimeType = context.getMimeType(urlTo);
+        if (mimeType == null) {
+            mimeType = "application/octet-stream";
+        }
+
+
+        response.setContentType(mimeType);
+        response.setContentLength((int) downloadFile.length());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"",
+                downloadFile.getName());
+        response.setHeader(headerKey, headerValue);
+
+        OutputStream outStream = response.getOutputStream();
+
+        byte[] buffer = new byte[BUFFER_SIZE];
+        int bytesRead = -1;
+
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, bytesRead);
+        }
+
+        inputStream.close();
+        outStream.close();
+        downloadFile.delete();
+    }
 }
