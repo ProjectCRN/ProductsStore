@@ -18,4 +18,5 @@ public interface IUserDao extends IDao<User> {
     boolean isLoginFree(String login) throws DaoException;
     boolean isEmailFree(String email) throws DaoException;
     int getIdByLogin(String login) throws DaoException;
+    String hashing(String str);
 }
