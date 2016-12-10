@@ -99,12 +99,10 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
             String summId = String.valueOf(ProductInOrderAtribute.Summary.getAtributeId());
             List<Entity> list = entityDao.getList(EntityType.ProductInOrder.getTypeId(),
                     String.valueOf(ProductInOrderAtribute.OrderID.getAtributeId()),
-                    String.valueOf(order.getId()), "=", quantityId + "," + priceId +
+                    String.valueOf(order.getId()), "=", quantityId + "," + priceId + "," +prodId +
                             "," + imageId + "," + summId);
             for (Entity e : list) {
                 Product prod = new Product(e);
-//                System.out.println(prod.getImageUrl());
-//                System.out.println(prod.getSummary());
                 cart.addCartItem(new CartItem(prod, prod.getQuantity()));
             }
             order.setCart(cart);

@@ -85,7 +85,7 @@ public class TestDao {
 //        userService.isEmailFree("gav@panin.ru");
 //
         IProductService productService = (IProductService) context.getBean("productServiceTest");
-//        Product product = productService.getById(53);
+//        Product product = productService.getById(55);
 //        product.setValueInList(23, "600");
 //        System.out.println(product);
 //        System.out.println("PRODUCT\n" + product);
@@ -103,13 +103,13 @@ public class TestDao {
 
 
      //     ADD ORDER
-        IOrderService orderService = (IOrderService) context.getBean("orderServiceTest");
+//        IOrderService orderService = (IOrderService) context.getBean("orderServiceTest");
 //        Cart cart = new Cart(-1);
 //        cart.addCartItem(new CartItem(productService.getById(55), 1));
 //        cart.addCartItem(new CartItem(productService.getById(58), 2));
 //        Order order = orderService.makeOrderByCart(cart);
 //        int id = orderService.add(order);
-        orderService.getById(257);
+//        orderService.getById(257);
 //        List<Order> list = orderService.getListForUser(-1);
 //        if (list != null) {
 //            for (Order o : list) {

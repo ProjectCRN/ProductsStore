@@ -135,6 +135,14 @@ public class Product extends Entity {
         setValueInList("fabricator", fabricator);
     }
 
+    public String getCapacity() {
+        return getValueFromList(getAtributeId("capacity"));
+    }
+
+    public String getBattery() {
+        return getValueFromList(getAtributeId("battery"));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

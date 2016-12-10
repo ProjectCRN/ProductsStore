@@ -255,8 +255,8 @@ public class Order extends Entity {
     @Override
     public String toString() {
         String str = "Order{" +
-                "id="+getId()+
-                "name='" + getEntityName() + '\'' +
+                "id="+getId()+'\'' +
+                ", name='" + getEntityName() + '\'' +
                 ", isActive=" + getisActive() +
                 ", entityType='" + getEntityTypeName() + '\'' +
                 ", userId=" + getEntityUserId() +
