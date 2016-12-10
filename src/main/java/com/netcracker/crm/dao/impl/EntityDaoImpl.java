@@ -279,6 +279,8 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     private List<Entity> getListWithAttributes(String entiyIdList, String atributesId) {
+        String tmp=atributesId;
+        atributesId=getListWithAttributesValidation(entiyIdList, tmp);
         List<String> attributesList = new ArrayList<>();
         List<Entity> entiyList;
         String[] arr = atributesId.split(",");

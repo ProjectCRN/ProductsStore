@@ -9,9 +9,7 @@ import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
 import com.netcracker.crm.services.parser.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Nastya on 12/4/2016.
@@ -178,6 +176,22 @@ public class EntityDaoValidation implements IEntityValidation {
         }
     }
 
+    public static String getListWithAttributesValidation(String entiyIdList, String atributesId) {
+        String[] arr;
+        String result="";
+        Set<String> attributeSet=new HashSet<String>();
+        if (!atributesId.equals("")) {
+            arr = atributesId.split(",");
+            for (String ss : arr) {
+                attributeSet.add(ss);
+            }
+            for (String item : attributeSet) {
+                result+=","+item;
+            }
+        }
+        result=result.substring(1);
+        return result;
+    }
     public static boolean idInTable(String tableName, int id) {
         return true;
     }
@@ -214,6 +228,7 @@ public class EntityDaoValidation implements IEntityValidation {
         } else
             return false;
     }
+
 
     private static boolean validValues(int typeId, int attributeId) {
         return true;
