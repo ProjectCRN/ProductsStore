@@ -59,6 +59,23 @@ public class AdminController {
         model.put("prod", new AddProductForm());
         model.put("currType", type);
         model.addAttribute("pattern", patternsService.getProductFieldsPatterns());
+        model.put("prev",0);
+
+        return ADDING;
+    }
+
+    @RequestMapping(value = "/updateProduct/{type}/{id}", method = RequestMethod.GET)
+    public String updateProd(@PathVariable String type, @PathVariable String id, ModelMap model) {
+        if (!user.isAdmin())
+            return NO_ROOTS;
+        Product prod = productService.getById(Integer.parseInt(id));
+        AddProductForm form = new AddProductForm();
+        form.setValuesFromProd(prod);
+        model.put("prod", form);
+        model.put("currType", type);
+        model.addAttribute("pattern", patternsService.getProductFieldsPatterns());
+        model.put("id",prod.getId());
+        model.put("prev",1);
 
         return ADDING;
     }
@@ -97,6 +114,70 @@ public class AdminController {
             addProductForm.setImageUrl("/resources/img/img_phone.jpg");
         prod.setImageUrl(addProductForm.getImageUrl());
 
+        setValueList(typeid,prod,addProductForm);
+        productService.add(prod);
+        model.addAttribute("hello", "Product created");
+        return SUCCESS;
+    }
+
+    @RequestMapping(value = "/updateProduct/{type}/{id}", method = RequestMethod.POST)
+    public String addNewProd(AddProductForm addProductForm, BindingResult result, @PathVariable String type, @PathVariable String id, ModelMap model) {
+
+        addProductValidator.validate(addProductForm, result);
+        if (result.hasErrors()) {
+            return ADDING;
+        }
+        if (!user.isAdmin())
+            return NO_ROOTS;
+        int typeid = 9;
+        Product prod = productService.getById(Integer.parseInt(id));
+
+        switch (type) {
+            case "telephone":
+                typeid = EntityType.Telephone.getTypeId();
+                break;
+            case "tablet":
+                typeid = EntityType.Tablet.getTypeId();
+                break;
+        }
+
+        prod.setEntityName(addProductForm.getName());
+        prod.setUserId(-2);
+        prod.setEntityTypeId(typeid);
+        prod.setPrice(Double.parseDouble(addProductForm.getPrice()));
+        prod.setSummary(addProductForm.getSummary());
+        if(addProductForm.getFabricator().equals(""))
+            addProductForm.setFabricator("Unknown");
+        prod.setFabricator(addProductForm.getFabricator());
+        if(addProductForm.getImageUrl().equals(""))
+            addProductForm.setImageUrl("/resources/img/img_phone.jpg");
+        prod.setImageUrl(addProductForm.getImageUrl());
+
+        setValueList(typeid,prod,addProductForm);
+        productService.updateByProduct(prod);
+        model.addAttribute("hello", "Product updated");
+        return SUCCESS;
+    }
+
+
+    @RequestMapping(value = "/deleteProduct/{type}/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable String type, @PathVariable String id, ModelMap model) {
+        if (!user.isAdmin())
+            return NO_ROOTS;
+        productService.delete(Integer.parseInt(id));
+        return "redirect:/products/" + type;
+    }
+
+    @RequestMapping(value = "/restoreProduct/{type}/{id}", method = RequestMethod.GET)
+    public String restore(@PathVariable String type, @PathVariable String id, ModelMap model) {
+        if (!user.isAdmin())
+            return NO_ROOTS;
+        productService.restore(Integer.parseInt(id));
+        return "redirect:/products/" + type;
+    }
+
+    public void setValueList(int typeid, Product prod, AddProductForm addProductForm)
+    {
         if (typeid == EntityType.Telephone.getTypeId()) {
             prod.setValueInList(PhoneAtribute.Capacity.getAtributeId(), addProductForm.getCapacity());
             prod.setValueInList(PhoneAtribute.Battery.getAtributeId(), addProductForm.getBattery());
@@ -142,25 +223,5 @@ public class AdminController {
             if(!addProductForm.getSimCard().equals(""))
                 prod.setValueInList(TabletAtribute.SIMCard.getAtributeId(), addProductForm.getSimCard());
         }
-        productService.add(prod);
-        model.addAttribute("hello", "Product created");
-        return SUCCESS;
-    }
-
-
-    @RequestMapping(value = "/deleteProduct/{type}/{id}", method = RequestMethod.GET)
-    public String delete(@PathVariable String type, @PathVariable String id, ModelMap model) {
-        if (!user.isAdmin())
-            return NO_ROOTS;
-        productService.delete(Integer.parseInt(id));
-        return "redirect:/products/" + type;
-    }
-
-    @RequestMapping(value = "/restoreProduct/{type}/{id}", method = RequestMethod.GET)
-    public String restore(@PathVariable String type, @PathVariable String id, ModelMap model) {
-        if (!user.isAdmin())
-            return NO_ROOTS;
-        productService.restore(Integer.parseInt(id));
-        return "redirect:/products/" + type;
     }
 }

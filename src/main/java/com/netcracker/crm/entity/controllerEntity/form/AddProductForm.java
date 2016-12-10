@@ -4,6 +4,7 @@ import com.netcracker.crm.entity.Value;
 import com.netcracker.crm.entity.enums.EntityType;
 import com.netcracker.crm.entity.enums.PhoneAtribute;
 import com.netcracker.crm.entity.enums.TabletAtribute;
+import com.netcracker.crm.entity.serviceEntity.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,62 @@ public class AddProductForm {
     String simCard;
     String fabricator;
     String imageUrl;
+
+    public void setValuesFromProd(Product prod)
+    {
+        name = prod.getEntityName();
+        price = Double.toString(prod.getPrice());
+        summary = prod.getSummary();
+        fabricator = prod.getFabricator();
+        imageUrl = prod.getImageUrl();
+        int typeid = prod.getEntityTypeId();
+
+        if (typeid == EntityType.Telephone.getTypeId()) {
+            capacity = prod.getValueFromList(PhoneAtribute.Capacity.getAtributeId());
+            battery = prod.getValueFromList(PhoneAtribute.Battery.getAtributeId());
+
+            if(prod.getValueFromList(PhoneAtribute.OperatingSystem.getAtributeId()) != null)
+                operatingSystem = prod.getValueFromList(PhoneAtribute.OperatingSystem.getAtributeId());
+            if(prod.getValueFromList(PhoneAtribute.Processorspeed.getAtributeId()) != null)
+                processorSpeed = prod.getValueFromList(PhoneAtribute.Processorspeed.getAtributeId());
+            if(prod.getValueFromList(PhoneAtribute.Display.getAtributeId()) != null)
+                display = prod.getValueFromList(PhoneAtribute.Display.getAtributeId());
+            if(prod.getValueFromList(PhoneAtribute.Height.getAtributeId()) != null)
+                height = prod.getValueFromList(PhoneAtribute.Height.getAtributeId());
+            if(prod.getValueFromList(PhoneAtribute.Width.getAtributeId()) != null)
+                width = prod.getValueFromList(PhoneAtribute.Width.getAtributeId());
+            if(prod.getValueFromList(PhoneAtribute.Depth.getAtributeId()) != null)
+                depth = prod.getValueFromList(PhoneAtribute.Depth.getAtributeId());
+            if(prod.getValueFromList(PhoneAtribute.Weight.getAtributeId()) != null)
+                weight = prod.getValueFromList(PhoneAtribute.Weight.getAtributeId());
+            if(prod.getValueFromList(PhoneAtribute.Camera.getAtributeId()) != null)
+                camera = prod.getValueFromList(PhoneAtribute.Camera.getAtributeId());
+            if(prod.getValueFromList(PhoneAtribute.SIMCard.getAtributeId()) != null)
+                simCard = prod.getValueFromList(PhoneAtribute.SIMCard.getAtributeId());
+        } else {
+            capacity = prod.getValueFromList(TabletAtribute.Capacity.getAtributeId());
+            battery = prod.getValueFromList(TabletAtribute.Battery.getAtributeId());
+
+            if(prod.getValueFromList(TabletAtribute.OperatingSystem.getAtributeId()) != null)
+                operatingSystem = prod.getValueFromList(TabletAtribute.OperatingSystem.getAtributeId());
+            if(prod.getValueFromList(TabletAtribute.Processorspeed.getAtributeId()) != null)
+                processorSpeed = prod.getValueFromList(TabletAtribute.Processorspeed.getAtributeId());
+            if(prod.getValueFromList(TabletAtribute.Display.getAtributeId()) != null)
+                display = prod.getValueFromList(TabletAtribute.Display.getAtributeId());
+            if(prod.getValueFromList(TabletAtribute.Height.getAtributeId()) != null)
+                height = prod.getValueFromList(TabletAtribute.Height.getAtributeId());
+            if(prod.getValueFromList(TabletAtribute.Width.getAtributeId()) != null)
+                width = prod.getValueFromList(TabletAtribute.Width.getAtributeId());
+            if(prod.getValueFromList(TabletAtribute.Depth.getAtributeId()) != null)
+                depth = prod.getValueFromList(TabletAtribute.Depth.getAtributeId());
+            if(prod.getValueFromList(TabletAtribute.Weight.getAtributeId()) != null)
+                weight = prod.getValueFromList(TabletAtribute.Weight.getAtributeId());
+            if(prod.getValueFromList(TabletAtribute.Camera.getAtributeId()) != null)
+                camera = prod.getValueFromList(TabletAtribute.Camera.getAtributeId());
+            if(prod.getValueFromList(TabletAtribute.SIMCard.getAtributeId()) != null)
+                simCard = prod.getValueFromList(TabletAtribute.SIMCard.getAtributeId());
+        }
+    }
 
     public String getName() {
         return name;
