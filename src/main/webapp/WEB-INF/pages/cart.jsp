@@ -29,7 +29,7 @@
                                     <a class="btn btn-default btnLink hide_show" id="btnDel_${item.getProduct().getId()}" role="button"
                                        href="#">delete</a><br>
                                     <sf:form id="btnQuan_${item.getProduct().getId()}" method="get" modelAttribute="cartQuantity"
-                                             action="/setQuantity/${item.getProduct().getId()}">
+                                             action="javascript:void(null);" onsubmit="setFun_${item.getProduct().getId()}()">
                                         <sf:input path="quantity" size="12" placeholder="Quantity" pattern="^[ 0-9]+$"/><br>
                                         <input type="submit" value="setQuantity" class="btn"/>
                                     </sf:form>
@@ -39,8 +39,7 @@
                             </li>
 
                             <script type="text/javascript" language="javascript">
-                                function setFun() {
-                                    $('#page-preloader').show();
+                                function setFun_${item.getProduct().getId()}() {
                                     var msg   = $('#btnQuan_${item.getProduct().getId()}').serialize();
                                     $.ajax({
                                         type: 'GET',
@@ -48,7 +47,6 @@
                                         data: msg,
                                         success: function(data) {
                                             $('.results').html(data);
-                                            $('#page-preloader').hide();
                                         }
                                     });
                                 }
