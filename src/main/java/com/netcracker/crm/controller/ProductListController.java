@@ -67,7 +67,8 @@ public class ProductListController {
 
     @RequestMapping(value = "/products/{type}", method = RequestMethod.GET)
     public String products(@PathVariable String type, ModelMap model) {
-        SearchAttributes searchAttributes = new SearchAttributes();
+        if(searchAttributes == null)
+            searchAttributes = new SearchAttributes();
         paginationService.setNumPerPage(Integer.parseInt(searchAttributes.getNumPerPage()));
         int typeid = findTypeId(type);
         List<Product> productList = productService.getList(typeid, "", "", "", 1, paginationService.getNumPerPage(),user.getRoleId());
