@@ -13,6 +13,8 @@ public class ProductInOrderTag extends AbstractTag {
             put("productid", 20);
             put("orderid", 21);
             put("quantity", 22);
+            put("imageurl", 23);
+            put("summary", 24);
         }});
         typeName = "ProductInOrder";
     }

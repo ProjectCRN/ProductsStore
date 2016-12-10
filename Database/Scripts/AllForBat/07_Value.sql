@@ -10,8 +10,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'399',
-	56,
-	38);
+	58,
+	40);
     INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -21,8 +21,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'iPad Air 2',
-	56,
-	39);
+	58,
+	41);
     INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -32,8 +32,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'iOS',
-	56,
-	40);
+	58,
+	42);
   
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -44,8 +44,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'1.5',
-	56,
-	41);
+	58,
+	43);
     INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -55,8 +55,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'32',
-	56,
-	42);
+	58,
+	44);
   
     INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -67,8 +67,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'9.7',
-	56,
-	43);
+	58,
+	45);
   
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -79,8 +79,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'240',
-	56,
-	44);
+	58,
+	46);
   
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -91,8 +91,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'169.5',
-	56,
-	45);
+	58,
+	47);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -102,8 +102,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'6.1',
-	56,
-	46);
+	58,
+	48);
  INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -113,8 +113,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'437',
-	56,
-	47);
+	58,
+	49);
         INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -124,8 +124,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'8',
-	56,
-	48);
+	58,
+	50);
   
         INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -136,29 +136,7 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'10',
-	56,
-	49);
-        INSERT INTO ns_admin.TBL_VALUE (
-  VALUEID,
-	VALUE,
-	ENTITYID,
-	ATRIBUTEID) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'Nano-SIM',
-	56,
-	50);
-        INSERT INTO ns_admin.TBL_VALUE (
-  VALUEID,
-	VALUE,
-	ENTITYID,
-	ATRIBUTEID) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'URL',
-	56,
+	58,
 	51);
         INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -168,9 +146,31 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'Apple',
-	56,
+	'Nano-SIM',
+	58,
 	52);
+        INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'URL',
+	58,
+	53);
+        INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Apple',
+	58,
+	54);
  ------------------------------------------
   
   INSERT INTO ns_admin.TBL_VALUE (
@@ -182,8 +182,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'399',
-	57,
-	38);
+	59,
+	40);
     INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -193,8 +193,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'iPad mini 4',
-	57,
-	30);
+	59,
+	41);
     INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -204,8 +204,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'iOS',
-	57,
-	40);
+	59,
+	42);
   
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -216,8 +216,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'1.5',
-	57,
-	41);
+	59,
+	43);
     INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -227,8 +227,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'32',
-	57,
-	42);
+	59,
+	44);
   
     INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -239,8 +239,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'7.9',
-	57,
-	43);
+	59,
+	45);
   
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -251,8 +251,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'203.2',
-	57,
-	44);
+	59,
+	46);
   
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -263,8 +263,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'134.8',
-	57,
-	45);
+	59,
+	47);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -274,8 +274,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'6.1',
-	57,
-	46);
+	59,
+	48);
  INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -285,8 +285,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'298.8',
-	57,
-	47);
+	59,
+	49);
         INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -296,8 +296,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'8',
-	57,
-	48);
+	59,
+	50);
   
         INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -308,8 +308,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'10',
-	57,
-	49);
+	59,
+	51);
         INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -319,8 +319,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'Nano-SIM',
-	57,
-	50);
+	59,
+	52);
       INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -330,8 +330,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'URL',
-	57,
-	51);
+	59,
+	53);
       INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -341,8 +341,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'Apple',
-	57,
-	52);
+	59,
+	54);
   --Telehhone--
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -353,29 +353,7 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'549.0',
-	53,
-	23);
-  INSERT INTO ns_admin.TBL_VALUE (
-  VALUEID,
-	VALUE,
-	ENTITYID,
-	ATRIBUTEID) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'IPhone 6s embody Apples continuing environmental progress',
-	53,
-	24);
-  INSERT INTO ns_admin.TBL_VALUE (
-  VALUEID,
-	VALUE,
-	ENTITYID,
-	ATRIBUTEID) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'iOS 10',
-	53,
+	55,
 	25);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -385,8 +363,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'1.8',
-	53,
+	'IPhone 6s embody Apples continuing environmental progress',
+	55,
 	26);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -396,8 +374,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'32',
-	53,
+	'iOS 10',
+	55,
 	27);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -407,8 +385,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'4.7',
-	53,
+	'1.8',
+	55,
 	28);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -418,8 +396,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'138.3',
-	53,
+	'32',
+	55,
 	29);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -429,8 +407,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'67.1',
-	53,
+	'4.7',
+	55,
 	30);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -440,8 +418,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'7.1',
-	53,
+	'138.3',
+	55,
 	31);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -451,8 +429,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'143',
-	53,
+	'67.1',
+	55,
 	32);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -462,8 +440,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'12',
-	53,
+	'7.1',
+	55,
 	33);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -473,8 +451,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'14',
-	53,
+	'143',
+	55,
 	34);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -484,9 +462,31 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'Nano-SIM',
-	53,
+	'12',
+	55,
 	35);
+  INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'14',
+	55,
+	36);
+  INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Nano-SIM',
+	55,
+	37);
     INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -496,8 +496,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'URL',
-	53,
-	36);  
+	55,
+	38);  
       INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -507,8 +507,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'Apple',
-	53,
-	37); 
+	55,
+	39); 
   
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -519,29 +519,7 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'258.0',
-	54,
-	23);
-  INSERT INTO ns_admin.TBL_VALUE (
-  VALUEID,
-	VALUE,
-	ENTITYID,
-	ATRIBUTEID) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'Apple iPhone 5s smartphone was launched in September 2013',
-	54,
-	24);
-  INSERT INTO ns_admin.TBL_VALUE (
-  VALUEID,
-	VALUE,
-	ENTITYID,
-	ATRIBUTEID) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'iOS 7',
-	54,
+	56,
 	25);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -551,8 +529,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'1.3',
-	54,
+	'Apple iPhone 5s smartphone was launched in September 2013',
+	56,
 	26);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -562,8 +540,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'16',
-	54,
+	'iOS 7',
+	56,
 	27);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -573,8 +551,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'4.0',
-	54,
+	'1.3',
+	56,
 	28);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -584,8 +562,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'123.8',
-	54,
+	'16',
+	56,
 	29);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -595,8 +573,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'58.6',
-	54,
+	'4.0',
+	56,
 	30);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -606,8 +584,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'7.6',
-	54,
+	'123.8',
+	56,
 	31);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -617,8 +595,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'112',
-	54,
+	'58.6',
+	56,
 	32);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -628,8 +606,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'8',
-	54,
+	'7.6',
+	56,
 	33);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -639,8 +617,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'10',
-	54,
+	'112',
+	56,
 	34);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -650,9 +628,31 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'Nano-SIM',
-	54,
+	'8',
+	56,
 	35);
+  INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'10',
+	56,
+	36);
+  INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Nano-SIM',
+	56,
+	37);
      INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -662,8 +662,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'URL',
-	54,
-	36); 
+	56,
+	38); 
      INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -673,8 +673,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'Apple',
-	54,
-	37); 
+	56,
+	39); 
   
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -685,29 +685,7 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'769.99',
-	55,
-	23);
-  INSERT INTO ns_admin.TBL_VALUE (
-  VALUEID,
-	VALUE,
-	ENTITYID,
-	ATRIBUTEID) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'Samsung has created a beautiful phone with water resistance and fast loading',
-	55,
-	24);
-  INSERT INTO ns_admin.TBL_VALUE (
-  VALUEID,
-	VALUE,
-	ENTITYID,
-	ATRIBUTEID) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'Android 6.0',
-	55,
+	57,
 	25);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -717,8 +695,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'2.15',
-	55,
+	'Samsung has created a beautiful phone with water resistance and fast loading',
+	57,
 	26);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -728,8 +706,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'32',
-	55,
+	'Android 6.0',
+	57,
 	27);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -739,8 +717,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'5.5',
-	55,
+	'2.15',
+	57,
 	28);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -750,8 +728,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'150.9',
-	55,
+	'32',
+	57,
 	29);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -761,8 +739,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'72.6',
-	55,
+	'5.5',
+	57,
 	30);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -772,8 +750,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'7.7',
-	55,
+	'150.9',
+	57,
 	31);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -783,8 +761,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'157',
-	55,
+	'72.6',
+	57,
 	32);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -794,8 +772,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'12',
-	55,
+	'7.7',
+	57,
 	33);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -805,8 +783,8 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'13',
-	55,
+	'157',
+	57,
 	34);
   INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
@@ -816,9 +794,31 @@ commit;
 	values
 	(
 	SQ_MAIN.nextval,
-	'Nano-SIM',
-	55,
+	'12',
+	57,
 	35);
+  INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'13',
+	57,
+	36);
+  INSERT INTO ns_admin.TBL_VALUE (
+  VALUEID,
+	VALUE,
+	ENTITYID,
+	ATRIBUTEID) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Nano-SIM',
+	57,
+	37);
       INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -828,8 +828,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'URL',
-	55,
-	36);
+	57,
+	38);
       INSERT INTO ns_admin.TBL_VALUE (
   VALUEID,
 	VALUE,
@@ -839,8 +839,8 @@ commit;
 	(
 	SQ_MAIN.nextval,
 	'Samsung',
-	55,
-	37);
+	57,
+	39);
       commit;
 
 exit;

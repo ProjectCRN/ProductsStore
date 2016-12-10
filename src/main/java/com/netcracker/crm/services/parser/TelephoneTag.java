@@ -12,21 +12,21 @@ import java.util.HashMap;
 public class TelephoneTag extends AbstractTag {
     public TelephoneTag(){
         tags = HashBiMap.create(new HashMap(){{
-            put("price", 23);
-            put("summary", 24);
-            put("operatingsystem", 25);
-            put("processorspeed", 26);
-            put("capacity", 27);
-            put("display", 28);
-            put("height", 29);
-            put("width", 30);
-            put("depth", 31);
-            put("weight", 32);
-            put("camera", 33);
-            put("battery", 34);
-            put("simcard", 35);
-            put("imageurl", 36);
-            put("fabricator", 37);
+            put("price", 25);
+            put("summary", 26);
+            put("operatingsystem", 27);
+            put("processorspeed", 28);
+            put("capacity", 29);
+            put("display", 30);
+            put("height", 31);
+            put("width", 32);
+            put("depth", 33);
+            put("weight", 34);
+            put("camera", 35);
+            put("battery", 36);
+            put("simcard", 37);
+            put("imageurl", 38);
+            put("fabricator", 39);
         }});
         typeName = "Telephone";
     }

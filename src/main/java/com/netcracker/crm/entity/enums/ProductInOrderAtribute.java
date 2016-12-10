@@ -5,7 +5,7 @@ package com.netcracker.crm.entity.enums;
  */
 public enum ProductInOrderAtribute {
 
-    Price(19), OrderID(21), ProductID(20), Quantity(22);
+    Price(19), OrderID(21), ProductID(20), Quantity(22), ImageURL(23), Summary(24);
 
     private int atributeId;
 

@@ -62,15 +62,20 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
         try {
             id = entityDao.add(order);
             for (CartItem item : order.getCart().getCartItems()) {
-                Product product = item.getProduct();
+                Product cartProduct = item.getProduct();
+                Product product = new Product(cartProduct.getEntityName(), true);
                 //добавляем entity с типом ProductInOrder
                 product.setEntityTypeId(EntityType.ProductInOrder.getTypeId());
                 product.setUserId(order.getEntityUserId());
                 product.setQuantity(item.getQuantity());
                 product.setOrderId(id);
                 product.setValueInList(ProductInOrderAtribute.ProductID.getAtributeId(),
-                        String.valueOf(product.getId()));
-                product.setPrice(product.getPrice());
+                        String.valueOf(cartProduct.getId()));
+                product.setPrice(cartProduct.getPrice());
+                product.setValueInList(ProductInOrderAtribute.ImageURL.getAtributeId(),
+                        String.valueOf(cartProduct.getImageUrl()));
+                product.setValueInList(ProductInOrderAtribute.Summary.getAtributeId(),
+                        String.valueOf(cartProduct.getSummary()));
                 entityDao.add(product);
             }
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + order.toString());
@@ -90,11 +95,16 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
             String quantityId = String.valueOf(ProductInOrderAtribute.Quantity.getAtributeId());
             String priceId = String.valueOf(ProductInOrderAtribute.Price.getAtributeId());
             String prodId = String.valueOf(ProductInOrderAtribute.ProductID.getAtributeId());
+            String imageId = String.valueOf(ProductInOrderAtribute.ImageURL.getAtributeId());
+            String summId = String.valueOf(ProductInOrderAtribute.Summary.getAtributeId());
             List<Entity> list = entityDao.getList(EntityType.ProductInOrder.getTypeId(),
                     String.valueOf(ProductInOrderAtribute.OrderID.getAtributeId()),
-                    String.valueOf(order.getId()), "=", quantityId + "," + priceId+ "," + prodId);
+                    String.valueOf(order.getId()), "=", quantityId + "," + priceId +
+                            "," + imageId + "," + summId);
             for (Entity e : list) {
                 Product prod = new Product(e);
+//                System.out.println(prod.getImageUrl());
+//                System.out.println(prod.getSummary());
                 cart.addCartItem(new CartItem(prod, prod.getQuantity()));
             }
             order.setCart(cart);
@@ -115,7 +125,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
             String orderNumberId = String.valueOf(OrderAtribute.OrderNumber.getAtributeId());
             List<Entity> list = entityDao.getByUserAndType(userId, EntityType.Order.getTypeId(),
                     createdDateId + "," + totalId + "," + orderNumberId);
-            if(list!=null) {
+            if (list != null) {
                 orderList = new ArrayList<>(list.size());
                 for (Entity e : list) {
                     Order o = new Order(e);
@@ -123,7 +133,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
                     //System.out.println(o);
                 }
             } else
-            return null;
+                return null;
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getListForUser for Order");
         } catch (DaoException exc) {
             logger.error(exc.getMessage());
@@ -162,7 +172,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
 
     @Override
     public int rowCounter(int typeId, String atributesId, String values, String operators, String role) {
-        return entityDao.rowCounter(EntityType.Order.getTypeId(),atributesId,values,operators, role);
+        return entityDao.rowCounter(EntityType.Order.getTypeId(), atributesId, values, operators, role);
     }
 
     @Override
