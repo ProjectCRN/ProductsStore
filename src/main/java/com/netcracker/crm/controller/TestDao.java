@@ -86,8 +86,10 @@ public class TestDao {
 //
 //        userService.isEmailFree("gav@panin.ru");
 //
-        IProductService productService = (IProductService) context.getBean("productServiceTest");
+//        IProductService productService = (IProductService) context.getBean("productServiceTest");
 //        Product product = productService.getById(55);
+//        product.setEntityName("iPHONE 5s");
+//        productService.add(product);
 //        product.setValueInList(23, "600");
 //        System.out.println(product);
 //        System.out.println("PRODUCT\n" + product);

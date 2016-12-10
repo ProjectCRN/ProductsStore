@@ -318,7 +318,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     public List<Entity> getByUserAndType(Integer userID, Integer entityTypeID, String atributesIdView) {
         getByUserAndTypeValidation(userID, entityTypeID, atributesIdView);
         List<String> entiyIdList;
-        String sql = "SELECT  E.ENTITYID " +
+        final String sql = "SELECT  E.ENTITYID " +
                 " FROM TBL_ENTITY E INNER JOIN TBL_ENTITYTYPE T ON E.ENTITYTYPEID=" +
                 "T.ENTITYTYPEID WHERE (E." + COLUMN_ENTITY_USER_ID
                 + "=?) AND ((? IS NOT NULL AND E." + COLUMN_ENTITY_TYPE_ID + "=?) OR " +
@@ -406,6 +406,24 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
             throw new DaoException(e.getMessage(), e);
         }
         return out;
+    }
+
+    public int countEntityName(int typeid, String name){
+        int count;
+        final String sql = "select  count(*) from TBL_ENTITY " +
+                "where entitytypeid=? and replace(lower(ENTITYNAME),' ') \n" +
+                "= replace(lower(?), ' ')";
+        try {
+            count = getJdbcTemplate().queryForObject(sql,
+                    new Object[]{typeid, name}, Integer.class);
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("Can't getByUserAndType()" + e.getMessage());
+            throw new DaoException("Entity table is empty", e);
+        } catch (DataAccessException e) {
+            logger.error(e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
+        return count;
     }
 
 //    public List<Atribute> getAtributes(){

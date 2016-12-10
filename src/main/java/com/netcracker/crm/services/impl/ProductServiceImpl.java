@@ -37,6 +37,9 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
 
         int id;
         try {
+            if(entityDao.countEntityName(product.getEntityTypeId(),
+                    product.getEntityName())>0)
+                throw new ServiceException("Such product already exists");
             id = entityDao.add(product);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + product.toString());
         } catch (DaoException exc) {
