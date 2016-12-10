@@ -94,14 +94,16 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
         List<Product> productList;
         String priceId = String.valueOf(getAtributeIdByTypeId(typeId, "Price"));
         String imageId = String.valueOf(getAtributeIdByTypeId(typeId, "ImageURL"));
-        String viewStr = imageId + "," + atributesIdView;
-        if (!atributesIdView.contains(priceId)) {
-            String addStr = atributesIdView.equals("")? priceId: "," + priceId;
-            viewStr += addStr;
+        String viewStr = imageId + "," + priceId;
+        String[] str = atributesIdView.split(",");
+        for (String s : str) {
+            if (!s.equals(priceId) && !s.equals("")) {
+                viewStr += "," + s;
+            }
         }
         try {
             List<Entity> list = entityDao.getList(typeId, atributesId, values, operators,
-                    viewStr, pageNumber, pageSize,role);
+                    viewStr, pageNumber, pageSize, role);
             if (list != null) {
                 productList = new ArrayList<>(list.size());
                 for (Entity e : list) {

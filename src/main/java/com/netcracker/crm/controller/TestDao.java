@@ -8,6 +8,7 @@ import com.netcracker.crm.dao.impl.EntityDaoImpl;
 import com.netcracker.crm.dao.validation.EntityDaoValidation;
 import com.netcracker.crm.entity.Atribute;
 import com.netcracker.crm.entity.Entity;
+import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.Value;
 import com.netcracker.crm.entity.enums.EntityType;
 import com.netcracker.crm.entity.enums.PhoneAtribute;
@@ -18,6 +19,7 @@ import com.netcracker.crm.entity.serviceEntity.Order;
 import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.IOrderService;
 import com.netcracker.crm.services.IProductService;
+import com.netcracker.crm.services.IUserService;
 import com.netcracker.crm.services.impl.OrderServiceImpl;
 import com.netcracker.crm.services.parser.*;
 import javafx.util.Pair;
@@ -135,5 +137,17 @@ public class TestDao {
 //        cartService.delete(51);
 //        cartService.countTotal();
 //        System.out.println(cartService.getCart().toString());
+
+//        List<Product> productList = productService.getList(
+//                9,
+//                "25,25",
+//                "100,700",
+//               ">=,<=",
+//                "25,25",
+//                1,
+//                2, "U");
+//        for(Product p:productList){
+//            System.out.println(p);
+//        }
     }
 }
