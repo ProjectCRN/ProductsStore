@@ -48,7 +48,7 @@ public class LoginValidator implements Validator {
         else {
             int id = userService.getIdByLogin(login);
             User user = userService.getById(id);
-            if(!password.equals(user.getPassword()))
+            if(!(userService.hashing(password)).equals(user.getPassword()))
                 errors.rejectValue("password", "password.loginDontMatch", "Wrong password.");
         }
 

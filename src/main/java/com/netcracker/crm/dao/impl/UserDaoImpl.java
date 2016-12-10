@@ -15,6 +15,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +49,7 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
         Object[] args = new Object[] {
                 id,
                 user.getLogin(),
-                user.getPassword(),
+                this.hashing(user.getPassword()),
                 user.getUserName(),
                 user.getContactPhone(),
                 user.getContactAddress(),
@@ -163,7 +166,7 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
                 "WHERE " + COLUMN_USER_ID + " = ?";
         Object[] args = new Object[] {
                 uLogin,
-                uPassword,
+                this.hashing(uPassword),
                 uName,
                 uPhone,
                 uAddress,
@@ -247,6 +250,27 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
             }
         }
         return false;
+    }
+
+    @Override
+    public String hashing(String str){
+
+        MessageDigest m= null;
+        try {
+            m = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException ex) {
+
+        }
+        m.reset();
+        m.update(str.getBytes());
+        byte[] digest = m.digest();
+        BigInteger bigInt = new BigInteger(1, digest);
+        String hashtext = bigInt.toString(16);
+        while (hashtext.length() < 32) {
+            hashtext = "0" + hashtext;
+        }
+
+        return hashtext;
     }
 
 

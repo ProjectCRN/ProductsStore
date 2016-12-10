@@ -150,4 +150,9 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
         return userId;
     }
 
+    @Override
+    public String hashing(String str) {
+        return (userDao.hashing(str));
+    }
+
 }
