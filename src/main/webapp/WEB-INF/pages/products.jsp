@@ -49,6 +49,7 @@
                     <div  id="added${item.getId()}"  style="display: none;">Added</div>
                     <a class="btn btn-default btnLink activeDelete${item.getId()} delete_btn_${item.getId()}" role="button"  href="#">delete</a>
                     <a class="btn btn-default btnLink activeRestore${item.getId()} restore_btn_${item.getId()}" role="button"  href="#">restore</a>
+                    <a class="btn btn-default btnLink update_btn_${item.getId()}" role="button"  href="#">update</a>
                     <a class="btn btn-default btnLink seeMore_btn_${item.getId()}" role="button"  href="#">see more</a>
                     <br><span>${item.getPrice()}$</span> <br>
 
@@ -65,6 +66,12 @@
                             $('.activeDelete${item.getId()}').show();
                         } else {
                             $('.activeDelete${item.getId()}').hide();
+                        }
+
+                        if (userRole == 'A'){
+                            $('.update_btn_${item.getId()}').show();
+                        } else {
+                            $('.update_btn_${item.getId()}').hide();
                         }
 
                         $('.sample1${item.getId()}').click( function() {
@@ -93,6 +100,14 @@
                         $('.restore_btn_${item.getId()}').click( function() {
                             $.ajax({
                                 url: '/restoreProduct/${currType}/${item.getId()}',
+                                success: function(data) {
+                                    $('.results').html(data);
+                                }
+                            });
+                        });
+                        $('.update_btn_${item.getId()}').click( function() {
+                            $.ajax({
+                                url: '/updateProduct/${currType}/${item.getId()}',
                                 success: function(data) {
                                     $('.results').html(data);
                                 }

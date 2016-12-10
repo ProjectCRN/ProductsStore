@@ -88,6 +88,8 @@
 <script type="text/javascript" language="javascript">
     function newProductFun() {
         var msg   = $('#newProduct').serialize();
+        if(${prev} == '0')
+        {
         $.ajax({
             type: 'POST',
             url: '/newProduct/${currType}',
@@ -96,6 +98,18 @@
                 $('.results').html(data);
             }
         });
+        }
+        if(${prev} == '1')
+        {
+            $.ajax({
+                type: 'POST',
+                url: '/updateProduct/${currType}/${id}',
+                data: msg,
+                success: function(data) {
+                    $('.results').html(data);
+                }
+            });
+        }
     }
 
 
