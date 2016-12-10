@@ -49,7 +49,8 @@ IF (LENGTH(inAttribute) IS NULL) THEN
           (
               SELECT E.ENTITYID, E.ENTITYNAME
               FROM TBL_ENTITY E
-              WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1 OR E.ISACTIVE=intRole)) 
+              WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1 OR E.ISACTIVE=intRole))
+              ORDER BY E.ENTITYNAME
             ) a
           WHERE rownum < ((pageNumber * pageSize) + 1 )
           ORDER BY a.ENTITYNAME
@@ -113,6 +114,7 @@ END IF;
              ) X  
              INNER JOIN TBL_ENTITY CX ON CX.EntityId = X.EntityId
              WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1 OR CX.ISACTIVE=intRole))
+             ORDER BY CX.ENTITYNAME
          ) a
         WHERE rownum < ((pageNumber * pageSize) + 1 )
         ORDER BY a.ENTITYNAME
