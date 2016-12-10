@@ -295,7 +295,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	9,
 	1,
 	3,
-  '^[a-zA-Z][a-zA-Z0-9-_\. ]{5,140}$');
+  '^[a-zA-Z][a-zA-Z0-9-_\. ]{3,140}$');
   
 INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -335,7 +335,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	9,
 	1,
 	8,
-  '[0-9]{1,}');
+  '\d+(\.,\d{0,2})?');
 INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -591,7 +591,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	10,
 	1,
 	3,
-  '^[a-zA-Z][a-zA-Z0-9-_\. ]{5,140}$');
+  '^[a-zA-Z][a-zA-Z0-9-_\. ]{3,140}$');
 
 INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -631,7 +631,7 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	10,
 	1,
 	8,
-  '[0-9]{1,}');
+  '\d+(\.,\d{0,2})?');
 INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
