@@ -2,6 +2,7 @@ package com.netcracker.crm.controller;
 
 
 import com.netcracker.crm.entity.User;
+import com.netcracker.crm.entity.controllerEntity.NameSearch;
 import com.netcracker.crm.entity.enums.EntityType;
 import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.IPaginationService;
@@ -29,6 +30,7 @@ public class ProductListController {
 
     private static final String PRODUCTS = "products";
     private static final String ITEM = "item";
+    private static final String NAME = "productsByName";
 
     private IProductService productService;
     private ISearchService searchService;
@@ -188,7 +190,7 @@ public class ProductListController {
             model.addAttribute("emptyList", "sorry, nothing to show");
         model.addAttribute("productList", productList);
         model.addAttribute("currType", searchAttr.getType());
-        model.addAttribute("currSort", searchAttributes.getName());
+        model.addAttribute("currSort", searchAttr.getName());
         model.addAttribute("searchAttr", searchAttr);
         this.setSearchAttributes(searchAttr);
 
@@ -197,6 +199,24 @@ public class ProductListController {
         model.addAttribute("searchBtn", "search");
         model.addAttribute("role", user.getRoleId());
         return PRODUCTS;
+    }
+
+    @RequestMapping(value = "/searchByName", method = RequestMethod.GET)
+    public String searchByName(NameSearch nameSearch, ModelMap model) {
+
+        nameSearch.validate();
+        if(nameSearch.getName().equals(""))
+            return "redirect:/";
+        List<Product> productList = productService.getList(
+                EntityType.Telephone.getTypeId(), "", "", "", 1, 3,user.getRoleId());
+        if (productList == null)
+            productList = new ArrayList<>();
+        if (productList.isEmpty())
+            model.addAttribute("emptyList", "sorry, nothing to show");
+        model.addAttribute("productList", productList);
+
+        model.addAttribute("role", user.getRoleId());
+        return NAME;
     }
 
     @RequestMapping(value = "/item/{id}", method = RequestMethod.GET)
