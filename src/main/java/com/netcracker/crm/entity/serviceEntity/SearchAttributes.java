@@ -31,6 +31,7 @@ public class SearchAttributes {
     public String getLists() {return attribute+" | "+operators+" | "+values;}
 
     public String getNumPerPage() {
+        if(numPerPage == null) return "";
         return numPerPage;
     }
 
@@ -39,6 +40,7 @@ public class SearchAttributes {
     }
 
     public String getMinPrice() {
+        if(minPrice == null) return "";
         return minPrice;
     }
 
@@ -47,6 +49,7 @@ public class SearchAttributes {
     }
 
     public String getMaxPrice() {
+        if(maxPrice == null) return "";
         return maxPrice;
     }
 
@@ -55,6 +58,7 @@ public class SearchAttributes {
     }
 
     public String getMinCapacity() {
+        if(minCapacity == null) return "";
         return minCapacity;
     }
 
@@ -63,6 +67,7 @@ public class SearchAttributes {
     }
 
     public String getMaxCapacity() {
+        if(maxCapacity == null) return "";
         return maxCapacity;
     }
 
@@ -71,6 +76,7 @@ public class SearchAttributes {
     }
 
     public String getMinBattery() {
+        if(minBattery == null) return "";
         return minBattery;
     }
 
@@ -79,6 +85,7 @@ public class SearchAttributes {
     }
 
     public String getMaxBattery() {
+        if(maxBattery == null) return "";
         return maxBattery;
     }
 
@@ -87,6 +94,7 @@ public class SearchAttributes {
     }
 
     public String getName() {
+        if(name == null) return "";
         return name;
     }
 
@@ -95,6 +103,8 @@ public class SearchAttributes {
     }
 
     public String getType() {
+
+        if(type == null) return "";
         return type;
     }
 

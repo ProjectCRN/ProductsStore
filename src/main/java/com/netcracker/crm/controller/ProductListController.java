@@ -68,7 +68,7 @@ public class ProductListController {
     @RequestMapping(value = "/products/{type}", method = RequestMethod.GET)
     public String products(@PathVariable String type, ModelMap model) {
         if(searchAttributes != null) {
-            if(!searchAttributes.getType().equals(type))
+            if(!(searchAttributes.getType() == null || searchAttributes.getType().equals(type)))
                 searchAttributes.setType(type);
             searchService.validate(searchAttributes);
             searchService.parseSearchAttributes(searchAttributes);
@@ -100,7 +100,7 @@ public class ProductListController {
         model.addAttribute("pages", paginationService.getPageNums(pageNumber,1));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
-        
+
         if (productList.isEmpty())
             model.addAttribute("emptyList", "sorry, nothing to show");
         model.addAttribute("role", user.getRoleId());

@@ -92,18 +92,22 @@
                             });
                         });
                         $('.delete_btn_${item.getId()}').click( function() {
+                            $('#page-preloader').show();
                             $.ajax({
                                 url: '/deleteProduct/${currType}/${item.getId()}',
                                 success: function(data) {
                                     $('.results').html(data);
+                                    $('#page-preloader').hide();
                                 }
                             });
                         });
                         $('.restore_btn_${item.getId()}').click( function() {
+                            $('#page-preloader').show();
                             $.ajax({
                                 url: '/restoreProduct/${currType}/${item.getId()}',
                                 success: function(data) {
                                     $('.results').html(data);
+                                    $('#page-preloader').hide();
                                 }
                             });
                         });
