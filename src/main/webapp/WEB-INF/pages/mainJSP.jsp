@@ -49,6 +49,7 @@
                     <ul class="submenu">
                         <li><a class="logout" href="#">LogOut</a></li>
                         <li><a class="allOrders" href="#">Orders</a></li>
+                        <li><a class="userOrders" href="#">User Orders</a></li>
                         <li><a class="newTelephone" href="#">Create Telephone</a></li>
                         <li><a class="newTablet" href="#">Create Tablet</a></li>
                         <li><a class="crateXml" href="#">Xml Parser</a></li>
@@ -127,6 +128,9 @@
     })
     $('.crateXml').click( function() {
         funLoad('/uploadFile');
+    })
+    $('.userOrders').click( function() {
+        funLoad('/userOrders');
     })
     $('.logout').click( function() {
         funLoad('/logout');

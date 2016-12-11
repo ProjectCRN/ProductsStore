@@ -8,12 +8,34 @@
             Number: №${item.getOrderNumber()} <br>
             Total: ${item.getTotal()} <br>
             <a class="btn btn-default btnLink seeMore seeMoreOrder_${item.getId()}" href="#">see more</a>
+            <a class="btn btn-default btnLink delete deleteOrder_${item.getId()}" href="#">delete</a>
             <br>
 
             <script type="text/javascript" language="javascript">
+
+                var userRole = '${role}';
+
+                if (userRole == 'A'){
+                    $('.deleteOrder_${item.getId()}').show();
+                } else {
+                    $('.deleteOrder_${item.getId()}').hide();
+                }
+
                 $('.seeMoreOrder_${item.getId()}').click( function() {
                     funLoad('/getOrder/${item.getId()}');
                 });
+
+                $('.deleteOrder_${item.getId()}').click( function() {
+                    $('#page-preloader').show();
+                    $.ajax({
+                        url: '/deleteOrder/${item.getId()}',
+                        success: function(data) {
+                            $('.results').html(data);
+                            $('#page-preloader').hide();
+                        }
+                    });
+                });
+
             </script>
 
 
