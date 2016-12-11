@@ -12,15 +12,15 @@
     <ul class="col-md-4 formOrder">
         <li><h3>Add product</h3></li>
         <li>
-            <form:input path="name"  size="30" placeholder="name" pattern="${pattern.getName()}" required="required" />*
+            <form:input path="name"  size="30" class="requiredField" placeholder="name" pattern="${pattern.getName()}" required="required" />
             <span class="error"><form:errors path="name" /></span>
         </li>
         <li>
-            <form:input path="price"  size="30" placeholder="price" pattern="${pattern.getPrice()}" required="required" />*
+            <form:input path="price"  size="30" class="requiredField" placeholder="price" pattern="${pattern.getPrice()}" required="required" />
             <span class="error"><form:errors path="price" /></span>
         </li>
         <li>
-            <form:input path="summary"  size="30" placeholder="summary" pattern="${pattern.getSummary()}" required="required" />*
+            <form:input path="summary"  size="30" class="requiredField" placeholder="summary" pattern="${pattern.getSummary()}" required="required" />
             <span class="error"><form:errors path="summary" /></span>
         </li>
         <li>
@@ -32,7 +32,7 @@
             <span class="error"><form:errors path="processorSpeed" /></span>
         </li>
         <li>
-            <form:input path="capacity"  size="30" placeholder="capacity, GB" pattern="${pattern.getCapacity()}" required="required" />*
+            <form:input path="capacity"  size="30" class="requiredField" placeholder="capacity, GB" pattern="${pattern.getCapacity()}" required="required" />
             <span class="error"><form:errors path="capacity" /></span>
         </li>
         <li>
@@ -60,7 +60,7 @@
             <span class="error"><form:errors path="camera" /></span>
         </li>
         <li>
-            <form:input path="battery"  size="30" placeholder="battery, hours" pattern="${pattern.getBattery()}" required="required" />*
+            <form:input path="battery" class="requiredField"  size="30" placeholder="battery, hours" pattern="${pattern.getBattery()}" required="required" />
             <span class="error"><form:errors path="battery" /></span>
         </li>
         <li>

@@ -307,3 +307,12 @@ body {
     font-weight: 600;
     color: #6d6d6d;
 }
+
+.block1 .requiredField{
+    background: url('../img/star-red-md.png') 98% 0 no-repeat;
+}
+
+.block1 .seeMore{
+    margin-left: 105px;
+    margin-top: 10px;
+}
