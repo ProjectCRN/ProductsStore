@@ -174,7 +174,20 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         int numb = updateEntity(id, entityName, isActive, userId);
         //update value table
         if (valuesArr != null && numb > 0) {
-            updateValue(valuesArr);
+            List<Value> updateList = new ArrayList<>();
+            List<Value> addList = new ArrayList<>();
+            for (Value v : valuesArr) {
+                if (v.getId() != 0) {
+                    updateList.add(v);
+                } else
+                    addList.add(v);
+            }
+            if (updateList.size() > 0)
+                updateValue(updateList);
+            if (addList.size() > 0) {
+                int eId = addList.get(0).getEntityId();
+                addValue(addList, eId);
+            }
         }
         return numb;
     }
@@ -279,8 +292,8 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     private List<Entity> getListWithAttributes(String entiyIdList, String atributesId) {
-        String tmp=atributesId;
-        atributesId=getListWithAttributesValidation(entiyIdList, tmp);
+        String tmp = atributesId;
+        atributesId = getListWithAttributesValidation(entiyIdList, tmp);
         List<String> attributesList = new ArrayList<>();
         List<Entity> entiyList;
         String[] arr = atributesId.split(",");
@@ -408,7 +421,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         return out;
     }
 
-    public int countEntityName(int typeid, String name){
+    public int countEntityName(int typeid, String name) {
         int count;
         final String sql = "select  count(*) from TBL_ENTITY " +
                 "where entitytypeid=? and replace(lower(ENTITYNAME),' ') \n" +
