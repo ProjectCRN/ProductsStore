@@ -105,6 +105,7 @@ public class SearchAttributes {
     }
 
     public String getAttribute() {
+        if(attribute == null) return "";
         return attribute;
     }
 
@@ -113,6 +114,7 @@ public class SearchAttributes {
     }
 
     public String getOperators() {
+        if(operators == null) return "";
         return operators;
     }
 
@@ -121,6 +123,7 @@ public class SearchAttributes {
     }
 
     public String getValues() {
+        if(values == null) return "";
         return values;
     }
 
