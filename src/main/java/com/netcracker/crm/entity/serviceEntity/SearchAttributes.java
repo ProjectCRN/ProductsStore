@@ -1,5 +1,9 @@
 package com.netcracker.crm.entity.serviceEntity;
 
+import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.enums.PhoneAtribute;
+import com.netcracker.crm.entity.enums.TabletAtribute;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,6 +133,13 @@ public class SearchAttributes {
 
     public void setValues(String values) {
         this.values = values;
+    }
+
+    public String getShownAttributes() {
+        if (typeId == EntityType.Telephone.getTypeId()) {
+            return PhoneAtribute.Capacity.getAtributeId() + "," + PhoneAtribute.Battery.getAtributeId();
+        }
+        return TabletAtribute.Capacity.getAtributeId() + "," + TabletAtribute.Battery.getAtributeId();
     }
 
     @Override

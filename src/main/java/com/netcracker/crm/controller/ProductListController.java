@@ -68,6 +68,8 @@ public class ProductListController {
     @RequestMapping(value = "/products/{type}", method = RequestMethod.GET)
     public String products(@PathVariable String type, ModelMap model) {
         if(searchAttributes != null) {
+            if(!searchAttributes.getType().equals(type))
+                searchAttributes.setType(type);
             searchService.validate(searchAttributes);
             searchService.parseSearchAttributes(searchAttributes);
         }
@@ -81,11 +83,11 @@ public class ProductListController {
                 searchAttributes.getAttribute(),
                 searchAttributes.getValues(),
                 searchAttributes.getOperators(),
-                searchAttributes.getAttribute(),
                 1,
                 paginationService.getNumPerPage(),user.getRoleId());
         if (productList == null)
             productList = new ArrayList<>();
+
         model.addAttribute("productList", productList);
         model.addAttribute("currType", type);
         model.addAttribute("searchAttr", searchAttributes);
@@ -98,6 +100,9 @@ public class ProductListController {
         model.addAttribute("pages", paginationService.getPageNums(pageNumber,1));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
+        
+        if (productList.isEmpty())
+            model.addAttribute("emptyList", "sorry, nothing to show");
         model.addAttribute("role", user.getRoleId());
         return PRODUCTS;
     }
@@ -115,25 +120,6 @@ public class ProductListController {
         return typeid;
     }
 
-    @RequestMapping(value = "/products/{type}/page/{pageNum}", method = RequestMethod.GET)
-    public String productsPages(@PathVariable String type, @PathVariable String pageNum, ModelMap model) {
-
-        int typeid = findTypeId(type);
-
-        List<Product> productList = productService.getList(typeid, "", "", "",
-                Integer.parseInt(pageNum), paginationService.getNumPerPage(),user.getRoleId());
-        if (productList == null)
-            productList = new ArrayList<>();
-        model.addAttribute("productList", productList);
-        model.addAttribute("currType", type);
-        model.addAttribute("searchAttr", new SearchAttributes());
-        int pageNumber = paginationService.getPageNum();
-        model.addAttribute("pages", paginationService.getPageNums(pageNumber,Integer.parseInt(pageNum)));
-        model.addAttribute("searchReq", "products");
-        model.addAttribute("searchBtn", "search");
-        model.addAttribute("role", user.getRoleId());
-        return PRODUCTS;
-    }
 
     @RequestMapping(value = "/products/search", method = RequestMethod.GET)
     public String searchProducts(SearchAttributes searchAttr, ModelMap model) {
@@ -146,7 +132,6 @@ public class ProductListController {
                 searchAttr.getAttribute(),
                 searchAttr.getValues(),
                 searchAttr.getOperators(),
-                searchAttr.getAttribute(),
                 1,
                 paginationService.getNumPerPage(),user.getRoleId());
         if (productList == null)

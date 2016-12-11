@@ -37,6 +37,7 @@ public class AddProductForm {
         summary = prod.getSummary();
         fabricator = prod.getFabricator();
         imageUrl = prod.getImageUrl();
+        if(imageUrl.equals("/resources/img/img_phone.jpg")) imageUrl="";
         int typeid = prod.getEntityTypeId();
 
         if (typeid == EntityType.Telephone.getTypeId()) {
