@@ -64,8 +64,8 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
     }
 
     @Override
-    public List<Product> getList(int typeId, String atributesId, String values, String operators, int pageNumber, int pageSize, String role) {
-        return getList(typeId, atributesId, values, operators, "", pageNumber, pageSize, role);
+    public List<Product> getList(int typeId, String atributesId, String values, String operators, int pageNumber, int pageSize, String role, boolean orderSide) {
+        return getList(typeId, atributesId, values, operators, "", pageNumber, pageSize, role, orderSide);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
     @Override
     public List<Product> getList(int typeId, String atributesId, String values,
                                  String operators, String atributesIdView,
-                                 int pageNumber, int pageSize, String role) {
+                                 int pageNumber, int pageSize, String role, boolean orderSide) {
         List<Product> productList;
         String priceId = String.valueOf(getAtributeIdByTypeId(typeId, "Price"));
         String imageId = String.valueOf(getAtributeIdByTypeId(typeId, "ImageURL"));
@@ -102,7 +102,7 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
         String viewStr = imageId + "," + priceId + "," + capacityId + "," + batteryId;
         try {
             List<Entity> list = entityDao.getList(typeId, atributesId, values, operators,
-                    viewStr, pageNumber, pageSize, role);
+                    viewStr, pageNumber, pageSize, role,orderSide);
             if (list != null) {
                 productList = new ArrayList<>(list.size());
                 for (Entity e : list) {

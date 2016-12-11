@@ -2,6 +2,7 @@ package com.netcracker.crm.controller;
 
 import com.netcracker.crm.entity.User;
 
+import com.netcracker.crm.entity.controllerEntity.NameSearch;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,6 +28,7 @@ public class FrontController {
         model.addAttribute("message", "Our dream team ^_^");
         model.addAttribute("userName", user.getUserName());
         model.addAttribute("user",user);
+        model.addAttribute("searchName", new NameSearch());
 
         return VIEW_INDEX;
     }

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -52,8 +53,32 @@
                         <li><a class="userOrders" href="#">User Orders</a></li>
                         <li><a class="newTelephone" href="#">Create Telephone</a></li>
                         <li><a class="newTablet" href="#">Create Tablet</a></li>
-                        <li><a class="crateXml" href="#">Xml Parser</a></li>
+                        <li><a class="crateXml" href="uploadFile">Xml Parser</a></li>
                     </ul>
+                </li>
+                <li>
+                    <sf:form id="byName" method="get" modelAttribute="searchName"
+                             action="javascript:void(null);" onsubmit="byNameFun()" >
+                        <sf:input path="name" size="12" placeholder="Search..."
+                                  pattern="^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$"
+                        style="border: none;"/>
+                        <input type="submit" value="Search"  style="display: none;"/>
+                    </sf:form>
+                    <script type="text/javascript" language="javascript">
+                        function byNameFun() {
+                            $('#page-preloader').show();
+                            var msg   = $('#byName').serialize();
+                            $.ajax({
+                                type: 'GET',
+                                url: '/searchByName',
+                                data: msg,
+                                success: function(data) {
+                                    $('.results').html(data);
+                                    $('#page-preloader').hide();
+                                }
+                            });
+                        }
+                    </script>
                 </li>
             </nav>
 
@@ -63,7 +88,12 @@
                     <span class="spinner">loading...</span>
                 </div>
 
+
+
                 <div class="results">
+                    <div style='position: relative; text-align: right;'>
+
+                    </div>
                     <img class="mainSpinner" src="${spinner}"/>
                     <h1>${message}</h1>
                     <h2>Hello, ${userName}! </h2>
@@ -126,9 +156,7 @@
     $('.registerUser').click( function() {
         funLoad('/createUser');
     })
-    $('.crateXml').click( function() {
-        funLoad('/uploadFile');
-    })
+
     $('.userOrders').click( function() {
         funLoad('/userOrders');
     })

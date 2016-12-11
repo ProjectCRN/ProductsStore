@@ -13,8 +13,8 @@ public interface IProductService extends IEntityService<Product> {
     List<Product> getByUserAndType(Integer userID, Integer entityTypeID);
     List<Product> getList(int typeId, String atributesId, String values,
                           String operators, String atributesIdView,
-                          int pageNumber, int pageSize, String role);
+                          int pageNumber, int pageSize, String role, boolean orderSide);
     List<Product> getList(int typeId, String atributesId, String values,
-                          String operators, int pageNumber, int pageSize, String role);
+                          String operators, int pageNumber, int pageSize, String role, boolean orderSide);
     void restore(int id);
 }
