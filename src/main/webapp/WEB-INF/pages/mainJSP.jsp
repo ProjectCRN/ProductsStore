@@ -53,7 +53,7 @@
                         <li><a class="userOrders" href="#">User Orders</a></li>
                         <li><a class="newTelephone" href="#">Create Telephone</a></li>
                         <li><a class="newTablet" href="#">Create Tablet</a></li>
-                        <li><a class="crateXml" href="#">Xml Parser</a></li>
+                        <li><a class="crateXml" href="uploadFile">Xml Parser</a></li>
                     </ul>
                 </li>
                 <li>
@@ -156,9 +156,7 @@
     $('.registerUser').click( function() {
         funLoad('/createUser');
     })
-    $('.crateXml').click( function() {
-        funLoad('/uploadFile');
-    })
+
     $('.userOrders').click( function() {
         funLoad('/userOrders');
     })

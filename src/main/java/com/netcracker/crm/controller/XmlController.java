@@ -48,6 +48,9 @@ public class XmlController {
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public String handleFileUpload(@RequestParam("file") MultipartFile file, ModelMap model) {
 
+        model.addAttribute("userRole",user.getRoleId());
+        model.addAttribute("userName", user.getUserName());
+
         if(!user.isAdmin())
             return NO_ROOTS;
 

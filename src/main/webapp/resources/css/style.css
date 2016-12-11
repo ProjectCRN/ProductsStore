@@ -316,3 +316,11 @@ body {
     margin-left: 105px;
     margin-top: 10px;
 }
+
+.block1 .uploadBtn{
+    margin: 10px auto 10px 125px;
+}
+.block1 .downloadBtn{
+    display: inline-block;
+    margin: 25px 0 10px 25px;
+}
