@@ -36,6 +36,8 @@ public class Product extends Entity {
             for (int i = 0; i < getAtributeValueMap().size(); i++) {
                 String atributeName = getAtributeValueMap().get(i).getKey().getAtributeName();
                 String atributeValue = getAtributeValueMap().get(i).getValue().getValue();
+                System.out.println(atributeName);
+                if (atributeName == null) continue;
                 switch (atributeName) {
                     case "Price":
                         price = Double.parseDouble(atributeValue);
@@ -187,6 +189,13 @@ public class Product extends Entity {
             for (Pair<Atribute, Value> item : getAtributeValueMap()) {
                 str += "\n" + item.getKey().toString();
                 str += ": " + item.getValue().toString();
+            }
+        }
+        System.out.println("VALUE LIST");
+        if (getValueList() != null) {
+            for (Value item : getValueList()) {
+                str += "\n" + item.getAtributeId();
+                str += ": " + item.getValue();
             }
         }
         return str;

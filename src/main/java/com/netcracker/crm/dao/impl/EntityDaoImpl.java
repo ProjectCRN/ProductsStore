@@ -166,6 +166,20 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         }
     }
 
+    public void deleteValues(List<Value> valuesArr) {
+        String sql = "DELETE FROM TBL_VALUE WHERE ENTITYID = ?";
+        List<Object[]> args = new ArrayList<>(valuesArr.size());
+        for (Value v : valuesArr) {
+            args.add(new Object[]{v.getEntityId()});
+        }
+        try {
+            int[] numb = getJdbcTemplate().batchUpdate(sql, args);
+        } catch (DataAccessException e) {
+            logger.error("Can't updateValue() " + e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
+    }
+
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public int update(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
@@ -174,6 +188,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         int numb = updateEntity(id, entityName, isActive, userId);
         //update value table
         if (valuesArr != null && numb > 0) {
+            deleteValues(valuesArr);
             List<Value> updateList = new ArrayList<>();
             List<Value> addList = new ArrayList<>();
             for (Value v : valuesArr) {

@@ -149,6 +149,10 @@ public class AdminController {
         prod.setEntityName(addProductForm.getName());
         prod.setUserId(-2);
         prod.setEntityTypeId(typeid);
+
+        prod.getValueList().clear();
+        prod.getAtributeValueMap().clear();
+
         prod.setPrice(Double.parseDouble(addProductForm.getPrice()));
         prod.setSummary(addProductForm.getSummary());
         if(addProductForm.getFabricator().equals(""))
@@ -157,9 +161,7 @@ public class AdminController {
         if(addProductForm.getImageUrl().equals(""))
             addProductForm.setImageUrl("/resources/img/img_phone.jpg");
         prod.setImageUrl(addProductForm.getImageUrl());
-
-        prod.getValueList().clear();
-        setValueList(typeid,prod,addProductForm);
+        setValueList(typeid, prod, addProductForm);
 
         productService.updateByProduct(prod);
         model.addAttribute("hello", "Product updated");
