@@ -33,19 +33,19 @@
                     </ul>
                 </li>
                 <li><a class="cart" href="#">Cart</a></li>
-                <li class="userRole allOrders" style="display: none"><a href="#">${userName}</a>
+                <li class="userRole" style="display: none"><a href="#">${userName}</a>
                     <ul class="submenu">
                         <li><a class="logout" href="#">LogOut</a></li>
                         <li><a class="allOrders" href="#">Orders</a></li>
                     </ul>
                 </li>
-                <li class="guestRole login" style="display: none"><a href="#">User</a>
+                <li class="guestRole" style="display: none"><a href="#">User</a>
                     <ul class="submenu">
                         <li><a class="login" href="#">LogIn</a></li>
                         <li><a class="registerUser" href="#">Register</a></li>
                     </ul>
                 </li>
-                <li class="adminRole allOrders" style="display: none"><a href="#">Admin</a>
+                <li class="adminRole" style="display: none"><a href="#">Admin</a>
                     <ul class="submenu">
                         <li><a class="logout" href="#">LogOut</a></li>
                         <li><a class="allOrders" href="#">Orders</a></li>

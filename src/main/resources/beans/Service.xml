@@ -73,6 +73,8 @@
         <property name="productService" ref="productService"/>
     </bean>
 
-    <bean class="com.netcracker.crm.entity.controllerEntity.validator.AddProductValidator" id="addProductValidator" scope="session"/>
+    <bean class="com.netcracker.crm.entity.controllerEntity.validator.AddProductValidator" id="addProductValidator" scope="session">
+        <property name="patternsService" ref="patternsService"/>
+    </bean>
 
 </beans>
