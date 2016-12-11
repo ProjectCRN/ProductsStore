@@ -90,7 +90,26 @@ public class OrderController {
             return NO_ROOTS;
         List<Order> orderList = orderService.getListForUser(user.getId());
         model.addAttribute("orderList", orderList);
+        model.addAttribute("role", "U");
         return ALL_ORDERS;
+    }
+
+    @RequestMapping(value = "/userOrders", method = RequestMethod.GET)
+    public String getUserOrders(ModelMap model) {
+        if(!user.isAdmin())
+            return NO_ROOTS;
+        List<Order> orderList = orderService.getList();
+        model.addAttribute("orderList", orderList);
+        model.addAttribute("role", user.getRoleId());
+        return ALL_ORDERS;
+    }
+
+    @RequestMapping(value = "/deleteOrder/{id}", method = RequestMethod.GET)
+    public String deleteOrder(@PathVariable String id, ModelMap model) {
+        if(!user.isAdmin())
+            return NO_ROOTS;
+        orderService.delete(Integer.parseInt(id));
+        return "redirect:/userOrders";
     }
 
     @RequestMapping(value = "/getOrder/{id}", method = RequestMethod.GET)
@@ -98,7 +117,7 @@ public class OrderController {
         if(user.isAnon())
             return NO_ROOTS;
         Order order = orderService.getById(Integer.parseInt(id));
-        if (user.getId() != order.getEntityUserId())
+        if (user.getId() != order.getEntityUserId() && !user.isAdmin())
             return NO_ROOTS;
         model.addAttribute("order", order);
         return CHECK;

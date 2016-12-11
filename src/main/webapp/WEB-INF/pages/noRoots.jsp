@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <div>
-    <h1>You have no roots!</h1>
+    <h1>Access Denied!</h1>
     <img src="/resources/img/spinner5.gif">
     <h2>Please, log in</h2>
 </div>
