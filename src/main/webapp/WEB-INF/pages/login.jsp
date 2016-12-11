@@ -10,11 +10,11 @@
         <ul class="col-md-4 formOrder">
             <li><h3>Login</h3></li>
             <li>
-                <form:input path="login"  size="30" placeholder="Login" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required="required" />*
+                <form:input path="login" class="requiredField"  size="30" placeholder="Login" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required="required" />
                 <span class="error"><form:errors path="login" /></span>
             </li>
             <li>
-                <form:password path="password"  size="30" required="required" placeholder="Password" />*
+                <form:password path="password" class="requiredField"  size="30" required="required" placeholder="Password" />
                 <span class="error"><form:errors path="password" /></span>
             </li>
 

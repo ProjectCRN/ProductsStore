@@ -49,7 +49,7 @@
         $('.cartFromOrder').click( function() {
             funLoad('/getCart/${order.getId()}');
         });
-        $('.allOrders').click( function() {
+        $('.allOrdersInCheck').click( function() {
             funLoad('/getAllOrders');
         });
 

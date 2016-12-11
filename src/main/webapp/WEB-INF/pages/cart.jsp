@@ -28,10 +28,10 @@
                                        href="#">add</a><br>
                                     <a class="btn btn-default btnLink hide_show" id="btnDel_${item.getProduct().getId()}" role="button"
                                        href="#">delete</a><br>
-                                    <sf:form id="btnQuan_${item.getProduct().getId()}" method="get" modelAttribute="cartQuantity"
+                                    <sf:form id="btnQuan_${item.getProduct().getId()}" class="hide_show" method="get" modelAttribute="cartQuantity"
                                              action="javascript:void(null);" onsubmit="setFun_${item.getProduct().getId()}()">
-                                        <sf:input path="quantity" size="12" placeholder="Quantity" pattern="^[ 0-9]+$"/><br>
-                                        <input type="submit" value="setQuantity" class="btn"/>
+                                        <sf:input path="quantity" size="8" placeholder="Quantity" pattern="^[ 0-9]+$"/><br><br>
+                                        <input type="submit" value="setQuantity" class="btn btn-default btnLink"/>
                                     </sf:form>
                                 <br><span>${item.getProduct().getPrice()}$</span> <br>
 

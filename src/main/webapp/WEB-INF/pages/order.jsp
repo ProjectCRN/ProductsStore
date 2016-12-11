@@ -10,17 +10,17 @@
     <ul class="col-md-4 formOrder">
 
         <li>
-            <sf:input path="contactName" size="30" placeholder="Contact Name" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required="required" /><br/>
+            <sf:input path="contactName" size="30" class="requiredField" placeholder="Contact Name" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required="required" /><br/>
             <sf:errors path="contactName"/>
         </li>
 
         <li>
-            <sf:input path="contactAddress" size="30" placeholder="Contact Address" required="required"/><br/>
+            <sf:input path="contactAddress" size="30" class="requiredField" placeholder="Contact Address" required="required"/><br/>
             <sf:errors path="contactAddress" cssClass="error"/>
         </li>
 
         <li>
-            <sf:input path="contactPhone" size="30" placeholder="Contact Phone" pattern="^((8|\+375)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" required="required"/><br/>
+            <sf:input path="contactPhone" size="30" class="requiredField" placeholder="Contact Phone" pattern="^((8|\+375)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" required="required"/><br/>
             <sf:errors path="contactPhone" cssClass="error"/>
         </li>
 

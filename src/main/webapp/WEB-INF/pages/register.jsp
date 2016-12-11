@@ -10,7 +10,7 @@
     <ul class="col-md-4 formOrder">
         <li><h3>Register</h3></li>
         <li>
-            <form:input path="login"  size="30" placeholder="Login" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required="required" />*
+            <form:input path="login" class="requiredField"  size="30" placeholder="Login" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required="required" />
             <span class="error"><form:errors path="login" /></span>
         </li>
 
@@ -20,12 +20,12 @@
         </li>
 
         <li>
-            <form:password path="password"  size="30" required="required" placeholder="Password" />*
+            <form:password path="password" class="requiredField"  size="30" required="required" placeholder="Password" />
             <span class="error"><form:errors path="password" /></span>
         </li>
 
         <li>
-            <form:password path="confirmPassword"  size="30" required="required" placeholder="Confirm Password" />*
+            <form:password path="confirmPassword" class="requiredField"  size="30" required="required" placeholder="Confirm Password" />
             <span class="error"><form:errors  path="confirmPassword" /></span>
         </li>
 
@@ -40,7 +40,7 @@
         </li>
 
         <li>
-            <form:input path="email"  size="30" pattern="\S+@[a-z]+.[a-z]+" placeholder="E-mail" required="required"/>*
+            <form:input path="email" class="requiredField"  size="30" pattern="\S+@[a-z]+.[a-z]+" placeholder="E-mail" required="required"/>
             <span class="error"><form:errors path="email" /></span>
         </li>
 

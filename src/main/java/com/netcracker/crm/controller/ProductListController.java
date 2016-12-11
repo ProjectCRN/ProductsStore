@@ -67,17 +67,33 @@ public class ProductListController {
 
     @RequestMapping(value = "/products/{type}", method = RequestMethod.GET)
     public String products(@PathVariable String type, ModelMap model) {
-        if(searchAttributes == null)
-            searchAttributes = new SearchAttributes();
+        if(searchAttributes != null) {
+            searchService.validate(searchAttributes);
+            searchService.parseSearchAttributes(searchAttributes);
+        }
+        else searchAttributes = new SearchAttributes();
+
         paginationService.setNumPerPage(Integer.parseInt(searchAttributes.getNumPerPage()));
+
         int typeid = findTypeId(type);
-        List<Product> productList = productService.getList(typeid, "", "", "", 1, paginationService.getNumPerPage(),user.getRoleId());
+        List<Product> productList = productService.getList(
+                typeid,
+                searchAttributes.getAttribute(),
+                searchAttributes.getValues(),
+                searchAttributes.getOperators(),
+                searchAttributes.getAttribute(),
+                1,
+                paginationService.getNumPerPage(),user.getRoleId());
         if (productList == null)
             productList = new ArrayList<>();
         model.addAttribute("productList", productList);
         model.addAttribute("currType", type);
         model.addAttribute("searchAttr", searchAttributes);
-        int pageNumber = paginationService.calcPageNum(productService.rowCounter(typeid, "", "", "", user.getRoleId()));
+        int pageNumber = paginationService.calcPageNum(productService.rowCounter(
+                typeid,
+                searchAttributes.getAttribute(),
+                searchAttributes.getValues(),
+                searchAttributes.getOperators(), user.getRoleId()));
         paginationService.setPageNum(pageNumber);
         model.addAttribute("pages", paginationService.getPageNums(pageNumber,1));
         model.addAttribute("searchReq", "products/search");
