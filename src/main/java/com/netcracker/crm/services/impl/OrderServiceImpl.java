@@ -16,14 +16,16 @@ import com.netcracker.crm.services.constants.ServiceConstants;
 import com.netcracker.crm.services.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,12 +48,11 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
         order.setCart(cart);
         order.setByUser(user);
         order.setTotal(cart.countTotal());
-        LocalDate ld = LocalDate.now();
-        Date date = ld.toDate();
-        order.setCreatedDate(date);
-        order.setPaidDate(date);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate now = LocalDate.now();
+        order.setCreatedDate(dtf.format(now));
+        order.setPaidDate(dtf.format(now));
         order.setOrderNumber(order.orderNumberGenerator());
-//        order.setDescription("somedescription");
         return order;
     }
 
@@ -164,7 +165,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
             if (list != null) {
                 orderList = new ArrayList<>(list.size());
                 for (Entity e : list) {
-                    Order o  = new Order(e);
+                    Order o = new Order(e);
                     orderList.add(o);
                 }
             } else return null;

@@ -7,6 +7,7 @@ import javafx.util.Pair;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Random;
 
@@ -15,20 +16,14 @@ import java.util.Random;
  */
 public class Order extends Entity {
 
-//    private String name;    //orderNumber like {id}OR
-//    private boolean isActive;
-//    private final String entityType = "Order";
-//    private int userId;
-//    private List<Pair<Atribute, Value>> atributeValueMap;
-
     private static final long serialVersionUID = 1L;
     private String orderNumber = "";
     private String contactName = "";
     private String contactPhone = "";
     private String contactAddress = "";
     private int total;
-    private Date createdDate;
-    private Date paidDate;
+    private String createdDate;
+    private String paidDate;
     private Cart cart;
     private String description = "";
     private final static int ORDERTYPE = 7;
@@ -45,8 +40,6 @@ public class Order extends Entity {
             for (int i = 0; i < getAtributeValueMap().size(); i++) {
                 String atributeName = getAtributeValueMap().get(i).getKey().getAtributeName();
                 String atributeValue = getAtributeValueMap().get(i).getValue().getValue();
-                DateFormat df1 = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
-                //DateFormat df2 = new SimpleDateFormat("EE MMM dd yyyy");
                 switch (atributeName) {
                     case "Order Number":
                         orderNumber = atributeValue;
@@ -64,18 +57,10 @@ public class Order extends Entity {
                         total = Integer.parseInt(atributeValue);
                         break;
                     case "Created Date":
-                        try {
-                            createdDate = df1.parse(atributeValue);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
+                        createdDate = atributeValue;
                         break;
                     case "Paid Date":
-                        try {
-                            createdDate = df1.parse(atributeValue);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
+                        createdDate = atributeValue;
                         break;
                     case "Order Description":
                         description = atributeValue;
@@ -93,12 +78,12 @@ public class Order extends Entity {
                 "Order", userId);
     }
 
-    public void setFieldsFromForm(OrderForm form)
-    {
+    public void setFieldsFromForm(OrderForm form) {
         this.setContactName(form.getContactName());
         this.setContactPhone(form.getContactPhone());
         this.setContactAddress(form.getContactAddress());
     }
+
     public Order(String name, boolean isActive, int userId) {
         super(name, isActive, ORDERTYPE, userId);
     }
@@ -148,22 +133,22 @@ public class Order extends Entity {
         setValueInList("total", String.valueOf(total));
     }
 
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
-        setValueInList("createddate", createdDate.toString());
+        setValueInList("createddate", createdDate);
     }
 
-    public Date getPaidDate() {
+    public String getPaidDate() {
         return paidDate;
     }
 
-    public void setPaidDate(Date paidDate) {
+    public void setPaidDate(String paidDate) {
         this.paidDate = paidDate;
-        setValueInList("paiddate", paidDate.toString());
+        setValueInList("paiddate", createdDate);
     }
 
     public Cart getCart() {
@@ -189,11 +174,11 @@ public class Order extends Entity {
         setContactAddress(user.getContactAddress());
     }
 
-    public String orderNumberGenerator(){
+    public String orderNumberGenerator() {
         Date todaysDate = new Date();
         DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String str2 = df2.format(todaysDate);
-        String str3=str2.substring(0,2)+str2.substring(3,5)+str2.substring(8,10)+str2.substring(11,13)+str2.substring(14,16)+str2.substring(17,19);
+        String str3 = str2.substring(0, 2) + str2.substring(3, 5) + str2.substring(8, 10) + str2.substring(11, 13) + str2.substring(14, 16) + str2.substring(17, 19);
 
         char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
         StringBuilder sb = new StringBuilder();
@@ -203,8 +188,9 @@ public class Order extends Entity {
             sb.append(c);
         }
         String output = sb.toString();
-        return (str3+output);
+        return (str3 + output);
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -227,15 +213,6 @@ public class Order extends Entity {
         if (getPaidDate() != null ? !getPaidDate().equals(order.getPaidDate()) : order.getPaidDate() != null)
             return false;
         return !(getCart() != null ? !getCart().equals(order.getCart()) : order.getCart() != null);
-
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     @Override
@@ -255,7 +232,7 @@ public class Order extends Entity {
     @Override
     public String toString() {
         String str = "Order{" +
-                "id="+getId()+'\'' +
+                "id=" + getId() + '\'' +
                 ", name='" + getEntityName() + '\'' +
                 ", isActive=" + getisActive() +
                 ", entityType='" + getEntityTypeName() + '\'' +
@@ -267,7 +244,13 @@ public class Order extends Entity {
                 str += ": " + item.getValue().toString();
             }
         }
-        if(cart!=null) {
+//        if(getValueList()!=null){
+//            for (Value item : getValueList()) {
+//                str += "\n" + item.getAtributeId();
+//                str += ": " + item.getValue();
+//            }
+//        }
+        if (cart != null) {
             str += "\n" + cart.toString();
         }
         return str;
