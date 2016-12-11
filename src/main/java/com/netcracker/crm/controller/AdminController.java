@@ -115,8 +115,13 @@ public class AdminController {
         prod.setImageUrl(addProductForm.getImageUrl());
 
         setValueList(typeid,prod,addProductForm);
-        productService.add(prod);
-        model.addAttribute("hello", "Product created");
+        int flag = productService.add(prod);
+        if(flag==0)
+        {
+            model.addAttribute("hello", "Product exists");
+            model.addAttribute("msg", "Please, update "+prod.getEntityName());
+        }
+        else model.addAttribute("hello", "Product created");
         return SUCCESS;
     }
 
@@ -153,7 +158,9 @@ public class AdminController {
             addProductForm.setImageUrl("/resources/img/img_phone.jpg");
         prod.setImageUrl(addProductForm.getImageUrl());
 
+        prod.getValueList().clear();
         setValueList(typeid,prod,addProductForm);
+
         productService.updateByProduct(prod);
         model.addAttribute("hello", "Product updated");
         return SUCCESS;
