@@ -188,8 +188,8 @@ public class EntityDaoValidation implements IEntityValidation {
             for (String item : attributeSet) {
                 result+=","+item;
             }
+            result=result.substring(1);
         }
-        result=result.substring(1);
         return result;
     }
     public static boolean idInTable(String tableName, int id) {

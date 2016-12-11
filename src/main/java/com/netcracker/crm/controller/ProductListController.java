@@ -207,8 +207,8 @@ public class ProductListController {
         nameSearch.validate();
         if(nameSearch.getName().equals(""))
             return "redirect:/";
-        List<Product> productList = productService.getList(
-                EntityType.Telephone.getTypeId(), "", "", "", 1, 3,user.getRoleId());
+        List<Product> productList = productService.searchByName(EntityType.Telephone.getTypeId(),nameSearch.getName(),1, 2,user.getRoleId(),true);
+
         if (productList == null)
             productList = new ArrayList<>();
         if (productList.isEmpty())

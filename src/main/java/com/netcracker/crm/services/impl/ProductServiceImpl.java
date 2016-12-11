@@ -69,6 +69,32 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
     }
 
     @Override
+    public List<Product> searchByName(int typeId, String searchWord, int pageNumber, int pageSize, String role, boolean orderSide) {
+        List<Product> productList;
+        String priceId = String.valueOf(getAtributeIdByTypeId(typeId, "Price"));
+        String imageId = String.valueOf(getAtributeIdByTypeId(typeId, "ImageURL"));
+        String capacityId = String.valueOf(getAtributeIdByTypeId(typeId, "Capacity"));
+        String batteryId = String.valueOf(getAtributeIdByTypeId(typeId, "Battery"));
+        String viewStr = imageId + "," + priceId + "," + capacityId + "," + batteryId;
+        try {
+            List<Entity> list =  entityDao.searchByName(typeId,viewStr,searchWord,pageNumber,pageSize,role,orderSide);
+            if (list != null) {
+                productList = new ArrayList<>(list.size());
+                for (Entity e : list) {
+                    Product p = new Product(e);
+                    productList.add(p);
+                }
+            } else return null;
+            logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getAll for Product");
+        } catch (DaoException exc) {
+            logger.error(exc.getMessage());
+            throw new ServiceException(exc.getMessage(), exc);
+        }
+        return productList;
+
+    }
+
+    @Override
     public List<Product> getByUserAndType(Integer userID, Integer entityTypeID) {
         List<Product> productList;
         try {

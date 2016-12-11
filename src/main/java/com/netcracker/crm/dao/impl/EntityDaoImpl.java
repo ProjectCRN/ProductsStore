@@ -266,6 +266,61 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     }
 
     @Override
+    public List<Entity> searchByName(int typeId,String atributesIdView, String searchWord, int pageNumber, int pageSize, String role, boolean orderSide) {
+        List<String> entiyIdList;
+        int rownumMax=((pageNumber * pageSize) + 1 );
+        int rownumMin=(((pageNumber-1) * pageSize) + 1);
+        int intRole= role.equals("A") ? 0 : 1;
+        String inSideParam = orderSide ? "ASC" : "DESC";
+        String sql = "SELECT * FROM\n" +
+                "      (\n" +
+                "          SELECT a.*, rownum rnum\n" +
+                "          FROM\n" +
+                "          (\n" +
+                "              SELECT E.ENTITYID, E.ENTITYNAME\n" +
+                "              FROM TBL_ENTITY E\n" +
+                "              WHERE ((E.ENTITYTYPEID= ? ) AND (REGEXP_LIKE(E.ENTITYNAME,'"+searchWord+"','i')) AND (E.ISACTIVE=1 OR E.ISACTIVE= ? ))\n" +
+                "              ORDER BY E.ENTITYNAME " + inSideParam +
+                "            ) a\n" +
+                "          WHERE rownum < ? \n" +
+                "      )\n" +
+                "      WHERE rnum >= ? ";
+        Object[] args = new Object[]{
+                typeId,
+                intRole,
+                rownumMax,
+                rownumMin
+        };
+
+        try {
+            entiyIdList = getJdbcTemplate().query(sql, args, new RowMapper<String>() {
+                public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    String string;
+                    string = (rs.getString(COLUMN_ENTITY_ID));
+                    int rnum = rs.getInt("RNUM");
+                    return string;
+                }
+            });
+
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("Can't searchByName() " + e.getMessage());
+            throw new DaoException("Can't find entity with Type id = " + typeId, e);
+        } catch (DataAccessException e) {
+            logger.error(e.getMessage());
+            throw new DaoException("Data access Exception", e);
+        }
+        if (entiyIdList != null && entiyIdList.size() > 0) {
+            String strEntityIdList = "";
+            for (String item : entiyIdList) {
+                strEntityIdList += "," + item;
+            }
+            strEntityIdList = strEntityIdList.substring(1);
+            return getListWithAttributes(strEntityIdList, atributesIdView,orderSide);
+        }
+        return null;
+    }
+
+    @Override
     public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView) {
         getListValidation(typeId, atributesId, values, operators, atributesIdView);
 
