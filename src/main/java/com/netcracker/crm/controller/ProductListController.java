@@ -90,6 +90,7 @@ public class ProductListController {
 
         model.addAttribute("productList", productList);
         model.addAttribute("currType", type);
+        model.addAttribute("currSort", searchAttributes.getName());
         model.addAttribute("searchAttr", searchAttributes);
         int pageNumber = paginationService.calcPageNum(productService.rowCounter(
                 typeid,
@@ -140,6 +141,7 @@ public class ProductListController {
             model.addAttribute("emptyList", "sorry, nothing to show");
         model.addAttribute("productList", productList);
         model.addAttribute("currType", searchAttr.getType());
+        model.addAttribute("currSort", searchAttributes.getName());
         model.addAttribute("searchAttr", searchAttr);
         this.setSearchAttributes(searchAttr);
         int pageNumber = paginationService.calcPageNum(productService.rowCounter(
@@ -186,6 +188,7 @@ public class ProductListController {
             model.addAttribute("emptyList", "sorry, nothing to show");
         model.addAttribute("productList", productList);
         model.addAttribute("currType", searchAttr.getType());
+        model.addAttribute("currSort", searchAttributes.getName());
         model.addAttribute("searchAttr", searchAttr);
         this.setSearchAttributes(searchAttr);
 

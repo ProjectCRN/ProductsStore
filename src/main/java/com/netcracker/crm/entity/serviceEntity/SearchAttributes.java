@@ -25,10 +25,38 @@ public class SearchAttributes {
     private String attribute;
     private String operators;
     private String values;
+    private int sortBy;
 
-    public SearchAttributes() { numPerPage="2";   }
+    private List<String> sortValues;
+
+    public SearchAttributes() {
+        numPerPage="2";
+        name = "up";
+        if(getSortValues() == null)
+        {
+            sortValues = new ArrayList<>();
+            sortValues.add("up");
+            sortValues.add("down");
+        }
+    }
 
     public String getLists() {return attribute+" | "+operators+" | "+values;}
+
+    public int getSortBy() {
+        return sortBy;
+    }
+
+    public void setSortBy(int sortBy) {
+        this.sortBy = sortBy;
+    }
+
+    public List<String> getSortValues() {
+        return sortValues;
+    }
+
+    public void setSortValues(List<String> sortValues) {
+        this.sortValues = sortValues;
+    }
 
     public String getNumPerPage() {
         if(numPerPage == null) return "";
