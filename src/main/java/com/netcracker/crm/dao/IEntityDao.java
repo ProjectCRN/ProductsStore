@@ -13,7 +13,7 @@ public interface IEntityDao extends IDao<Entity> {
 
     int updateByEntity(Entity entity);
 
-    List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView, int pageNumber, int pageSize, String role);
+    List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView, int pageNumber, int pageSize, String role, boolean orderSide);
 
     List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView);
 

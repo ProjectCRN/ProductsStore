@@ -47,6 +47,7 @@ public class DaoConstants {
     public static final String PARAM_IN_PAGE_NUMBER = "inPageNumber";
     public static final String PARAM_IN_PAGE_SIZE = "inPageSize";
     public static final String PARAM_IN_ROLE = "inRole";
+    public static final String PARAM_IN_ORDERSIDE = "inSide";
 
     public static final String PARAM_OUT_ENTITY_LIST = "outEntity";
     public static final String PARAM_OUT_COUNT = "outCount";

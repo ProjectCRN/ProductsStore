@@ -8,6 +8,7 @@ CREATE OR REPLACE PROCEDURE ns_admin.sp_entity_list(
   inPageNumber IN INTEGER,
   inPageSize IN INTEGER,
   inRole IN NVARCHAR2,
+  inSide IN INTEGER,
 
   outEntity OUT SYS_REFCURSOR
 	)
@@ -50,10 +51,11 @@ IF (LENGTH(inAttribute) IS NULL) THEN
               SELECT E.ENTITYID, E.ENTITYNAME
               FROM TBL_ENTITY E
               WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1 OR E.ISACTIVE=intRole))
-              ORDER BY E.ENTITYNAME
+              ORDER BY 
+                CASE inSide WHEN 1 THEN E.ENTITYNAME ELSE NULL END ASC,
+                CASE inSide WHEN 0 THEN E.ENTITYNAME ELSE NULL END DESC
             ) a
           WHERE rownum < ((pageNumber * pageSize) + 1 )
-          ORDER BY a.ENTITYNAME
       )
       WHERE rnum >= (((pageNumber-1) * pageSize) + 1);
       
@@ -114,10 +116,11 @@ END IF;
              ) X  
              INNER JOIN TBL_ENTITY CX ON CX.EntityId = X.EntityId
              WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1 OR CX.ISACTIVE=intRole))
-             ORDER BY CX.ENTITYNAME
+             ORDER BY
+                CASE inSide WHEN 1 THEN CX.ENTITYNAME ELSE NULL END ASC,
+                CASE inSide WHEN 0 THEN CX.ENTITYNAME ELSE NULL END DESC
          ) a
         WHERE rownum < ((pageNumber * pageSize) + 1 )
-        ORDER BY a.ENTITYNAME
     )
     WHERE rnum >= (((pageNumber-1) * pageSize) + 1);
   

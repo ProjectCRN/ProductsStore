@@ -86,7 +86,7 @@ public class ProductListController {
                 searchAttributes.getValues(),
                 searchAttributes.getOperators(),
                 1,
-                paginationService.getNumPerPage(),user.getRoleId());
+                paginationService.getNumPerPage(),user.getRoleId(),false);
         if (productList == null)
             productList = new ArrayList<>();
 
@@ -136,7 +136,7 @@ public class ProductListController {
                 searchAttr.getValues(),
                 searchAttr.getOperators(),
                 1,
-                paginationService.getNumPerPage(),user.getRoleId());
+                paginationService.getNumPerPage(),user.getRoleId(),false);
         if (productList == null)
             productList = new ArrayList<>();
         if (productList.isEmpty())
@@ -183,7 +183,7 @@ public class ProductListController {
                 searchAttr.getValues(),
                 searchAttr.getOperators(),
                 pagenum,
-                paginationService.getNumPerPage(),user.getRoleId());
+                paginationService.getNumPerPage(),user.getRoleId(),false);
         if (productList == null)
             productList = new ArrayList<>();
         if (productList.isEmpty())
