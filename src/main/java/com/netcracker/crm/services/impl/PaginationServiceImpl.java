@@ -15,12 +15,12 @@ public class PaginationServiceImpl implements IPaginationService {
     private int pageNum;
 
     @Override
-    public List<Pair> getPageNums(int num, int now) {
-        List<Pair> pageNums = new ArrayList<>();
+    public List<Pair<String,String>> getPageNums(int num, int now) {
+        List<Pair<String,String>> pageNums = new ArrayList<>();
         for(int i=0;i<num;++i)
             if(i==now-1)
-                pageNums.add(new Pair(Integer.toString(i+1),"activePage"));
-            else pageNums.add(new Pair(Integer.toString(i+1),"nonActivePage"));
+                pageNums.add(new Pair<>(Integer.toString(i + 1), "activePage"));
+            else pageNums.add(new Pair<>(Integer.toString(i + 1), "nonActivePage"));
         return pageNums;
     }
 

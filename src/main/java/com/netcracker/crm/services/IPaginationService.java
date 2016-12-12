@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Ксения on 03.12.2016.
  */
 public interface IPaginationService {
-    List<Pair> getPageNums(int num, int now);
+    List<Pair<String,String>> getPageNums(int num, int now);
     int getPageNum();
     void setPageNum(int pageNum);
     int calcPageNum(int itemNum);

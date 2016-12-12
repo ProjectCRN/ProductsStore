@@ -9,16 +9,10 @@ import com.netcracker.crm.services.constants.ServiceConstants;
 import com.netcracker.crm.services.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.TestOnly;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by egor on 11.11.2016.
