@@ -72,10 +72,10 @@
                         <span>${item.getEntityName()}</span><br>
                         <!--id: ${item.getId()}-->
                     </a>
-                        ${item.getSummary()}
-                    <p>Capacity, GB: ${item.getCapacity()}</p>
+                        ${item.getSummary()}<br>
+                    Capacity, GB: ${item.getCapacity()}<br>
 
-                    <p>Battery (Hours): ${item.getBattery()}</p>
+                    Battery (Hours): ${item.getBattery()}
                     <br>
 
                     <div class="btn_right btn_position">

@@ -8,7 +8,7 @@
             Number: №${item.getOrderNumber()} <br>
             Total: ${item.getTotal()} <br>
             <a class="btn btn-default btnLink seeMore seeMoreOrder_${item.getId()}" href="#">see more</a>
-            <a class="btn btn-default btnLink delete deleteOrder_${item.getId()}" href="#">delete</a>
+            <a class="btn btn-default btnLink seeMore deleteOrder_${item.getId()}" href="#">delete</a>
             <br>
 
             <script type="text/javascript" language="javascript">
