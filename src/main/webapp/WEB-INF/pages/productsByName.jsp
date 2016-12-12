@@ -14,9 +14,9 @@
                     <span>${item.getEntityName()}</span><br>
                     <!--id: ${item.getId()}-->
                 </a>
-                    ${item.getSummary()}
-                <p>Capacity, GB: ${item.getCapacity()}</p>
-                <p>Battery (Hours): ${item.getBattery()}</p>
+                    ${item.getSummary()}<br>
+                Capacity, GB: ${item.getCapacity()}<br>
+                Battery (Hours): ${item.getBattery()}
                 <br>
 
                 <div class="btn_right">

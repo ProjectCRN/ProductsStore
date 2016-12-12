@@ -354,4 +354,7 @@ body {
 .block1 .listOfProducts a {
     color: #6d6d6d;
 }
- 
+
+.block1 .summary{
+    max-width: 400px;
+}
