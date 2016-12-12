@@ -36,7 +36,7 @@
 <script type="text/javascript" language="javascript">
     function profileFun() {
         $('#page-preloader').show();
-        var msg   = $('#signupForm').serialize();
+        var msg   = $('#profileForm').serialize();
         $.ajax({
             type: 'POST',
             url: '/updateUser',

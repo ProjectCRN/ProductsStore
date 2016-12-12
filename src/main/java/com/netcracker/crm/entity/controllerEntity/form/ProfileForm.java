@@ -6,9 +6,9 @@ import com.netcracker.crm.entity.User;
  * Created by Ксения on 12.12.2016.
  */
 public class ProfileForm {
-    private String userName;
-    private String contactPhone;
-    private String contactAddress;
+    String userName;
+    String contactPhone;
+    String contactAddress;
 
     public void setFieldsFromUser(User user){
         this.userName = user.getUserName();
@@ -17,7 +17,6 @@ public class ProfileForm {
     }
 
     public String getUserName() {
-        if(userName==null) return "Lol";
         return userName;
     }
 
@@ -26,7 +25,6 @@ public class ProfileForm {
     }
 
     public String getContactPhone() {
-        if(contactPhone==null) return "";
         return contactPhone;
     }
 
@@ -35,7 +33,6 @@ public class ProfileForm {
     }
 
     public String getContactAddress() {
-        if(contactAddress==null) return "";
         return contactAddress;
     }
 
