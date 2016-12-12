@@ -105,6 +105,12 @@
         <artifactId>commons-validator</artifactId>
         <version>1.4.0</version>
     </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>4.2.5.RELEASE</version>
+        <scope>test</scope>
+    </dependency>
     <!-- Spring validation -->
     <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
     <dependency>
@@ -194,6 +200,16 @@
         <groupId>joda-time</groupId>
         <artifactId>joda-time</artifactId>
         <version>2.9.6</version>
+    </dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>RELEASE</version>
     </dependency>
 
 

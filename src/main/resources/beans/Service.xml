@@ -79,4 +79,8 @@
 
     <bean class="com.netcracker.crm.entity.controllerEntity.validator.ProfileValidator" id="profileValidator" scope="session"/>
 
+    <bean class="com.netcracker.crm.services.test.UserTest" id="userTest" scope="session">
+        <property name="userService" ref="userService"/>
+    </bean>
+
 </beans>
