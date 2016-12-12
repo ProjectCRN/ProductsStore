@@ -40,6 +40,7 @@
 		<property name="user" ref="user"/>
 		<property name="loginValidator" ref="loginValidator"/>
 		<property name="cartService" ref="cartService"/>
+		<property name="profileValidator" ref="profileValidator"/>
 	</bean>
 
 	<bean class="com.netcracker.crm.controller.FrontController" id="frontController" scope="session">

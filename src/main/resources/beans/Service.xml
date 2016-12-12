@@ -77,4 +77,6 @@
         <property name="patternsService" ref="patternsService"/>
     </bean>
 
+    <bean class="com.netcracker.crm.entity.controllerEntity.validator.ProfileValidator" id="profileValidator" scope="session"/>
+
 </beans>
