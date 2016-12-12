@@ -161,7 +161,7 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
                 COLUMN_USER_PASSWORD +" = ?, "+
                 COLUMN_USER_USERNAME + " = ?, " +
                 COLUMN_USER_PHONE +" = ?, " +
-                COLUMN_USER_ADDRESS + " = ? " +
+                COLUMN_USER_ADDRESS + " = ?, " +
                 COLUMN_USER_EMAIL + " =? " +
                 "WHERE " + COLUMN_USER_ID + " = ?";
         Object[] args = new Object[] {
