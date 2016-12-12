@@ -110,15 +110,17 @@ body {
 .block1 input{
     background: none;
     border: none;
-    border-bottom: 1px solid #575859;
+    border-bottom: 1px solid #e8ebef;
     border-radius: 0;
     outline: none;
 }
+
 
 .block1 .btn{
     border: 1px solid #575859;
     background: #e8ebef;
     margin: 20px auto;
+    border-radius: 3px;
 }
 
 .block1 .btn:hover{
@@ -326,6 +328,8 @@ body {
 }
 
 .block1 .searchByName{
+    background: url('../img/search.png') no-repeat 11px 50%;
+    background-size: 20px 20px;
     border:  1px solid #e8ebef;
     border-radius: 3px;
     box-sizing: border-box;
@@ -343,3 +347,11 @@ body {
 .block1 .searchByName:focus {
     border-color: #999;
 }
+.block1 input:focus{
+    border-color: #999;
+}
+
+.block1 .listOfProducts a {
+    color: #6d6d6d;
+}
+ 
