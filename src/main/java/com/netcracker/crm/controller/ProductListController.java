@@ -72,6 +72,7 @@ public class ProductListController {
         if(searchAttributes != null) {
             if(!(searchAttributes.getType() == null || searchAttributes.getType().equals(type)))
                 searchAttributes.setType(type);
+
             searchService.validate(searchAttributes);
             searchService.parseSearchAttributes(searchAttributes);
         }
@@ -86,7 +87,9 @@ public class ProductListController {
                 searchAttributes.getValues(),
                 searchAttributes.getOperators(),
                 1,
-                paginationService.getNumPerPage(),user.getRoleId(),false);
+                paginationService.getNumPerPage(),
+                user.getRoleId(),
+                searchAttributes.getSortBy());
         if (productList == null)
             productList = new ArrayList<>();
 
@@ -137,14 +140,16 @@ public class ProductListController {
                 searchAttr.getValues(),
                 searchAttr.getOperators(),
                 1,
-                paginationService.getNumPerPage(),user.getRoleId(),false);
+                paginationService.getNumPerPage(),
+                user.getRoleId(),
+                searchAttr.getSortBy());
         if (productList == null)
             productList = new ArrayList<>();
         if (productList.isEmpty())
             model.addAttribute("emptyList", "sorry, nothing to show");
         model.addAttribute("productList", productList);
         model.addAttribute("currType", searchAttr.getType());
-        model.addAttribute("currSort", searchAttributes.getName());
+        model.addAttribute("currSort", searchAttr.getName());
         model.addAttribute("searchAttr", searchAttr);
         this.setSearchAttributes(searchAttr);
         int pageNumber = paginationService.calcPageNum(productService.rowCounter(
@@ -158,6 +163,7 @@ public class ProductListController {
         model.addAttribute("searchBtn", "search");
         model.addAttribute("role", user.getRoleId());
         model.addAttribute("searchName", new NameSearch());
+        setSearchAttributes(searchAttr);
         return PRODUCTS;
     }
 
@@ -185,7 +191,9 @@ public class ProductListController {
                 searchAttr.getValues(),
                 searchAttr.getOperators(),
                 pagenum,
-                paginationService.getNumPerPage(),user.getRoleId(),false);
+                paginationService.getNumPerPage(),
+                user.getRoleId(),
+                searchAttr.getSortBy());
         if (productList == null)
             productList = new ArrayList<>();
         if (productList.isEmpty())
@@ -201,6 +209,7 @@ public class ProductListController {
         model.addAttribute("searchBtn", "search");
         model.addAttribute("searchName", new NameSearch());
         model.addAttribute("role", user.getRoleId());
+        setSearchAttributes(searchAttr);
         return PRODUCTS;
     }
 

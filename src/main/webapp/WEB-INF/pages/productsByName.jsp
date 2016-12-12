@@ -13,11 +13,10 @@
 
                     <span>${item.getEntityName()}</span><br>
                     <!--id: ${item.getId()}-->
-                    <p>Capacity, GB: ${item.getCapacity()}</p>
-                    <p>Battery (Hours): ${item.getBattery()}</p>
-
                 </a>
                     ${item.getSummary()}
+                <p>Capacity, GB: ${item.getCapacity()}</p>
+                <p>Battery (Hours): ${item.getBattery()}</p>
                 <br>
 
                 <div class="btn_right">

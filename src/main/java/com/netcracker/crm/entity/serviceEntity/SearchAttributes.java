@@ -25,28 +25,29 @@ public class SearchAttributes {
     private String attribute;
     private String operators;
     private String values;
-    private int sortBy;
+    private boolean sortBy;
 
     private List<String> sortValues;
 
     public SearchAttributes() {
         numPerPage="2";
-        name = "up";
+        name = "A-Z";
+        sortBy = true;
         if(getSortValues() == null)
         {
             sortValues = new ArrayList<>();
-            sortValues.add("up");
-            sortValues.add("down");
+            sortValues.add("A-Z");
+            sortValues.add("Z-A");
         }
     }
 
     public String getLists() {return attribute+" | "+operators+" | "+values;}
 
-    public int getSortBy() {
+    public boolean getSortBy() {
         return sortBy;
     }
 
-    public void setSortBy(int sortBy) {
+    public void setSortBy(boolean sortBy) {
         this.sortBy = sortBy;
     }
 
@@ -183,20 +184,24 @@ public class SearchAttributes {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof SearchAttributes)) return false;
 
         SearchAttributes that = (SearchAttributes) o;
 
-        if (typeId != that.typeId) return false;
-        if (minPrice != null ? !minPrice.equals(that.minPrice) : that.minPrice != null) return false;
-        if (maxPrice != null ? !maxPrice.equals(that.maxPrice) : that.maxPrice != null) return false;
-        if (minCapacity != null ? !minCapacity.equals(that.minCapacity) : that.minCapacity != null) return false;
-        if (maxCapacity != null ? !maxCapacity.equals(that.maxCapacity) : that.maxCapacity != null) return false;
-        if (minBattery != null ? !minBattery.equals(that.minBattery) : that.minBattery != null) return false;
-        if (maxBattery != null ? !maxBattery.equals(that.maxBattery) : that.maxBattery != null) return false;
-        if (numPerPage != null ? !numPerPage.equals(that.numPerPage) : that.numPerPage != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return !(type != null ? !type.equals(that.type) : that.type != null);
+        if (getMinPrice() != null ? !getMinPrice().equals(that.getMinPrice()) : that.getMinPrice() != null)
+            return false;
+        if (getMaxPrice() != null ? !getMaxPrice().equals(that.getMaxPrice()) : that.getMaxPrice() != null)
+            return false;
+        if (getMinCapacity() != null ? !getMinCapacity().equals(that.getMinCapacity()) : that.getMinCapacity() != null)
+            return false;
+        if (getMaxCapacity() != null ? !getMaxCapacity().equals(that.getMaxCapacity()) : that.getMaxCapacity() != null)
+            return false;
+        if (getMinBattery() != null ? !getMinBattery().equals(that.getMinBattery()) : that.getMinBattery() != null)
+            return false;
+        if (getMaxBattery() != null ? !getMaxBattery().equals(that.getMaxBattery()) : that.getMaxBattery() != null)
+            return false;
+        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
+        return getNumPerPage() != null ? getNumPerPage().equals(that.getNumPerPage()) : that.getNumPerPage() == null;
 
     }
 

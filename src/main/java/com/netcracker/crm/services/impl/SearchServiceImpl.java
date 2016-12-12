@@ -120,9 +120,9 @@ public class SearchServiceImpl implements ISearchService {
             list2 += "<=";
             list3 += searchAttr.getMaxBattery();
         }
-        if(searchAttr.getName().equals("up"))
-            searchAttr.setSortBy(1);
-        else searchAttr.setSortBy(0);
+        if(searchAttr.getName().equals("A-Z"))
+            searchAttr.setSortBy(true);
+        else searchAttr.setSortBy(false);
 
         searchAttr.setTypeId(typeId);
         searchAttr.setAttribute(list1);
