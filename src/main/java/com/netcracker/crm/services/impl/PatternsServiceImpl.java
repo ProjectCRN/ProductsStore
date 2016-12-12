@@ -20,7 +20,7 @@ public class PatternsServiceImpl implements IPatternsService {
         productFieldsPatterns.setPrice("\\d+(\\.\\d{0,2})?");
         productFieldsPatterns.setSummary("^[a-zA-Z][a-zA-Z0-9-_\\. ]{5,140}$");
         productFieldsPatterns.setOperatingSystem("^[a-zA-Z][a-zA-Z0-9-_\\. ]{1,20}$");
-        productFieldsPatterns.setProcessorSpeed("[0-9]{1,}");
+        productFieldsPatterns.setProcessorSpeed("\\d+(\\.\\d{0,2})?");
         productFieldsPatterns.setCapacity("[0-9]{1,}");
         productFieldsPatterns.setDisplay("\\d+(\\.\\d{0,1})?");
         productFieldsPatterns.setHeight("\\d+(\\.\\d{0,2})?");
