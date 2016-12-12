@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import = "xbcat.util.*"  %>
 
 
 
@@ -70,7 +71,7 @@
                                 if(${prev} == '2'){
                                     $('.seeMore_btn_${item.getProduct().getId()}').click( function() {
                                         $.ajax({
-                                            url: '/item/${item.getProduct().getId()}',
+                                            url: '/item/${item.getProduct().getValueFromList(20)}',
                                             success: function(data) {
                                                 $('.results').html(data);
                                             }
