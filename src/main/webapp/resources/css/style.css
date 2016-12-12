@@ -324,3 +324,22 @@ body {
     display: inline-block;
     margin: 25px 0 10px 25px;
 }
+
+.block1 .searchByName{
+    border:  1px solid #e8ebef;
+    border-radius: 3px;
+    box-sizing: border-box;
+    outline: 0;
+    padding: 0 10px 0 40px;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    -o-transition: border .1s linear;
+    transition: border .1s linear;
+    position: relative;
+    z-index: 1;
+}
+
+.block1 .searchByName:focus {
+    border-color: #999;
+}

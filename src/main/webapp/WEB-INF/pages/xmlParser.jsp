@@ -45,7 +45,7 @@
                         <li><a class="registerUser" href="#">Register</a></li>
                     </ul>
                 </li>
-                <li class="adminRole" style="display: none"><a href="#">Admin</a>
+                <li class="adminRole"  ><a href="#">Admin</a>
                     <ul class="submenu">
                         <li><a class="logout" href="#">LogOut</a></li>
                         <li><a class="allOrders" href="#">Orders</a></li>
@@ -91,18 +91,6 @@
 
 <script language="javascript" type="text/javascript">
 
-
-    var role = '${userRole}';
-
-    if (role == 'N'){
-        $('.guestRole').show();
-    }
-    if (role == 'U'){
-        $('.userRole').show();
-    }
-    if (role == 'A'){
-        $('.adminRole').show();
-    }
 
     function funLoad(str) {
         $('#page-preloader').show();

@@ -35,6 +35,32 @@
     </sf:form>
 </div>
 <div class="col-md-8">
+
+
+    <sf:form id="byName" method="get" modelAttribute="searchName"
+             action="javascript:void(null);" onsubmit="byNameFun()" >
+        <sf:input path="name" size="12" class="searchByName" placeholder="Search..."
+                  pattern="^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$" />
+        <input type="submit" value="Search"   style="display: none;"/>
+    </sf:form>
+    <script type="text/javascript" language="javascript">
+        function byNameFun() {
+            $('#page-preloader').show();
+            var msg   = $('#byName').serialize();
+            $.ajax({
+                type: 'GET',
+                url: '/searchByName',
+                data: msg,
+                success: function(data) {
+                    $('.resultsSearch').html(data);
+                    $('#page-preloader').hide();
+                }
+            });
+        }
+    </script>
+
+<div class="resultsSearch">
+
     <ul class="listOfProducts">
         ${emptyList}
         <c:forEach items="${productList}" var="item">
@@ -154,6 +180,7 @@
         </c:forEach>
 
     </ul>
+    </div>
 
 </div>
 

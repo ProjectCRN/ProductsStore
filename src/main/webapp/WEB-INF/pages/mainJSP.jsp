@@ -56,30 +56,7 @@
                         <li><a class="crateXml" href="uploadFile">Xml Parser</a></li>
                     </ul>
                 </li>
-                <li>
-                    <sf:form id="byName" method="get" modelAttribute="searchName"
-                             action="javascript:void(null);" onsubmit="byNameFun()" >
-                        <sf:input path="name" size="12" placeholder="Search..."
-                                  pattern="^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$"
-                        style="border: none;"/>
-                        <input type="submit" value="Search"  style="display: none;"/>
-                    </sf:form>
-                    <script type="text/javascript" language="javascript">
-                        function byNameFun() {
-                            $('#page-preloader').show();
-                            var msg   = $('#byName').serialize();
-                            $.ajax({
-                                type: 'GET',
-                                url: '/searchByName',
-                                data: msg,
-                                success: function(data) {
-                                    $('.results').html(data);
-                                    $('#page-preloader').hide();
-                                }
-                            });
-                        }
-                    </script>
-                </li>
+
             </nav>
 
             <div class="container">

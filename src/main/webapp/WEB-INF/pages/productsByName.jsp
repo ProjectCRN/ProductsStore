@@ -2,10 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<div class="col-md-3">
 
-</div>
-<div class="col-md-8">
+
     <ul class="listOfProducts">
         ${emptyList}
         <c:forEach items="${productList}" var="item">
@@ -103,5 +101,3 @@
         </c:forEach>
     </ul>
 
-
-</div>

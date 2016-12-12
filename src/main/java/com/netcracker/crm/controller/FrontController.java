@@ -28,7 +28,7 @@ public class FrontController {
         model.addAttribute("message", "Our dream team ^_^");
         model.addAttribute("userName", user.getUserName());
         model.addAttribute("user",user);
-        model.addAttribute("searchName", new NameSearch());
+
 
         return VIEW_INDEX;
     }

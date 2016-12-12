@@ -103,6 +103,7 @@ public class ProductListController {
         model.addAttribute("pages", paginationService.getPageNums(pageNumber,1));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
+        model.addAttribute("searchName", new NameSearch());
 
         if (productList.isEmpty())
             model.addAttribute("emptyList", "sorry, nothing to show");
@@ -156,6 +157,7 @@ public class ProductListController {
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
         model.addAttribute("role", user.getRoleId());
+        model.addAttribute("searchName", new NameSearch());
         return PRODUCTS;
     }
 
@@ -197,6 +199,7 @@ public class ProductListController {
         model.addAttribute("pages", paginationService.getPageNums(pageNumber,pagenum));
         model.addAttribute("searchReq", "products/search");
         model.addAttribute("searchBtn", "search");
+        model.addAttribute("searchName", new NameSearch());
         model.addAttribute("role", user.getRoleId());
         return PRODUCTS;
     }
@@ -206,7 +209,7 @@ public class ProductListController {
 
         nameSearch.validate();
         if(nameSearch.getName().equals(""))
-            return "redirect:/";
+            return "redirect:";
         List<Product> productList = productService.searchByName(EntityType.Telephone.getTypeId(),nameSearch.getName(),1, 2,user.getRoleId(),true);
 
         if (productList == null)
