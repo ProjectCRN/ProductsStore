@@ -5,9 +5,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import static org.junit.Assert.assertTrue;
 
@@ -16,11 +18,15 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-@ContextConfiguration("/SpringModule.xml")
+@WebAppConfiguration
+@ContextConfiguration(locations = {"classpath:test-SpringModule.xml"})
 public class UserServiceImplTest {
 
     @Autowired
-    @Qualifier("userServiceTest")
+    MockHttpSession session;
+
+    @Autowired
+    @Qualifier("userService")
     private IUserService userService;
 
     @Test
