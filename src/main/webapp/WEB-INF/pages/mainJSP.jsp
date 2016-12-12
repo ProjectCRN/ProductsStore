@@ -37,6 +37,7 @@
                 <li class="userRole" style="display: none"><a href="#">${userName}</a>
                     <ul class="submenu">
                         <li><a class="logout" href="#">LogOut</a></li>
+                        <li><a class="update" href="#">Profile</a></li>
                         <li><a class="allOrders" href="#">Orders</a></li>
                     </ul>
                 </li>
@@ -126,6 +127,9 @@
     });
     $('.login').click( function() {
         funLoad('/login');
+    });
+    $('.update').click( function() {
+        funLoad('/updateUser');
     });
     $('.allOrders').click( function() {
         funLoad('/getAllOrders');

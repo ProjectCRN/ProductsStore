@@ -16,7 +16,7 @@ public class CartQuantity {
 
     public void validate()
     {
-        if(!quantity.matches("^[ 0-9]+$")) quantity="";
+        if(!quantity.matches("[ 0-9]{1,6}")) quantity="";
         else if(Integer.parseInt(quantity)==0) quantity="";
     }
 }

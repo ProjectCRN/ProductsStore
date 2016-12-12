@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import = "xbcat.util.*"  %>
 
 
 
@@ -30,7 +31,7 @@
                                        href="#">delete</a><br>
                                     <sf:form id="btnQuan_${item.getProduct().getId()}" class="hide_show" method="get" modelAttribute="cartQuantity"
                                              action="javascript:void(null);" onsubmit="setFun_${item.getProduct().getId()}()">
-                                        <sf:input path="quantity" size="8" placeholder="Quantity" pattern="^[ 0-9]+$"/><br><br>
+                                        <sf:input path="quantity" size="8" placeholder="Quantity" pattern="[ 0-9]{1,6}"/><br><br>
                                         <input type="submit" value="setQuantity" class="btn btn-default btnLink"  style="display: none;"/>
                                     </sf:form>
                                 <br><span>${item.getProduct().getPrice()}$</span> <br>
@@ -70,7 +71,7 @@
                                 if(${prev} == '2'){
                                     $('.seeMore_btn_${item.getProduct().getId()}').click( function() {
                                         $.ajax({
-                                            url: '/item/${item.getProduct().getId()}',
+                                            url: '/item/${item.getProduct().getValueFromList(20)}',
                                             success: function(data) {
                                                 $('.results').html(data);
                                             }

@@ -218,7 +218,7 @@ public class ProductListController {
 
         nameSearch.validate();
         if(!nameSearch.getName().equals("")) {
-            List<Product> productList = productService.searchByName(EntityType.Telephone.getTypeId(), nameSearch.getName(), 1, 2, user.getRoleId(), true);
+            List<Product> productList = productService.searchByName(EntityType.Telephone.getTypeId(), nameSearch.getName(), 1, Integer.MAX_VALUE-1, user.getRoleId(), true);
 
             if (productList == null)
                 productList = new ArrayList<>();

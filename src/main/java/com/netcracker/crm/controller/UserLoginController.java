@@ -1,8 +1,10 @@
 package com.netcracker.crm.controller;
 import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.controllerEntity.form.LoginForm;
+import com.netcracker.crm.entity.controllerEntity.form.ProfileForm;
 import com.netcracker.crm.entity.controllerEntity.validator.LoginValidator;
 import com.netcracker.crm.entity.controllerEntity.form.SignupForm;
+import com.netcracker.crm.entity.controllerEntity.validator.ProfileValidator;
 import com.netcracker.crm.entity.controllerEntity.validator.SignupValidator;
 import com.netcracker.crm.services.ICartService;
 import com.netcracker.crm.services.IUserService;
@@ -21,8 +23,11 @@ public class UserLoginController{
     private static final String REGISTER = "register";
     private static final String LOGIN = "login";
     private static final String SUCCESS = "register-success";
+    private static final String UPDATE = "profile";
+    private static final String NO_ROOTS = "noRoots";
     private SignupValidator signupValidator;
     private LoginValidator loginValidator;
+    private ProfileValidator profileValidator;
     private IUserService userService;
     private ICartService cartService;
     private User user;
@@ -46,6 +51,12 @@ public class UserLoginController{
     public void setLoginValidator(LoginValidator loginValidator) {
         this.loginValidator = loginValidator;
     }
+
+    @Required
+    public void setProfileValidator(ProfileValidator profileValidator) {
+        this.profileValidator = profileValidator;
+    }
+
 
     @Required
     public void setCartService(ICartService cartService) {
@@ -108,6 +119,36 @@ public class UserLoginController{
         user.logout();
         cartService.getCart().setUserId(user.getId());
         model.addAttribute("msg", "See you later in our little shop ^_^");
+        model.addAttribute("userRole",user.getRoleId());
+        cartService.clearCart();
+        return SUCCESS;
+    }
+
+    @RequestMapping(value="/updateUser", method = RequestMethod.GET)
+    public String update(ModelMap model) {
+        if (!user.isUser())
+            return NO_ROOTS;
+        ProfileForm profileForm = new ProfileForm();
+        profileForm.setFieldsFromUser(user);
+        model.put("profileForm", profileForm);
+        return UPDATE;
+    }
+
+    @RequestMapping(value="/updateUser", method = RequestMethod.POST)
+    public String processUpdate(ProfileForm profileForm, BindingResult result, ModelMap model) {
+        profileValidator.validate(profileForm, result);
+        if (result.hasErrors()) {
+            return UPDATE;
+        }
+        if (!user.isUser())
+            return NO_ROOTS;
+        user.setUserName(profileForm.getUserName());
+        user.setContactPhone(profileForm.getContactPhone());
+        user.setContactAddress(profileForm.getContactAddress());
+        userService.update(user.getId(),user.getLogin(),user.getPassword(),
+                user.getUserName(),user.getContactPhone(),user.getContactAddress(),
+                user.getEmail());
+        model.addAttribute("hello", "Profile was updated");
         model.addAttribute("userRole",user.getRoleId());
         return SUCCESS;
     }
