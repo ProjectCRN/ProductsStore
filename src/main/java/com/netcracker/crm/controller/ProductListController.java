@@ -208,15 +208,16 @@ public class ProductListController {
     public String searchByName(NameSearch nameSearch, ModelMap model) {
 
         nameSearch.validate();
-        if(nameSearch.getName().equals(""))
-            return "redirect:";
-        List<Product> productList = productService.searchByName(EntityType.Telephone.getTypeId(),nameSearch.getName(),1, 2,user.getRoleId(),true);
+        if(!nameSearch.getName().equals("")) {
+            List<Product> productList = productService.searchByName(EntityType.Telephone.getTypeId(), nameSearch.getName(), 1, 2, user.getRoleId(), true);
 
-        if (productList == null)
-            productList = new ArrayList<>();
-        if (productList.isEmpty())
-            model.addAttribute("emptyList", "sorry, nothing to show");
-        model.addAttribute("productList", productList);
+            if (productList == null)
+                productList = new ArrayList<>();
+            if (productList.isEmpty())
+                model.addAttribute("emptyList", "sorry, nothing to show");
+            model.addAttribute("productList", productList);
+        }
+        else model.addAttribute("emptyList", "please, input product name");
 
         model.addAttribute("role", user.getRoleId());
         return NAME;

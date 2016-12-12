@@ -41,7 +41,7 @@
     <sf:form id="byName" method="get" modelAttribute="searchName"
              action="javascript:void(null);" onsubmit="byNameFun()">
         <sf:input path="name" size="12" class="searchByName" placeholder="Search..."
-                  pattern="^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$"/>
+                  pattern="^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$"  required="required"/>
         <input type="submit" value="Search" style="display: none;"/>
     </sf:form>
     <script type="text/javascript" language="javascript">
