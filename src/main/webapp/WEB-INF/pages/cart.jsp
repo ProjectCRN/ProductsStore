@@ -31,7 +31,7 @@
                                     <sf:form id="btnQuan_${item.getProduct().getId()}" class="hide_show" method="get" modelAttribute="cartQuantity"
                                              action="javascript:void(null);" onsubmit="setFun_${item.getProduct().getId()}()">
                                         <sf:input path="quantity" size="8" placeholder="Quantity" pattern="^[ 0-9]+$"/><br><br>
-                                        <input type="submit" value="setQuantity" class="btn btn-default btnLink"/>
+                                        <input type="submit" value="setQuantity" class="btn btn-default btnLink"  style="display: none;"/>
                                     </sf:form>
                                 <br><span>${item.getProduct().getPrice()}$</span> <br>
 
@@ -67,14 +67,27 @@
                                     });
                                 });
 
-                                $('.seeMore_btn_${item.getProduct().getId()}').click( function() {
-                                    $.ajax({
-                                        url: '/item/${item.getProduct().getId()}',
-                                        success: function(data) {
-                                            $('.results').html(data);
-                                        }
+                                if(${prev} == '2'){
+                                    $('.seeMore_btn_${item.getProduct().getId()}').click( function() {
+                                        $.ajax({
+                                            url: '/item/${item.getProduct().getId()}',
+                                            success: function(data) {
+                                                $('.results').html(data);
+                                            }
+                                        });
                                     });
-                                });
+                                } else {
+                                    $('.seeMore_btn_${item.getProduct().getId()}').click( function() {
+                                        $.ajax({
+                                            url: '/item/${item.getProduct().getId()}',
+                                            success: function(data) {
+                                                $('.results').html(data);
+                                            }
+                                        });
+                                    });
+                                }
+
+
                             </script>
 
                         </c:forEach>

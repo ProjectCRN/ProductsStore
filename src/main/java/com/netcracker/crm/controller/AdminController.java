@@ -162,7 +162,6 @@ public class AdminController {
             addProductForm.setImageUrl("/resources/img/img_phone.jpg");
         prod.setImageUrl(addProductForm.getImageUrl());
         setValueList(typeid, prod, addProductForm);
-
         productService.updateByProduct(prod);
         model.addAttribute("hello", "Product updated");
         return SUCCESS;
