@@ -495,14 +495,14 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
         return out;
     }
 
-    public int countEntityName(int typeid, String name) {
+    public int countEntityName(int id, int typeid, String name) {
         int count;
         final String sql = "select  count(*) from TBL_ENTITY " +
                 "where entitytypeid=? and replace(lower(ENTITYNAME),' ') \n" +
-                "= replace(lower(?), ' ')";
+                "= replace(lower(?), ' ') and entityid!=?";
         try {
             count = getJdbcTemplate().queryForObject(sql,
-                    new Object[]{typeid, name}, Integer.class);
+                    new Object[]{typeid, name, id}, Integer.class);
         } catch (EmptyResultDataAccessException e) {
             logger.error("Can't getByUserAndType()" + e.getMessage());
             throw new DaoException("Entity table is empty", e);

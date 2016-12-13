@@ -25,5 +25,5 @@ public interface IEntityDao extends IDao<Entity> {
 
     void restore(int id);
 
-    int countEntityName(int typeid, String name);
+    int countEntityName(int id, int typeid, String name);
 }

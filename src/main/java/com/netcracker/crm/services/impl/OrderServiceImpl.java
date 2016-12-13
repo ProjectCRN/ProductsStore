@@ -142,7 +142,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
     }
 
     @Override
-    public void update(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
+    public int update(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
         try {
             entityDao.update(id, entityName, isActive, userId, valuesArr);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " update order #" + id);
@@ -150,6 +150,7 @@ public class OrderServiceImpl extends AbstractService<Order> implements IOrderSe
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
+        return 0;
     }
 
     @Override

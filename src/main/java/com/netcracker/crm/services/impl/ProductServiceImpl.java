@@ -37,7 +37,7 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
 
         int id;
         try {
-            if(entityDao.countEntityName(product.getEntityTypeId(),
+            if(entityDao.countEntityName(product.getId(), product.getEntityTypeId(),
                     product.getEntityName())>0)
                return 0;
             id = entityDao.add(product);
@@ -149,26 +149,33 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
     }
 
     @Override
-    public void update(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
+    public int update(int id, String entityName, int isActive, int userId, List<Value> valuesArr) {
+        int numb;
         try {
-            entityDao.update(id, entityName, isActive, userId, valuesArr);
+            numb = entityDao.update(id, entityName, isActive, userId, valuesArr);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " update product #" + id);
         } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
+        return numb;
     }
 
     @Override
-    public void updateByProduct(Product product) {
+    public int updateByProduct(Product product) {
+        int numb;
         try {
-            entityDao.updateByEntity(product);
+            if(entityDao.countEntityName(product.getId(), product.getEntityTypeId(),
+                    product.getEntityName())>0)
+                return 0;
+            numb = entityDao.updateByEntity(product);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " update product #" + product.getId());
 
         } catch (DaoException exc) {
             logger.error(exc.getMessage());
             throw new ServiceException(exc.getMessage(), exc);
         }
+        return numb;
     }
 
     @Override
