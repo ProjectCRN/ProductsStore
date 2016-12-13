@@ -2,6 +2,9 @@ package com.netcracker.crm.services.impl;
 
 import com.netcracker.crm.entity.User;
 import com.netcracker.crm.entity.controllerEntity.form.OrderForm;
+import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.serviceEntity.Product;
+import com.netcracker.crm.services.IProductService;
 import com.netcracker.crm.services.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +16,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.List;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -22,7 +27,7 @@ import static org.junit.Assert.assertTrue;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @WebAppConfiguration
 @ContextConfiguration(locations = {"classpath:test-SpringModule.xml"})
-public class UserServiceImplTest {
+public class DataTest {
 
     @Autowired
     MockHttpSession session;
@@ -30,6 +35,10 @@ public class UserServiceImplTest {
     @Autowired
     @Qualifier("userService")
     private IUserService userService;
+
+    @Autowired
+    @Qualifier("productService")
+    private IProductService productService;
 
     @Test
     public void testAdminExists() {
@@ -52,5 +61,19 @@ public class UserServiceImplTest {
         orderForm1.setFieldsFromUser(user);
         OrderForm orderForm2 = new OrderForm("Vasya", "80171357911", "Minsk, Ulyanovskaya, 15");
         assertTrue(orderForm1.equals(orderForm2));
+    }
+
+    @Test
+    public void testInitialDataTelephone() {
+        List<Product> productList = productService.getList(EntityType.Telephone.getTypeId(),
+                "","","","",1,3,"A",true);
+        assertTrue(productList.size()==3);
+    }
+    
+    @Test
+    public void testInitialDataTablet() {
+        List<Product> productList = productService.getList(EntityType.Tablet.getTypeId(),
+                "","","","",1,2,"A",true);
+        assertTrue(productList.size()==2);
     }
 }
