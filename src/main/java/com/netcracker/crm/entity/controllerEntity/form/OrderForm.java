@@ -41,4 +41,36 @@ public class OrderForm {
         this.contactPhone = user.getContactPhone();
         this.contactAddress = user.getContactAddress();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OrderForm)) return false;
+
+        OrderForm orderForm = (OrderForm) o;
+
+        if (getContactName() != null ? !getContactName().equals(orderForm.getContactName()) : orderForm.getContactName() != null)
+            return false;
+        if (getContactPhone() != null ? !getContactPhone().equals(orderForm.getContactPhone()) : orderForm.getContactPhone() != null)
+            return false;
+        return getContactAddress() != null ? getContactAddress().equals(orderForm.getContactAddress()) : orderForm.getContactAddress() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getContactName() != null ? getContactName().hashCode() : 0;
+        result = 31 * result + (getContactPhone() != null ? getContactPhone().hashCode() : 0);
+        result = 31 * result + (getContactAddress() != null ? getContactAddress().hashCode() : 0);
+        return result;
+    }
+
+    public OrderForm(String contactName, String contactPhone, String contactAddress) {
+        this.contactName = contactName;
+        this.contactPhone = contactPhone;
+        this.contactAddress = contactAddress;
+    }
+
+    public OrderForm() {
+    }
 }

@@ -1,5 +1,7 @@
 package com.netcracker.crm.services.impl;
 
+import com.netcracker.crm.entity.User;
+import com.netcracker.crm.entity.controllerEntity.form.OrderForm;
 import com.netcracker.crm.services.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +35,22 @@ public class UserServiceImplTest {
     public void testAdminExists() {
         int id = userService.getIdByLogin("Admin");
         assertTrue(-2 == id);
+    }
 
+    @Test
+    public void testAnonExists() {
+        int id = userService.getIdByLogin("Ananymous");
+        assertTrue(-1 == id);
+    }
+
+    @Test
+    public void testOrderFieldsSetting() {
+        User user = new User(1, "Vasya", "123",
+                "Vasya", "80171357911", "Minsk, Ulyanovskaya, 15",
+                User.ROLE_USER, "vasya@gmail.com");
+        OrderForm orderForm1 = new OrderForm();
+        orderForm1.setFieldsFromUser(user);
+        OrderForm orderForm2 = new OrderForm("Vasya", "80171357911", "Minsk, Ulyanovskaya, 15");
+        assertTrue(orderForm1.equals(orderForm2));
     }
 }
