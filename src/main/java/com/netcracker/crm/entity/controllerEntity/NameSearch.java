@@ -14,8 +14,7 @@ public class NameSearch {
         this.name = name;
     }
 
-    public void validate()
-    {
-        if(!name.matches("^[a-zA-Z0-9-_\\. ]{1,20}$")) name="";
+    public void validate() {
+        if (!name.matches("^[a-zA-Z0-9-_\\. ]{1,20}$")) name = "";
     }
 }

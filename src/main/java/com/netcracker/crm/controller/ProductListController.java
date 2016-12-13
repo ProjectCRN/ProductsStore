@@ -219,16 +219,19 @@ public class ProductListController {
         int typeid = findTypeId(type);
 
         nameSearch.validate();
+        List<Product> productList;
         if(!nameSearch.getName().equals("")) {
-            List<Product> productList = productService.searchByName(typeid, nameSearch.getName(), 1, Integer.MAX_VALUE-1, user.getRoleId(), true);
-
-            if (productList == null)
-                productList = new ArrayList<>();
-            if (productList.isEmpty())
-                model.addAttribute("emptyList", "sorry, nothing to show");
-            model.addAttribute("productList", productList);
+            productList = productService.searchByName(typeid, nameSearch.getName(), 1, Integer.MAX_VALUE-1, user.getRoleId(), true);
         }
-        else model.addAttribute("emptyList", "please, input product name");
+        else {
+            productList = productService.getList(typeid,"","","","",1,Integer.MAX_VALUE-1,user.getRoleId(),true);
+        }
+
+        if (productList == null)
+            productList = new ArrayList<>();
+        if (productList.isEmpty())
+            model.addAttribute("emptyList", "sorry, nothing to show");
+        model.addAttribute("productList", productList);
 
         model.addAttribute("role", user.getRoleId());
         return NAME;
