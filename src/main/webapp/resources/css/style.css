@@ -358,3 +358,7 @@ body {
 .block1 .summary{
     max-width: 400px;
 }
+
+.block1 .mainBtn{
+    margin: 20px auto 0;
+}
