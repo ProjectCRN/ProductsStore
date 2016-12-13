@@ -3,4 +3,4 @@
 -Duser.country=EN, -Duser.language=en
 
 tomcat:
-В setenv.bat прописать set JAVA_OPTS=-Duser.country=EN -Duser.language=en
+В setenv.bat прописать set JAVA_OPTS=%JAVA_OPTS% -Duser.country=EN -Duser.language=en
