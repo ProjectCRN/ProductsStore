@@ -137,5 +137,5 @@ END IF;
 END sp_entity_list;
 
 
-exit;
 /
+exit

@@ -84,5 +84,5 @@ END;
 
 END sp_entity_listValues;
 
-exit;
 /
+exit

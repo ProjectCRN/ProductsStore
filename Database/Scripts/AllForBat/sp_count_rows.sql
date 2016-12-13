@@ -116,6 +116,5 @@ END IF;
 
 END sp_count_rows;
 
-
-exit;
 /
+exit
