@@ -7,6 +7,8 @@ CREATE OR REPLACE PROCEDURE ns_admin.sp_entity_list(
   inOperatorCSV IN NVARCHAR2,
   inPageNumber IN INTEGER,
   inPageSize IN INTEGER,
+  inRole IN NVARCHAR2,
+  inSide IN INTEGER,
 
   outEntity OUT SYS_REFCURSOR
 	)
@@ -18,6 +20,7 @@ IS
   pageNumber INTEGER :=inPageNumber;
   pageSize INTEGER :=inPageSize;
   counter INTEGER :=0;
+  intRole INTEGER :=1;
   positionOfComma INTEGER :=0;  
   
   elemAtribute NVARCHAR2(50) := '';
@@ -33,6 +36,10 @@ IS
 BEGIN 
   DELETE FROM SearchTable;
   inAttribute:= NVL(inAttribute,'');
+  
+  IF (inRole='A') THEN intRole:=0;
+  ELSE intRole:=1;
+  END IF;
 
 IF (LENGTH(inAttribute) IS NULL) THEN 
       OPEN outEntity FOR
@@ -41,9 +48,12 @@ IF (LENGTH(inAttribute) IS NULL) THEN
           SELECT a.*, rownum rnum
           FROM
           (
-              SELECT E.ENTITYID
+              SELECT E.ENTITYID, E.ENTITYNAME
               FROM TBL_ENTITY E
-              WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1)) 
+              WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1 OR E.ISACTIVE=intRole))
+              ORDER BY 
+                CASE inSide WHEN 1 THEN E.ENTITYNAME ELSE NULL END ASC,
+                CASE inSide WHEN 0 THEN E.ENTITYNAME ELSE NULL END DESC
             ) a
           WHERE rownum < ((pageNumber * pageSize) + 1 )
       )
@@ -86,7 +96,7 @@ END IF;
           SELECT a.*, rownum rnum
           FROM
           (
-             SELECT CX.ENTITYID
+             SELECT CX.ENTITYID, CX.ENTITYNAME
              FROM 
              ( 
              SELECT CA.EntityId 
@@ -105,7 +115,10 @@ END IF;
              HAVING COUNT(1) = counter
              ) X  
              INNER JOIN TBL_ENTITY CX ON CX.EntityId = X.EntityId
-             WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1) )
+             WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1 OR CX.ISACTIVE=intRole))
+             ORDER BY
+                CASE inSide WHEN 1 THEN CX.ENTITYNAME ELSE NULL END ASC,
+                CASE inSide WHEN 0 THEN CX.ENTITYNAME ELSE NULL END DESC
          ) a
         WHERE rownum < ((pageNumber * pageSize) + 1 )
     )
@@ -135,7 +148,6 @@ END IF;
 		END;  
 
 END sp_entity_list;
-
 
 /
 exit

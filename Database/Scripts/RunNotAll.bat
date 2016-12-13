@@ -17,3 +17,4 @@ sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\sp_entity_list.sql
 sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\sp_count_rows.sql
 sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\sp_entity_listValues.sql
 sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\sp_entity_NoPaging.sql
+sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\update_user.sql

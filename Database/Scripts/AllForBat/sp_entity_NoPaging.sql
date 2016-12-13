@@ -35,7 +35,8 @@ IF (LENGTH(inAttribute) IS NULL) THEN
       OPEN outEntity FOR
               SELECT E.ENTITYID
               FROM TBL_ENTITY E
-              WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1));
+              WHERE ((E.ENTITYTYPEID=inEntityTypeId) AND (E.ISACTIVE=1))
+              ORDER BY E.ENTITYNAME;
       
 END IF;
 
@@ -88,7 +89,8 @@ END IF;
              HAVING COUNT(1) = counter
              ) X  
              INNER JOIN TBL_ENTITY CX ON CX.EntityId = X.EntityId
-             WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1) );
+             WHERE ((CX.ENTITYTYPEID=inEntityTypeId) AND (CX.ISACTIVE=1) )
+             ORDER BY CX.ENTITYNAME;
   
   END IF;
  
@@ -114,6 +116,5 @@ END IF;
 		END;  
 
 END sp_entity_NoPaging;
-
 /
 exit
