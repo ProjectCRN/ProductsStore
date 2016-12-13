@@ -213,12 +213,14 @@ public class ProductListController {
         return PRODUCTS;
     }
 
-    @RequestMapping(value = "/searchByName", method = RequestMethod.GET)
-    public String searchByName(NameSearch nameSearch, ModelMap model) {
+    @RequestMapping(value = "{type}/searchByName", method = RequestMethod.GET)
+    public String searchByName( @PathVariable String type, NameSearch nameSearch, ModelMap model) {
+
+        int typeid = findTypeId(type);
 
         nameSearch.validate();
         if(!nameSearch.getName().equals("")) {
-            List<Product> productList = productService.searchByName(EntityType.Telephone.getTypeId(), nameSearch.getName(), 1, Integer.MAX_VALUE-1, user.getRoleId(), true);
+            List<Product> productList = productService.searchByName(typeid, nameSearch.getName(), 1, Integer.MAX_VALUE-1, user.getRoleId(), true);
 
             if (productList == null)
                 productList = new ArrayList<>();

@@ -50,7 +50,7 @@
             var msg = $('#byName').serialize();
             $.ajax({
                 type: 'GET',
-                url: '/searchByName',
+                url: '${currType}/searchByName',
                 data: msg,
                 success: function (data) {
                     $('.resultsSearch').html(data);

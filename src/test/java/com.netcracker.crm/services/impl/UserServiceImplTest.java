@@ -14,7 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by пк on 12.12.2016.
+ * Created by on 12.12.2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
