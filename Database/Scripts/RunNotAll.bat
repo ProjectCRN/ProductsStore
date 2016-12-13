@@ -1,7 +1,9 @@
-sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\00_dropAll.sql
+sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\01_create_user_role.sql
 sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\02_create_sequance.sql
 sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\03_create_tables.sql
+sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\04_create_global_table.sql
 
+sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\fn_error_message_get.sql
 
 sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\01_Role.sql
 sqlplus -SILENT "ns_admin/qwerty@xe" @AllForBat\02_User.sql
