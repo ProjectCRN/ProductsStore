@@ -8,7 +8,7 @@
 <form:form method="post" id="profileForm" commandName="profileForm" action="javascript:void(null);" onsubmit="profileFun()">
     <div class="col-md-4"></div>
     <ul class="col-md-4 formOrder">
-        <li><h3>Register</h3></li>
+        <li><h3>Profile</h3></li>
 
         <li>
             <form:input path="userName"  size="30"  class="requiredField" required="required"
