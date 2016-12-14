@@ -1,9 +1,6 @@
 package com.netcracker.crm.entity.enums;
 
-/**
- * Created by пк on 02.12.2016.
- */
-public enum TabletAtribute{
+public enum TabletAtribute {
     Price(40),
     Summary(41),
     OperatingSystem(42),
@@ -22,7 +19,7 @@ public enum TabletAtribute{
 
     private int atributeId;
 
-   TabletAtribute(int id) {
+    TabletAtribute(int id) {
         atributeId = id;
     }
 

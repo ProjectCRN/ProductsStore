@@ -1,8 +1,6 @@
 package com.netcracker.crm.entity;
 
-/**
- * Created by di on 13.11.2016.
- */
+
 public class Atribute extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
@@ -30,7 +28,7 @@ public class Atribute extends AbstractEntity {
         this.isActive = isActive;
         this.entityTypeId = entityTypeId;
         this.isRequired = isRequired;
-        this.regularExpression=regularExpression;
+        this.regularExpression = regularExpression;
     }
 
     public Atribute(int id, String atributeName, int atributeTypeId, String atributeTypeName,
@@ -43,7 +41,7 @@ public class Atribute extends AbstractEntity {
         this.entityTypeId = entityTypeId;
         this.entityTypeName = entityTypeName;
         this.isRequired = isRequired;
-        this.regularExpression=regularExpression;
+        this.regularExpression = regularExpression;
 
     }
 

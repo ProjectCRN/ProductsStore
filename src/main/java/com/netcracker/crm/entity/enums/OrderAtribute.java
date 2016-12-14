@@ -1,9 +1,5 @@
 package com.netcracker.crm.entity.enums;
 
-/**
- * Created by on 30.11.2016.
- */
-
 public enum OrderAtribute {
 
     OrderNumber(12),

@@ -1,8 +1,6 @@
 package com.netcracker.crm.entity.enums;
 
-/**
- * Created by пк on 02.12.2016.
- */
+
 public enum PhoneAtribute {
     Price(25),
     Summary(26),

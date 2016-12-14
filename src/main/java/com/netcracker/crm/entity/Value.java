@@ -4,9 +4,7 @@ import com.netcracker.crm.entity.enums.EntityType;
 import com.netcracker.crm.entity.enums.PhoneAtribute;
 import com.netcracker.crm.entity.enums.TabletAtribute;
 
-/**
- * Created by �� on 12.11.2016.
- */
+
 public class Value extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
@@ -88,17 +86,16 @@ public class Value extends AbstractEntity {
 
     @Override
     public String toString() {
-        return  value;
+        return value;
     }
 
     public String getAttrValue() {
 
-        if(entityId == EntityType.Telephone.getTypeId())
-        {
+        if (entityId == EntityType.Telephone.getTypeId()) {
             PhoneAtribute p = PhoneAtribute.findByKey(atributeId);
-            return p.toString()+ ": "+ value;
+            return p.toString() + ": " + value;
         }
         TabletAtribute t = TabletAtribute.findByKey(atributeId);
-        return  t.toString()+ ": "+ value;
+        return t.toString() + ": " + value;
     }
 }

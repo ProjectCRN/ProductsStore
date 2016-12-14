@@ -1,8 +1,6 @@
 package com.netcracker.crm.entity;
 
-/**
- * Created by egor on 24.10.2016.
- */
+
 public class User extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
@@ -18,7 +16,8 @@ public class User extends AbstractEntity {
     private String roleId;
     private String email;
 
-    public User(){}
+    public User() {
+    }
 
     public User(int id, String login, String password, String userName, String contactPhone, String contactAddress, String roleId, String email) {
         super(id);
@@ -31,8 +30,7 @@ public class User extends AbstractEntity {
         this.email = email;
     }
 
-    public void clone(User user)
-    {
+    public void clone(User user) {
         this.setId(user.getId());
         this.setLogin(user.getLogin());
         this.setPassword(user.getPassword());
@@ -43,23 +41,19 @@ public class User extends AbstractEntity {
         this.setEmail(user.getEmail());
     }
 
-    public boolean isAdmin()
-    {
+    public boolean isAdmin() {
         return this.getRoleId().equals(User.ROLE_ADMIN);
     }
 
-    public boolean isUser()
-    {
+    public boolean isUser() {
         return this.getRoleId().equals(User.ROLE_USER);
     }
 
-    public boolean isAnon()
-    {
+    public boolean isAnon() {
         return this.getRoleId().equals(User.ROLE_ANON);
     }
 
-    public void logout()
-    {
+    public void logout() {
         this.setId(-1);
         this.setLogin("anon");
         this.setPassword("anon");
@@ -69,6 +63,7 @@ public class User extends AbstractEntity {
         this.setRoleId(User.ROLE_ANON);
         this.setEmail("anon@gmail.com");
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,7 +76,8 @@ public class User extends AbstractEntity {
         if (!password.equals(user.password)) return false;
         if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
         if (contactPhone != null ? !contactPhone.equals(user.contactPhone) : user.contactPhone != null) return false;
-        if (contactAddress != null ? !contactAddress.equals(user.contactAddress) : user.contactAddress != null) return false;
+        if (contactAddress != null ? !contactAddress.equals(user.contactAddress) : user.contactAddress != null)
+            return false;
         if (email != null ? !email.equals(user.email) : user.email != null)
             return false;
         return roleId.equals(user.roleId);
@@ -116,7 +112,6 @@ public class User extends AbstractEntity {
                 ", email='" + email + '\'' +
                 '}';
     }
-
 
 
     public String getLogin() {

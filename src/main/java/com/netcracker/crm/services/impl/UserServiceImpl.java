@@ -14,11 +14,8 @@ import org.springframework.beans.factory.annotation.Required;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by egor on 11.11.2016.
- */
 
-public class UserServiceImpl extends AbstractService<User> implements IUserService{
+public class UserServiceImpl extends AbstractService<User> implements IUserService {
 
     private IUserDao userDao;
 
@@ -30,12 +27,12 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     }
 
     @Override
-    public int add(User user)  throws ServiceException{
+    public int add(User user) throws ServiceException {
         int id;
         try {
             id = userDao.add(user);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + user.toString());
-        } catch (DaoException e){
+        } catch (DaoException e) {
             logger.error(e.getMessage());
             throw new ServiceException(e.getMessage(), e);
         }
@@ -48,7 +45,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
         try {
             user = userDao.getById(id);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getById " + user.toString());
-        } catch (DaoException e){
+        } catch (DaoException e) {
             logger.error(e.getMessage());
             throw new ServiceException(e.getMessage(), e);
         }
@@ -60,7 +57,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
         try {
             userDao.delete(id);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " delete User #" + id);
-        } catch (DaoException e){
+        } catch (DaoException e) {
             logger.error(e.getMessage());
             throw new ServiceException(e.getMessage(), e);
         }
@@ -73,7 +70,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
         try {
             list = userDao.getAll();
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getAll");
-        } catch (DaoException e){
+        } catch (DaoException e) {
             logger.error(e.getMessage());
             throw new ServiceException(e.getMessage(), e);
         }
@@ -86,7 +83,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
         try {
             list = userDao.getAllByRole(roleId);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getAllByRoleId #" + roleId);
-        } catch (DaoException e){
+        } catch (DaoException e) {
             logger.error(e.getMessage());
             throw new ServiceException(e.getMessage(), e);
         }
@@ -99,11 +96,11 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     }
 
     @Override
-    public void update(int id, String uLogin, String uPassword, String uName, String uPhone, String uAddress, String uEmail) throws ServiceException{
+    public void update(int id, String uLogin, String uPassword, String uName, String uPhone, String uAddress, String uEmail) throws ServiceException {
         try {
             userDao.update(id, uLogin, uPassword, uName, uPhone, uAddress, uEmail);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " update user #" + id);
-        } catch (DaoException e){
+        } catch (DaoException e) {
             logger.error(e.getMessage());
             throw new ServiceException(e.getMessage(), e);
         }
@@ -115,7 +112,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
         try {
             is = userDao.isLoginFree(login);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " login " + login + " isFree: " + is);
-        } catch (DaoException e){
+        } catch (DaoException e) {
             logger.error(e.getMessage());
             throw new ServiceException(e.getMessage(), e);
         }
@@ -128,20 +125,20 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
         try {
             is = userDao.isEmailFree(email);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " email " + email + " isFree: " + is);
-        } catch (DaoException e){
+        } catch (DaoException e) {
             logger.error(e.getMessage());
             throw new ServiceException(e.getMessage(), e);
         }
         return is;
     }
-    
+
     @Override
     public int getIdByLogin(String login) throws ServiceException {
-        int userId=-100;
+        int userId = -100;
         try {
             userId = userDao.getIdByLogin(login);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " getIdByLogin " + userId);
-        } catch (DaoException e){
+        } catch (DaoException e) {
             logger.error(e.getMessage());
             throw new ServiceException(e.getMessage(), e);
         }

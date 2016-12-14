@@ -7,9 +7,7 @@ import com.netcracker.crm.entity.enums.TabletAtribute;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Ксения on 29.11.2016.
- */
+
 public class SearchAttributes {
     private String minPrice;
     private String maxPrice;
@@ -30,18 +28,19 @@ public class SearchAttributes {
     private List<String> sortValues;
 
     public SearchAttributes() {
-        numPerPage="2";
+        numPerPage = "2";
         name = "A-Z";
         sortBy = true;
-        if(getSortValues() == null)
-        {
+        if (getSortValues() == null) {
             sortValues = new ArrayList<>();
             sortValues.add("A-Z");
             sortValues.add("Z-A");
         }
     }
 
-    public String getLists() {return attribute+" | "+operators+" | "+values;}
+    public String getLists() {
+        return attribute + " | " + operators + " | " + values;
+    }
 
     public boolean getSortBy() {
         return sortBy;
@@ -60,7 +59,7 @@ public class SearchAttributes {
     }
 
     public String getNumPerPage() {
-        if(numPerPage == null) return "";
+        if (numPerPage == null) return "";
         return numPerPage;
     }
 
@@ -69,7 +68,7 @@ public class SearchAttributes {
     }
 
     public String getMinPrice() {
-        if(minPrice == null) return "";
+        if (minPrice == null) return "";
         return minPrice;
     }
 
@@ -78,7 +77,7 @@ public class SearchAttributes {
     }
 
     public String getMaxPrice() {
-        if(maxPrice == null) return "";
+        if (maxPrice == null) return "";
         return maxPrice;
     }
 
@@ -87,7 +86,7 @@ public class SearchAttributes {
     }
 
     public String getMinCapacity() {
-        if(minCapacity == null) return "";
+        if (minCapacity == null) return "";
         return minCapacity;
     }
 
@@ -96,7 +95,7 @@ public class SearchAttributes {
     }
 
     public String getMaxCapacity() {
-        if(maxCapacity == null) return "";
+        if (maxCapacity == null) return "";
         return maxCapacity;
     }
 
@@ -105,7 +104,7 @@ public class SearchAttributes {
     }
 
     public String getMinBattery() {
-        if(minBattery == null) return "";
+        if (minBattery == null) return "";
         return minBattery;
     }
 
@@ -114,7 +113,7 @@ public class SearchAttributes {
     }
 
     public String getMaxBattery() {
-        if(maxBattery == null) return "";
+        if (maxBattery == null) return "";
         return maxBattery;
     }
 
@@ -123,7 +122,7 @@ public class SearchAttributes {
     }
 
     public String getName() {
-        if(name == null) return "";
+        if (name == null) return "";
         return name;
     }
 
@@ -133,7 +132,7 @@ public class SearchAttributes {
 
     public String getType() {
 
-        if(type == null) return "";
+        if (type == null) return "";
         return type;
     }
 
@@ -141,14 +140,16 @@ public class SearchAttributes {
         this.type = type;
     }
 
-    public int getTypeId() { return typeId; }
+    public int getTypeId() {
+        return typeId;
+    }
 
     public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
 
     public String getAttribute() {
-        if(attribute == null) return "";
+        if (attribute == null) return "";
         return attribute;
     }
 
@@ -157,7 +158,7 @@ public class SearchAttributes {
     }
 
     public String getOperators() {
-        if(operators == null) return "";
+        if (operators == null) return "";
         return operators;
     }
 
@@ -166,7 +167,7 @@ public class SearchAttributes {
     }
 
     public String getValues() {
-        if(values == null) return "";
+        if (values == null) return "";
         return values;
     }
 

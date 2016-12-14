@@ -5,11 +5,8 @@ import com.netcracker.crm.entity.serviceEntity.ProductFieldsPatterns;
 import com.netcracker.crm.services.IPatternsService;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 
-/**
- * Created by Ксения on 06.12.2016.
- */
+
 public class AddProductValidator {
 
     IPatternsService patternsService;

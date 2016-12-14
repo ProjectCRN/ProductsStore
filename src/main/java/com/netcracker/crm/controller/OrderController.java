@@ -19,9 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 
-/**
- * Created by Ксения on 05.12.2016.
- */
 @Controller
 public class OrderController {
 
@@ -59,12 +56,11 @@ public class OrderController {
     public String createOrder(ModelMap model) {
 
         OrderForm order = new OrderForm();
-        if(user.getRoleId().equals(User.ROLE_ANON)) {
+        if (user.getRoleId().equals(User.ROLE_ANON)) {
             model.addAttribute("order", order);
-        }
-        else{
+        } else {
             order.setFieldsFromUser(user);
-            model.addAttribute("order",order);
+            model.addAttribute("order", order);
         }
         return ORDER;
     }
@@ -86,7 +82,7 @@ public class OrderController {
 
     @RequestMapping(value = "/getAllOrders", method = RequestMethod.GET)
     public String getAllOrders(ModelMap model) {
-        if(user.isAnon())
+        if (user.isAnon())
             return NO_ROOTS;
         List<Order> orderList = orderService.getListForUser(user.getId());
         model.addAttribute("orderList", orderList);
@@ -96,7 +92,7 @@ public class OrderController {
 
     @RequestMapping(value = "/userOrders", method = RequestMethod.GET)
     public String getUserOrders(ModelMap model) {
-        if(!user.isAdmin())
+        if (!user.isAdmin())
             return NO_ROOTS;
         List<Order> orderList = orderService.getList();
         model.addAttribute("orderList", orderList);
@@ -106,7 +102,7 @@ public class OrderController {
 
     @RequestMapping(value = "/deleteOrder/{id}", method = RequestMethod.GET)
     public String deleteOrder(@PathVariable String id, ModelMap model) {
-        if(!user.isAdmin())
+        if (!user.isAdmin())
             return NO_ROOTS;
         orderService.delete(Integer.parseInt(id));
         return "redirect:/userOrders";
@@ -114,7 +110,7 @@ public class OrderController {
 
     @RequestMapping(value = "/getOrder/{id}", method = RequestMethod.GET)
     public String getOrder(@PathVariable String id, ModelMap model) {
-        if(user.isAnon())
+        if (user.isAnon())
             return NO_ROOTS;
         Order order = orderService.getById(Integer.parseInt(id));
         if (user.getId() != order.getEntityUserId() && !user.isAdmin())
@@ -125,15 +121,15 @@ public class OrderController {
 
     @RequestMapping(value = "/getCart/{id}", method = RequestMethod.GET)
     public String getCartFromOrder(@PathVariable String id, ModelMap model) {
-        if(user.isAnon())
+        if (user.isAnon())
             return NO_ROOTS;
         Order order = orderService.getById(Integer.parseInt(id));
         if (user.getId() != order.getEntityUserId())
             return NO_ROOTS;
         model.addAttribute("cartList", order.getCart().getCartItems());
         model.addAttribute("total", order.getTotal());
-        model.addAttribute("cartQuantity",new CartQuantity());
-        model.addAttribute("prev","2");
+        model.addAttribute("cartQuantity", new CartQuantity());
+        model.addAttribute("prev", "2");
         return CART;
     }
 }

@@ -1,8 +1,6 @@
 package com.netcracker.crm.entity.serviceEntity;
 
-/**
- * Created by Anton on 09.12.2016.
- */
+
 public class ProductFieldsPatterns {
     private String name;
     private String price;
@@ -20,7 +18,6 @@ public class ProductFieldsPatterns {
     private String simCard;
     private String fabricator;
     private String imageUrl;
-
 
 
     public void setName(String name) {

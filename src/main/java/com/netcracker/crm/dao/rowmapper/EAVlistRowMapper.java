@@ -8,18 +8,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Nastya on 11/30/2016.
- */
-public class EAVlistRowMapper  implements RowMapper<Entity> {
+
+public class EAVlistRowMapper implements RowMapper<Entity> {
     private List<String> entiyIdList;
+
     @Override
     public Entity mapRow(ResultSet resultSet, int i) throws SQLException {
-        EAVlistExtractor eaVlistExtractor=new EAVlistExtractor(this.entiyIdList);
+        EAVlistExtractor eaVlistExtractor = new EAVlistExtractor(this.entiyIdList);
         return eaVlistExtractor.extractData(resultSet);
     }
 
     public EAVlistRowMapper(List<String> entiyIdList) {
-        this.entiyIdList=new ArrayList<>(entiyIdList);
+        this.entiyIdList = new ArrayList<>(entiyIdList);
     }
 }

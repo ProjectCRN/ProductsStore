@@ -5,13 +5,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 
-/**
- * Created by egor on 27.11.2016.
- */
 
 public class TabletTag extends AbstractTag {
     public TabletTag() {
-        tags = HashBiMap.create(new HashMap(){{
+        tags = HashBiMap.create(new HashMap() {{
             put("price", 40);
             put("summary", 41);
             put("operatingsystem", 42);

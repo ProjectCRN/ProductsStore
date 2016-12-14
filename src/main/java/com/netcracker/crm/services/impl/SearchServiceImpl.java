@@ -7,13 +7,12 @@ import com.netcracker.crm.entity.serviceEntity.SearchAttributes;
 import com.netcracker.crm.services.ISearchService;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by Ксения on 29.11.2016.
- */
+
 @Service
 public class SearchServiceImpl implements ISearchService {
 
-    public SearchServiceImpl() {  }
+    public SearchServiceImpl() {
+    }
 
     @Override
     public void parseSearchAttributes(SearchAttributes searchAttr) {
@@ -120,7 +119,7 @@ public class SearchServiceImpl implements ISearchService {
             list2 += "<=";
             list3 += searchAttr.getMaxBattery();
         }
-        if(searchAttr.getName().equals("A-Z"))
+        if (searchAttr.getName().equals("A-Z"))
             searchAttr.setSortBy(true);
         else searchAttr.setSortBy(false);
 
@@ -141,7 +140,7 @@ public class SearchServiceImpl implements ISearchService {
         if (!searchAttr.getMaxBattery().matches("^[0-9]+$")) searchAttr.setMaxBattery("");
         if ((!searchAttr.getNumPerPage().matches("^[0-9]+$")) ||
                 Integer.parseInt(searchAttr.getNumPerPage()) == 0) searchAttr.setNumPerPage("2");
-       // if (!searchAttr.getName().matches("^[a-zA-Z0-9 ]+$")) searchAttr.setName("");
+        // if (!searchAttr.getName().matches("^[a-zA-Z0-9 ]+$")) searchAttr.setName("");
 
         if (!searchAttr.getMinPrice().equals("") && !searchAttr.getMaxPrice().equals(""))
             if (Integer.parseInt(searchAttr.getMinPrice()) > Integer.parseInt(searchAttr.getMaxPrice())) {

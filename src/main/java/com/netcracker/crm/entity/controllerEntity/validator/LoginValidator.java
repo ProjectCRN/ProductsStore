@@ -9,9 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-/**
- * Created by Ксения on 05.12.2016.
- */
+
 public class LoginValidator implements Validator {
     private IUserService userService;
 
@@ -23,13 +21,13 @@ public class LoginValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> aClass) {
-            return SignupForm.class.isAssignableFrom(aClass);
+        return SignupForm.class.isAssignableFrom(aClass);
     }
 
     @Override
     public void validate(Object o, Errors errors) {
 
-        LoginForm loginForm = (LoginForm)o;
+        LoginForm loginForm = (LoginForm) o;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "login.empty", "Login must not be empty.");
         String login = loginForm.getLogin();
 
@@ -41,14 +39,12 @@ public class LoginValidator implements Validator {
 
         String password = loginForm.getPassword();
 
-        if(userService.isLoginFree(login))
-        {
+        if (userService.isLoginFree(login)) {
             errors.rejectValue("login", "login.loginFree", "No such user.");
-        }
-        else {
+        } else {
             int id = userService.getIdByLogin(login);
             User user = userService.getById(id);
-            if(!(userService.hashing(password)).equals(user.getPassword()))
+            if (!(userService.hashing(password)).equals(user.getPassword()))
                 errors.rejectValue("password", "password.loginDontMatch", "Wrong password.");
         }
 

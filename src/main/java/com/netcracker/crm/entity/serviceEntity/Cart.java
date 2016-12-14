@@ -6,10 +6,8 @@ import org.springframework.context.annotation.Scope;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Nastya on 11/22/2016.
- */
-@Scope(value="session")
+
+@Scope(value = "session")
 public class Cart extends AbstractEntity {
     private List<CartItem> cartItems;
     private int userId;
@@ -24,8 +22,8 @@ public class Cart extends AbstractEntity {
         total = 0;
     }
 
-    public void clear(){
-        total=0;
+    public void clear() {
+        total = 0;
         cartItems.clear();
     }
 

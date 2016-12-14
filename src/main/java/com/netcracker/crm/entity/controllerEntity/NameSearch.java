@@ -1,8 +1,6 @@
 package com.netcracker.crm.entity.controllerEntity;
 
-/**
- * Created by Ксения on 11.12.2016.
- */
+
 public class NameSearch {
     private String name;
 

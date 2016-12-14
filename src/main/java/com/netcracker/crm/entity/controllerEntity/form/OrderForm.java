@@ -1,11 +1,8 @@
 package com.netcracker.crm.entity.controllerEntity.form;
 
 import com.netcracker.crm.entity.User;
-import com.netcracker.crm.entity.serviceEntity.Order;
 
-/**
- * Created by Ксения on 06.12.2016.
- */
+
 public class OrderForm {
     String contactName;
     String contactPhone;
@@ -36,7 +33,7 @@ public class OrderForm {
     }
 
 
-    public void setFieldsFromUser(User user){
+    public void setFieldsFromUser(User user) {
         this.contactName = user.getUserName();
         this.contactPhone = user.getContactPhone();
         this.contactAddress = user.getContactAddress();

@@ -7,7 +7,6 @@ import com.netcracker.crm.entity.enums.EntityType;
 import com.netcracker.crm.entity.enums.PhoneAtribute;
 import com.netcracker.crm.entity.enums.TabletAtribute;
 import com.netcracker.crm.entity.serviceEntity.Product;
-import com.netcracker.crm.entity.serviceEntity.ProductFieldsPatterns;
 import com.netcracker.crm.services.IPatternsService;
 import com.netcracker.crm.services.IProductService;
 import org.springframework.beans.factory.annotation.Required;
@@ -18,9 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Created by egor on 24.10.2016.
- */
+
 @Controller
 public class AdminController {
     private static final String ADDING = "newProduct";
@@ -59,7 +56,7 @@ public class AdminController {
         model.put("prod", new AddProductForm());
         model.put("currType", type);
         model.addAttribute("pattern", patternsService.getProductFieldsPatterns());
-        model.put("prev",0);
+        model.put("prev", 0);
 
         return ADDING;
     }
@@ -74,8 +71,8 @@ public class AdminController {
         model.put("prod", form);
         model.put("currType", type);
         model.addAttribute("pattern", patternsService.getProductFieldsPatterns());
-        model.put("id",prod.getId());
-        model.put("prev",1);
+        model.put("id", prod.getId());
+        model.put("prev", 1);
 
         return ADDING;
     }
@@ -107,21 +104,19 @@ public class AdminController {
         prod.setEntityTypeId(typeid);
         prod.setPrice(Double.parseDouble(addProductForm.getPrice()));
         prod.setSummary(addProductForm.getSummary());
-        if(addProductForm.getFabricator().equals(""))
+        if (addProductForm.getFabricator().equals(""))
             addProductForm.setFabricator("Unknown");
         prod.setFabricator(addProductForm.getFabricator());
-        if(addProductForm.getImageUrl().equals(""))
+        if (addProductForm.getImageUrl().equals(""))
             addProductForm.setImageUrl("/resources/img/img_phone.jpg");
         prod.setImageUrl(addProductForm.getImageUrl());
 
-        setValueList(typeid,prod,addProductForm);
+        setValueList(typeid, prod, addProductForm);
         int flag = productService.add(prod);
-        if(flag==0)
-        {
+        if (flag == 0) {
             model.addAttribute("hello", "Product exists");
-            model.addAttribute("msg", "Please, update "+prod.getEntityName());
-        }
-        else model.addAttribute("hello", "Product created");
+            model.addAttribute("msg", "Please, update " + prod.getEntityName());
+        } else model.addAttribute("hello", "Product created");
         return SUCCESS;
     }
 
@@ -155,10 +150,10 @@ public class AdminController {
 
         prod.setPrice(Double.parseDouble(addProductForm.getPrice()));
         prod.setSummary(addProductForm.getSummary());
-        if(addProductForm.getFabricator().equals(""))
+        if (addProductForm.getFabricator().equals(""))
             addProductForm.setFabricator("Unknown");
         prod.setFabricator(addProductForm.getFabricator());
-        if(addProductForm.getImageUrl().equals(""))
+        if (addProductForm.getImageUrl().equals(""))
             addProductForm.setImageUrl("/resources/img/img_phone.jpg");
         prod.setImageUrl(addProductForm.getImageUrl());
         setValueList(typeid, prod, addProductForm);
@@ -184,51 +179,50 @@ public class AdminController {
         return "redirect:/products/" + type;
     }
 
-    public void setValueList(int typeid, Product prod, AddProductForm addProductForm)
-    {
+    public void setValueList(int typeid, Product prod, AddProductForm addProductForm) {
         if (typeid == EntityType.Telephone.getTypeId()) {
             prod.setValueInList(PhoneAtribute.Capacity.getAtributeId(), addProductForm.getCapacity());
             prod.setValueInList(PhoneAtribute.Battery.getAtributeId(), addProductForm.getBattery());
 
-            if(!addProductForm.getOperatingSystem().equals(""))
+            if (!addProductForm.getOperatingSystem().equals(""))
                 prod.setValueInList(PhoneAtribute.OperatingSystem.getAtributeId(), addProductForm.getOperatingSystem());
-            if(!addProductForm.getProcessorSpeed().equals(""))
+            if (!addProductForm.getProcessorSpeed().equals(""))
                 prod.setValueInList(PhoneAtribute.Processorspeed.getAtributeId(), addProductForm.getProcessorSpeed());
-            if(!addProductForm.getDisplay().equals(""))
+            if (!addProductForm.getDisplay().equals(""))
                 prod.setValueInList(PhoneAtribute.Display.getAtributeId(), addProductForm.getDisplay());
-            if(!addProductForm.getHeight().equals(""))
+            if (!addProductForm.getHeight().equals(""))
                 prod.setValueInList(PhoneAtribute.Height.getAtributeId(), addProductForm.getHeight());
-            if(!addProductForm.getWidth().equals(""))
+            if (!addProductForm.getWidth().equals(""))
                 prod.setValueInList(PhoneAtribute.Width.getAtributeId(), addProductForm.getWidth());
-            if(!addProductForm.getDepth().equals(""))
+            if (!addProductForm.getDepth().equals(""))
                 prod.setValueInList(PhoneAtribute.Depth.getAtributeId(), addProductForm.getDepth());
-            if(!addProductForm.getWeight().equals(""))
+            if (!addProductForm.getWeight().equals(""))
                 prod.setValueInList(PhoneAtribute.Weight.getAtributeId(), addProductForm.getWeight());
-            if(!addProductForm.getCamera().equals(""))
+            if (!addProductForm.getCamera().equals(""))
                 prod.setValueInList(PhoneAtribute.Camera.getAtributeId(), addProductForm.getCamera());
-            if(!addProductForm.getSimCard().equals(""))
+            if (!addProductForm.getSimCard().equals(""))
                 prod.setValueInList(PhoneAtribute.SIMCard.getAtributeId(), addProductForm.getSimCard());
         } else {
             prod.setValueInList(TabletAtribute.Capacity.getAtributeId(), addProductForm.getCapacity());
             prod.setValueInList(TabletAtribute.Battery.getAtributeId(), addProductForm.getBattery());
 
-            if(!addProductForm.getOperatingSystem().equals(""))
+            if (!addProductForm.getOperatingSystem().equals(""))
                 prod.setValueInList(TabletAtribute.OperatingSystem.getAtributeId(), addProductForm.getOperatingSystem());
-            if(!addProductForm.getProcessorSpeed().equals(""))
+            if (!addProductForm.getProcessorSpeed().equals(""))
                 prod.setValueInList(TabletAtribute.Processorspeed.getAtributeId(), addProductForm.getProcessorSpeed());
-            if(!addProductForm.getDisplay().equals(""))
+            if (!addProductForm.getDisplay().equals(""))
                 prod.setValueInList(TabletAtribute.Display.getAtributeId(), addProductForm.getDisplay());
-            if(!addProductForm.getHeight().equals(""))
+            if (!addProductForm.getHeight().equals(""))
                 prod.setValueInList(TabletAtribute.Height.getAtributeId(), addProductForm.getHeight());
-            if(!addProductForm.getWidth().equals(""))
+            if (!addProductForm.getWidth().equals(""))
                 prod.setValueInList(TabletAtribute.Width.getAtributeId(), addProductForm.getWidth());
-            if(!addProductForm.getDepth().equals(""))
+            if (!addProductForm.getDepth().equals(""))
                 prod.setValueInList(TabletAtribute.Depth.getAtributeId(), addProductForm.getDepth());
-            if(!addProductForm.getWeight().equals(""))
+            if (!addProductForm.getWeight().equals(""))
                 prod.setValueInList(TabletAtribute.Weight.getAtributeId(), addProductForm.getWeight());
-            if(!addProductForm.getCamera().equals(""))
+            if (!addProductForm.getCamera().equals(""))
                 prod.setValueInList(TabletAtribute.Camera.getAtributeId(), addProductForm.getCamera());
-            if(!addProductForm.getSimCard().equals(""))
+            if (!addProductForm.getSimCard().equals(""))
                 prod.setValueInList(TabletAtribute.SIMCard.getAtributeId(), addProductForm.getSimCard());
         }
     }

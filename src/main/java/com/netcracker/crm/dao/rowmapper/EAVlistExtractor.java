@@ -17,11 +17,10 @@ import static com.netcracker.crm.dao.constants.DaoConstants.*;
 import static com.netcracker.crm.dao.constants.DaoConstants.COLUMN_ENTITY_TYPE_NAME;
 import static com.netcracker.crm.dao.constants.DaoConstants.COLUMN_ENTITY_USER_ID;
 
-/**
- * Created by Nastya on 11/30/2016.
- */
+
 public class EAVlistExtractor implements ResultSetExtractor<Entity> {
     private List<String> entiyIdList;
+
     @Override
     public Entity extractData(ResultSet resultSet) throws SQLException, DataAccessException {
         int entityId = 0, atributeId = 0;
@@ -34,7 +33,7 @@ public class EAVlistExtractor implements ResultSetExtractor<Entity> {
                 entityTypeId = resultSet.getString(COLUMN_ENTITY_TYPE_ID),
                 resultSet.getString(COLUMN_ENTITY_TYPE_NAME),
                 resultSet.getString(COLUMN_ENTITY_USER_ID));
-        if (!this.entiyIdList.get(0).equals("")){
+        if (!this.entiyIdList.get(0).equals("")) {
             entityId = resultSet.getInt(COLUMN_ENTITY_ID);
             for (String item : this.entiyIdList) {
                 atributeValueMap.add(
@@ -57,11 +56,12 @@ public class EAVlistExtractor implements ResultSetExtractor<Entity> {
                         )
                 );
             }
-    }
+        }
         entity.setAtributeValueMap(atributeValueMap);
         return entity;
     }
+
     public EAVlistExtractor(List<String> entiyIdList) {
-        this.entiyIdList=new ArrayList<>(entiyIdList);
+        this.entiyIdList = new ArrayList<>(entiyIdList);
     }
 }

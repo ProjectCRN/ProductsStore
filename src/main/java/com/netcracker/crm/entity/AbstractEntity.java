@@ -2,15 +2,14 @@ package com.netcracker.crm.entity;
 
 import java.io.Serializable;
 
-/**
- * Created by di on 12.11.2016.
- */
+
 public class AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private int id;
 
-    public AbstractEntity(){}
+    public AbstractEntity() {
+    }
 
     public AbstractEntity(int id) {
         this.id = id;
@@ -31,6 +30,7 @@ public class AbstractEntity implements Serializable {
         result = prime * result + getId();
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

@@ -4,9 +4,7 @@ import com.netcracker.crm.entity.serviceEntity.ProductFieldsPatterns;
 import com.netcracker.crm.services.IPatternsService;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by Anton on 09.12.2016.
- */
+
 @Service
 public class PatternsServiceImpl implements IPatternsService {
 

@@ -8,9 +8,6 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
-/**
- * Created by egor on 03.11.2016.
- */
 public abstract class AbstractDao<T extends AbstractEntity> extends JdbcDaoSupport implements IDao<T> {
 
 

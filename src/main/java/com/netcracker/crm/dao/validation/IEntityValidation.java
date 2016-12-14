@@ -1,13 +1,6 @@
 package com.netcracker.crm.dao.validation;
 
-import com.netcracker.crm.entity.Entity;
-import com.netcracker.crm.entity.Value;
 
-import java.util.List;
-
-/**
- * Created by Nastya on 12/4/2016.
- */
 public interface IEntityValidation {
     //void updateValidation(int id, String entityName, int isActive, int userId, List<Value> valuesArr);
 //    void addValidation(Entity entity) ;

@@ -4,9 +4,7 @@ import com.google.common.collect.BiMap;
 import com.netcracker.crm.services.parser.exception.NoSuchIdXMLException;
 import com.netcracker.crm.services.parser.exception.NoSuchTagException;
 
-/**
- * Created by egor on 27.11.2016.
- */
+
 public abstract class AbstractTag {
     protected BiMap<String, Integer> tags;
     protected String typeName;
@@ -15,25 +13,27 @@ public abstract class AbstractTag {
         int id;
         try {
             id = tags.get(name);
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             throw new NoSuchTagException(e.getMessage());
         }
         return id;
     }
+
     public String getNameById(int id) throws NoSuchIdXMLException {
         String name;
-        try{
+        try {
             name = tags.inverse().get(id);
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             throw new NoSuchIdXMLException(e.getMessage());
         }
         return name;
     }
-    public boolean isCorrectId(int id){
+
+    public boolean isCorrectId(int id) {
         return tags.containsValue(id);
     }
 
-    public static AbstractTag getTag(int typeid){
+    public static AbstractTag getTag(int typeid) {
         switch (typeid) {
             case 9:
                 return new TelephoneTag();

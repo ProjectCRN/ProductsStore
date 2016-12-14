@@ -4,8 +4,6 @@ import com.netcracker.crm.dao.IEntityDao;
 import com.netcracker.crm.dao.exception.DaoException;
 import com.netcracker.crm.entity.Entity;
 import com.netcracker.crm.entity.Value;
-import com.netcracker.crm.entity.enums.EntityType;
-import com.netcracker.crm.entity.enums.PhoneAtribute;
 import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.AbstractService;
 import com.netcracker.crm.services.IProductService;
@@ -13,9 +11,7 @@ import com.netcracker.crm.services.constants.ServiceConstants;
 import com.netcracker.crm.services.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +33,9 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
 
         int id;
         try {
-            if(entityDao.countEntityName(product.getId(), product.getEntityTypeId(),
-                    product.getEntityName())>0)
-               return 0;
+            if (entityDao.countEntityName(product.getId(), product.getEntityTypeId(),
+                    product.getEntityName()) > 0)
+                return 0;
             id = entityDao.add(product);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " add " + product.toString());
         } catch (DaoException exc) {
@@ -78,7 +74,7 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
         String summaryId = String.valueOf(getAtributeIdByTypeId(typeId, "Summary"));
         String viewStr = imageId + "," + priceId + "," + capacityId + "," + batteryId + summaryId;
         try {
-            List<Entity> list =  entityDao.searchByName(typeId,viewStr,searchWord,pageNumber,pageSize,role,orderSide);
+            List<Entity> list = entityDao.searchByName(typeId, viewStr, searchWord, pageNumber, pageSize, role, orderSide);
             if (list != null) {
                 productList = new ArrayList<>(list.size());
                 for (Entity e : list) {
@@ -128,11 +124,11 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
         String batteryId = String.valueOf(getAtributeIdByTypeId(typeId, "Battery"));
         String summaryId = String.valueOf(getAtributeIdByTypeId(typeId, "Summary"));
 
-        String viewStr = imageId + "," + priceId + "," + capacityId + "," + batteryId+ "," + summaryId;
+        String viewStr = imageId + "," + priceId + "," + capacityId + "," + batteryId + "," + summaryId;
 
         try {
             List<Entity> list = entityDao.getList(typeId, atributesId, values, operators,
-                    viewStr, pageNumber, pageSize, role,orderSide);
+                    viewStr, pageNumber, pageSize, role, orderSide);
             if (list != null) {
                 productList = new ArrayList<>(list.size());
                 for (Entity e : list) {
@@ -165,8 +161,8 @@ public class ProductServiceImpl extends AbstractService<Product> implements IPro
     public int updateByProduct(Product product) {
         int numb;
         try {
-            if(entityDao.countEntityName(product.getId(), product.getEntityTypeId(),
-                    product.getEntityName())>0)
+            if (entityDao.countEntityName(product.getId(), product.getEntityTypeId(),
+                    product.getEntityName()) > 0)
                 return 0;
             numb = entityDao.updateByEntity(product);
             logger.info(ServiceConstants.TRANSACTION_SUCCEEDED + " update product #" + product.getId());

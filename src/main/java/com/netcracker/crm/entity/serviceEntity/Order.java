@@ -5,15 +5,10 @@ import com.netcracker.crm.entity.controllerEntity.form.OrderForm;
 import javafx.util.Pair;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Random;
 
-/**
- * Created by Nastya on 11/22/2016.
- */
 public class Order extends Entity {
 
     private static final long serialVersionUID = 1L;

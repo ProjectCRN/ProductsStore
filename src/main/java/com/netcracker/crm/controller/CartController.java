@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Created by Ксения on 22.11.2016.
- */
+
 @Controller
 public class CartController {
 
@@ -27,8 +25,8 @@ public class CartController {
     public String cart(ModelMap model) {
         model.addAttribute("cartList", cartService.getCart().getCartItems());
         model.addAttribute("total", cartService.countTotal());
-        model.addAttribute("cartQuantity",new CartQuantity());
-        model.addAttribute("prev","1");
+        model.addAttribute("cartQuantity", new CartQuantity());
+        model.addAttribute("prev", "1");
         return CART;
     }
 
@@ -36,7 +34,6 @@ public class CartController {
     public void addProduct(@PathVariable String id, ModelMap model) {
         cartService.addProduct(Integer.parseInt(id));
     }
-
 
 
     @RequestMapping(value = "/deleteCartProduct/{id}", method = RequestMethod.GET)
@@ -54,7 +51,7 @@ public class CartController {
     @RequestMapping(value = "/setQuantity/{id}", method = RequestMethod.GET)
     public String setQuantity(CartQuantity cartQuantity, @PathVariable String id, ModelMap model) {
         cartQuantity.validate();
-        if(!cartQuantity.getQuantity().equals(""))
+        if (!cartQuantity.getQuantity().equals(""))
             cartService.changeQuantity(Integer.parseInt(id),
                     Integer.parseInt(cartQuantity.getQuantity()));
         return "redirect:/" + CART;

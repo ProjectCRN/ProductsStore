@@ -1,8 +1,6 @@
 package com.netcracker.crm.entity.controllerEntity.form;
 
-/**
- * Created by Ксения on 05.12.2016.
- */
+
 public class LoginForm {
     private String login;
     private String password;

@@ -1,14 +1,11 @@
 package com.netcracker.crm.entity.controllerEntity.validator;
 
 import com.netcracker.crm.entity.controllerEntity.form.OrderForm;
-import com.netcracker.crm.entity.serviceEntity.*;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-/**
- * Created by Ксения on 05.12.2016.
- */
+
 public class OrderValidator implements Validator {
     public boolean supports(Class<?> clazz) {
         return OrderForm.class.isAssignableFrom(clazz);

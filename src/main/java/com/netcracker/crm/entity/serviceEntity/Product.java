@@ -10,12 +10,6 @@ import java.util.List;
 
 public class Product extends Entity {
 
-//    private String name;    //название телефона или планшета
-//    private boolean isActive;
-//    private String productType; //телефон или планшет
-//    private int userId;
-//    private List<Pair<Atribute, Value>> atributeValueMap;  //атрибуты телефона (камера и т.п.)
-
     private static final long serialVersionUID = 1L;
     private double price;
     private String summary;

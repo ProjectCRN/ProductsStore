@@ -1,6 +1,5 @@
 package com.netcracker.crm.dao.validation;
 
-import com.netcracker.crm.dao.IEntityDao;
 
 import static com.netcracker.crm.dao.constants.DaoConstants.*;
 
@@ -11,9 +10,7 @@ import com.netcracker.crm.services.parser.*;
 
 import java.util.*;
 
-/**
- * Created by Nastya on 12/4/2016.
- */
+
 public class EntityDaoValidation implements IEntityValidation {
 
     private static final List<String> operators = (Arrays.asList(">", "<", "<=", ">=", "=", "like", "isnull"));
@@ -178,20 +175,21 @@ public class EntityDaoValidation implements IEntityValidation {
 
     public static String getListWithAttributesValidation(String entiyIdList, String atributesId) {
         String[] arr;
-        String result="";
-        Set<String> attributeSet=new HashSet<String>();
+        String result = "";
+        Set<String> attributeSet = new HashSet<String>();
         if (!atributesId.equals("")) {
             arr = atributesId.split(",");
             for (String ss : arr) {
                 attributeSet.add(ss);
             }
             for (String item : attributeSet) {
-                result+=","+item;
+                result += "," + item;
             }
-            result=result.substring(1);
+            result = result.substring(1);
         }
         return result;
     }
+
     public static boolean idInTable(String tableName, int id) {
         return true;
     }

@@ -2,15 +2,13 @@ package com.netcracker.crm.entity.controllerEntity.form;
 
 import com.netcracker.crm.entity.User;
 
-/**
- * Created by Ксения on 12.12.2016.
- */
+
 public class ProfileForm {
     String userName;
     String contactPhone;
     String contactAddress;
 
-    public void setFieldsFromUser(User user){
+    public void setFieldsFromUser(User user) {
         this.userName = user.getUserName();
         this.contactPhone = user.getContactPhone();
         this.contactAddress = user.getContactAddress();

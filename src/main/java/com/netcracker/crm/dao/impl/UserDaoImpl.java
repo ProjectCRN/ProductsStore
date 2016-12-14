@@ -23,11 +23,8 @@ import java.util.Map;
 
 import static com.netcracker.crm.dao.constants.DaoConstants.*;
 
-/**
- * Created by egor on 11.11.2016.
- */
 
-public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
+public class UserDaoImpl extends AbstractDao<User> implements IUserDao {
 
     private static Logger logger = LogManager.getLogger(UserDaoImpl.class);
 
@@ -46,7 +43,7 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
                 COLUMN_USER_EMAIL +
                 ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         int id = getKey();
-        Object[] args = new Object[] {
+        Object[] args = new Object[]{
                 id,
                 user.getLogin(),
                 this.hashing(user.getPassword()),
@@ -58,14 +55,14 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
         };
         try {
             getJdbcTemplate().update(sql, args);
-        } catch (DuplicateKeyException e){
+        } catch (DuplicateKeyException e) {
             logger.error(e.getMessage());
             throw new ConstraintViolatedDaoException("Duplicate user login", e);
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException("Data access Exception", e);
         }
-       return id;
+        return id;
     }
 
     @Override
@@ -74,10 +71,10 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
         List<User> userList;
         try {
             userList = getJdbcTemplate().query(sql, new UserRowMapper());
-        } catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException("User table is empty", e);
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException("Data access Exception", e);
         }
@@ -101,10 +98,10 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
         User user;
         try {
             user = getJdbcTemplate().queryForObject(sql, new Object[]{id}, new UserRowMapper());
-        } catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException("Can't find user with id = " + id, e);
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException("Data access Exception", e);
         }
@@ -117,7 +114,7 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
                 + COLUMN_USER_ID + " = ?";
         try {
             getJdbcTemplate().update(sql, new Object[]{id});
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException(e.getMessage(), e);
         }
@@ -128,23 +125,24 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
         int out = -100;
         try {
             out = getJdbcTemplate().queryForObject(sql, Integer.class);
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException(e.getMessage(), e);
         }
-        return  out;
+        return out;
     }
+
     @Override
     public List<User> getAllByRole(String roleId) throws DaoException {
         final String sql = "SELECT * FROM TBL_USER WHERE ROLEID = ?";
         List<User> userList;
         try {
             userList = getJdbcTemplate().query(sql, new Object[]{roleId}, new UserRowMapper());
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException(e.getMessage(), e);
         }
-            return userList;
+        return userList;
     }
 
     @Override
@@ -154,17 +152,17 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void update(int id,String uLogin, String uPassword, String uName,
+    public void update(int id, String uLogin, String uPassword, String uName,
                        String uPhone, String uAddress, String uEmail) throws DaoException {
-        final String sql = "UPDATE TBL_USER SET "+
+        final String sql = "UPDATE TBL_USER SET " +
                 COLUMN_USER_LOGIN + "  = ?, " +
-                COLUMN_USER_PASSWORD +" = ?, "+
+                COLUMN_USER_PASSWORD + " = ?, " +
                 COLUMN_USER_USERNAME + " = ?, " +
-                COLUMN_USER_PHONE +" = ?, " +
+                COLUMN_USER_PHONE + " = ?, " +
                 COLUMN_USER_ADDRESS + " = ?, " +
                 COLUMN_USER_EMAIL + " =? " +
                 "WHERE " + COLUMN_USER_ID + " = ?";
-        Object[] args = new Object[] {
+        Object[] args = new Object[]{
                 uLogin,
                 this.hashing(uPassword),
                 uName,
@@ -175,7 +173,7 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
         };
         try {
             getJdbcTemplate().update(sql, args);
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException(e.getCause().getMessage(), e);
         }
@@ -184,46 +182,46 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
     @Override
     public boolean isLoginFree(String login) throws DaoException {
         final String sql = "SELECT " + COLUMN_USER_LOGIN + " FROM TBL_USER";
-        List <String> loginList;
+        List<String> loginList;
         try {
             loginList = getJdbcTemplate().queryForList(sql, String.class);
 
         } catch (EmptyResultDataAccessException e) {
             return true;
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException(e.getCause().getMessage(), e);
-    }
-       return (!contains(loginList, login));
+        }
+        return (!contains(loginList, login));
     }
 
 
     @Override
     public boolean isEmailFree(String email) throws DaoException {
         final String sql = "SELECT " + COLUMN_USER_EMAIL + " FROM TBL_USER";
-        List <String> emailList;
+        List<String> emailList;
         try {
             emailList = getJdbcTemplate().queryForList(sql, String.class);
-       } catch (EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             return true;
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException(e.getCause().getMessage(), e);
         }
         return (!contains(emailList, email));
     }
 
-        @Override
+    @Override
     public int getIdByLogin(String login) throws DaoException {
-        String sql = "SELECT " + COLUMN_USER_ID +" from TBL_USER where "+ COLUMN_USER_LOGIN+"=?";
+        String sql = "SELECT " + COLUMN_USER_ID + " from TBL_USER where " + COLUMN_USER_LOGIN + "=?";
 
-        int userId=-100;
+        int userId = -100;
         try {
             userId = getJdbcTemplate().queryForObject(sql, new Object[]{login}, Integer.class);
-        } catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException("Can't find user with login = " + login, e);
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             logger.error(e.getMessage());
             throw new DaoException("Data access Exception", e);
         }
@@ -241,6 +239,7 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
         }
         return false;
     }
+
     private boolean contains(List<String> list, String soughtFor) {
         for (String current : list) {
             if (current != null) {
@@ -253,9 +252,9 @@ public class UserDaoImpl  extends AbstractDao<User> implements IUserDao {
     }
 
     @Override
-    public String hashing(String str){
+    public String hashing(String str) {
 
-        MessageDigest m= null;
+        MessageDigest m = null;
         try {
             m = MessageDigest.getInstance("SHA-256");
         } catch (NoSuchAlgorithmException ex) {

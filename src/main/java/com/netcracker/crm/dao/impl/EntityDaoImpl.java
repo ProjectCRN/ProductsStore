@@ -28,9 +28,6 @@ import java.util.Map;
 import static com.netcracker.crm.dao.constants.DaoConstants.*;
 import static com.netcracker.crm.dao.validation.EntityDaoValidation.*;
 
-/**
- * Created by on 12.11.2016.
- */
 
 public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
@@ -219,7 +216,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
     public List<Entity> getList(int typeId, String atributesId, String values, String operators, String atributesIdView, int pageNumber, int pageSize, String role, boolean orderSide) {
         getListValidation(typeId, atributesId, values, operators, atributesIdView, pageNumber, pageSize);
         List<String> entiyIdList;
-        int orderSideint= orderSide ? 1 : 0;
+        int orderSideint = orderSide ? 1 : 0;
         try {
             getJdbcTemplate().setResultsMapCaseInsensitive(true);
             SqlParameterSource in = new MapSqlParameterSource()
@@ -260,17 +257,17 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 strEntityIdList += "," + item;
             }
             strEntityIdList = strEntityIdList.substring(1);
-            return getListWithAttributes(strEntityIdList, atributesIdView,orderSide);
+            return getListWithAttributes(strEntityIdList, atributesIdView, orderSide);
         }
         return null;
     }
 
     @Override
-    public List<Entity> searchByName(int typeId,String atributesIdView, String searchWord, int pageNumber, int pageSize, String role, boolean orderSide) {
+    public List<Entity> searchByName(int typeId, String atributesIdView, String searchWord, int pageNumber, int pageSize, String role, boolean orderSide) {
         List<String> entiyIdList;
-        int rownumMax=((pageNumber * pageSize) + 1 );
-        int rownumMin=(((pageNumber-1) * pageSize) + 1);
-        int intRole= role.equals("A") ? 0 : 1;
+        int rownumMax = ((pageNumber * pageSize) + 1);
+        int rownumMin = (((pageNumber - 1) * pageSize) + 1);
+        int intRole = role.equals("A") ? 0 : 1;
         String inSideParam = orderSide ? "ASC" : "DESC";
         String sql = "SELECT * FROM\n" +
                 "      (\n" +
@@ -279,7 +276,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 "          (\n" +
                 "              SELECT E.ENTITYID, E.ENTITYNAME\n" +
                 "              FROM TBL_ENTITY E\n" +
-                "              WHERE ((E.ENTITYTYPEID= ? ) AND (REGEXP_LIKE(E.ENTITYNAME,'"+searchWord+"','i')) AND (E.ISACTIVE=1 OR E.ISACTIVE= ? ))\n" +
+                "              WHERE ((E.ENTITYTYPEID= ? ) AND (REGEXP_LIKE(E.ENTITYNAME,'" + searchWord + "','i')) AND (E.ISACTIVE=1 OR E.ISACTIVE= ? ))\n" +
                 "              ORDER BY E.ENTITYNAME " + inSideParam +
                 "            ) a\n" +
                 "          WHERE rownum < ? \n" +
@@ -315,7 +312,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                 strEntityIdList += "," + item;
             }
             strEntityIdList = strEntityIdList.substring(1);
-            return getListWithAttributes(strEntityIdList, atributesIdView,orderSide);
+            return getListWithAttributes(strEntityIdList, atributesIdView, orderSide);
         }
         return null;
     }
@@ -365,7 +362,7 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
 
     private List<Entity> getListWithAttributes(String entiyIdList, String atributesId, boolean orderSide) {
         String tmp = atributesId;
-        int orderSideint= orderSide ? 1 : 0;
+        int orderSideint = orderSide ? 1 : 0;
         atributesId = getListWithAttributesValidation(entiyIdList, tmp);
         List<String> attributesList = new ArrayList<>();
         List<Entity> entiyList;

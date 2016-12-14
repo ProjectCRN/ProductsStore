@@ -1,8 +1,5 @@
 package com.netcracker.crm.entity;
 
-/**
- * Created by egor on 23.10.2016.
- */
 
 import com.netcracker.crm.services.parser.AbstractTag;
 import com.netcracker.crm.services.parser.exception.NoSuchTagException;
