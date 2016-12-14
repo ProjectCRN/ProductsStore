@@ -1,91 +1,87 @@
 package com.netcracker.crm.entity.serviceEntity;
 
-import com.netcracker.crm.entity.AbstractEntity;
-import com.netcracker.crm.entity.Atribute;
-import com.netcracker.crm.entity.Entity;
-import com.netcracker.crm.entity.Value;
+import com.netcracker.crm.entity.*;
+import com.netcracker.crm.entity.controllerEntity.form.OrderForm;
 import javafx.util.Pair;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.Random;
 
-/**
- * Created by Nastya on 11/22/2016.
- */
-public class Order extends AbstractEntity {
-    private String name;    //orderNumber
-    private boolean isActive;
-    private String entityType="Order";
-    private int userId;
-    private String orderNumber;
-    private String contactName;
-    private String contactPhone;
-    private String contactAdress;
-    private int Total;
-    private Date createdDate;
-    private Date paidDate;
+public class Order extends Entity {
 
+    private static final long serialVersionUID = 1L;
+    private String orderNumber = "";
+    private String contactName = "";
+    private String contactPhone = "";
+    private String contactAddress = "";
+    private int total;
+    private String createdDate;
+    private String paidDate;
     private Cart cart;
-    private List<Pair<Atribute, Value>> atributeValueMap;
+    private String description = "";
+    private final static int ORDERTYPE = 7;
 
-
-    public Order (Cart cart){
-
-    }
-
-    public Order(int id, String entityName, boolean b,  int entityUserId, List<Pair<Atribute, Value>> atributeValueMap) {
-        super(id);
-        this.name = entityName;
-        this.isActive = b;
-        this.userId = entityUserId;
-        this.atributeValueMap = atributeValueMap;
-    }
-
-
-    public Entity toEntity(){
-
-        Entity entity =  new Entity(getId(), name, isActive, EntityType.valueOf(entityType).getTypeId(), entityType, userId);
-        entity.setAtributeValueMap(atributeValueMap);
-        return entity;
+    public Order() {
     }
 
     public Order(Entity entity) {
-        this(entity.getId(), entity.getEntityName(), entity.getisActive() == 1 ? true : false, entity.getEntityUserId(), entity.getAtributeValueMap());
-
+        super(entity.getId(), entity.getEntityName(), entity.getisActive() == 1 ? true : false,
+                entity.getEntityTypeId(), entity.getEntityTypeName(), entity.getEntityUserId());
+        setAtributeValueMap(entity.getAtributeValueMap());
+        setValueListByMap(getAtributeValueMap());
+        if (getAtributeValueMap() != null) {
+            for (int i = 0; i < getAtributeValueMap().size(); i++) {
+                String atributeName = getAtributeValueMap().get(i).getKey().getAtributeName();
+                String atributeValue = getAtributeValueMap().get(i).getValue().getValue();
+                switch (atributeName) {
+                    case "Order Number":
+                        orderNumber = atributeValue;
+                        break;
+                    case "Contact Name":
+                        contactName = atributeValue;
+                        break;
+                    case "Contact Phone":
+                        contactPhone = atributeValue;
+                        break;
+                    case "Contact Adress":
+                        contactAddress = atributeValue;
+                        break;
+                    case "Total":
+                        total = Integer.parseInt(atributeValue);
+                        break;
+                    case "Created Date":
+                        createdDate = atributeValue;
+                        break;
+                    case "Paid Date":
+                        createdDate = atributeValue;
+                        break;
+                    case "Order Description":
+                        description = atributeValue;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 
-    public int getUserId() {
-        return userId;
+    public Order(int id, String name, boolean isActive,
+                 int userId) {
+        super(id, name, isActive, ORDERTYPE,
+                "Order", userId);
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setFieldsFromForm(OrderForm form) {
+        this.setContactName(form.getContactName());
+        this.setContactPhone(form.getContactPhone());
+        this.setContactAddress(form.getContactAddress());
     }
 
-    public List<Pair<Atribute, Value>> getAtributeValueMap() {
-        return atributeValueMap;
+    public Order(String name, boolean isActive, int userId) {
+        super(name, isActive, ORDERTYPE, userId);
     }
-
-    public void setAtributeValueMap(List<Pair<Atribute, Value>> atributeValueMap) {
-        this.atributeValueMap = atributeValueMap;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
 
     public String getOrderNumber() {
         return orderNumber;
@@ -93,6 +89,7 @@ public class Order extends AbstractEntity {
 
     public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
+        setValueInList("ordernumber", orderNumber);
     }
 
     public String getContactName() {
@@ -101,6 +98,7 @@ public class Order extends AbstractEntity {
 
     public void setContactName(String contactName) {
         this.contactName = contactName;
+        setValueInList("contactname", contactName);
     }
 
     public String getContactPhone() {
@@ -109,38 +107,43 @@ public class Order extends AbstractEntity {
 
     public void setContactPhone(String contactPhone) {
         this.contactPhone = contactPhone;
+        setValueInList("contactphone", contactPhone);
     }
 
-    public String getContactAdress() {
-        return contactAdress;
+    public String getContactAddress() {
+        return contactAddress;
     }
 
-    public void setContactAdress(String contactAdress) {
-        this.contactAdress = contactAdress;
+    public void setContactAddress(String contactAddress) {
+        this.contactAddress = contactAddress;
+        setValueInList("contactadress", contactAddress);
     }
 
     public int getTotal() {
-        return Total;
+        return total;
     }
 
     public void setTotal(int total) {
-        Total = total;
+        this.total = total;
+        setValueInList("total", String.valueOf(total));
     }
 
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
+        setValueInList("createddate", createdDate);
     }
 
-    public Date getPaidDate() {
+    public String getPaidDate() {
         return paidDate;
     }
 
-    public void setPaidDate(Date paidDate) {
+    public void setPaidDate(String paidDate) {
         this.paidDate = paidDate;
+        setValueInList("paiddate", createdDate);
     }
 
     public Cart getCart() {
@@ -151,62 +154,101 @@ public class Order extends AbstractEntity {
         this.cart = cart;
     }
 
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//        setValueInList("Description", description);
+//    }
+
+    public void setByUser(User user) {
+        setContactName(user.getUserName());
+        setContactPhone(user.getContactPhone());
+        setContactAddress(user.getContactAddress());
+    }
+
+    public String orderNumberGenerator() {
+        Date todaysDate = new Date();
+        DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String str2 = df2.format(todaysDate);
+        String str3 = str2.substring(0, 2) + str2.substring(3, 5) + str2.substring(8, 10) + str2.substring(11, 13) + str2.substring(14, 16) + str2.substring(17, 19);
+
+        char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 2; i++) {
+            char c = chars[random.nextInt(chars.length)];
+            sb.append(c);
+        }
+        String output = sb.toString();
+        return (str3 + output);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Order)) return false;
         if (!super.equals(o)) return false;
 
         Order order = (Order) o;
 
-        if (isActive != order.isActive) return false;
-        if (userId != order.userId) return false;
-        if (Total != order.Total) return false;
-        if (!name.equals(order.name)) return false;
-        if (!entityType.equals(order.entityType)) return false;
-        if (!orderNumber.equals(order.orderNumber)) return false;
-        if (!contactName.equals(order.contactName)) return false;
-        if (!contactPhone.equals(order.contactPhone)) return false;
-        if (!contactAdress.equals(order.contactAdress)) return false;
-        if (!createdDate.equals(order.createdDate)) return false;
-        if (paidDate != null ? !paidDate.equals(order.paidDate) : order.paidDate != null) return false;
-        if (!cart.equals(order.cart)) return false;
-        return atributeValueMap != null ? atributeValueMap.equals(order.atributeValueMap) : order.atributeValueMap == null;
-
+        if (getTotal() != order.getTotal()) return false;
+        if (getOrderNumber() != null ? !getOrderNumber().equals(order.getOrderNumber()) : order.getOrderNumber() != null)
+            return false;
+        if (getContactName() != null ? !getContactName().equals(order.getContactName()) : order.getContactName() != null)
+            return false;
+        if (getContactPhone() != null ? !getContactPhone().equals(order.getContactPhone()) : order.getContactPhone() != null)
+            return false;
+        if (getContactAddress() != null ? !getContactAddress().equals(order.getContactAddress()) : order.getContactAddress() != null)
+            return false;
+        if (getCreatedDate() != null ? !getCreatedDate().equals(order.getCreatedDate()) : order.getCreatedDate() != null)
+            return false;
+        if (getPaidDate() != null ? !getPaidDate().equals(order.getPaidDate()) : order.getPaidDate() != null)
+            return false;
+        return !(getCart() != null ? !getCart().equals(order.getCart()) : order.getCart() != null);
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + (isActive ? 1 : 0);
-        result = 31 * result + entityType.hashCode();
-        result = 31 * result + userId;
-        result = 31 * result + orderNumber.hashCode();
-        result = 31 * result + contactName.hashCode();
-        result = 31 * result + contactPhone.hashCode();
-        result = 31 * result + contactAdress.hashCode();
-        result = 31 * result + Total;
-        result = 31 * result + createdDate.hashCode();
-        result = 31 * result + (paidDate != null ? paidDate.hashCode() : 0);
-        result = 31 * result + cart.hashCode();
-        result = 31 * result + (atributeValueMap != null ? atributeValueMap.hashCode() : 0);
+        result = 31 * result + (getOrderNumber() != null ? getOrderNumber().hashCode() : 0);
+        result = 31 * result + (getContactName() != null ? getContactName().hashCode() : 0);
+        result = 31 * result + (getContactPhone() != null ? getContactPhone().hashCode() : 0);
+        result = 31 * result + (getContactAddress() != null ? getContactAddress().hashCode() : 0);
+        result = 31 * result + getTotal();
+        result = 31 * result + (getCreatedDate() != null ? getCreatedDate().hashCode() : 0);
+        result = 31 * result + (getPaidDate() != null ? getPaidDate().hashCode() : 0);
+        result = 31 * result + (getCart() != null ? getCart().hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        String str ="Order{" +
-                "name='" + name + '\'' +
-                ", isActive=" + isActive +
-                ", entityType='" + entityType + '\'' +
-                ", userId=" + userId +
+        String str = "Order{" +
+                "id=" + getId() + '\'' +
+                ", name='" + getEntityName() + '\'' +
+                ", isActive=" + getisActive() +
+                ", entityType='" + getEntityTypeName() + '\'' +
+                ", userId=" + getEntityUserId() +
                 '}';
-        for(Pair<Atribute,Value> item : atributeValueMap){
-            str+="\n"+item.getKey().toString();
-            str+="\n"+item.getValue().toString();
+        if (getAtributeValueMap() != null) {
+            for (Pair<Atribute, Value> item : getAtributeValueMap()) {
+                str += "\n" + item.getKey().toString();
+                str += ": " + item.getValue().toString();
+            }
         }
-        str+=cart.toString();
+//        if(getValueList()!=null){
+//            for (Value item : getValueList()) {
+//                str += "\n" + item.getAtributeId();
+//                str += ": " + item.getValue();
+//            }
+//        }
+        if (cart != null) {
+            str += "\n" + cart.toString();
+        }
         return str;
     }
+
 }

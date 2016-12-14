@@ -1,53 +1,38 @@
 package com.netcracker.crm.services.impl;
 
+import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.enums.PhoneAtribute;
+import com.netcracker.crm.entity.enums.TabletAtribute;
 import com.netcracker.crm.entity.serviceEntity.SearchAttributes;
 import com.netcracker.crm.services.ISearchService;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by Ксения on 29.11.2016.
- */
-@Service("searchService")
+
+@Service
 public class SearchServiceImpl implements ISearchService {
 
-    private static SearchAttributes searchAttributes;
-
     public SearchServiceImpl() {
-        if(searchAttributes==null)
-            searchAttributes = new SearchAttributes();
-    }
-
-    public static SearchAttributes getSearchAttributes1() {
-        return searchAttributes;
-    }
-
-    public static void setSearchAttributes(SearchAttributes searchAttributes) {
-        SearchServiceImpl.searchAttributes = searchAttributes;
     }
 
     @Override
-    public String getSearchRes() {
-        return searchAttributes.getTypeId()+" | "+searchAttributes.getAttribute()+" | "+searchAttributes.getOperators()+" | "+searchAttributes.getValues();
-    }
-
-    @Override
-    public void parseSearchAttributes() {
-        SearchAttributes searchAttr = this.getSearchAttributes();
+    public void parseSearchAttributes(SearchAttributes searchAttr) {
         String list1 = "";
         String list2 = "";
         String list3 = "";
-        int typeId = 8;
+        int typeId = 9;
 
-        switch (searchAttr.getType())
-        {
-            case "Telephone": typeId = 8; break;
-            case "Tablet": typeId = 9; break;
+        switch (searchAttr.getType()) {
+            case "telephone":
+                typeId = EntityType.Telephone.getTypeId();
+                break;
+            case "tablet":
+                typeId = EntityType.Tablet.getTypeId();
+                break;
         }
 
 
-        if(!searchAttr.getName().equals(""))
-        {
-            if(!list1.equals("")) {
+        /*if (!searchAttr.getName().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
@@ -55,91 +40,89 @@ public class SearchServiceImpl implements ISearchService {
             list1 += "entityName";
             list2 += "like";
             list3 += searchAttr.getName();
-        }
+        }*/
 
-        if(!searchAttr.getMinPrice().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getMinPrice().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
             }
-            if(typeId==8)
-                list1 += "20";
-            else list1 += "37";
-            list2 += ">";
-            list3 += searchAttr.getMinPrice()+".0";
+            if (typeId == EntityType.Telephone.getTypeId())
+                list1 += PhoneAtribute.Price.getAtributeId();
+            else list1 += TabletAtribute.Price.getAtributeId();
+            list2 += ">=";
+            list3 += searchAttr.getMinPrice();
         }
 
-        if(!searchAttr.getMaxPrice().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getMaxPrice().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
             }
-            if(typeId==8)
-                list1 += "20";
-            else list1 += "37";
-            list2 += "<";
-            list3 += searchAttr.getMaxPrice()+".0";
+            if (typeId == EntityType.Telephone.getTypeId())
+                list1 += PhoneAtribute.Price.getAtributeId();
+            else list1 += TabletAtribute.Price.getAtributeId();
+            list2 += "<=";
+            list3 += searchAttr.getMaxPrice();
         }
 
-        if(!searchAttr.getMinCapacity().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getMinCapacity().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
             }
-            if(typeId==8)
-                list1 += "24";
-            else list1 += "41";
-            list2 += ">";
+            if (typeId == EntityType.Telephone.getTypeId())
+                list1 += PhoneAtribute.Capacity.getAtributeId();
+            else list1 += TabletAtribute.Capacity.getAtributeId();
+            list2 += ">=";
             list3 += searchAttr.getMinCapacity();
         }
 
-        if(!searchAttr.getMaxCapacity().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getMaxCapacity().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
             }
-            if(typeId==8)
-                list1 += "24";
-            else list1 += "41";
-            list2 += "<";
+            if (typeId == EntityType.Telephone.getTypeId())
+                list1 += PhoneAtribute.Capacity.getAtributeId();
+            else list1 += TabletAtribute.Capacity.getAtributeId();
+            list2 += "<=";
             list3 += searchAttr.getMaxCapacity();
         }
 
-        if(!searchAttr.getMinBattery().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getMinBattery().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
             }
-            if(typeId==8)
-                list1 += "31";
-            else list1 += "48";
-            list2 += ">";
+            if (typeId == EntityType.Telephone.getTypeId())
+                list1 += PhoneAtribute.Battery.getAtributeId();
+            else list1 += TabletAtribute.Battery.getAtributeId();
+            list2 += ">=";
             list3 += searchAttr.getMinBattery();
         }
 
-        if(!searchAttr.getMaxBattery().equals(""))
-        {
-            if(!list1.equals("")) {
+        if (!searchAttr.getMaxBattery().equals("")) {
+            if (!list1.equals("")) {
                 list1 += ",";
                 list2 += ",";
                 list3 += ",";
             }
-            if(typeId==8)
-                list1 += "31";
-            else list1 += "48";
-            list2 += "<";
+            if (typeId == EntityType.Telephone.getTypeId())
+                list1 += PhoneAtribute.Battery.getAtributeId();
+            else list1 += TabletAtribute.Battery.getAtributeId();
+            list2 += "<=";
             list3 += searchAttr.getMaxBattery();
         }
+        if (searchAttr.getName().equals("A-Z"))
+            searchAttr.setSortBy(true);
+        else searchAttr.setSortBy(false);
+
         searchAttr.setTypeId(typeId);
         searchAttr.setAttribute(list1);
         searchAttr.setOperators(list2);
@@ -155,42 +138,30 @@ public class SearchServiceImpl implements ISearchService {
         if (!searchAttr.getMaxCapacity().matches("^[0-9]+$")) searchAttr.setMaxCapacity("");
         if (!searchAttr.getMinBattery().matches("^[0-9]+$")) searchAttr.setMinBattery("");
         if (!searchAttr.getMaxBattery().matches("^[0-9]+$")) searchAttr.setMaxBattery("");
-        if (!searchAttr.getName().matches("^[a-zA-Z0-9 ]+$")) searchAttr.setName("");
+        if ((!searchAttr.getNumPerPage().matches("^[0-9]+$")) ||
+                Integer.parseInt(searchAttr.getNumPerPage()) == 0) searchAttr.setNumPerPage("2");
+        // if (!searchAttr.getName().matches("^[a-zA-Z0-9 ]+$")) searchAttr.setName("");
 
-        if(!searchAttr.getMinPrice().equals("") && !searchAttr.getMaxPrice().equals(""))
-            if(Integer.parseInt(searchAttr.getMinPrice())>Integer.parseInt(searchAttr.getMaxPrice()))
-            {
+        if (!searchAttr.getMinPrice().equals("") && !searchAttr.getMaxPrice().equals(""))
+            if (Integer.parseInt(searchAttr.getMinPrice()) > Integer.parseInt(searchAttr.getMaxPrice())) {
                 buf = searchAttr.getMinPrice();
                 searchAttr.setMinPrice(searchAttr.getMaxPrice());
                 searchAttr.setMaxPrice(buf);
             }
-        if(!searchAttr.getMinCapacity().equals("") && !searchAttr.getMaxCapacity().equals(""))
-            if(Integer.parseInt(searchAttr.getMinCapacity())>Integer.parseInt(searchAttr.getMaxCapacity()))
-            {
+        if (!searchAttr.getMinCapacity().equals("") && !searchAttr.getMaxCapacity().equals(""))
+            if (Integer.parseInt(searchAttr.getMinCapacity()) > Integer.parseInt(searchAttr.getMaxCapacity())) {
                 buf = searchAttr.getMinCapacity();
                 searchAttr.setMinCapacity(searchAttr.getMaxCapacity());
                 searchAttr.setMaxCapacity(buf);
             }
 
-        if(!searchAttr.getMinBattery().equals("") && !searchAttr.getMaxBattery().equals(""))
-            if(Integer.parseInt(searchAttr.getMinBattery())>Integer.parseInt(searchAttr.getMaxBattery()))
-            {
+        if (!searchAttr.getMinBattery().equals("") && !searchAttr.getMaxBattery().equals(""))
+            if (Integer.parseInt(searchAttr.getMinBattery()) > Integer.parseInt(searchAttr.getMaxBattery())) {
                 buf = searchAttr.getMinBattery();
                 searchAttr.setMinBattery(searchAttr.getMaxBattery());
                 searchAttr.setMaxBattery(buf);
             }
-        this.setSearchAttributes(searchAttr);
-
 
     }
 
-    @Override
-    public void setSearchAttributes() {
-
-    }
-
-    @Override
-    public SearchAttributes getSearchAttributes() {
-        return searchAttributes;
-    }
 }

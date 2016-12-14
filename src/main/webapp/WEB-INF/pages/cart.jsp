@@ -1,61 +1,146 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Cart</title>
-    <spring:url value="/resources/css/style.css" var="mainCss"/>
-    <spring:url value="/resources/lib/bootstrap/bootstrap-grid-3.3.1.min.css" var="btsCss"/>
-    <spring:url value="/resources/img/spinner.gif" var="spinner"/>
-    <link href="${btsCss}" rel="stylesheet"/>
-    <link href="${mainCss}" rel="stylesheet"/>
-</head>
-<body>
-
-<div class="content">
+<%@ page import = "xbcat.util.*"  %>
 
 
-    <div class="block1">
-        <div class="row">
-            <nav>
-                <li><a href="/">Main</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/cart" class="active">Cart</a></li>
-                <li><a href="/createOrder">Create Order</a></li>
-                <li><a href="/createUser">Registration</a></li>
-            </nav>
-            <div class="container">
+
+            <div class="align_center">
+
+                <div class="col-md-9">
+                    <ul class="listOfProducts">
+                        <c:forEach items="${cartList}" var="item">
+
+                            <li>
+                                <a href="#" class="seeMore_btn_${item.getProduct().getId()}">
+                                    <img src="${item.getProduct().getImageUrl()}"/>
+
+                                    <span>${item.getProduct().getEntityName()}</span></a><br>
+                                    quantity: ${item.getQuantity()} <br>
 
 
-                <table class="table table-striped">
-                    <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>price</th>
-                        <th>num</th>
-                        <th>add</th>
-                        <th>delete</th>
-                    </tr>
-                    <c:forEach items="${cartList}" var="item">
-                        <tr>
-                            <td>${item.getProduct().getId()} </td>
-                            <td>${item.getProduct().getEntityName()} </td>
-                            <td>${item.getProduct().getPrice()} </td>
-                            <td>${item.getQuantity()}</td>
-                            <td><a class="btn btn-default" role="button"
-                                   href="/addCartProduct/${item.getProduct().getId()}">add</a></td>
-                            <td><a class="btn btn-default" role="button"
-                                   href="/deleteCartProduct/${item.getProduct().getId()}">delete</a></td>
-                        </tr>
-                    </c:forEach>
-                </table>
-                <h1>Total: ${total}</h1>
+                                    ${item.getProduct().getSummary()}
+                                <br>
 
+                                <div class="btn_right">
+
+                                    <a class="btn btn-default btnLink hide_show " id="btnAdd_${item.getProduct().getId()}" role="button"
+                                       href="#">add</a>
+                                    <a class="btn btn-default btnLink hide_show" id="btnDel_${item.getProduct().getId()}" role="button"
+                                       href="#">delete</a><br>
+                                    <sf:form id="btnQuan_${item.getProduct().getId()}" class="hide_show" method="get" modelAttribute="cartQuantity"
+                                             action="javascript:void(null);" onsubmit="setFun_${item.getProduct().getId()}()">
+                                        <sf:input path="quantity" size="8" placeholder="Quantity" pattern="[ 0-9]{1,6}"/><br>
+                                        <input type="submit" value="setQuantity" class="btn btn-default btnLink"  style="display: none;"/>
+                                    </sf:form>
+                                <br><span>${item.getProduct().getPrice()}$</span> <br>
+
+                </div>
+                            </li>
+
+                            <script type="text/javascript" language="javascript">
+                                function setFun_${item.getProduct().getId()}() {
+                                    var msg   = $('#btnQuan_${item.getProduct().getId()}').serialize();
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: '/setQuantity/${item.getProduct().getId()}',
+                                        data: msg,
+                                        success: function(data) {
+                                            $('.results').html(data);
+                                        }
+                                    });
+                                }
+                                $('#btnAdd_${item.getProduct().getId()}').click( function() {
+                                    $.ajax({
+                                        url: '/addCartProduct/${item.getProduct().getId()}',
+                                        success: function(data) {
+                                            $('.results').html(data);
+                                        }
+                                    });
+                                });
+                                $('#btnDel_${item.getProduct().getId()}').click( function() {
+                                    $.ajax({
+                                        url: '/deleteCartProduct/${item.getProduct().getId()}',
+                                        success: function(data) {
+                                            $('.results').html(data);
+                                        }
+                                    });
+                                });
+
+                                if(${prev} == '2'){
+                                    $('.seeMore_btn_${item.getProduct().getId()}').click( function() {
+                                        $.ajax({
+                                            url: '/item/${item.getProduct().getValueFromList(20)}',
+                                            success: function(data) {
+                                                $('.results').html(data);
+                                            }
+                                        });
+                                    });
+                                } else {
+                                    $('.seeMore_btn_${item.getProduct().getId()}').click( function() {
+                                        $.ajax({
+                                            url: '/item/${item.getProduct().getId()}',
+                                            success: function(data) {
+                                                $('.results').html(data);
+                                            }
+                                        });
+                                    });
+                                }
+
+
+                            </script>
+
+                        </c:forEach>
+                    </ul>
+                </div>
+                <div class="col-md-3 left_block">
+                     <h1>Total: ${total}$ </h1>
+                     <a class="btn btn-default btnLink createOrder hide_show" href="#">Create Order</a>
+                </div>
             </div>
-        </div>
-    </div>
 
 
-</div>
-</body>
-</html>
+<script language="javascript" type="text/javascript">
+
+
+
+
+    if(${prev} == '2'){
+        $('.hide_show').hide();
+    } else {
+        $('.hide_show').show();
+    }
+
+    if(${total} == '0'){
+        $('.createOrder').hide();
+    } else {
+        if(${prev} != '2'){
+            $('.createOrder').show();
+        }
+    }
+
+
+    $('.createOrder').click( function() {
+        funLoad('/createOrder');
+    });
+
+
+    function funLoad(str) {
+        $('#page-preloader').show();
+        $.ajax({
+            url: str,
+            success: function(data) {
+                $('.results').html(data);
+                $('#page-preloader').hide();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $('.results').html('<img src="/resources/img/spinner3.gif" /><span class="error">'+textStatus + errorThrown + '</spam>');
+                $('#page-preloader').hide();
+            }
+        });
+    }
+
+
+
+</script>

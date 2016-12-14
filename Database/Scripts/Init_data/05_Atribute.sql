@@ -7,7 +7,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
@@ -16,7 +17,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	1,
 	7,
 	1,
-	10);
+	10,
+  'No Expression');
   
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -25,7 +27,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
@@ -34,7 +37,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	1,
 	7,
 	1,
-	20);
+	20,
+  '^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$');
   
     INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -43,7 +47,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
@@ -52,7 +57,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	1,
 	7,
 	1,
-	20);
+	20,
+  '^((8|\+375)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$');
   
     INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -61,7 +67,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
@@ -70,7 +77,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	1,
 	7,
 	1,
-	30);
+	30,
+  '^[a-zA-Z][a-zA-Z0-9-_ \.]{1,20}$');
   
     INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -79,7 +87,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
@@ -88,7 +97,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	1,
 	7,
 	1,
-	40);
+	40,
+  'No Expression');
   
     INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -97,7 +107,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
@@ -106,7 +117,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	1,
 	7,
 	1,
-	50);
+	50,
+  'No Expression');
   
       INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -115,7 +127,8 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
@@ -124,45 +137,127 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	1,
 	7,
 	1,
-	60);
+	60,
+  'No Expression');
   
-        INSERT INTO ns_admin.TBL_ATRIBUTE (
+  --Product In Order--
+  
+  INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
 	ATRIBUTETYPEID,
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
-	'Order Description',
+	'Price',
+	3,
+	1,
+	8,
+	1,
+	10,
+  'No Expression');
+  INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER,
+  REGULAREXPRESSION) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'ProductID',
+	2,
+	1,
+	8,
+	1,
+	20,
+  'No Expression');  
+  INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER,
+  REGULAREXPRESSION) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'OrderID',
+	2,
+	1,
+	8,
+	1,
+	30,
+  'No Expression');
+    INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER,
+  REGULAREXPRESSION) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Quantity',
+	2,
+	1,
+	8,
+	1,
+	40,
+  'No Expression');
+    INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER,
+  REGULAREXPRESSION) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'ImageURL',
 	1,
 	1,
-	7,
+	8,
 	1,
-	70);
-  
-
+	50,
+  'No Expression');
+    INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER,
+  REGULAREXPRESSION) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Summary',
+	1,
+	1,
+	8,
+	1,
+	60,
+  'No Expression');
   --Telephone--
-  INSERT INTO ns_admin.TBL_ATRIBUTE (
-  ATRIBUTEID,
-	ATRIBUTENAME,
-	ATRIBUTETYPEID,
-	ISACTIVE,
-	ENTITYTYPEID,
-	ISREQUIRED,
-	SORTORDER) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'OrderID',
-	2,
-	1,
-	8,
-	0,
-	1);
+  
 INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -170,16 +265,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Price',
 	3,
 	1,
-	8,
+	9,
 	1,
-	2);
+	2,
+  '\d+(\.,\d{0,2})?');
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -187,16 +284,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Summary',
 	1,
 	1,
-	8,
+	9,
 	1,
-	3);
+	3,
+  '^[a-zA-Z][a-zA-Z0-9-_\. ]{5,140}$');
   
 INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -205,16 +304,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Operating System',
 	1,
 	1,
-	8,
+	9,
 	1,
-	5);
+	5,
+  '^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$');
   
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -223,16 +324,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Processor speed, GHz',
 	3,
 	1,
-	8,
+	9,
 	1,
-	8);
+	8,
+  '[0-9]{1,}');
 INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -240,16 +343,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Capacity, GB',
 	2,
 	1,
-	8,
+	9,
 	1,
-	10);
+	10,
+  '[0-9]{1,}');
   
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -258,16 +363,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Display, inch',
 	3,
 	1,
-	8,
+	9,
 	1,
-	20);
+	20,
+  '\d+(\.\d{0,1})?');
   
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -276,16 +383,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Height, mm',
 	3,
 	1,
-	8,
+	9,
 	1,
-	30);
+	30,
+  '\d+(\.\d{0,2})?');
     INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -293,16 +402,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Width, mm',
 	3,
 	1,
-	8,
+	9,
 	1,
-	40);
+	40,
+  '\d+(\.\d{0,2})?');
       INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -310,16 +421,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Depth, mm',
 	3,
 	1,
-	8,
+	9,
 	1,
-	50);
+	50,
+  '\d+(\.\d{0,2})?');
   
         INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -328,16 +441,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Weight, grams',
 	3,
 	1,
-	8,
+	9,
 	1,
-	60);
+	60,
+  '[0-9]{1,}');
           INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -345,33 +460,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Camera, MP',
 	3,
 	1,
-	8,
+	9,
 	1,
-	70);
-  INSERT INTO ns_admin.TBL_ATRIBUTE (
-  ATRIBUTEID,
-	ATRIBUTENAME,
-	ATRIBUTETYPEID,
-	ISACTIVE,
-	ENTITYTYPEID,
-	ISREQUIRED,
-	SORTORDER) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'Battery, hours',
-	3,
-	1,
-	8,
-	1,
-	80);
+	70,
+  '[0-9]{1,}');
   
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -380,102 +480,19 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
-	'SIM Card',
-	1,
-	1,
-	8,
-	1,
-	90);
-    INSERT INTO ns_admin.TBL_ATRIBUTE (
-  ATRIBUTEID,
-	ATRIBUTENAME,
-	ATRIBUTETYPEID,
-	ISACTIVE,
-	ENTITYTYPEID,
-	ISREQUIRED,
-	SORTORDER) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'Quantity',
-	2,
-	1,
-	8,
-	1,
-	1000);
-    INSERT INTO ns_admin.TBL_ATRIBUTE (
-  ATRIBUTEID,
-	ATRIBUTENAME,
-	ATRIBUTETYPEID,
-	ISACTIVE,
-	ENTITYTYPEID,
-	ISREQUIRED,
-	SORTORDER) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'ImageURL',
-	1,
-	1,
-	8,
-	1,
-	900);
-   INSERT INTO ns_admin.TBL_ATRIBUTE (
-  ATRIBUTEID,
-	ATRIBUTENAME,
-	ATRIBUTETYPEID,
-	ISACTIVE,
-	ENTITYTYPEID,
-	ISREQUIRED,
-	SORTORDER) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'Fabricator',
-	1,
-	1,
-	8,
-	1,
-	100);
-  --Tablet--
-   INSERT INTO ns_admin.TBL_ATRIBUTE (
-  ATRIBUTEID,
-	ATRIBUTENAME,
-	ATRIBUTETYPEID,
-	ISACTIVE,
-	ENTITYTYPEID,
-	ISREQUIRED,
-	SORTORDER) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'OrderID',
-	2,
-	1,
-	9,
-	0,
-	1);
-INSERT INTO ns_admin.TBL_ATRIBUTE (
-  ATRIBUTEID,
-	ATRIBUTENAME,
-	ATRIBUTETYPEID,
-	ISACTIVE,
-	ENTITYTYPEID,
-	ISREQUIRED,
-	SORTORDER) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'Price',
+	'Battery, hours',
 	3,
 	1,
 	9,
 	1,
-	2);
+	80,
+  '[0-9]{1,}');
+  
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -483,16 +500,98 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'SIM Card',
+	1,
+	1,
+	9,
+	1,
+	90,
+  '^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$');
+    
+    INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER,
+  REGULAREXPRESSION) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'ImageURL',
+	1,
+	1,
+	9,
+	1,
+	900,
+  '^(https?://)?(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$');
+  
+   INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER,
+  REGULAREXPRESSION) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Fabricator',
+	1,
+	1,
+	9,
+	1,
+	100,
+  '^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$');
+  --Tablet--
+  
+INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER,
+  REGULAREXPRESSION) 
+	values
+	(
+	SQ_MAIN.nextval,
+	'Price',
+	3,
+	1,
+	10,
+	1,
+	2,
+  '\d+(\.,\d{0,2})?');
+  INSERT INTO ns_admin.TBL_ATRIBUTE (
+  ATRIBUTEID,
+	ATRIBUTENAME,
+	ATRIBUTETYPEID,
+	ISACTIVE,
+	ENTITYTYPEID,
+	ISREQUIRED,
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Summary',
 	1,
 	1,
-	9,
+	10,
 	1,
-	3);
+	3,
+  '^[a-zA-Z][a-zA-Z0-9-_\. ]{5,140}$');
 
 INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -501,16 +600,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Operating System',
 	1,
 	1,
-	9,
+	10,
 	1,
-	5);
+	5,
+  '^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$');
   
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -519,16 +620,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Processor speed, GHz',
 	3,
 	1,
-	9,
+	10,
 	1,
-	8);
+	8,
+  '[0-9]{1,}');
 INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -536,16 +639,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Capacity, GB',
 	2,
 	1,
-	9,
+	10,
 	1,
-	10);
+	10,
+  '[0-9]{1,}');
   
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -554,16 +659,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Display, inch',
 	3,
 	1,
-	9,
+	10,
 	1,
-	20);
+	20,
+  '\d+(\.\d{0,1})?');
   
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -572,16 +679,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Height, mm',
 	3,
 	1,
-	9,
+	10,
 	1,
-	30);
+	30,
+  '\d+(\.\d{0,2})?');
     INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -589,16 +698,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Width, mm',
 	3,
 	1,
-	9,
+	10,
 	1,
-	40);
+	40,
+  '\d+(\.\d{0,2})?');
       INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -606,16 +717,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Depth, mm',
 	3,
 	1,
-	9,
+	10,
 	1,
-	50);
+	50,
+  '\d+(\.\d{0,2})?');
   
         INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -624,16 +737,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Weight, grams',
 	3,
 	1,
-	9,
+	10,
 	1,
-	60);
+	60,
+  '[0-9]{1,}');
           INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -641,16 +756,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Camera, MP',
 	3,
 	1,
-	9,
+	10,
 	1,
-	70);
+	70,
+  '[0-9]{1,}');
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -658,16 +775,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Battery, hours',
 	3,
 	1,
-	9,
+	10,
 	1,
-	80);
+	80,
+  '[0-9]{1,}');
   
   INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
@@ -676,33 +795,19 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'SIM Card',
 	1,
 	1,
-	9,
+	10,
 	1,
-	90);
-      INSERT INTO ns_admin.TBL_ATRIBUTE (
-  ATRIBUTEID,
-	ATRIBUTENAME,
-	ATRIBUTETYPEID,
-	ISACTIVE,
-	ENTITYTYPEID,
-	ISREQUIRED,
-	SORTORDER) 
-	values
-	(
-	SQ_MAIN.nextval,
-	'Quantity',
-	2,
-	1,
-	9,
-	1,
-	1000);
+	90,
+  '^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$');
+  
    INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -710,16 +815,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'ImageURL',
 	1,
 	1,
-	9,
+	10,
 	1,
-	900);
+	900,
+  '^(https?://)?(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$');
    INSERT INTO ns_admin.TBL_ATRIBUTE (
   ATRIBUTEID,
 	ATRIBUTENAME,
@@ -727,18 +834,18 @@ INSERT INTO ns_admin.TBL_ATRIBUTE (
 	ISACTIVE,
 	ENTITYTYPEID,
 	ISREQUIRED,
-	SORTORDER) 
+	SORTORDER,
+  REGULAREXPRESSION) 
 	values
 	(
 	SQ_MAIN.nextval,
 	'Fabricator',
 	1,
 	1,
-	9,
+	10,
 	1,
-	100);
+	100,
+  '^[a-zA-Z][a-zA-Z0-9-_\. ]{1,20}$');
   
     commit;
 
-exit;
-/

@@ -5,16 +5,15 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 
-/**
- * Created by egor on 27.11.2016.
- */
-@Component("typeAttribute")
+
 public class TypeAttribute extends AbstractTag {
-    private TypeAttribute() {
-        tags = HashBiMap.create(new HashMap(){{
-            put("telephone", 8);
-            put("tablet", 9);
-            put("smartWatch", 10);
+    public TypeAttribute() {
+        tags = HashBiMap.create(new HashMap() {{
+            put("order", 7);
+            put("productinorder", 8);
+            put("telephone", 9);
+            put("tablet", 10);
+            put("smartwatch", 11);
         }});
     }
 }

@@ -7,7 +7,8 @@ CREATE TABLE TBL_Atribute
 	isActive             SMALLINT NOT NULL  CONSTRAINT  VR_AtrbuteBool CHECK (isActive IN (0, 1)),
 	EntityTypeID         INTEGER NOT NULL ,
 	isRequired           SMALLINT NOT NULL  CONSTRAINT  VR_isRequiredBool CHECK (isRequired IN (0, 1)),
-	SortOrder            INTEGER NOT NULL 
+	SortOrder            INTEGER NOT NULL ,
+	RegularExpression    NVARCHAR2(256) NOT NULL 
 );
 
 
@@ -191,6 +192,3 @@ ALTER TABLE TBL_Value
 
 ALTER TABLE TBL_Value
 	ADD (CONSTRAINT R_11 FOREIGN KEY (AtributeID) REFERENCES TBL_Atribute (AtributeID));
-
-exit;
-/

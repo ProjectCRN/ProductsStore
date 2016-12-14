@@ -1,88 +1,73 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Check Your Data</title>
-    <spring:url value="/resources/css/style.css" var="mainCss"/>
-    <spring:url value="/resources/lib/bootstrap/bootstrap-grid-3.3.1.min.css" var="btsCss"/>
-    <spring:url value="/resources/img/spinner.gif" var="spinner"/>
-    <link href="${btsCss}" rel="stylesheet"/>
-    <link href="${mainCss}" rel="stylesheet"/>
-</head>
-<body>
 
-<div class="content">
+<div class="col-md-4"></div>
+<div class="col-md-4">
+    <table class="table table-striped">
+        <tr>
+            <td>Order:</td>
+            <td>№${order.getOrderNumber()}</td>
+        </tr>
+        <tr>
+            <td>Total:</td>
+            <td>${order.getTotal()}</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>${order.getContactName()}</td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td>${order.getContactAddress()}</td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td>${order.getContactPhone()}</td>
+        </tr>
+        <tr>
+            <td>Created Date:</td>
+            <td>${order.getCreatedDate()}</td>
+        </tr>
 
+    </table><br>
+    <br>
+    <a class="btn btn-default btnLink" href="/">Ok</a><br>
+    <a class="btn btn-default btnLink cartFromOrder" href="#">See Cart</a>
+    <a class="btn btn-default btnLink allOrdersInCheck" href="#">All Orders</a>
 
-    <div class="block1">
-        <div class="row">
+    <script type="text/javascript" language="javascript">
 
-            <nav>
-                <li><a href="/">Main</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/cart">Cart</a></li>
-                <li><a href="/createOrder" class="active">Create Order</a></li>
-                <li><a href="/createUser">Registration</a></li>
-            </nav>
+        if(${order.getId()} == 0){
+            $('.cartFromOrder').hide()
+            $('.allOrdersInCheck').show()
+        } else {
+            $('.cartFromOrder').show()
+            $('.allOrdersInCheck').hide()
+        }
 
-            <div class="container">
-
-
-                <table class="table table-striped">
-                    <tr>
-                        <td>Order:</td>
-                        <td>№${order.getId()}</td>
-                    </tr>
-                    <tr>
-                        <td>Total:</td>
-                        <td>${order.getTotal()}</td>
-                    </tr>
-                    <tr>
-                        <td>Name:</td>
-                        <td>${order.getName()}</td>
-                    </tr>
-                    <tr>
-                        <td>Address:</td>
-                        <td>${order.getAddress()}</td>
-                    </tr>
-                    <tr>
-                        <td>Phone:</td>
-                        <td>${order.getPhone()}</td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td>${order.getEmail()}</td>
-                    </tr>
-                    <tr>
-                        <td>Comments:</td>
-                        <td>${order.getComments()}</td>
-                    </tr>
-                </table>
-
-                <h2>Selected items:</h2>
-
-                <table class="table table-striped">
-                    <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>price</th>
-                        <th>num</th>
-                    </tr>
-                    <c:forEach items="${order.getCartItemList()}" var="item">
-                        <tr>
-                            <td>${item.getProduct().getId()} </td>
-                            <td>${item.getProduct().getName()} </td>
-                            <td>${item.getProduct().getPrice()} </td>
-                            <td>${item.getNumber()}</td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </div>
-        </div>
-    </div>
+        $('.cartFromOrder').click( function() {
+            funLoad('/getCart/${order.getId()}');
+        });
+        $('.allOrdersInCheck').click( function() {
+            funLoad('/getAllOrders');
+        });
 
 
+        function funLoad(str) {
+            $('#page-preloader').show();
+            $.ajax({
+                url: str,
+                success: function(data) {
+                    $('.results').html(data);
+                    $('#page-preloader').hide();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $('.results').html('<img src="/resources/img/spinner3.gif" /><span class="error">'+textStatus + errorThrown + '</spam>');
+                    $('#page-preloader').hide();
+                }
+            });
+        }
+
+    </script>
 </div>
-</body>
-</html>

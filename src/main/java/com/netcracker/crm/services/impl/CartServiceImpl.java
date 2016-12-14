@@ -7,30 +7,39 @@ import com.netcracker.crm.entity.serviceEntity.Product;
 import com.netcracker.crm.services.AbstractService;
 import com.netcracker.crm.services.ICartService;
 import com.netcracker.crm.services.IProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Required;
 
-/**
- * Created by Nastya on 11/22/2016.
- */
-@Service("cartService")
 public class CartServiceImpl extends AbstractService<Cart> implements ICartService {
 
-    private static Cart cart;
+    private Cart cart;
+    private IProductService productService;
+
+    @Required
+    public void setProductService(IProductService productService) {
+        this.productService = productService;
+    }
+
+    @Required
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     @Override
-    public void createCart(int userId)
-    {
-        if(cart == null)
+    public void createCart(int userId) {
+        if (cart == null)
             cart = new Cart(userId);
     }
 
     @Override
+    public void clearCart() {
+        cart.clear();
+    }
+
+    @Override
     public int add(Cart abstractEntity) {
-        this.cart=abstractEntity;
+        this.cart = abstractEntity;
         return 0;
+
     }
 
 
@@ -46,10 +55,8 @@ public class CartServiceImpl extends AbstractService<Cart> implements ICartServi
 
     @Override
     public void addProduct(int productId) {
-        ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"SpringModule.xml"});
-        IProductService productService = (ProductServiceImpl) context.getBean("productService");
         Product product = productService.getById(productId);
-        CartItem cartItem=new CartItem(product,1);
+        CartItem cartItem = new CartItem(product, 1);
         cart.addCartItem(cartItem);
     }
 
@@ -60,10 +67,10 @@ public class CartServiceImpl extends AbstractService<Cart> implements ICartServi
 
     @Override
     public void changeQuantity(int productId, int quantity) {
-        CartItem cartItem=findById(productId);
-        int indexOfCartItem=cart.getCartItems().indexOf(cartItem);
+        CartItem cartItem = findById(productId);
+        int indexOfCartItem = cart.getCartItems().indexOf(cartItem);
         cartItem.setQuantity(quantity);
-        cart.updateCartItem(indexOfCartItem,cartItem);
+        cart.updateCartItem(indexOfCartItem, cartItem);
     }
 
     @Override
@@ -72,10 +79,10 @@ public class CartServiceImpl extends AbstractService<Cart> implements ICartServi
     }
 
 
-    public CartItem findById(int id){
+    public CartItem findById(int id) {
         CartItem cartItem = null;
-        for(CartItem item : cart.getCartItems()){
-            if ((item.getProduct().getId())==id) {
+        for (CartItem item : cart.getCartItems()) {
+            if ((item.getProduct().getId()) == id) {
                 cartItem = new CartItem(item.getProduct(), item.getQuantity());
                 break;
             }

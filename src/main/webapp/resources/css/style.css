@@ -7,10 +7,15 @@ body {
 }
 
 .block1 {
-    margin-top: 30px;
     text-align: center;
+    background: #f2f2f2;
 }
-.block1 img {
+.container{
+    background: #FFF;
+    min-height: 900px;
+    padding-top: 20px;
+}
+.block1 .mainSpinner{
     margin-top: 100px;
 }
 
@@ -19,44 +24,103 @@ body {
 }
 
 .block1 nav {
+    display: block;
+    min-height: 65px;
     padding: 0;
-    background: #e8ebef;
-    margin: 0 auto 30px;
+    background: #fcfcfc;
+    margin: 0 auto;
+    border-bottom: 1px solid #e8ebef;
+    position:relative;
+    z-index: 110;
 }
 
 .block1 nav li {
     display: inline-block;
-    margin: 0 0px;
+    margin: 0 -2px;
     font-size: 24px;
+    position:relative;
+    z-index: 110;
 }
 
-.block1 nav li a {
+.block1 nav a {
     display: inline-block;
     width: 200px;
-    color: #575859;
-    font-weight: 600;
+    height: 65px;
+    color: #6d6d6d;
+    padding: 20px 0;
+    margin: 0;
+    border-left: 1px solid #e8ebef;
+    z-index: 110;
 }
 
 .block1 nav li :hover {
-    background: #dee3ea;
+    background: #f9f9f9;
 }
 
+
+
+
+
+.block1 nav .submenu{
+    position:absolute;
+    left: 2px;
+    display:none;
+    margin-top: 0;
+    padding: 0;
+    z-index: 103;
+}
+.block1 nav .submenu li {
+    display: block;
+    background: #fcfcfc;
+    border-right: 1px solid #e8ebef;
+    border-bottom: 1px solid #e8ebef;
+}
+
+.block1 nav .submenu li:hover {
+    display: block;
+    background: #FFF;
+
+}
+.block1 nav li:hover .submenu {
+    display: block;
+}
+
+.block1 nav .cart {
+    padding-left: 55px;
+    background: url('../img/korzina_z_shop.png') 55px 20px no-repeat;
+}
+
+.block1 nav .cart:hover {
+    padding-left: 55px;
+    background: url('../img/korzina_z_shop.png') 55px 20px no-repeat #f9f9f9;
+}
+
+
+
+
+
+
+
+
+
 .block1 .active {
-    background: #dee3ea;
+    background: #f9f9f9;
 }
 
 .block1 input{
     background: none;
     border: none;
-    border-bottom: 1px solid #575859;
+    border-bottom: 1px solid #e8ebef;
     border-radius: 0;
     outline: none;
 }
+
 
 .block1 .btn{
     border: 1px solid #575859;
     background: #e8ebef;
     margin: 20px auto;
+    border-radius: 3px;
 }
 
 .block1 .btn:hover{
@@ -67,6 +131,7 @@ body {
     line-height: 1.8;
     text-align: left;
     border-right: 1px solid #e8ebef;
+    margin-top: 20px;
 }
 .block1 .listOfProducts li{
     display: block;
@@ -104,9 +169,18 @@ body {
     color: #575859;
     margin: 0px 0;
     font-weight: 500;
+
 }
 .block1 .col-md-8{
     text-align: left;
+}
+
+.block1 .col-md-9{
+    text-align: left;
+}
+
+.align_center{
+    text-align: center;
 }
 
 
@@ -116,8 +190,10 @@ body {
     top: 0;
     right: 0;
     bottom: 0;
+    width: inherit;
+    margin: inherit;
     background: #FFF;
-    z-index: 100500;
+    z-index: 102;
 }
 
 #page-preloader .spinner {
@@ -125,7 +201,164 @@ body {
     height: 248px;
     position: absolute;
     left: 40%;
-    top: 40%;
+    top: 20%;
     background: url('../img/spinner2.gif') no-repeat 50% 50%;
     margin: -16px 0 0 -16px;
+    font-size: 24px;
+    font-weight: 600;
+    padding-top: 250px;
+    padding-left: 0px;
+    color: #575859;
+}
+
+
+
+
+.list_pagination{
+    padding: 0;
+    margin: 0px auto;
+}
+
+.list_pagination li{
+    display: inline-block;
+
+}
+
+.activePage{
+    background-color: lightsalmon;
+}
+
+.nonActivePage{
+    background-color: #dddddd;
+}
+.list_pagination li a{
+    display: inline-block;
+    width: 27px;
+    height: 30px;
+    margin: 20px;
+    font-size: 24px;
+    padding-bottom: 6px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #575859;
+    color: #6d6d6d;
+}
+.list_pagination li a:hover{
+    background: #dee3ea;
+}
+
+.block1 nav .logo{
+    width: 300px;
+    background: url('../img/logo.png') no-repeat ;
+    border: none;
+}
+.block1 nav .logo:hover{
+    background: url('../img/logo.png') no-repeat #f9f9f9;
+    border: none;
+}
+
+.block1 .mainLink{
+    border: none;
+}
+
+.block1 .left_block .createOrder{
+    font-weight: 600;
+    width: 110px;
+    margin: 0 auto;
+    height: 27px;
+    padding: 2px 0;
+}
+
+.left_block{
+    padding-left: 40px;
+    border-left: 1px solid #e8ebef;
+}
+
+.block1 .formOrder{
+    display: block;
+    padding: 0;
+    text-align: center;
+    margin: 30px auto 0;
+}
+.block1 .formOrder li{
+    display: inline-block;
+    height: 30px;
+    width: 212px;
+    text-align: center;
+    margin: 0 auto 5px;
+}
+
+.block1 .formOrder input {
+    text-align: center;
+
+}
+
+.block1 .submit_btn{
+    margin-left: 55px;
+    margin-top: 10px;
+}
+
+.block1 .formOrder h3{
+    margin: 0 auto 10px;
+}
+
+.error{
+    display: inline-block;
+    margin-top: 100px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #6d6d6d;
+}
+
+.block1 .requiredField{
+    background: url('../img/star-red-md.png') 98% 0 no-repeat;
+}
+
+.block1 .seeMore{
+    margin-left: 105px;
+    margin-top: 10px;
+}
+
+.block1 .uploadBtn{
+    margin: 10px auto 10px 125px;
+}
+.block1 .downloadBtn{
+    display: inline-block;
+    margin: 25px 0 10px 25px;
+}
+
+.block1 .searchByName{
+    background: url('../img/search.png') no-repeat 11px 50%;
+    background-size: 20px 20px;
+    border:  1px solid #e8ebef;
+    border-radius: 3px;
+    box-sizing: border-box;
+    outline: 0;
+    padding: 0 10px 0 40px;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    -o-transition: border .1s linear;
+    transition: border .1s linear;
+    position: relative;
+    z-index: 1;
+}
+
+.block1 .searchByName:focus {
+    border-color: #999;
+}
+.block1 input:focus{
+    border-color: #999;
+}
+
+.block1 .listOfProducts a {
+    color: #6d6d6d;
+}
+
+.block1 .summary{
+    max-width: 400px;
+}
+
+.block1 .mainBtn{
+    margin: 20px auto 0;
 }

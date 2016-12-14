@@ -1,13 +1,12 @@
 package com.netcracker.crm.entity;
 
-/**
- * Created by egor on 24.10.2016.
- */
+
 public class User extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
     public static final String ROLE_ADMIN = "A";
     public static final String ROLE_USER = "U";
+    public static final String ROLE_ANON = "N";
 
     private String login;
     private String password;
@@ -17,7 +16,8 @@ public class User extends AbstractEntity {
     private String roleId;
     private String email;
 
-    public User(){}
+    public User() {
+    }
 
     public User(int id, String login, String password, String userName, String contactPhone, String contactAddress, String roleId, String email) {
         super(id);
@@ -28,6 +28,40 @@ public class User extends AbstractEntity {
         this.contactAddress = contactAddress;
         this.roleId = roleId;
         this.email = email;
+    }
+
+    public void clone(User user) {
+        this.setId(user.getId());
+        this.setLogin(user.getLogin());
+        this.setPassword(user.getPassword());
+        this.setUserName(user.getUserName());
+        this.setContactPhone(user.getContactPhone());
+        this.setContactAddress(user.getContactAddress());
+        this.setRoleId(user.getRoleId());
+        this.setEmail(user.getEmail());
+    }
+
+    public boolean isAdmin() {
+        return this.getRoleId().equals(User.ROLE_ADMIN);
+    }
+
+    public boolean isUser() {
+        return this.getRoleId().equals(User.ROLE_USER);
+    }
+
+    public boolean isAnon() {
+        return this.getRoleId().equals(User.ROLE_ANON);
+    }
+
+    public void logout() {
+        this.setId(-1);
+        this.setLogin("anon");
+        this.setPassword("anon");
+        this.setUserName("Guest");
+        this.setContactPhone("");
+        this.setContactAddress("");
+        this.setRoleId(User.ROLE_ANON);
+        this.setEmail("anon@gmail.com");
     }
 
     @Override
@@ -42,7 +76,8 @@ public class User extends AbstractEntity {
         if (!password.equals(user.password)) return false;
         if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
         if (contactPhone != null ? !contactPhone.equals(user.contactPhone) : user.contactPhone != null) return false;
-        if (contactAddress != null ? !contactAddress.equals(user.contactAddress) : user.contactAddress != null) return false;
+        if (contactAddress != null ? !contactAddress.equals(user.contactAddress) : user.contactAddress != null)
+            return false;
         if (email != null ? !email.equals(user.email) : user.email != null)
             return false;
         return roleId.equals(user.roleId);
@@ -77,7 +112,6 @@ public class User extends AbstractEntity {
                 ", email='" + email + '\'' +
                 '}';
     }
-
 
 
     public String getLogin() {

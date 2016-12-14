@@ -9,10 +9,9 @@
 
 	<context:component-scan base-package="com.netcracker.crm.controller" />
 	<context:component-scan base-package="com.netcracker.crm.entity.controllerEntity" />
-	<context:component-scan base-package="com.netcracker.crm.entity.controllerEntity.controllerService" />
 
 	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
 			<value>/WEB-INF/pages/</value>
 		</property>
@@ -21,6 +20,51 @@
 		</property>
 	</bean>
 
+
+	<import resource="classpath*:SpringModule.xml"/>
+
+	<bean class="com.netcracker.crm.controller.ProductListController" id="productListController" scope="session">
+		<property name="productService" ref="productService"/>
+		<property name="searchService" ref="searchService"/>
+		<property name="paginationService" ref="paginationService"/>
+		<property name="user" ref="user"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.controller.CartController" id="cartController" scope="session">
+		<property name="cartService" ref="cartService"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.controller.UserLoginController" id="userLoginController" scope="session">
+		<property name="signupValidator" ref="signupValidator"/>
+		<property name="userService" ref="userService"/>
+		<property name="user" ref="user"/>
+		<property name="loginValidator" ref="loginValidator"/>
+		<property name="cartService" ref="cartService"/>
+		<property name="profileValidator" ref="profileValidator"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.controller.FrontController" id="frontController" scope="session">
+		<property name="user" ref="user"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.controller.OrderController" id="orderController" scope="session">
+		<property name="cartService" ref="cartService"/>
+		<property name="orderService" ref="orderService"/>
+		<property name="user" ref="user"/>
+		<property name="orderValidator" ref="orderValidator"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.controller.AdminController" id="adminController" scope="session">
+		<property name="addProductValidator" ref="addProductValidator"/>
+		<property name="productService" ref="productService"/>
+		<property name="user" ref="user"/>
+		<property name="patternsService" ref="patternsService"/>
+	</bean>
+
+	<bean class="com.netcracker.crm.controller.XmlController" id="xmlController" scope="session">
+		<property name="user" ref="user"/>
+		<property name="catalogParser" ref="catalogParser"/>
+	</bean>
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 
 	<mvc:annotation-driven />

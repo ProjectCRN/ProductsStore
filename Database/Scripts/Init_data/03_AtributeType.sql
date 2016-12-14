@@ -49,6 +49,3 @@ INSERT INTO ns_admin.TBL_ATRIBUTETYPE (
 	'Link');
   
   commit;
-
-exit;
-/

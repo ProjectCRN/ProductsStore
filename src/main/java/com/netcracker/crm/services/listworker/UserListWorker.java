@@ -7,25 +7,24 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * Created by egor on 20.11.2016.
- */
+
 public class UserListWorker {
 
-    private UserListWorker(){
+    private UserListWorker() {
 
     }
 
-    public static List<User> sortById(List<User> list){
+    public static List<User> sortById(List<User> list) {
         Collections.sort(list, new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
-                return Integer.compare(o1.getId(),o2.getId());
+                return Integer.compare(o1.getId(), o2.getId());
             }
         });
         return list;
     }
-    public static List<User> sortByUsername(List<User> list){
+
+    public static List<User> sortByUsername(List<User> list) {
         Collections.sort(list, new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
@@ -35,7 +34,7 @@ public class UserListWorker {
         return list;
     }
 
-    public static List<User> sortByLogin(List<User> list){
+    public static List<User> sortByLogin(List<User> list) {
         Collections.sort(list, new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
@@ -46,18 +45,17 @@ public class UserListWorker {
     }
 
     @NotNull
-    public static List<User> getFromTo(List<User> list, int from, int to){
-        if (from < 0){
+    public static List<User> getFromTo(List<User> list, int from, int to) {
+        if (from < 0) {
             from = 0;
         }
-         if (to > list.size()){
+        if (to > list.size()) {
             to = list.size();
         }
         list.subList(from, to);
         return list.subList(from, to);
 
     }
-
 
 
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.netcracker.crm.services" />
+
+    <import resource="Dao.xml"/>
+
+    <bean class="com.netcracker.crm.services.impl.UserServiceImpl" id="userService" scope="session">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.services.impl.ProductServiceImpl" id="productService" scope="session">
+        <property name="entityDao" ref="entityDao"/>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="200000" />
+    </bean>
+
+    <bean class="com.netcracker.crm.services.impl.OrderServiceImpl" id="orderService" scope="session">
+        <property name="entityDao" ref="entityDao"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.services.impl.UserServiceImpl" id="userServiceTest">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.services.impl.ProductServiceImpl" id="productServiceTest">
+        <property name="entityDao" ref="entityDao"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.services.impl.OrderServiceImpl" id="orderServiceTest">
+        <property name="entityDao" ref="entityDao"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.entity.controllerEntity.validator.SignupValidator" id="signupValidator" scope="session">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.entity.controllerEntity.validator.LoginValidator" id="loginValidator" scope="session">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.entity.controllerEntity.validator.OrderValidator" id="orderValidator" scope="session"/>
+
+    <bean class="com.netcracker.crm.entity.User" id="user" scope="session">
+        <property name="id" value="-1"/>
+        <property name="contactAddress" value=""/>
+        <property name="contactPhone" value=""/>
+        <property name="email" value="anon@gmail.com"/>
+        <property name="login" value="anon"/>
+        <property name="password" value="anon"/>
+        <property name="roleId" value="N"/>
+        <property name="userName" value="Guest"/>
+    </bean>
+    <bean class="com.netcracker.crm.services.impl.SearchServiceImpl" id="searchService" scope="session"/>
+
+    <bean class="com.netcracker.crm.services.impl.PatternsServiceImpl" id="patternsService" scope="session"/>
+
+    <bean class="com.netcracker.crm.services.impl.PaginationServiceImpl" id="paginationService" scope="session"/>
+
+    <bean class="com.netcracker.crm.entity.serviceEntity.Cart" id="cart" scope="session">
+        <constructor-arg type="int" value="-1"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.services.impl.CartServiceImpl" id="cartService" scope="session">
+        <property name="cart" ref="cart"/>
+        <property name="productService" ref="productService"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.entity.controllerEntity.validator.AddProductValidator" id="addProductValidator" scope="session">
+        <property name="patternsService" ref="patternsService"/>
+    </bean>
+
+    <bean class="com.netcracker.crm.entity.controllerEntity.validator.ProfileValidator" id="profileValidator" scope="session"/>
+
+</beans>

@@ -1,8 +1,6 @@
 package com.netcracker.crm.entity;
 
-/**
- * Created by �� on 13.11.2016.
- */
+
 public class Atribute extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
@@ -13,20 +11,28 @@ public class Atribute extends AbstractEntity {
     private int entityTypeId;
     private String entityTypeName;
     private boolean isRequired;
+    private String regularExpression;
 
-    public Atribute() {}
+    public Atribute() {
+    }
 
-    public Atribute(int id, String atributeName, int atributeTypeId, boolean isActive, int entityTypeId, boolean isRequired) {
+    public Atribute(int id, String atributeName) {
+        super(id);
+        this.atributeName = atributeName;
+    }
+
+    public Atribute(int id, String atributeName, int atributeTypeId, boolean isActive, int entityTypeId, boolean isRequired, String regularExpression) {
         super(id);
         this.atributeName = atributeName;
         this.atributeTypeId = atributeTypeId;
         this.isActive = isActive;
         this.entityTypeId = entityTypeId;
         this.isRequired = isRequired;
+        this.regularExpression = regularExpression;
     }
 
     public Atribute(int id, String atributeName, int atributeTypeId, String atributeTypeName,
-                    boolean isActive, int entityTypeId, String entityTypeName, boolean isRequired) {
+                    boolean isActive, int entityTypeId, String entityTypeName, boolean isRequired, String regularExpression) {
         super(id);
         this.atributeName = atributeName;
         this.atributeTypeId = atributeTypeId;
@@ -35,6 +41,8 @@ public class Atribute extends AbstractEntity {
         this.entityTypeId = entityTypeId;
         this.entityTypeName = entityTypeName;
         this.isRequired = isRequired;
+        this.regularExpression = regularExpression;
+
     }
 
     @Override
@@ -125,16 +133,28 @@ public class Atribute extends AbstractEntity {
         this.isRequired = isRequired;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public void setRequired(boolean required) {
+        isRequired = required;
+    }
+
+    public String getRegularExpression() {
+        return regularExpression;
+    }
+
+    public void setRegularExpression(String regularExpression) {
+        this.regularExpression = regularExpression;
+    }
+
     @Override
     public String toString() {
-        return "Atribute{" +
-                "atributeName='" + atributeName + '\'' +
-                ", atributeTypeId=" + atributeTypeId +
-                ", atributeTypeName='" + atributeTypeName + '\'' +
-                ", isActive=" + isActive +
-                ", entityTypeId=" + entityTypeId +
-                ", entityTypeName='" + entityTypeName + '\'' +
-                ", isRequired=" + isRequired +
-                '}';
+        return atributeName;
     }
 }

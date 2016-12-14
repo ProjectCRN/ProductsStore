@@ -1,8 +1,10 @@
 package com.netcracker.crm.entity;
 
-/**
- * Created by �� on 12.11.2016.
- */
+import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.enums.PhoneAtribute;
+import com.netcracker.crm.entity.enums.TabletAtribute;
+
+
 public class Value extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
@@ -11,6 +13,17 @@ public class Value extends AbstractEntity {
     private int atributeId;
 
     public Value() {
+    }
+
+    public Value(int valueId, String value) {
+        super(valueId);
+        this.value = value;
+    }
+
+    public Value(String value, int entityId, int atributeId) {
+        this.value = value;
+        this.entityId = entityId;
+        this.atributeId = atributeId;
     }
 
     public Value(int valueId, String value, int entityId, int atributeId) {
@@ -66,17 +79,23 @@ public class Value extends AbstractEntity {
 
         Value other = (Value) obj;
         if (!value.equals(other.value)) return false;
-        if(entityId != other.entityId) return false;
-        if(atributeId != other.atributeId) return false;
+        if (entityId != other.entityId) return false;
+        if (atributeId != other.atributeId) return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Value{" +
-                "value='" + value + '\'' +
-                ", entityId=" + entityId +
-                ", atributeId=" + atributeId +
-                '}';
+        return value;
+    }
+
+    public String getAttrValue() {
+
+        if (entityId == EntityType.Telephone.getTypeId()) {
+            PhoneAtribute p = PhoneAtribute.findByKey(atributeId);
+            return p.toString() + ": " + value;
+        }
+        TabletAtribute t = TabletAtribute.findByKey(atributeId);
+        return t.toString() + ": " + value;
     }
 }

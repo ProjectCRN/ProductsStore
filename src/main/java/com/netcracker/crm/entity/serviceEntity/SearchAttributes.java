@@ -1,11 +1,13 @@
 package com.netcracker.crm.entity.serviceEntity;
 
+import com.netcracker.crm.entity.enums.EntityType;
+import com.netcracker.crm.entity.enums.PhoneAtribute;
+import com.netcracker.crm.entity.enums.TabletAtribute;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Ксения on 29.11.2016.
- */
+
 public class SearchAttributes {
     private String minPrice;
     private String maxPrice;
@@ -15,26 +17,58 @@ public class SearchAttributes {
     private String maxBattery;
     private String name;
     private String type;
-    private static List<String> types;
+    private String numPerPage;
+
     private int typeId;
     private String attribute;
     private String operators;
     private String values;
+    private boolean sortBy;
+
+    private List<String> sortValues;
 
     public SearchAttributes() {
-        if(types == null)
-        {
-            types = new ArrayList<String>();
-            types.add("Telephone");
-            types.add("Tablet");
-            typeId = 8;
-            attribute = "";
-            operators = "";
-            values = "";
+        numPerPage = "2";
+        name = "A-Z";
+        sortBy = true;
+        if (getSortValues() == null) {
+            sortValues = new ArrayList<>();
+            sortValues.add("A-Z");
+            sortValues.add("Z-A");
         }
     }
 
+    public String getLists() {
+        return attribute + " | " + operators + " | " + values;
+    }
+
+    public boolean getSortBy() {
+        return sortBy;
+    }
+
+    public void setSortBy(boolean sortBy) {
+        this.sortBy = sortBy;
+    }
+
+    public List<String> getSortValues() {
+        return sortValues;
+    }
+
+    public void setSortValues(List<String> sortValues) {
+        this.sortValues = sortValues;
+    }
+
+    public String getNumPerPage() {
+        if (numPerPage == null) return "";
+        return numPerPage;
+    }
+
+    public void setNumPerPage(String numPerPage) {
+        this.numPerPage = numPerPage;
+    }
+
     public String getMinPrice() {
+        if (minPrice == null) return "";
         return minPrice;
     }
 
@@ -43,6 +77,7 @@ public class SearchAttributes {
     }
 
     public String getMaxPrice() {
+        if (maxPrice == null) return "";
         return maxPrice;
     }
 
@@ -51,6 +86,7 @@ public class SearchAttributes {
     }
 
     public String getMinCapacity() {
+        if (minCapacity == null) return "";
         return minCapacity;
     }
 
@@ -59,6 +95,7 @@ public class SearchAttributes {
     }
 
     public String getMaxCapacity() {
+        if (maxCapacity == null) return "";
         return maxCapacity;
     }
 
@@ -67,6 +104,7 @@ public class SearchAttributes {
     }
 
     public String getMinBattery() {
+        if (minBattery == null) return "";
         return minBattery;
     }
 
@@ -75,6 +113,7 @@ public class SearchAttributes {
     }
 
     public String getMaxBattery() {
+        if (maxBattery == null) return "";
         return maxBattery;
     }
 
@@ -83,6 +122,7 @@ public class SearchAttributes {
     }
 
     public String getName() {
+        if (name == null) return "";
         return name;
     }
 
@@ -91,19 +131,13 @@ public class SearchAttributes {
     }
 
     public String getType() {
+
+        if (type == null) return "";
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public static List<String> getTypes() {
-        return types;
-    }
-
-    public static void setTypes(List<String> types) {
-        SearchAttributes.types = types;
     }
 
     public int getTypeId() {
@@ -115,6 +149,7 @@ public class SearchAttributes {
     }
 
     public String getAttribute() {
+        if (attribute == null) return "";
         return attribute;
     }
 
@@ -123,6 +158,7 @@ public class SearchAttributes {
     }
 
     public String getOperators() {
+        if (operators == null) return "";
         return operators;
     }
 
@@ -131,10 +167,56 @@ public class SearchAttributes {
     }
 
     public String getValues() {
+        if (values == null) return "";
         return values;
     }
 
     public void setValues(String values) {
         this.values = values;
+    }
+
+    public String getShownAttributes() {
+        if (typeId == EntityType.Telephone.getTypeId()) {
+            return PhoneAtribute.Capacity.getAtributeId() + "," + PhoneAtribute.Battery.getAtributeId();
+        }
+        return TabletAtribute.Capacity.getAtributeId() + "," + TabletAtribute.Battery.getAtributeId();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SearchAttributes)) return false;
+
+        SearchAttributes that = (SearchAttributes) o;
+
+        if (getMinPrice() != null ? !getMinPrice().equals(that.getMinPrice()) : that.getMinPrice() != null)
+            return false;
+        if (getMaxPrice() != null ? !getMaxPrice().equals(that.getMaxPrice()) : that.getMaxPrice() != null)
+            return false;
+        if (getMinCapacity() != null ? !getMinCapacity().equals(that.getMinCapacity()) : that.getMinCapacity() != null)
+            return false;
+        if (getMaxCapacity() != null ? !getMaxCapacity().equals(that.getMaxCapacity()) : that.getMaxCapacity() != null)
+            return false;
+        if (getMinBattery() != null ? !getMinBattery().equals(that.getMinBattery()) : that.getMinBattery() != null)
+            return false;
+        if (getMaxBattery() != null ? !getMaxBattery().equals(that.getMaxBattery()) : that.getMaxBattery() != null)
+            return false;
+        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
+        return getNumPerPage() != null ? getNumPerPage().equals(that.getNumPerPage()) : that.getNumPerPage() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = minPrice != null ? minPrice.hashCode() : 0;
+        result = 31 * result + (maxPrice != null ? maxPrice.hashCode() : 0);
+        result = 31 * result + (minCapacity != null ? minCapacity.hashCode() : 0);
+        result = 31 * result + (maxCapacity != null ? maxCapacity.hashCode() : 0);
+        result = 31 * result + (minBattery != null ? minBattery.hashCode() : 0);
+        result = 31 * result + (maxBattery != null ? maxBattery.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + typeId;
+        return result;
     }
 }

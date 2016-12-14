@@ -10,9 +10,7 @@ import java.sql.SQLException;
 
 import static com.netcracker.crm.dao.constants.DaoConstants.*;
 
-/**
- * Created by Nastya on 11/13/2016.
- */
+
 public class EntityExtractor implements ResultSetExtractor<Entity> {
     @Override
     public Entity extractData(ResultSet resultSet) throws SQLException, DataAccessException {

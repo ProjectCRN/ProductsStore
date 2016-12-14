@@ -13,7 +13,7 @@ INSERT INTO ns_admin.TBL_USER (
 	(
 	-1,
 	'Ananymous',
-	'Ananymous',
+	'5f902ca578ce5cdd711ea38ce321e3d0d4b8857c52679cc8b81657abb23eeb25',
 	'Ananymous',
 	NULL,
 	NULL,
@@ -33,7 +33,7 @@ INSERT INTO ns_admin.TBL_USER (
 	(
 	-2,
 	'Admin',
-	'Admin',
+	'c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d6f',
 	'Admin',
 	NULL,
 	NULL,
@@ -42,5 +42,3 @@ INSERT INTO ns_admin.TBL_USER (
 	
 commit;
 
-exit;
-/

@@ -2,9 +2,6 @@ package com.netcracker.crm.entity.serviceEntity;
 
 import com.netcracker.crm.entity.AbstractEntity;
 
-/**
- * Created by Nastya on 11/22/2016.
- */
 public class CartItem extends AbstractEntity {
     private Product product;
     private int Quantity;
@@ -13,6 +10,7 @@ public class CartItem extends AbstractEntity {
         this.product = product;
         Quantity = 1;
     }
+
     public CartItem(Product product, int quantity) {
         this.product = product;
         Quantity = quantity;
@@ -37,9 +35,11 @@ public class CartItem extends AbstractEntity {
     public void incQuantity() {
         Quantity++;
     }
+
     public void decQuantity() {
         Quantity--;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,7 +63,6 @@ public class CartItem extends AbstractEntity {
     public String toString() {
         return "CartItem{" +
                 "product=" + product.toString() +
-                ", Quantity=" + Quantity +
                 '}';
     }
 }

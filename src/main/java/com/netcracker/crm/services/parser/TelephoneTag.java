@@ -5,30 +5,26 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 
-/**
- * Created by egor on 27.11.2016.
- */
-@Component("telphoneTag")
-public class TelephoneTag extends AbstractTag {
-    private TelephoneTag(){
-        tags = HashBiMap.create(new HashMap(){{
-            put("price", 20);
-            put("summary", 21);
-            put("operatingSystem", 22);
-            put("processorSpeedGHz", 23);
-            put("capacityGB", 24);
-            put("displayInch", 25);
-            put("heightMM", 26);
-            put("widthMM", 27);
-            put("depthMM", 28);
-            put("weightGrams", 29);
-            put("cameraMP", 30);
-            put("batteryHours", 31);
-            put("simCard", 32);
-            put("quantity", 33);
-            put("imageURL", 34);
-            put("fabricator", 35);
-        }});
 
+public class TelephoneTag extends AbstractTag {
+    public TelephoneTag() {
+        tags = HashBiMap.create(new HashMap() {{
+            put("price", 25);
+            put("summary", 26);
+            put("operatingsystem", 27);
+            put("processorspeed", 28);
+            put("capacity", 29);
+            put("display", 30);
+            put("height", 31);
+            put("width", 32);
+            put("depth", 33);
+            put("weight", 34);
+            put("camera", 35);
+            put("battery", 36);
+            put("simcard", 37);
+            put("imageurl", 38);
+            put("fabricator", 39);
+        }});
+        typeName = "Telephone";
     }
 }
