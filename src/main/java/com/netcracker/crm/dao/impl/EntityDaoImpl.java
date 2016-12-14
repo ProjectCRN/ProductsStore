@@ -236,7 +236,6 @@ public class EntityDaoImpl extends AbstractDao<Entity> implements IEntityDao {
                         public String mapRow(ResultSet rs, int rowNum) throws SQLException {
                             String string;
                             string = (rs.getString(COLUMN_ENTITY_ID));
-                            int rnum = rs.getInt("RNUM");
                             return string;
                         }
                     });
